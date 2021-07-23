@@ -4,4 +4,9 @@ export class AuthStore {
   constructor(rootStore: Store.Root) {
     this.rootStore = rootStore;
   }
+
+  private _isSignIn = false; // 임시
+  get isSignIn(): boolean {
+    return this._isSignIn;
+  }
 }
