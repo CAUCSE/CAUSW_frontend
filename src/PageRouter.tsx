@@ -6,7 +6,7 @@ export const PageRouter: React.FC = () => {
   return (
     <Router basename={PAGE_URL.Main}>
       <Switch>
-        <Route path={PAGE_URL.SignUp} exact component={() => <>로그인 페이지 당!</>} />
+        <Route path={PAGE_URL.SingIn} exact component={() => <>로그인 페이지 당!</>} />
 
         <AuthRouter>
           <Route path={PAGE_URL.Main} component={() => <>메인 페이지 당!</>} />
