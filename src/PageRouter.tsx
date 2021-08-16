@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { PAGE_URL } from './configs/path';
-import { useRootStore } from './stores/RootStore';
-import { PageSignIn } from './pages/signIn';
+import { AuthRouter } from './AuthRouter';
+import { PageSignIn } from './pages/singIn';
 import { PageSignUp } from './pages/signUp';
 
 export const PageRouter: React.FC = () => {
@@ -17,27 +17,5 @@ export const PageRouter: React.FC = () => {
         </AuthRouter>
       </Switch>
     </Router>
-  );
-};
-
-const AuthRouter: React.FC = ({ children, ...rest }) => {
-  const { auth } = useRootStore();
-
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        auth.isSignIn ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: PAGE_URL.SignIn,
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
   );
 };
