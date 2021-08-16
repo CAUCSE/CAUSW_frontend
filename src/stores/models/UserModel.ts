@@ -4,7 +4,7 @@ export class UserModel {
   email: string;
   name: string;
   admission_year: string;
-  role: Role; // TODO: ENUM으로 변경
+  role: Role; 
   profile_image?: string;
   state: UserState;
   student_id?: string;

@@ -7,5 +7,3 @@ class AuthRepo {
 }
 
 export const AuthRepoImpl = new AuthRepo();
-
-// Front-end <- axios -> Back-end

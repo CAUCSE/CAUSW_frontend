@@ -10,8 +10,8 @@ export const PageRouter: React.FC = () => {
       <Switch>
         <Route path={PAGE_URL.SignIn} exact component={PageSignIn} />
         <Route path={PAGE_URL.SignUp} exact component={PageSignUp} />
-        <Route path={PAGE_URL.Err404} exact component={() => <>404</>} />
 
+        <Route path={PAGE_URL.Err404} exact component={() => <>404</>} />
         <AuthRouter>
           <Route path={PAGE_URL.Main} component={() => <>메인 페이지 당!</>} />
         </AuthRouter>

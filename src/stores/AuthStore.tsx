@@ -2,7 +2,6 @@ import { AuthRepoImpl } from './repositories/AuthRepo';
 import { ReqSignIn, ReqSignUp } from '../@types/Auth';
 import { UserModel } from './models/UserModel';
 
-
 export class AuthStore {
   rootStore: Store.Root;
   user: UserModel | null;
@@ -28,7 +27,7 @@ export class AuthStore {
       throw 401;
     }
   }
-
+  
   signOut(): void {
     this.user = null;
   }
