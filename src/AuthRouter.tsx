@@ -14,7 +14,7 @@ export const AuthRouter: React.FC = ({ children, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: PAGE_URL.SingIn,
+              pathname: PAGE_URL.SignIn,
               state: { from: location },
             }}
           />
