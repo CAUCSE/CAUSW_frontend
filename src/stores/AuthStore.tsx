@@ -1,5 +1,5 @@
 import { AuthRepoImpl } from './repositories/AuthRepo';
-import { ReqSignIn } from '../@types/Auth';
+import { ReqSignIn, ReqSignUp } from '../@types/Auth';
 import { UserModel } from './models/UserModel';
 
 export class AuthStore {
@@ -20,6 +20,14 @@ export class AuthStore {
     }
   }
 
+  async signUp(body: ReqSignUp): Promise<any> {
+    try {
+      const { data } = await AuthRepoImpl.signUp(body);
+    } catch (error) {
+      throw 401;
+    }
+  }
+  
   signOut(): void {
     this.user = null;
   }
