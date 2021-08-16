@@ -7,5 +7,6 @@ declare global {
   namespace Store {
     type Root = RootStore;
     type Auth = AuthStore;
+    type Ui = UiStore;
   }
 }
