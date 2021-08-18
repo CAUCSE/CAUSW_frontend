@@ -1,7 +1,8 @@
 export enum PAGE_URL {
   Main = '/',
+  Auth = '/auth',
   SignIn = '/signin',
-  SignUp = '/signup',
+  SignUp = '/singup',
 
   Err404 = '/error/404',
 }
