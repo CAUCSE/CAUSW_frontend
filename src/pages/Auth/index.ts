@@ -1,0 +1,1 @@
+export { PageAuth } from './PageAuth';

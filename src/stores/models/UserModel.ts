@@ -1,10 +1,10 @@
-import { UserState, Role } from '../../@types/Auth';
+import { UserState } from '../../@types/Auth';
 
 export class UserModel {
   email: string;
   name: string;
   admission_year: string;
-  role: Role; 
+  role: string; // TODO: ENUM으로 변경
   profile_image?: string;
   state: UserState;
   student_id?: string;

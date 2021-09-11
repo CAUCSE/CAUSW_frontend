@@ -1,1 +1,0 @@
-export { PageSignUp } from './PageSignUp';
