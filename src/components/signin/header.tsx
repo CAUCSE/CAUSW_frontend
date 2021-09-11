@@ -38,13 +38,11 @@ const Title = styled.div`
   color: #3f4040;
 `;
 
-export default function Header() {
-  return (
-    <Wrapper>
-      <Link to="/">
-        <Image />
-      </Link>
-      <Title> 회원가입 </Title>
-    </Wrapper>
-  );
-}
+export const Header: React.FC = React.memo(() => (
+  <Wrapper>
+    <Link to="/">
+      <Image />
+    </Link>
+    <Title> 회원가입 </Title>
+  </Wrapper>
+));
