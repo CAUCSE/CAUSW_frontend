@@ -1,30 +1,22 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
-import { Color, palette } from '../../../styles/palette';
-
-type InputType = 'text' | 'password' | 'email' | 'time' | 'date' | 'datetime-local';
-type InputSize = 'small' | 'medium' | 'large';
+import styled, { Color, css } from 'styled-components';
 
 interface InputProps extends Omit<React.HTMLProps<HTMLInputElement>, 'size'> {
-  // type: InputType;
-  // value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   round?: boolean;
-  size?: InputSize;
   value?: string | number;
   color?: Color;
 }
 
-const Input: React.FC<InputProps> = ({ type, round = true, size = 'large', color = 'black', ...rest }) => {
-  const htmlProps = rest as any;
-  return <InputBlock type={type} color={color} round={round} cutomSize={size} {...htmlProps} />;
+const Input: React.FC<InputProps> = ({ type, round = true, color = 'black', ...rest }) => {
+  const htmlProps = rest as unknown;
+  return <InputBlock type={type} color={color} round={round} {...htmlProps} />;
 };
 
 export default Input;
 
 interface InputBlockProps {
   round: boolean;
-  customSize: InputSize;
   color: Color;
 }
 
@@ -39,7 +31,7 @@ const InputBlock = styled.input<InputBlockProps>`
   height: ${props => props.height}px;
 
   background-color: transparent;
-  border: 1px solid ${palette.black.main};
+  border: 1px solid ${({ theme, color }) => theme.color[color].main};
   color: ${props => props.color};
 
   margin-bottom: 10px;
@@ -49,6 +41,5 @@ const InputBlock = styled.input<InputBlockProps>`
 
   &::placeholder {
     color: '#A8A4A4';
-    /* color: ${palette.black.sub}; */
   }
 `;
