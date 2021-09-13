@@ -13,7 +13,7 @@ export const PageRouter: React.FC = React.memo(() => (
       <Route path={PAGE_URL.Err404} exact component={() => <>404</>} />
 
       <AuthRouter>
-        <Route path={PAGE_URL.Main} component={() => <>메인 페이지 당!</>} />
+        <Route path={PAGE_URL.Main} component={Pages.Main} />
       </AuthRouter>
     </Switch>
   </Router>

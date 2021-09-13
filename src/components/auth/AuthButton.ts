@@ -1,8 +1,7 @@
-import * as React from 'react';
 import styled from 'styled-components';
 
 export const AuthButton = styled.button`
-  width: 237px;
+  width: 100%;
   height: 40px;
   background: #312ed7;
   border-radius: 30px;

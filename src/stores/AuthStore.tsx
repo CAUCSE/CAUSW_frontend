@@ -1,5 +1,4 @@
 import { AuthRepoImpl } from './repositories/AuthRepo';
-import { ReqSignIn } from '../@types/Auth';
 import { UserModel } from './models/UserModel';
 
 export class AuthStore {
@@ -11,7 +10,7 @@ export class AuthStore {
     this.user = null;
   }
 
-  async signIn(body: ReqSignIn): Promise<any> {
+  async signIn(body: any): Promise<any> {
     try {
       const { data } = await AuthRepoImpl.signIn(body);
       this.user = new UserModel(data);

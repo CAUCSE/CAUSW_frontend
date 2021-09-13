@@ -28,7 +28,7 @@ export const PageSignUp: React.FC = React.memo(() => {
           value=""
         />
         <CommonInput title="학번" placeholder="학번을 입력하세요" caption="학번을 입력해주세요" value="" />
-        <SubmitButton> 가입하기 </SubmitButton>
+        <SubmitButton>가입하기</SubmitButton>
       </SigninWrapper>
     </div>
   );

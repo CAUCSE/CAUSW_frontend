@@ -1,12 +1,7 @@
-import Logo from './logo.png';
 import styled from 'styled-components';
+import LogoSource from './logo.png';
 
-export const Image = styled.img`
+export const Logo = styled.img.attrs({ src: LogoSource })`
   width: 91px;
   height: 96px;
-
-  margin-bottom: 30px;
 `;
-Image.defaultProps = {
-  src: Logo,
-};

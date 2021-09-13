@@ -6,7 +6,7 @@ type InputType = 'text' | 'password' | 'email' | 'time' | 'date' | 'datetime-loc
 type InputSize = 'small' | 'medium' | 'large';
 
 interface InputProps extends Omit<React.HTMLProps<HTMLInputElement>, 'size'> {
-  type: InputType;
+  // type: InputType;
   // value: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   round?: boolean;

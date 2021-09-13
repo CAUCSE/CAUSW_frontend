@@ -1,85 +1,56 @@
-import React, { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRootStore } from '../../stores/RootStore';
-import { ReqSignIn } from '../../@types/Auth';
-import useInput from '../../hooks/useInput';
-import { Link } from 'react-router-dom';
-
-import AuthInput from '../../components/auth/AuthInput';
-import { AuthContainer } from '../../components/auth/AuthContainer.js';
-import { CheckBoxContainer, CheckBoxText } from '../../components/auth/CheckBox.js';
-import { Image } from '../../assets/images/logo';
-import { AuthButton } from '../../components/auth/AuthButton';
-
-import { AuthIcon } from '../../components/auth/AuthIcon';
-import EmailIcon from '../../assets/icons/email_icon.png';
-import { PAGE_URL } from '../../configs/path';
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { PAGE_URL } from 'configs/path';
+import { AuthButton } from 'components/auth/AuthButton';
+import * as S from './styled';
 
 export const PageSignIn: React.FC = React.memo(() => {
-  // 1. 유효성 검사
-  // const {email, password} = data;
-  // if(emailRex.test(email)) 이메일이 이메일 양식인지
-  // if(passwordRex.test(password)) 비밀번호가 비밀번호 양식인지
-  const [email, onChangeEmail, onResetEmail] = useInput('');
-  const [password, onChangePW, onResetPW] = useInput('');
-  const { auth } = useRootStore();
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm();
-  const onSubmit = useCallback(async (body: ReqSignIn) => {
-    try {
-      await auth.signIn(body);
-      reset();
-      // TODO: 메인페이지 이동
-    } catch (code) {
-      if (code === 401) {
-        alert('이메일, 비밀번호를 확인해주세요.');
-      }
-    }
-  }, []);
+  const onSubmit = (body: any) => console.debug(body);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <AuthContainer>
-        <Image />
-        <AuthInput
-          {...register('email', {
-            required: '이메일을 입력해주세요.',
-            pattern: {
-              value: /\S+@\S+\.\S+/,
-              message: '이메일 양식을 확인해주세요.',
-            },
-          })}
-          type="email"
-          value={email}
-          onChange={onChangeEmail}
-          onReset={onResetEmail}
-          placeholder="아이디"
-        >
-          <AuthIcon width="12" height="12" src={EmailIcon} />
-        </AuthInput>
-        {errors.email && <span role="alert">{errors.email.message}</span>}
-        <AuthInput
-          {...register('password', {
-            required: '비밀번호를 입력해주세요.',
-          })}
-          type="password"
-          value={password}
-          onChange={onChangePW}
-          onReset={onResetPW}
-          placeholder="비밀번호"
+    <S.Container>
+      <S.Logo />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <S.InputRow>
+              <S.AuthInput {...field} type="email" placeholder="아이디" />
+              <S.EmailIcon />
+              {errors.email && <span role="alert">{errors.email.message}</span>}
+            </S.InputRow>
+          )}
         />
-        {errors.password && <span role="alert">{errors.password.message}</span>}
-        <CheckBoxContainer>
-          <input type="checkbox" />
-          <CheckBoxText>자동로그인</CheckBoxText>
-        </CheckBoxContainer>
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <S.InputRow>
+              <S.AuthInput {...field} type="password" placeholder="비밀번호" />
+              <S.PasswordIcon />
+              {errors.password && <span role="alert">{errors.password.message}</span>}
+            </S.InputRow>
+          )}
+        />
+        <Controller
+          name="auto"
+          control={control}
+          render={({ field }) => <S.AuthCheck {...field} label="자동로그인" />}
+        />
         <AuthButton type="submit">로그인</AuthButton>
-        <Link to={PAGE_URL.SignUp}>회원가입</Link>
-      </AuthContainer>
-    </form>
+      </form>
+
+      <S.SubMenu>
+        <S.Menu to={PAGE_URL.SignUp}>회원가입</S.Menu>
+        <S.Menu to="#">ID찾기</S.Menu>
+        <S.Menu to="#">PW찾기</S.Menu>
+      </S.SubMenu>
+    </S.Container>
   );
 });

@@ -1,4 +1,4 @@
-import { UserState } from '../../@types/Auth';
+import { UserState } from 'stores/repositories/AuthType';
 
 export class UserModel {
   email: string;
