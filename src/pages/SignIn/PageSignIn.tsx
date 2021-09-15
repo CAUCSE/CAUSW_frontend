@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { PAGE_URL } from 'configs/path';
-import { AuthButton } from 'components/auth/AuthButton';
+import { useRootStore } from 'stores/RootStore';
+
 import * as S from './styled';
+import { AuthButton } from 'components/auth/AuthButton';
 
 export const PageSignIn: React.FC = React.memo(() => {
+  const {
+    auth: { signIn: handleSignIn, isSignIn },
+  } = useRootStore();
+  const { replace } = useHistory();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (body: any) => console.debug(body);
+
+  useEffect(() => {
+    if (isSignIn) replace(PAGE_URL.Main);
+  }, [isSignIn]);
 
   return (
     <S.Container>
       <S.Logo />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(handleSignIn)}>
         <Controller
           name="email"
           control={control}

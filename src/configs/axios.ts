@@ -2,10 +2,26 @@ import axios from 'axios';
 import { PAGE_URL } from './path';
 
 export const API = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.NODE_ENV === 'development' ? '/' : 'http://13.209.206.74:8080',
 });
 
-// 응답 인터셉터 추가
+export const setAuth = (token: string): unknown => (API.defaults.headers['Authentication'] = token);
+export const resetAuth = (): unknown => delete API.defaults.headers['Authentication'];
+
+const storageKey = 'CAUCSE_JWT';
+
+export const storeAuth = (isStored: boolean, token: string): void => {
+  if (isStored) localStorage.setItem(storageKey, token);
+  else sessionStorage.setItem(storageKey, token);
+};
+export const restoreAuth = (): boolean => {
+  const token = localStorage.getItem(storageKey) ?? sessionStorage.getItem(storageKey);
+
+  if (token) setAuth(token);
+
+  return !!token;
+};
+
 API.interceptors.response.use(
   response => response,
   error => {

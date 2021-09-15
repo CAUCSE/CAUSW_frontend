@@ -1,29 +1,28 @@
-import { AuthRepoImpl } from './repositories/AuthRepo';
-import { UserModel } from './models/UserModel';
+import { flow, makeObservable, observable } from 'mobx';
+import { restoreAuth } from 'configs/axios';
+import { AuthRepoImpl as Repo, DtoUserSignInRequest as SignInRequest } from './repositories/AuthRepo';
 
 export class AuthStore {
   rootStore: Store.Root;
-  user: UserModel | null;
+  isSignIn = false;
 
   constructor(rootStore: Store.Root) {
+    makeObservable(this, {
+      isSignIn: observable,
+      signIn: flow.bound,
+    });
+
     this.rootStore = rootStore;
-    this.user = null;
+    this.isSignIn = restoreAuth();
   }
 
-  async signIn(body: any): Promise<any> {
+  *signIn(body: SignInRequest): Generator {
     try {
-      const { data } = await AuthRepoImpl.signIn(body);
-      this.user = new UserModel(data);
-    } catch (error) {
-      throw 401;
+      yield Repo.signIn(body);
+
+      this.isSignIn = true;
+    } catch (err) {
+      this.isSignIn = false;
     }
-  }
-
-  signOut(): void {
-    this.user = null;
-  }
-
-  get isSignIn(): boolean {
-    return this.user !== null;
   }
 }
