@@ -5,7 +5,7 @@ import { AuthRouter } from './AuthRouter';
 import * as Pages from './pages';
 
 export const PageRouter: React.FC = React.memo(() => (
-  <Router basename={PAGE_URL.Main}>
+  <Router>
     <Switch>
       {/* 회원 페이지 */}
       <Route path={PAGE_URL.SignIn} exact component={Pages.SignIn} />
@@ -13,7 +13,9 @@ export const PageRouter: React.FC = React.memo(() => (
       <Route path={PAGE_URL.Err404} exact component={() => <>404</>} />
 
       <AuthRouter>
-        <Route path={PAGE_URL.Main} component={Pages.Main} />
+        <Route path={PAGE_URL.Home} component={Pages.Home} />
+        <Route path={PAGE_URL.Circle} component={Pages.Circle} />
+        <Route path={PAGE_URL.Board} component={Pages.Board} />
       </AuthRouter>
     </Switch>
   </Router>

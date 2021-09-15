@@ -6,7 +6,7 @@ declare module 'styled-components' {
     color: {
       [K in Color]: {
         main: string;
-        sub: string;
+        sub?: string;
       };
     };
   }

@@ -19,7 +19,7 @@ export const PageSignIn: React.FC = React.memo(() => {
   } = useForm();
 
   useEffect(() => {
-    if (isSignIn) replace(PAGE_URL.Main);
+    if (isSignIn) replace(PAGE_URL.Home);
   }, [isSignIn]);
 
   return (

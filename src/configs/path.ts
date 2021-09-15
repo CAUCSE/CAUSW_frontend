@@ -1,7 +1,10 @@
 export enum PAGE_URL {
   SignIn = '/signin',
   SignUp = '/singup',
-  Main = '/',
+
+  Home = '/home',
+  Circle = '/circle',
+  Board = '/board',
 
   Err404 = '/error/404',
 }
