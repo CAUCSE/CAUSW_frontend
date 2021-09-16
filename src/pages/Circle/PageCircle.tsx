@@ -1,7 +1,6 @@
 import React from 'react';
-import { MobileLayout } from 'components/layout/MobileLayout';
 
-const PageCircle: React.FC = React.memo(() => {
+export const PageCircle: React.FC = React.memo(() => {
   return (
     <>
       <div>logo</div>
@@ -14,5 +13,3 @@ const PageCircle: React.FC = React.memo(() => {
     </>
   );
 });
-
-export default MobileLayout(PageCircle);

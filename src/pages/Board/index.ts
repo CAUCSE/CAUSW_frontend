@@ -1,1 +1,1 @@
-export { default as PageBoard } from './PageBoard';
+export { PageBoard } from './PageBoard';

@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     position: absolute;
     width: 100%;
     height: 100%;
+    font-family: Roboto;
   }
 
   .a11y-hidden {

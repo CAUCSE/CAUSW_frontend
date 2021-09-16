@@ -1,8 +1,11 @@
+import { HeaderUiStore } from 'components/common/header';
+
 export class UiStore {
   rootStore: Store.Root;
-  // messageUi = new messageUi(); // 메세지 팝업 ui Store
+  header: HeaderUiStore;
 
   constructor(rootStore: Store.Root) {
     this.rootStore = rootStore;
+    this.header = new HeaderUiStore();
   }
 }

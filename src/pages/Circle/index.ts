@@ -1,1 +1,1 @@
-export { default as PageCircle } from './PageCircle';
+export { PageCircle } from './PageCircle';

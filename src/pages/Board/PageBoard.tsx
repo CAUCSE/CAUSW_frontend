@@ -1,7 +1,6 @@
 import React from 'react';
-import { MobileLayout } from 'components/layout/MobileLayout';
 
-const PageBoard: React.FC = React.memo(() => {
+export const PageBoard: React.FC = React.memo(() => {
   return (
     <>
       <div>logo</div>
@@ -14,5 +13,3 @@ const PageBoard: React.FC = React.memo(() => {
     </>
   );
 });
-
-export default MobileLayout(PageBoard);

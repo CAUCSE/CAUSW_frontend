@@ -11,7 +11,7 @@ export const defaultTheme: DefaultTheme = {
       sub: '#90E8DC',
     },
     black: {
-      main: '#424959',
+      main: '#3F4040',
       sub: '#6E788F',
     },
     approach: {

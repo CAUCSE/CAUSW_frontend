@@ -1,7 +1,8 @@
 /// <reference types="react-scripts" />
 
-import { AuthStore } from './stores/AuthStore';
-import { RootStore } from './stores/RootStore';
+import type { RootStore } from './stores/RootStore';
+import type { AuthStore } from './stores/AuthStore';
+import type { UiStore } from './stores/UiStore';
 
 declare global {
   namespace Store {
