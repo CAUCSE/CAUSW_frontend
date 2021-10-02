@@ -26,10 +26,10 @@ export const Boards: React.FC = observer(() => {
 
 export const BoardList: React.FC<{ items: Board.Board['items'] }> = React.memo(({ items }) => (
   <ul>
-    {items.map(({ key, name, notification }) => (
-      <li key={key}>
+    {items.map(({ key: boardKey, name, notification }) => (
+      <li key={boardKey}>
         <Icon active={notification} />
-        <ClearLink to={generatePath(PAGE_URL.Post, { key })}>{name}</ClearLink>
+        <ClearLink to={generatePath(PAGE_URL.Post, { boardKey })}>{name}</ClearLink>
       </li>
     ))}
   </ul>

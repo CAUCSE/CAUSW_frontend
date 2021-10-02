@@ -1,11 +1,25 @@
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { computed, makeObservable, observable } from 'mobx';
 import boardJson from '@/assets/board.json';
+import { useRootStore } from './RootStore';
 
 export class BoardStore {
   rootStore: Store.Root;
   list!: Board.RootObject['board'];
-  postNameMap!: Map<string, string>;
+  private postNameMap!: Map<string, string>;
+
+  boardKey?: string;
+  postId?: string;
 
   constructor(rootStore: Store.Root) {
+    makeObservable(this, {
+      boardKey: observable,
+      postId: observable,
+
+      boardName: computed,
+    });
+
     this.rootStore = rootStore;
     this.fetchBoard();
   }
@@ -22,7 +36,19 @@ export class BoardStore {
     );
   }
 
-  getPostName(key = ''): string {
-    return this.postNameMap.get(key) ?? '';
+  get boardName(): string {
+    return this.postNameMap.get(this.boardKey ?? '') ?? '';
   }
 }
+
+export const BoardContainer: React.FC = React.memo(({ children }) => {
+  const { boardKey, postId } = useParams<{ boardKey: string; postId: string }>();
+  const { board } = useRootStore();
+
+  useEffect(() => {
+    if (boardKey) board.boardKey = boardKey;
+    if (postId) board.postId = postId;
+  }, []);
+
+  return <>{children}</>;
+});

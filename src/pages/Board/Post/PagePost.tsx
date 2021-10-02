@@ -1,15 +1,17 @@
-import { useRootStore } from '@/stores/RootStore';
 import React from 'react';
-import { useParams } from 'react-router';
+import { observer } from 'mobx-react-lite';
+import { useRootStore } from '@/stores/RootStore';
+import { BoardContainer } from '@/stores/BoardStore';
 import * as S from '../stlyed';
 
-export const PagePost: React.FC = React.memo(() => {
-  const { board } = useRootStore();
-  const { key: postKey } = useParams<{ key: string }>();
+export const PagePost: React.FC = observer(() => {
+  const {
+    board: { boardName },
+  } = useRootStore();
 
   return (
-    <>
-      <S.PageHeader>{board.getPostName(postKey)}</S.PageHeader>
-    </>
+    <BoardContainer>
+      <S.PageHeader>{boardName}</S.PageHeader>
+    </BoardContainer>
   );
 });

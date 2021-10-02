@@ -5,7 +5,7 @@ export enum PAGE_URL {
   Home = '/home',
   Circle = '/circle',
   Board = '/board',
-  Post = '/board/:key',
+  Post = '/board/:boardKey',
 
   Err404 = '/error/404',
 }
