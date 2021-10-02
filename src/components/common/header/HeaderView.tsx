@@ -20,7 +20,6 @@ export const Header = styled.header`
     width: 100%;
     font-size: 20px;
     line-height: 55px;
-    letter-spacing: -0.333px;
     color: ${({ theme }) => theme.color.black.main};
     text-align: center;
   }

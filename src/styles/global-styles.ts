@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     font-family: Roboto;
+    letter-spacing: -0.333px;
   }
 
   .a11y-hidden {
