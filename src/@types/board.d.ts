@@ -1,5 +1,5 @@
 declare namespace Board {
-  export interface List {
+  export interface Item {
     key: string;
     name: string;
     notification: boolean;
@@ -7,7 +7,7 @@ declare namespace Board {
 
   export interface Board {
     category: string;
-    list: List[];
+    items: Item[];
   }
 
   export interface RootObject {

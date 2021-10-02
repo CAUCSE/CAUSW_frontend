@@ -1,25 +1,35 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 import { ClearLink } from '@/components/atoms/clear';
 import { NotificationIcon } from '@/components/atoms/NotificationIcon';
+import { useRootStore } from '@/stores/RootStore';
+import { generatePath } from 'react-router';
+import { PAGE_URL } from '@/configs/path';
 
-export const Boards: React.FC<{ board: Board.Board[] }> = React.memo(({ board }) => (
-  <>
-    {board.map(({ category, list }) => (
-      <Wrapper key={category}>
-        <h3>{category}</h3>
-        <BoardList items={list} />
-      </Wrapper>
-    ))}
-  </>
-));
+export const Boards: React.FC = observer(() => {
+  const {
+    board: { list },
+  } = useRootStore();
 
-export const BoardList: React.FC<{ items: Board.List[] }> = React.memo(({ items }) => (
+  return (
+    <>
+      {list.map(({ category, items }) => (
+        <Wrapper key={category}>
+          <h3>{category}</h3>
+          <BoardList items={items} />
+        </Wrapper>
+      ))}
+    </>
+  );
+});
+
+export const BoardList: React.FC<{ items: Board.Board['items'] }> = React.memo(({ items }) => (
   <ul>
     {items.map(({ key, name, notification }) => (
       <li key={key}>
         <Icon active={notification} />
-        <ClearLink to={`#${key}`}>{name}</ClearLink>
+        <ClearLink to={generatePath(PAGE_URL.Post, { key })}>{name}</ClearLink>
       </li>
     ))}
   </ul>

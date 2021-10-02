@@ -2,7 +2,7 @@
   "board": [
     {
       "category": "공지게시판",
-      "list": [
+      "items": [
         {
           "key":"1",
           "name":"학생회 공지게시판",
@@ -37,7 +37,7 @@
     },
     {
       "category": "자유게시판",
-      "list": [
+      "items": [
         {
           "key":"7",
           "name":"모두의 자유게시판",
