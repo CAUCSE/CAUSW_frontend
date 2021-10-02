@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const ClearButton = styled.button`
   padding: 0;
@@ -8,4 +9,9 @@ export const ClearButton = styled.button`
   cursor: pointer;
   overflow: hidden;
   outline: none;
+`;
+
+export const ClearLink = styled(Link)`
+  text-decoration: none;
+  color: #3f4040;
 `;

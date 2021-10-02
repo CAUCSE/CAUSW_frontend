@@ -21,7 +21,7 @@ const Body = styled.main<{ headerHeight: number }>`
   box-sizing: border-box;
   height: ${({ headerHeight }) => `calc(100% - ${headerHeight + footerHeight}px)`};
 
-  section {
+  > section {
     padding: 0 20px;
     height: 100%;
     overflow-x: hidden;
