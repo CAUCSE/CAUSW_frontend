@@ -1,10 +1,17 @@
 import React from 'react';
+import * as CircleLink from './components/TopCircleLink';
 
 export const PageHome: React.FC = React.memo(() => {
   return (
     <>
       <div>logo</div>
-      <div>상단 버튼 목록</div>
+      <CircleLink.Wrapper>
+        <CircleLink.University />
+        <CircleLink.Library />
+        <CircleLink.CSE />
+        <CircleLink.Portal />
+        <CircleLink.Locker />
+      </CircleLink.Wrapper>
       <div>배너 슬라이드</div>
       <h2>즐겨찾는 게시판</h2>
       <div>게시판 컴포넌트 1</div>
