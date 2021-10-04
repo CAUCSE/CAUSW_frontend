@@ -21,4 +21,12 @@ export const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     clip-path: polygon(0 0, 0 0, 0 0);
   }
+
+  .text-ellipsis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap:break-word; 
+    text-overflow: ellipsis;
+  }
 `;

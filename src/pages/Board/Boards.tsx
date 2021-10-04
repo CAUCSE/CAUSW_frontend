@@ -9,12 +9,12 @@ import { PAGE_URL } from '@/configs/path';
 
 export const Boards: React.FC = observer(() => {
   const {
-    board: { list },
+    board: { board },
   } = useRootStore();
 
   return (
     <>
-      {list.map(({ category, items }) => (
+      {board.map(({ category, items }) => (
         <Wrapper key={category}>
           <h3>{category}</h3>
           <BoardList items={items} />

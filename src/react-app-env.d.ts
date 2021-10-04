@@ -5,11 +5,19 @@ import type { AuthStore } from './stores/AuthStore';
 import type { UiStore } from './stores/UiStore';
 import type { BoardStore } from './stores/BoardStore';
 
+import type { PostModel } from './stores/models/PostModel';
+import type { CommentModel } from './stores/models/CommentModel';
+
 declare global {
   namespace Store {
     type Root = RootStore;
     type Auth = AuthStore;
     type Ui = UiStore;
     type Board = BoardStore;
+  }
+
+  namespace Model {
+    type Post = PostModel;
+    type Comment = CommentModel;
   }
 }
