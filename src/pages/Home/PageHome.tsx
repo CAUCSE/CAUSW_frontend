@@ -1,10 +1,12 @@
-import React from 'react';
+import { memo } from 'react';
 import * as CircleLink from './components/TopCircleLink';
+import { BookMarkBoard } from './components/BookMark/BookMarkBoard';
+import { Header } from './components/Header';
 
-export const PageHome: React.FC = React.memo(() => {
+export const PageHome: React.FC = memo(() => {
   return (
     <>
-      <div>logo</div>
+      <Header />
       <CircleLink.Wrapper>
         <CircleLink.University />
         <CircleLink.Library />
@@ -12,11 +14,7 @@ export const PageHome: React.FC = React.memo(() => {
         <CircleLink.Portal />
         <CircleLink.Locker />
       </CircleLink.Wrapper>
-      <div>배너 슬라이드</div>
-      <h2>즐겨찾는 게시판</h2>
-      <div>게시판 컴포넌트 1</div>
-      <div>게시판 컴포넌트 2</div>
-      <div>게시판 컴포넌트 3</div>
+      <BookMarkBoard />
     </>
   );
 });

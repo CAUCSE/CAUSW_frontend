@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Logo as Image } from 'assets/images/logo';
 import EmailSource from 'assets/icons/email_icon.png';
 import PasswordSource from 'assets/icons/password_icon.png';
-
 import Input from 'components/common/Input/Input';
 import { Checkbox } from 'components/atoms/form';
+import { LogoImage } from '@/components/atoms/Logo';
 
 export const Container = styled.div`
   box-sizing: border-box;
@@ -14,7 +13,7 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const Logo = styled(Image)`
+export const Logo = styled(LogoImage)`
   display: block;
   margin: 0 auto 30px;
 `;

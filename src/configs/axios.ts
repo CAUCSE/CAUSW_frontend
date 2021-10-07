@@ -5,8 +5,8 @@ export const API = axios.create({
   baseURL: process.env.NODE_ENV === 'development' ? '/' : 'http://13.209.206.74:8080',
 });
 
-export const setAuth = (token: string): unknown => (API.defaults.headers['Authentication'] = token);
-export const resetAuth = (): unknown => delete API.defaults.headers['Authentication'];
+export const setAuth = (token: string): unknown => (API.defaults.headers['Authorization'] = token);
+export const resetAuth = (): unknown => delete API.defaults.headers['Authorization'];
 
 const storageKey = 'CAUCSE_JWT';
 
