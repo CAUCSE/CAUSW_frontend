@@ -13,8 +13,12 @@ export const Posts: React.FC = observer(() => {
 
   return (
     <>
-      {posts.map(item => (
-        <PostCard to={generatePath(PAGE_URL.PostDetail, { boardId, postId: item.id as string })} item={item} />
+      {posts.map(post => (
+        <PostCard
+          key={post.id}
+          model={post}
+          to={generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id as string })}
+        />
       ))}
     </>
   );

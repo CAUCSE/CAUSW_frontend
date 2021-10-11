@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { ClearLink } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/message.svg';
 
-export const PostCard: React.FC<{ to: string; item: Model.Post }> = memo(
-  ({ to, item: { title, content, numComment, formatedCreatedAt } }) => (
+export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
+  ({ to, model: { title, content, numComment, formatedCreatedAt } }) => (
     <Link to={to}>
       <Card>
         <Title>{title}</Title>
