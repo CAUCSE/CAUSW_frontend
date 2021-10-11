@@ -19,6 +19,7 @@ export class PostStore {
       fetch: flow.bound,
       fetchById: flow.bound,
       reset: action.bound,
+      resetDetail: action.bound,
 
       boardId: computed,
     });
@@ -31,12 +32,14 @@ export class PostStore {
 
   *fetchById(): Generator {
     this.post = (yield Repo.fetchById(this.postId as string)) as Model.Post;
-
-    console.debug(this.post);
   }
 
   reset(): void {
     this.posts = [];
+  }
+
+  resetDetail(): void {
+    this.post = undefined;
   }
 
   get boardId(): string {

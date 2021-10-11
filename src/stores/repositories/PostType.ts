@@ -1,11 +1,16 @@
-import { BoardResponseDto } from './BoardType';
+import type { BoardResponseDto } from './BoardType';
+import type { CommentResponseDto } from './CommendType';
 
 export interface PostResponseDto {
   id: string;
   title: string;
   content: string;
+  writerId: string;
+  writerProfileImage: string | null;
+  writerName: string;
   createdAt: string;
   updatedAt: string;
-  commentList: Model.Comment[];
-  board: BoardResponseDto;
+  numComment: number;
+  board?: BoardResponseDto;
+  commentList?: CommentResponseDto[];
 }

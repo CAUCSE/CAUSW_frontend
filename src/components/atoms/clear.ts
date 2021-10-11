@@ -19,3 +19,9 @@ export const ClearLink = styled(Link)`
 export const ClearA = styled.a.attrs({ target: 'blank' })`
   text-decoration: none;
 `;
+
+export const ClearUl = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`;
