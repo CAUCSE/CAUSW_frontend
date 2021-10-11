@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { ClearLink } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/message.svg';
 
-export const PostCard: React.FC<{ item: Model.Post }> = memo(
-  ({ item: { title, content, commentNum, formatedCreatedAt } }) => (
-    <Link to="#">
+export const PostCard: React.FC<{ to: string; item: Model.Post }> = memo(
+  ({ to, item: { title, content, commentNum, formatedCreatedAt } }) => (
+    <Link to={to}>
       <Card>
         <Title>{title}</Title>
         <Content className="text-ellipsis" dangerouslySetInnerHTML={{ __html: content }} />

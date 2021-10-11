@@ -8,13 +8,16 @@ export class PostStore {
   rootStore: Store.Root;
   postId?: string;
   posts: Model.Post[] = [];
+  post?: Model.Post;
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
       postId: observable,
       posts: observable,
+      post: observable,
 
       fetch: flow.bound,
+      fetchById: flow.bound,
       reset: action.bound,
 
       boardId: computed,
@@ -24,6 +27,12 @@ export class PostStore {
 
   *fetch(): Generator {
     this.posts = (yield Repo.fetch(this.boardId)) as Model.Post[];
+  }
+
+  *fetchById(): Generator {
+    this.post = (yield Repo.fetchById(this.postId as string)) as Model.Post;
+
+    console.debug(this.post);
   }
 
   reset(): void {

@@ -10,6 +10,12 @@ class PostRepo {
 
     return data.map((item: PostResponseDto) => new PostModel(item));
   };
+
+  fetchById = async (postId: string): Promise<PostModel> => {
+    const { data } = await API.get(`${this.URI}/${postId}`);
+
+    return new PostModel(data);
+  };
 }
 
 export const PostRepoImpl = new PostRepo();

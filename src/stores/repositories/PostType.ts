@@ -1,3 +1,5 @@
+import { BoardResponseDto } from './BoardType';
+
 export interface PostResponseDto {
   id: string;
   title: string;
@@ -5,4 +7,5 @@ export interface PostResponseDto {
   createdAt: string;
   updatedAt: string;
   commentList: Model.Comment[];
+  board: BoardResponseDto;
 }

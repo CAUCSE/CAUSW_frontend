@@ -23,6 +23,7 @@ export const PageRouter: React.FC = React.memo(() => (
 
           <Route path={PAGE_URL.Board} exact component={Pages.Board} />
           <Route path={PAGE_URL.Post} exact component={Pages.Post} />
+          <Route path={PAGE_URL.PostDetail} exact component={Pages.PostDetail} />
         </MobileBody>
       </AuthRouter>
     </Switch>

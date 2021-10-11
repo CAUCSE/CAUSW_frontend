@@ -8,6 +8,7 @@ export class PostModel {
   createdAt: string;
   updatedAt: string;
   commentList: Model.Comment[];
+  boardName: string;
 
   constructor(props?: PostResponseDto) {
     const now = formatISO(new Date());
@@ -15,9 +16,10 @@ export class PostModel {
     this.id = props?.id ?? undefined;
     this.title = props?.title ?? '';
     this.content = props?.content ?? '';
-    this.commentList = props?.commentList ?? [];
     this.createdAt = props?.createdAt ?? now;
     this.updatedAt = props?.updatedAt ?? now;
+    this.commentList = props?.commentList ?? [];
+    this.boardName = props?.board.name ?? '';
   }
 
   get commentNum(): number {
