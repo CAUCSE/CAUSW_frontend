@@ -28,7 +28,7 @@ export const Library = memo(() => (
     <Text>
       중앙
       <br />
-      홈페이지
+      도서관
     </Text>
   </ClearA>
 ));
