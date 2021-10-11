@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ClearLink } from '@/components/atoms/clear';
 
 export const Wrapper = styled.section`
+  margin-bottom: 20px;
   color: #3f4040;
 `;
 
