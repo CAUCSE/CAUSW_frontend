@@ -1,11 +1,23 @@
-import React from 'react';
-import * as S from './stlyed';
+import { memo, useEffect } from 'react';
+import { PageHeader, Mascote } from './stlyed';
 import { Boards } from './Boards';
+import { BoardProvider } from '@/stores/BoardStore';
+import { useRootStore } from '@/stores/RootStore';
 
-export const PageBoard: React.FC = React.memo(() => (
-  <>
-    <S.PageHeader>게시판 목록</S.PageHeader>
-    <S.Mascote />
-    <Boards />
-  </>
-));
+export const PageBoard: React.FC = memo(() => {
+  const {
+    board: { fetch },
+  } = useRootStore();
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  return (
+    <BoardProvider>
+      <PageHeader>게시판 목록</PageHeader>
+      <Mascote />
+      <Boards />
+    </BoardProvider>
+  );
+});

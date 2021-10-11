@@ -4,6 +4,7 @@ import type { RootStore } from './stores/RootStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { UiStore } from './stores/UiStore';
 import type { BoardStore } from './stores/BoardStore';
+import type { PostStore } from './stores/PostStore';
 
 import type { PostModel } from './stores/models/PostModel';
 import type { CommentModel } from './stores/models/CommentModel';
@@ -14,6 +15,7 @@ declare global {
     type Auth = AuthStore;
     type Ui = UiStore;
     type Board = BoardStore;
+    type Post = PostStore;
   }
 
   namespace Model {

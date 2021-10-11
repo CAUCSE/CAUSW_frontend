@@ -3,22 +3,24 @@ import styled from 'styled-components';
 import { ClearLink } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/message.svg';
 
-export const PostCard: React.FC<{ item: Model.Post }> = memo(({ item: { title, content, commentNum } }) => (
-  <Link to="#">
-    <Card>
-      <Title>{title}</Title>
-      <Content className="text-ellipsis" dangerouslySetInnerHTML={{ __html: content }} />
-      <Comment>
-        {commentNum ? (
-          <>
-            <Icon /> {commentNum}
-          </>
-        ) : null}
-      </Comment>
-      <Date>2021.07.17 16:36:55</Date>
-    </Card>
-  </Link>
-));
+export const PostCard: React.FC<{ item: Model.Post }> = memo(
+  ({ item: { title, content, commentNum, formatedCreatedAt } }) => (
+    <Link to="#">
+      <Card>
+        <Title>{title}</Title>
+        <Content className="text-ellipsis" dangerouslySetInnerHTML={{ __html: content }} />
+        <Comment>
+          {commentNum ? (
+            <>
+              <Icon /> {commentNum}
+            </>
+          ) : null}
+        </Comment>
+        <Date>{formatedCreatedAt}</Date>
+      </Card>
+    </Link>
+  ),
+);
 
 const Link = styled(ClearLink)`
   display: block;

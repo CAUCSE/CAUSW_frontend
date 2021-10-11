@@ -5,12 +5,12 @@ import { useRootStore } from '@/stores/RootStore';
 
 export const Posts: React.FC = observer(() => {
   const {
-    board: { post },
+    post: { posts },
   } = useRootStore();
 
   return (
     <>
-      {post.map(item => (
+      {posts.map(item => (
         <PostCard item={item} />
       ))}
     </>

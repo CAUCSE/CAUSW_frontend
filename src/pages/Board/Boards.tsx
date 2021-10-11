@@ -30,7 +30,7 @@ export const BoardList: React.FC<{ items: BoardResponseDto[] }> = React.memo(({ 
     {items.map(({ id, name }) => (
       <li key={id}>
         <Icon active={false} />
-        <ClearLink to={generatePath(PAGE_URL.Post, { boardKey: id })}>{name}</ClearLink>
+        <ClearLink to={generatePath(PAGE_URL.Post, { boardId: id })}>{name}</ClearLink>
       </li>
     ))}
   </ul>
