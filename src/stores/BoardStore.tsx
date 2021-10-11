@@ -1,28 +1,32 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, flow, makeObservable, observable } from 'mobx';
 import { useRootStore } from './RootStore';
 
-import boardJson from '@/assets/board.json';
+import { BoardRepoImpl as Repo } from './repositories/BoardRepo';
+import { BoardResponseDto } from './repositories/BoardType';
+
 import postJson from '@/assets/post.json';
 import { PostModel } from './models/PostModel';
 
 export class BoardStore {
   rootStore: Store.Root;
-  board!: Board.RootObject['board'];
   post: Model.Post[] = [];
 
   boardKey?: string;
   postId?: string;
 
-  private boardNameMap!: Map<string, string>;
+  boards: Map<string, BoardResponseDto[]> = new Map();
+  private boardNameMap: Map<string, string> = new Map();
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
-      board: observable,
+      boards: observable,
       boardKey: observable,
       postId: observable,
       post: observable,
+
+      fetchBoard: flow.bound,
 
       boardName: computed,
     });
@@ -31,16 +35,21 @@ export class BoardStore {
     this.fetchBoard();
   }
 
-  private fetchBoard(): void {
-    // TODO: 서버 데이터 연동
-    this.board = boardJson.board;
-    this.boardNameMap = new Map<string, string>();
+  *fetchBoard(): Generator {
+    const boards = (yield Repo.fetch()) as BoardResponseDto[];
 
-    this.board.forEach(({ items }) =>
-      items.forEach(({ key, name }) => {
-        this.boardNameMap.set(key, name);
-      }),
-    );
+    this.boards = new Map();
+    this.boardNameMap = new Map();
+
+    boards.forEach(board => {
+      const { category, id, name } = board;
+      const arr = this.boards.get(category);
+
+      if (arr) arr.push(board);
+      else this.boards.set(category, [board]);
+
+      this.boardNameMap.set(id, name);
+    });
   }
 
   fetchPost(): void {

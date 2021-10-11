@@ -6,15 +6,16 @@ import { NotificationIcon } from '@/components/atoms/NotificationIcon';
 import { useRootStore } from '@/stores/RootStore';
 import { generatePath } from 'react-router';
 import { PAGE_URL } from '@/configs/path';
+import { BoardResponseDto } from '@/stores/repositories/BoardType';
 
 export const Boards: React.FC = observer(() => {
   const {
-    board: { board },
+    board: { boards },
   } = useRootStore();
 
   return (
     <>
-      {board.map(({ category, items }) => (
+      {Array.from(boards).map(([category, items]) => (
         <Wrapper key={category}>
           <h3>{category}</h3>
           <BoardList items={items} />
@@ -24,12 +25,12 @@ export const Boards: React.FC = observer(() => {
   );
 });
 
-export const BoardList: React.FC<{ items: Board.Board['items'] }> = React.memo(({ items }) => (
+export const BoardList: React.FC<{ items: BoardResponseDto[] }> = React.memo(({ items }) => (
   <ul>
-    {items.map(({ key: boardKey, name, notification }) => (
-      <li key={boardKey}>
-        <Icon active={notification} />
-        <ClearLink to={generatePath(PAGE_URL.Post, { boardKey })}>{name}</ClearLink>
+    {items.map(({ id, name }) => (
+      <li key={id}>
+        <Icon active={false} />
+        <ClearLink to={generatePath(PAGE_URL.Post, { boardKey: id })}>{name}</ClearLink>
       </li>
     ))}
   </ul>
