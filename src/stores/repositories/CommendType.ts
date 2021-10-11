@@ -7,6 +7,5 @@ export interface CommentResponseDto {
   createdAt: string;
   updatedAt: string;
   postId: string;
-  parentCommentId: string | null;
   childCommentList: CommentResponseDto[];
 }
