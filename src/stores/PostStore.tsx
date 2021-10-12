@@ -74,6 +74,11 @@ export const PostProvider: React.FC = memo(({ children }) => {
     };
 
     init();
+
+    return () => {
+      post.reset();
+      post.resetDetail();
+    };
   }, [boardId, postId]);
 
   return <>{children}</>;
