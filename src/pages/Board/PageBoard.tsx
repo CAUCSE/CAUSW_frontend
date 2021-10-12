@@ -1,5 +1,5 @@
 import { memo, useEffect } from 'react';
-import { PageHeader, Mascote } from './stlyed';
+import { PageHeader, Mascote } from './styled';
 import { Boards } from './Boards';
 import { BoardProvider } from '@/stores/BoardStore';
 import { useRootStore } from '@/stores/RootStore';
@@ -15,7 +15,9 @@ export const PageBoard: React.FC = memo(() => {
 
   return (
     <BoardProvider>
-      <PageHeader>게시판 목록</PageHeader>
+      <PageHeader>
+        <h2>게시판 목록</h2>
+      </PageHeader>
       <Mascote />
       <Boards />
     </BoardProvider>

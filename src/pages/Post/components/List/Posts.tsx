@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { PostCard } from './components/PostCard';
+import { PostCard } from './PostCard';
 import { useRootStore } from '@/stores/RootStore';
 import { generatePath } from 'react-router';
 import { PAGE_URL } from '@/configs/path';

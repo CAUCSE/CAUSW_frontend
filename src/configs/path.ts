@@ -7,6 +7,7 @@ export enum PAGE_URL {
 
   Board = '/board',
   Post = '/board/:boardId',
+  PostWrite = '/board/:boardId/post/write',
   PostDetail = '/board/:boardId/post/:postId',
 
   Err404 = '/error/404',

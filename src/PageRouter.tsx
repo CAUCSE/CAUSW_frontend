@@ -10,23 +10,24 @@ import { MobileBody } from 'components/common/main';
 export const PageRouter: React.FC = React.memo(() => (
   <Router>
     <MobileHeader />
-    <Switch>
-      {/* 회원 페이지 */}
-      <Route path={PAGE_URL.SignIn} exact component={Pages.SignIn} />
-      <Route path={PAGE_URL.SignUp} exact component={Pages.SignUp} />
-      <Route path={PAGE_URL.Err404} exact component={() => <>404</>} />
+    {/* 회원 페이지 */}
+    <Route path={PAGE_URL.SignIn} component={Pages.SignIn} />
+    <Route path={PAGE_URL.SignUp} component={Pages.SignUp} />
+    <Route path={PAGE_URL.Err404} component={() => <>404</>} />
 
-      <AuthRouter>
-        <MobileBody>
+    <AuthRouter>
+      <MobileBody>
+        <Switch>
           <Route path={PAGE_URL.Home} component={Pages.Home} />
           <Route path={PAGE_URL.Circle} component={Pages.Circle} />
 
-          <Route path={PAGE_URL.Board} exact component={Pages.Board} />
-          <Route path={PAGE_URL.Post} exact component={Pages.Post} />
-          <Route path={PAGE_URL.PostDetail} exact component={Pages.PostDetail} />
-        </MobileBody>
-      </AuthRouter>
-    </Switch>
+          <Route path={PAGE_URL.PostWrite} component={Pages.PostEditor} />
+          <Route path={PAGE_URL.PostDetail} component={Pages.PostDetail} />
+          <Route path={PAGE_URL.Post} component={Pages.PostList} />
+          <Route path={PAGE_URL.Board} component={Pages.Board} />
+        </Switch>
+      </MobileBody>
+    </AuthRouter>
     <MobileNavigation />
   </Router>
 ));
