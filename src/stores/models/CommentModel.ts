@@ -1,4 +1,4 @@
-import { format, parseISO } from 'date-fns';
+import { utcToZonedTime, format } from 'date-fns-tz';
 import { CommentResponseDto } from '../repositories/CommendType';
 import { AuthorModel } from './AuthorModel';
 
@@ -24,7 +24,10 @@ export class CommentModel {
   }
 
   get formatedCreatedAt(): string {
-    return format(parseISO(this.createdAt), 'yyyy-MM-dd HH:mm:ss');
+    const date = new Date(this.createdAt);
+    const zonedDate = utcToZonedTime(date, 'Asis/Seoul');
+
+    return format(zonedDate, 'yyyy-MM-dd HH:mm:ss');
   }
 
   get isChild(): boolean {
