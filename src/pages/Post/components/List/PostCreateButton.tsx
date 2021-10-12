@@ -10,7 +10,7 @@ export const PostCreateButton: React.FC = observer(() => {
     board: { boardId, writable },
   } = useRootStore();
 
-  return boardId && writable ? (
+  return boardId && true ? (
     <WriteButton to={generatePath(PAGE_URL.PostWrite, { boardId })}>
       <img src="/images/icons/pencil.svg" alt="pencil icon" />
     </WriteButton>
