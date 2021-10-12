@@ -2,7 +2,7 @@ import { generatePath } from 'react-router';
 import { formatISO, format, parseISO } from 'date-fns';
 import { PAGE_URL } from '@/configs/path';
 import type { BoardResponseDto } from '../repositories/BoardType';
-import type { PostResponseDto } from '../repositories/PostType';
+import type { PostResponseDTO } from '../repositories/PostType';
 import { AuthorModel } from './AuthorModel';
 import { CommentModel } from './CommentModel';
 
@@ -17,7 +17,7 @@ export class PostModel {
   board?: BoardResponseDto;
   comments: Model.Comment[];
 
-  constructor(props: PostResponseDto) {
+  constructor(props: PostResponseDTO) {
     const now = formatISO(new Date());
 
     this.id = props?.id ?? undefined;

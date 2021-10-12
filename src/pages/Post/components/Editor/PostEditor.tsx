@@ -1,10 +1,12 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useCallback } from 'react';
+import { useFormContext } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
 
 export const PostEditor: React.FC = () => {
-  const [value, setValue] = useState('');
+  const { setValue } = useFormContext();
+  const handleChange = useCallback(data => setValue('content', data), [setValue]);
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -16,7 +18,7 @@ export const PostEditor: React.FC = () => {
 
   return (
     <Wrapper>
-      <ReactQuill theme="snow" value={value} onChange={setValue} modules={modules} placeholder="내용을 입력하세요." />
+      <ReactQuill theme="snow" onChange={handleChange} modules={modules} placeholder="내용을 입력하세요." />
     </Wrapper>
   );
 };

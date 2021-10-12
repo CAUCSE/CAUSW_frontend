@@ -1,7 +1,7 @@
 import type { BoardResponseDto } from './BoardType';
 import type { CommentResponseDto } from './CommendType';
 
-export interface PostResponseDto {
+export interface PostResponseDTO {
   id: string;
   title: string;
   content: string;
@@ -13,4 +13,10 @@ export interface PostResponseDto {
   numComment: number;
   board?: BoardResponseDto;
   commentList?: CommentResponseDto[];
+}
+
+export interface PostRequestDTO {
+  boardId: string;
+  title: string;
+  content: string;
 }

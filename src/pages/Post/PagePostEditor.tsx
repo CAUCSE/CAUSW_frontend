@@ -1,21 +1,44 @@
+import { useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useRootStore } from '@/stores/RootStore';
 import { PostProvider } from '@/stores/PostStore';
 import { Breadcrumb } from './components/Breadcrumb';
 import { PostEditor } from './components/Editor/PostEditor';
-import { TitleInput } from './components/Editor/styled';
+import { Form, TitleInput, SubmitButton } from './components/Editor/styled';
+import { generatePath, useHistory } from 'react-router';
+import { PAGE_URL } from '@/configs/path';
 
 export const PagePostEditor: React.FC = observer(() => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: unknown) => console.log(data);
+  const { replace } = useHistory();
+  const {
+    board: { boardId },
+    post: { create },
+  } = useRootStore();
+  const methods = useForm();
+  const onSubmit = useCallback(
+    async data => {
+      try {
+        const post = (await create(data)) as unknown as Model.Post;
+
+        replace(generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id as string }));
+      } catch (err) {
+        replace(PAGE_URL.Err404);
+      }
+    },
+    [boardId, replace],
+  );
 
   return (
     <PostProvider>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Breadcrumb />
-        <TitleInput {...register('title')} placeholder="제목을 입력하세요" />
-        <PostEditor />
-      </form>
+      <FormProvider {...methods}>
+        <Form onSubmit={methods.handleSubmit(onSubmit)}>
+          <Breadcrumb />
+          <SubmitButton>완료</SubmitButton>
+          <TitleInput {...methods.register('title')} placeholder="제목을 입력하세요" />
+          <PostEditor />
+        </Form>
+      </FormProvider>
     </PostProvider>
   );
 });

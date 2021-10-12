@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { action, computed, flow, makeObservable, observable } from 'mobx';
 import { useRootStore } from './RootStore';
 import { PostRepoImpl as Repo } from './repositories/PostRepo';
+import { PostRequestDTO } from './repositories/PostType';
 
 export class PostStore {
   rootStore: Store.Root;
@@ -12,17 +13,18 @@ export class PostStore {
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
+      boardId: computed,
       postId: observable,
       posts: observable,
       post: observable,
 
       fetch: flow.bound,
       fetchById: flow.bound,
+      create: flow.bound,
       reset: action.bound,
       resetDetail: action.bound,
-
-      boardId: computed,
     });
+
     this.rootStore = rootStore;
   }
 
@@ -32,6 +34,14 @@ export class PostStore {
 
   *fetchById(): Generator {
     this.post = (yield Repo.fetchById(this.postId as string)) as Model.Post;
+  }
+
+  *create(data: Partial<PostRequestDTO>): Generator {
+    const body = { ...data, boardId: this.boardId } as PostRequestDTO;
+
+    this.post = (yield Repo.create(body)) as Model.Post;
+
+    return this.post;
   }
 
   reset(): void {
