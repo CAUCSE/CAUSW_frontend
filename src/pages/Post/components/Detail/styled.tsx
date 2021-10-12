@@ -14,6 +14,10 @@ export const Title = styled.h3`
 export const Content = styled.p`
   font-size: 14px;
   line-height: 16px;
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const NumComment = styled.div`
