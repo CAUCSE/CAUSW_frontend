@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
 import { computed, flow, makeObservable, observable } from 'mobx';
 import { useRootStore } from './RootStore';
 import { BoardRepoImpl as Repo } from './repositories/BoardRepo';
@@ -7,7 +6,7 @@ import type { BoardResponseDto } from './repositories/BoardType';
 
 export class BoardStore {
   rootStore: Store.Root;
-  boardId = ' ';
+  boardId = '';
   boards: Map<string, BoardResponseDto[]> = new Map();
   boardMap: Map<string, BoardResponseDto> = new Map();
 
@@ -51,12 +50,11 @@ export class BoardStore {
 }
 
 export const BoardProvider: React.FC = React.memo(({ children }) => {
-  const { boardId } = useParams<{ boardId: string }>();
   const { board } = useRootStore();
 
   useEffect(() => {
-    if (boardId) board.boardId = boardId;
-  }, [boardId]);
+    board.fetch();
+  }, []);
 
   return <>{children}</>;
 });

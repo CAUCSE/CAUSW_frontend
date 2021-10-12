@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from '@/stores/RootStore';
 import { PostProvider } from '@/stores/PostStore';
@@ -10,14 +9,8 @@ import { Breadcrumb } from './components/Breadcrumb';
 
 export const PagePostDetail: React.FC = observer(() => {
   const {
-    post: { fetchById: fetch, post, resetDetail },
+    post: { post },
   } = useRootStore();
-
-  useEffect(() => {
-    fetch();
-
-    return () => resetDetail();
-  }, []);
 
   return (
     <PostProvider>

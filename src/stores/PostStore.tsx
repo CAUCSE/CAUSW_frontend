@@ -32,8 +32,9 @@ export class PostStore {
     this.posts = (yield Repo.fetch(this.boardId)) as Model.Post[];
   }
 
-  *fetchById(): Generator {
-    this.post = (yield Repo.fetchById(this.postId as string)) as Model.Post;
+  *fetchById(postId: string): Generator {
+    this.postId = postId;
+    this.post = (yield Repo.fetchById(postId)) as Model.Post;
   }
 
   *create(data: Partial<PostRequestDTO>): Generator {
@@ -62,15 +63,17 @@ export const PostProvider: React.FC = memo(({ children }) => {
   const { board, post } = useRootStore();
 
   useEffect(() => {
-    const initBoard = async () => {
+    const init = async () => {
       if (boardId) {
         board.boardId = boardId;
+
         await board.fetch();
+        if (!postId) await post.fetch();
       }
+      if (postId) await post.fetchById(postId);
     };
 
-    initBoard();
-    if (postId) post.postId = postId;
+    init();
   }, [boardId, postId]);
 
   return <>{children}</>;
