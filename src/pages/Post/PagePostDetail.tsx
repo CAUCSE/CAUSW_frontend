@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from '@/stores/RootStore';
 import { PostProvider } from '@/stores/PostStore';
-import { Wrapper, Breadcrumb, Content, Title, NumComment } from './components/Detail/styled';
-import { ClearLink } from '@/components/atoms/clear';
+import { Wrapper, Content, Title, NumComment } from './components/Detail/styled';
 import { PostAuthor } from './components/Detail//PostAuthor';
 import { ReactComponent as Icon } from '@/assets/icons/message.svg';
 import { PostComments } from './components/Detail/PostComment';
+import { Breadcrumb } from './components/Breadcrumb';
 
 export const PagePostDetail: React.FC = observer(() => {
   const {
@@ -23,9 +23,7 @@ export const PagePostDetail: React.FC = observer(() => {
     <PostProvider>
       {post ? (
         <Wrapper>
-          <Breadcrumb>
-            <ClearLink to={post.boardLink}>{post.boardName}</ClearLink>
-          </Breadcrumb>
+          <Breadcrumb />
           <Title>{post.title}</Title>
           <PostAuthor model={post} />
           <Content dangerouslySetInnerHTML={{ __html: post.content }} />

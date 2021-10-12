@@ -7,7 +7,7 @@ import type { BoardResponseDto } from './repositories/BoardType';
 
 export class BoardStore {
   rootStore: Store.Root;
-  boardId = '';
+  boardId = ' ';
   boards: Map<string, BoardResponseDto[]> = new Map();
   boardMap: Map<string, BoardResponseDto> = new Map();
 

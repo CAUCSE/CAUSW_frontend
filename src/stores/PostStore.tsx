@@ -52,7 +52,14 @@ export const PostProvider: React.FC = memo(({ children }) => {
   const { board, post } = useRootStore();
 
   useEffect(() => {
-    if (boardId) board.boardId = boardId;
+    const initBoard = async () => {
+      if (boardId) {
+        board.boardId = boardId;
+        await board.fetch();
+      }
+    };
+
+    initBoard();
     if (postId) post.postId = postId;
   }, [boardId, postId]);
 
