@@ -6,11 +6,19 @@ import Input from 'components/common/Input/Input';
 import { Checkbox } from 'components/atoms/form';
 import { LogoImage } from '@/components/atoms/Logo';
 
-export const Container = styled.div`
-  box-sizing: border-box;
-  padding: 30% 30px 0;
-  width: 100%;
+export const Wrapper = styled.div`
+  position: relative;
   height: 100%;
+  min-height: 568px;
+`;
+
+export const Container = styled.div`
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  padding: 0 30px;
+  box-sizing: border-box;
+  transform: translateY(-50%);
 `;
 
 export const Logo = styled(LogoImage)`

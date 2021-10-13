@@ -5,12 +5,18 @@ export const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   // NOTE: 전역 스타일링, 외부 라이브러리 스타일링 변형 추가
-  body, #root {
+  body {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     font-family: Roboto;
     letter-spacing: -0.333px;
+
+    #root {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .a11y-hidden {
