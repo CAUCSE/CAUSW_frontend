@@ -23,7 +23,9 @@ export class BoardStore {
     this.rootStore = rootStore;
   }
 
-  *fetch(): Generator {
+  *fetch(fire = false): Generator {
+    if (!fire && this.boards.size > 0) return;
+
     const boards = (yield Repo.fetch()) as BoardResponseDto[];
 
     this.boards = new Map();
@@ -53,7 +55,7 @@ export const BoardProvider: React.FC = React.memo(({ children }) => {
   const { board } = useRootStore();
 
   useEffect(() => {
-    board.fetch();
+    board.fetch(true);
   }, []);
 
   return <>{children}</>;
