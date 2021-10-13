@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Post } from './Post';
+import { ClearLink } from '@/components/atoms/clear';
 
 export const Board = memo(() => {
   const [config] = useState({
@@ -20,6 +21,7 @@ export const Board = memo(() => {
   return (
     <BoardBox>
       <h3>학생회 공지 게시판</h3>
+      <BoardLink to={'#'}>더보기</BoardLink>
       <Carousel {...config}>
         <Post />
         <Post />
@@ -68,5 +70,18 @@ const BoardBox = styled.div`
         background: #312ed7;
       }
     }
+  }
+`;
+
+const BoardLink = styled(ClearLink)`
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  padding: 3px;
+  font-size: 9px;
+  line-height: 11px;
+  color: #312ed7;
+  &:after {
+    content: ' >';
   }
 `;
