@@ -1,5 +1,5 @@
 import { generatePath } from 'react-router';
-import { formatISO } from 'date-fns';
+import { formatISO, isToday } from 'date-fns';
 import { utcToZonedTime, format } from 'date-fns-tz';
 import { PAGE_URL } from '@/configs/path';
 import type { BoardResponseDto } from '../repositories/BoardType';
@@ -41,7 +41,7 @@ export class PostModel {
     const date = new Date(this.createdAt);
     const zonedDate = utcToZonedTime(date, 'Asis/Seoul');
 
-    return format(zonedDate, 'yyyy-MM-dd HH:mm:ss');
+    return format(zonedDate, isToday(zonedDate) ? 'yyyy.MM.dd HH:mm:ss' : 'yyyy.MM.dd');
   }
 
   get boardName(): string {
