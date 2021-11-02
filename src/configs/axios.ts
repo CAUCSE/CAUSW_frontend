@@ -2,7 +2,7 @@ import axios from 'axios';
 import { PAGE_URL } from './path';
 
 export const API = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? '/' : 'http://13.209.206.74:8080',
+  baseURL: process.env.NODE_ENV === 'development' ? '/' : 'https://dev-api.causw.net',
 });
 
 export const setAuth = (token: string): unknown => (API.defaults.headers['Authorization'] = token);
