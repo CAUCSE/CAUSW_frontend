@@ -1,7 +1,6 @@
 import { memo, useState } from 'react';
 import styled from 'styled-components';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Post } from './Post';
 import { ClearLink } from '@/components/atoms/clear';
 

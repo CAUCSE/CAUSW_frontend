@@ -3,6 +3,7 @@
 import type { RootStore } from './stores/RootStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { UiStore } from './stores/UiStore';
+import type { CircleStore } from './stores/CircleStore';
 import type { BoardStore } from './stores/BoardStore';
 import type { PostStore } from './stores/PostStore';
 
@@ -15,6 +16,7 @@ declare global {
     type Root = RootStore;
     type Auth = AuthStore;
     type Ui = UiStore;
+    type Circle = CircleStore;
     type Board = BoardStore;
     type Post = PostStore;
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Root } from './Root';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
