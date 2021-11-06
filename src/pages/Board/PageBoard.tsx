@@ -3,7 +3,6 @@
 // import { Boards } from './Boards';
 // import { BoardProvider } from '@/stores/BoardStore';
 import { Header, UniformLogo } from '@/components/header';
-import { EmptyTop } from '@/components/header/EmptyTop';
 
 // export const PageBoard: React.FC = memo(() => (
 //   <BoardProvider>
@@ -17,6 +16,6 @@ import { EmptyTop } from '@/components/header/EmptyTop';
 
 export const PageBoard: React.FC = () => (
   <>
-    <Header title="게시판 목록" TopComponent={EmptyTop} Logo={UniformLogo} />
+    <Header title="게시판 목록" Logo={UniformLogo} />
   </>
 );
