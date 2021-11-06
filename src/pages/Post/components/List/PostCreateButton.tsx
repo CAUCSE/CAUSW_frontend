@@ -19,8 +19,8 @@ export const PostCreateButton: React.FC = observer(() => {
 
 const WriteButton = styled(ClearLink)`
   position: relative;
+  right: -20px;
   display: block;
-  margin-right: -20px;
   width: 50px;
   height: 50px;
 

@@ -56,5 +56,5 @@ const Title = styled.h1`
 const Right = styled.div`
   position: relative;
   flex-shrink: 0;
-  width: 30px;
+  width: 50px;
 `;
