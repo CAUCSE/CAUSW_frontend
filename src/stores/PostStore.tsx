@@ -2,10 +2,27 @@ import { memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { action, computed, flow, makeObservable, observable } from 'mobx';
 import { useRootStore } from './RootStore';
-import { PostRepoImpl as Repo } from './repositories/PostRepo';
+import { FindAllResponse, PostRepoImpl as Repo } from './repositories/PostRepo';
 import { PostRequestDTO } from './repositories/PostType';
 
 export class PostStore {
+  boardId = '';
+  boardName = '';
+  writable = false;
+
+  *fetch(id: string): Generator {
+    const { boardId, boardName, writable } = (yield Repo.fetch(id)) as FindAllResponse;
+
+    this.boardId = boardId;
+    this.boardName = boardName;
+    this.writable = writable;
+  }
+
+  reset(): void {
+    this.boardName = '';
+  }
+
+  //
   rootStore: Store.Root;
   postId?: string;
   posts: Model.Post[] = [];
@@ -13,23 +30,25 @@ export class PostStore {
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
-      boardId: computed,
-      postId: observable,
-      posts: observable,
-      post: observable,
+      boardId: observable,
+      boardName: observable,
+      writable: observable,
 
       fetch: flow.bound,
+      reset: action.bound,
+
+      //
+      posts: observable,
+
+      postId: observable,
+      post: observable,
+
       fetchById: flow.bound,
       create: flow.bound,
-      reset: action.bound,
       resetDetail: action.bound,
     });
 
     this.rootStore = rootStore;
-  }
-
-  *fetch(): Generator {
-    this.posts = (yield Repo.fetch(this.boardId)) as Model.Post[];
   }
 
   *fetchById(postId: string): Generator {
@@ -45,16 +64,8 @@ export class PostStore {
     return this.post;
   }
 
-  reset(): void {
-    this.posts = [];
-  }
-
   resetDetail(): void {
     this.post = undefined;
-  }
-
-  get boardId(): string {
-    return this.rootStore.board.boardId ?? '';
   }
 }
 
@@ -68,7 +79,7 @@ export const PostProvider: React.FC = memo(({ children }) => {
         board.boardId = boardId;
 
         await board.fetch();
-        if (!postId) await post.fetch();
+        if (!postId) await post.fetch(boardId);
       }
       if (postId) await post.fetchById(postId);
     };

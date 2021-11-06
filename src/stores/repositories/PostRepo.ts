@@ -5,10 +5,12 @@ import { PostResponseDTO, PostRequestDTO } from './PostType';
 class PostRepo {
   private URI = '/api/v1/posts';
 
-  fetch = async (boardId: string): Promise<PostModel[]> => {
+  fetch = async (boardId: string): Promise<FindAllResponse> => {
     const { data } = await API.get(`${this.URI}?boardId=${boardId}`);
 
-    return data.map((item: PostResponseDTO) => new PostModel(item));
+    // return data.map((item: PostResponseDTO) => new PostModel(item));
+
+    return data;
   };
 
   fetchById = async (postId: string): Promise<PostModel> => {
@@ -25,3 +27,9 @@ class PostRepo {
 }
 
 export const PostRepoImpl = new PostRepo();
+
+export interface FindAllResponse {
+  boardId: string;
+  boardName: string;
+  writable: boolean;
+}

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { MascoteUniform } from '@/assets/images/Mascote';
 
 export const PageHeader = styled.div`
   position: relative;
@@ -9,12 +8,4 @@ export const PageHeader = styled.div`
     font-size: 24px;
     line-height: 28px;
   }
-`;
-
-export const Mascote = styled(MascoteUniform)`
-  position: absolute;
-  top: 40px;
-  right: 13px;
-  width: 67px;
-  height: 56px;
 `;

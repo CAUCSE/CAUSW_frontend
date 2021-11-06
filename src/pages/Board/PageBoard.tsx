@@ -13,7 +13,7 @@ export const PageBoard: React.FC = observer(() => {
 
   return (
     <>
-      <Header title="게시판 목록" Logo={UniformLogo} />
+      <Header title="게시판 목록" RightComponent={UniformLogo} />
       <Boards />
     </>
   );

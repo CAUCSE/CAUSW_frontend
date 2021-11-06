@@ -2,24 +2,29 @@ import { memo } from 'react';
 import styled from 'styled-components';
 import { DefaultLogo } from './DefaultLogo';
 import { DefaultTop } from './DefaultTop';
+import { BackButton } from './BackButton';
 
 interface Props {
   title: string;
-  withBack?: boolean;
+  withBack?: boolean | string;
   TopComponent?: React.FC;
-  Logo?: React.FC;
+  RightComponent?: React.FC;
 }
 export const HeaderContainer: React.FC<Props> = memo(
-  ({ withBack = false, TopComponent = DefaultTop, title, Logo = DefaultLogo }) => (
+  ({ withBack = false, TopComponent = DefaultTop, title, RightComponent = DefaultLogo }) => (
     <Wrapper>
-      {withBack ? <Left></Left> : null}
+      {withBack ? (
+        <Left>
+          <BackButton link={withBack} />
+        </Left>
+      ) : null}
       <Center>
         <TopComponent />
         <Title>{title}</Title>
       </Center>
-      {Logo ? (
+      {RightComponent ? (
         <Right>
-          <Logo />
+          <RightComponent />
         </Right>
       ) : null}
     </Wrapper>
@@ -34,7 +39,7 @@ const Wrapper = styled.header`
 
 const Left = styled.div`
   flex-shrink: 0;
-  width: 20px;
+  width: 30px;
 `;
 
 const Center = styled.div`
@@ -49,6 +54,7 @@ const Title = styled.h1`
 `;
 
 const Right = styled.div`
+  position: relative;
   flex-shrink: 0;
-  width: 50px;
+  width: 30px;
 `;
