@@ -7,12 +7,12 @@ interface Props<T> {
   ItemComponent: React.FC<{ model: T }>;
 }
 
-function ListBoxComponent<T>({ title, items, ItemComponent }: Props<T>) {
+function ListBoxComponent<T extends { id: string }>({ title, items, ItemComponent }: Props<T>) {
   return (
     <Box>
       <Title>{title}</Title>
       {items.map(item => (
-        <ItemComponent model={item} />
+        <ItemComponent key={item.id} model={item} />
       ))}
     </Box>
   );
