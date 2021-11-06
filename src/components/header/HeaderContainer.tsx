@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import styled from 'styled-components';
+import { DefaultLogo } from './DefaultLogo';
 import { DefaultTop } from './DefaultTop';
 
 interface Props {
@@ -8,20 +9,22 @@ interface Props {
   TopComponent?: React.FC;
   Logo?: React.FC;
 }
-export const HeaderContainer: React.FC<Props> = memo(({ withBack = false, TopComponent = DefaultTop, title, Logo }) => (
-  <Wrapper>
-    {withBack ? <Left></Left> : null}
-    <Center>
-      <TopComponent />
-      <Title>{title}</Title>
-    </Center>
-    {Logo ? (
-      <Right>
-        <Logo />
-      </Right>
-    ) : null}
-  </Wrapper>
-));
+export const HeaderContainer: React.FC<Props> = memo(
+  ({ withBack = false, TopComponent = DefaultTop, title, Logo = DefaultLogo }) => (
+    <Wrapper>
+      {withBack ? <Left></Left> : null}
+      <Center>
+        <TopComponent />
+        <Title>{title}</Title>
+      </Center>
+      {Logo ? (
+        <Right>
+          <Logo />
+        </Right>
+      ) : null}
+    </Wrapper>
+  ),
+);
 
 const Wrapper = styled.header`
   display: flex;
