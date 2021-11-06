@@ -7,6 +7,7 @@ import type { CircleStore } from './stores/CircleStore';
 import type { BoardStore } from './stores/BoardStore';
 import type { PostStore } from './stores/PostStore';
 
+import type { BoardModel } from './stores/models/BoardModel';
 import type { AuthorModel } from './stores/models/AuthorModel';
 import type { PostModel } from './stores/models/PostModel';
 import type { CommentModel } from './stores/models/CommentModel';
@@ -22,6 +23,7 @@ declare global {
   }
 
   namespace Model {
+    type Board = BoardModel;
     type Author = AuthorModel;
     type Post = PostModel;
     type Comment = CommentModel;

@@ -1,21 +1,20 @@
-// import { memo } from 'react';
-// import { PageHeader, Mascote } from './styled';
-// import { Boards } from './Boards';
-// import { BoardProvider } from '@/stores/BoardStore';
+import { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useRootStore } from '@/stores/RootStore';
 import { Header, UniformLogo } from '@/components/header';
+import { Boards } from './components/Boards';
 
-// export const PageBoard: React.FC = memo(() => (
-//   <BoardProvider>
-//     <PageHeader>
-//       <h2>게시판 목록</h2>
-//     </PageHeader>
-//     <Mascote />
-//     <Boards />
-//   </BoardProvider>
-// ));
+export const PageBoard: React.FC = observer(() => {
+  const { board } = useRootStore();
 
-export const PageBoard: React.FC = () => (
-  <>
-    <Header title="게시판 목록" Logo={UniformLogo} />
-  </>
-);
+  useEffect(() => {
+    board.fetch();
+  }, [board]);
+
+  return (
+    <>
+      <Header title="게시판 목록" Logo={UniformLogo} />
+      <Boards />
+    </>
+  );
+});
