@@ -33,8 +33,7 @@ export const HeaderContainer: React.FC<Props> = memo(
 
 const Wrapper = styled.header`
   display: flex;
-  margin: 20px 0;
-  height: 50px;
+  margin: 20px 0 15px;
 `;
 
 const Left = styled.div`
@@ -47,7 +46,7 @@ const Center = styled.div`
 `;
 
 const Title = styled.h1`
-  margin: 5px 0;
+  margin: 5px 0 0;
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
