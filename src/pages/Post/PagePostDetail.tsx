@@ -1,30 +1,31 @@
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from '@/stores/RootStore';
-import { PostProvider } from '@/stores/PostStore';
-import { Wrapper, Content, Title, NumComment } from './components/Detail/styled';
-import { PostAuthor } from './components/Detail//PostAuthor';
-import { ReactComponent as Icon } from '@/assets/icons/message.svg';
-import { PostComments } from './components/Detail/PostComment';
-import { Breadcrumb } from './components/Breadcrumb';
+
+import { Header } from '@/components/header';
+import { Breadcrumb } from './components/Detail/Breadcrumb';
+import { PostAuthor } from './components/Detail/PostAuthor';
+import { PostContent } from './components/Detail/styled';
+import { CommentNum } from './components/Detail/CommentNum';
 
 export const PagePostDetail: React.FC = observer(() => {
+  const { postId } = useParams<{ boardId: string; postId: string }>();
   const {
-    post: { post },
+    post: { fetchPost, post },
   } = useRootStore();
 
-  return (
-    <PostProvider>
-      {post ? (
-        <Wrapper>
-          <Breadcrumb />
-          <Title>{post.title}</Title>
-          <PostAuthor model={post} />
-          <NumComment>
-            <Icon /> {post.numComment}
-          </NumComment>
-          <PostComments model={post} />
-        </Wrapper>
-      ) : null}
-    </PostProvider>
-  );
+  useEffect(() => {
+    fetchPost(postId);
+  }, [postId]);
+
+  return post ? (
+    <>
+      <Header TopComponent={Breadcrumb} title={post.title} withBack />
+      <PostAuthor model={post.author} date={post.formatedCreatedAt} />
+      <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
+      <CommentNum num={post.numComment} />
+      {/* <PostComments model={post} /> */}
+    </>
+  ) : null;
 });

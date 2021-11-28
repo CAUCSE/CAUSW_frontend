@@ -2,9 +2,12 @@ export interface Content {
   id: string;
   title: string;
   writerName: string;
-  numComment: number;
+  writerAdmissionYear: number;
+  writerProfileImage: string | null;
+  content?: string;
   createdAt: Date;
   updatedAt: Date;
+  numComment: number;
 }
 
 export interface Sort {

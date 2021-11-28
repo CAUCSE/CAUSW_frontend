@@ -4,12 +4,12 @@ import { ClearLink } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/message.svg';
 
 export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
-  ({ to, model: { title, writerName, numComment, formatedCreatedAt } }) => (
+  ({ to, model: { title, author, numComment, formatedCreatedAt } }) => (
     <Link to={to}>
       <Card>
         <Title>{title}</Title>
         <Date>{formatedCreatedAt}</Date>
-        <AuthorName>{writerName}</AuthorName>
+        <AuthorName>{author.nameWithAdmission}</AuthorName>
         <Comment>
           {numComment ? (
             <>

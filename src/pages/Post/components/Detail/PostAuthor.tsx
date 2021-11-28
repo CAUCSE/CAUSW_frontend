@@ -1,19 +1,19 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 
-export const PostAuthor: React.FC<{ model: Model.Post }> = memo(({ model: { author, formatedCreatedAt } }) => {
-  return (
+export const PostAuthor: React.FC<{ model: Model.Author; date: string }> = memo(
+  ({ model: { nameWithAdmission, profileImage }, date }) => (
     <Profile>
       <ProfileImage>
-        <img src={author.profileImg} alt="author profile image" />
+        <img src={profileImage} alt="author profile image" />
       </ProfileImage>
       <ProfileInfo>
-        <div>{author.name}</div>
-        <Date>{formatedCreatedAt}</Date>
+        <Name>{nameWithAdmission}</Name>
+        <Date>{date}</Date>
       </ProfileInfo>
     </Profile>
-  );
-});
+  ),
+);
 
 const Profile = styled.div`
   display: flex;
@@ -29,17 +29,27 @@ const ProfileImage = styled.div`
   overflow: hidden;
 
   img {
+    width: 100%;
     height: 100%;
-    display: 100%;
   }
 `;
 
 const ProfileInfo = styled.div`
-  flex: auto 1 0;
-  padding: 3px 0 3px 5px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Name = styled.div`
+  flex: 1 1 0;
+  padding-left: 8px;
+  font-size: 10px;
+  line-height: 12px;
 `;
 
 const Date = styled.div`
-  margin-top: 2px;
+  width: 50px;
+  text-align: right;
   color: #dadada;
 `;

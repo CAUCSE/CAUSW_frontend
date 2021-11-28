@@ -6,19 +6,19 @@ import { PostRequestDTO } from './PostType';
 class PostRepo {
   private URI = '/api/v1/posts';
 
-  fetch = async (boardId: string): Promise<PostAllWithBoardResponseDto> => {
+  findAll = async (boardId: string): Promise<PostAllWithBoardResponseDto> => {
     const { data } = await API.get(`${this.URI}?boardId=${boardId}`);
 
     return data;
   };
 
-  //
-
-  fetchById = async (postId: string): Promise<PostModel> => {
+  findById = async (postId: string): Promise<PostDetail.RootObject> => {
     const { data } = await API.get(`${this.URI}/${postId}`);
 
-    return new PostModel(data);
+    return data;
   };
+
+  //
 
   create = async (body: PostRequestDTO): Promise<PostModel> => {
     const { data } = await API.post(this.URI, body);

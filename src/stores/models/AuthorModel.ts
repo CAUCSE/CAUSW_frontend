@@ -1,19 +1,15 @@
 export class AuthorModel {
-  id: string;
-  profileImg: string;
+  admissionYear: number;
   name: string;
+  profileImage: string;
 
-  constructor({
-    writerId,
-    writerProfileImage,
-    writerName,
-  }: {
-    writerId: string;
-    writerProfileImage: string | null;
-    writerName: string;
-  }) {
-    this.id = writerId;
-    this.profileImg = writerProfileImage ?? '/images/default_profile.png';
-    this.name = writerName ?? '';
+  constructor(admissionYear: number, name: string, profileImage: string | null) {
+    this.admissionYear = admissionYear;
+    this.name = name;
+    this.profileImage = profileImage ?? '/images/default_profile.png';
+  }
+
+  get nameWithAdmission(): string {
+    return `${this.name} (${this.admissionYear % 100})`;
   }
 }

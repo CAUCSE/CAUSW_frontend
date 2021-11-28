@@ -6,7 +6,7 @@ export class CommentModel {
   parent?: CommentModel;
   id: string;
   content: string;
-  author: Model.Author;
+  // author: Model.Author;
   createdAt: string;
   updatedAt: string;
   postId: string;
@@ -16,7 +16,7 @@ export class CommentModel {
     this.parent = parent;
     this.id = props.id;
     this.content = props.content;
-    this.author = new AuthorModel(props);
+    // this.author = new AuthorModel(props);
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
     this.postId = props.postId;

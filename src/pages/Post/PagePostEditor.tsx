@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRootStore } from '@/stores/RootStore';
 import { PostProvider } from '@/stores/PostStore';
-import { Breadcrumb } from './components/Breadcrumb';
+import { Breadcrumb } from './components/Detail/Breadcrumb';
 import { PostEditor } from './components/Editor/PostEditor';
 import { Form, TitleInput, SubmitButton } from './components/Editor/styled';
 import { generatePath, useHistory } from 'react-router';

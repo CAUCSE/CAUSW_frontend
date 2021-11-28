@@ -4,7 +4,7 @@ import { action, flow, makeObservable, observable } from 'mobx';
 import { useRootStore } from './RootStore';
 import { PostRepoImpl as Repo } from './repositories/PostRepo';
 import { PostRequestDTO } from './repositories/PostType';
-import { PostAllWithBoardResponseDto, Post } from './types/PostType';
+import { PostAllWithBoardResponseDto } from './types/PostType';
 import { PostModel } from './models/PostModel';
 
 export class PostStore {
@@ -12,9 +12,10 @@ export class PostStore {
   boardName = '';
   writable = false;
   posts: Model.Post[] = [];
+  post?: Model.Post;
 
-  *fetch(id: string): Generator {
-    const { boardId, boardName, writable, post } = (yield Repo.fetch(id)) as PostAllWithBoardResponseDto;
+  *fetch(bid: string): Generator {
+    const { boardId, boardName, writable, post } = (yield Repo.findAll(bid)) as PostAllWithBoardResponseDto;
 
     this.boardId = boardId;
     this.boardName = boardName;
@@ -22,17 +23,25 @@ export class PostStore {
     this.posts = post?.content.map(data => new PostModel(data)) ?? [];
   }
 
+  *fetchPost(pid: string): Generator {
+    const { boardId, boardName, ...data } = (yield Repo.findById(pid)) as PostDetail.RootObject;
+
+    this.boardId = boardId;
+    this.boardName = boardName;
+    this.post = new PostModel(data);
+  }
+
   reset(): void {
     this.boardId = '';
     this.boardName = '';
     this.writable = false;
     this.posts = [];
+    this.post = undefined;
   }
 
   //
   rootStore: Store.Root;
   postId?: string;
-  post?: Model.Post;
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
@@ -40,26 +49,20 @@ export class PostStore {
       boardName: observable,
       writable: observable,
       posts: observable,
+      post: observable,
 
       fetch: flow.bound,
+      fetchPost: flow.bound,
       reset: action.bound,
 
       //
 
       postId: observable,
-      post: observable,
-
-      fetchById: flow.bound,
       create: flow.bound,
       resetDetail: action.bound,
     });
 
     this.rootStore = rootStore;
-  }
-
-  *fetchById(postId: string): Generator {
-    this.postId = postId;
-    this.post = (yield Repo.fetchById(postId)) as Model.Post;
   }
 
   *create(data: Partial<PostRequestDTO>): Generator {
@@ -87,7 +90,6 @@ export const PostProvider: React.FC = memo(({ children }) => {
         await board.fetch();
         if (!postId) await post.fetch(boardId);
       }
-      if (postId) await post.fetchById(postId);
     };
 
     init();

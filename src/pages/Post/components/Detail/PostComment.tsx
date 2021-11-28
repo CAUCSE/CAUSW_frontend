@@ -3,40 +3,40 @@ import styled from 'styled-components';
 import { ClearUl } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/comment_arrow_icon.svg';
 
-export const PostComments: React.FC<{ model: Model.Post }> = memo(({ model: { comments } }) => (
-  <Wrapper>
-    <Comments comments={comments} />
-  </Wrapper>
-));
+// export const PostComments: React.FC<{ model: Model.Post }> = memo(({ model: { comments } }) => (
+//   <Wrapper>
+//     <Comments comments={comments} />
+//   </Wrapper>
+// ));
 
-const Comments: React.FC<{ comments: Model.Comment[] }> = memo(({ comments }) => (
-  <>
-    {comments.map(c => (
-      <PostComment key={c.id} model={c} />
-    ))}
-  </>
-));
+// const Comments: React.FC<{ comments: Model.Comment[] }> = memo(({ comments }) => (
+//   <>
+//     {comments.map(c => (
+//       <PostComment key={c.id} model={c} />
+//     ))}
+//   </>
+// ));
 
-const PostComment: React.FC<{ model: Model.Comment }> = memo(
-  ({ model: { author, content, formatedCreatedAt, childComments, isChild } }) => (
-    <>
-      <li>
-        {isChild ? <ReCommentIcon /> : null}
-        <Comment isChild={isChild}>
-          <Profile>
-            <ProfileImage>
-              <img src={author.profileImg} alt="author profile image" />
-            </ProfileImage>
-            <Name>{author.name}</Name>
-          </Profile>
-          <Content dangerouslySetInnerHTML={{ __html: content }} />
-          <Date>{formatedCreatedAt}</Date>
-        </Comment>
-      </li>
-      <Comments comments={childComments} />
-    </>
-  ),
-);
+// const PostComment: React.FC<{ model: Model.Comment }> = memo(
+//   ({ model: { author, content, formatedCreatedAt, childComments, isChild } }) => (
+//     <>
+//       <li>
+//         {isChild ? <ReCommentIcon /> : null}
+//         <Comment isChild={isChild}>
+//           <Profile>
+//             <ProfileImage>
+//               <img src={author.profileImg} alt="author profile image" />
+//             </ProfileImage>
+//             <Name>{author.name}</Name>
+//           </Profile>
+//           <Content dangerouslySetInnerHTML={{ __html: content }} />
+//           <Date>{formatedCreatedAt}</Date>
+//         </Comment>
+//       </li>
+//       <Comments comments={childComments} />
+//     </>
+//   ),
+// );
 
 const Wrapper = styled(ClearUl)`
   margin: 3px 0 0;
