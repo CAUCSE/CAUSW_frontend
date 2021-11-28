@@ -1,31 +1,37 @@
 import { memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { action, computed, flow, makeObservable, observable } from 'mobx';
+import { action, flow, makeObservable, observable } from 'mobx';
 import { useRootStore } from './RootStore';
-import { FindAllResponse, PostRepoImpl as Repo } from './repositories/PostRepo';
+import { PostRepoImpl as Repo } from './repositories/PostRepo';
 import { PostRequestDTO } from './repositories/PostType';
+import { PostAllWithBoardResponseDto, Post } from './types/PostType';
+import { PostModel } from './models/PostModel';
 
 export class PostStore {
   boardId = '';
   boardName = '';
   writable = false;
+  posts: Model.Post[] = [];
 
   *fetch(id: string): Generator {
-    const { boardId, boardName, writable } = (yield Repo.fetch(id)) as FindAllResponse;
+    const { boardId, boardName, writable, post } = (yield Repo.fetch(id)) as PostAllWithBoardResponseDto;
 
     this.boardId = boardId;
     this.boardName = boardName;
     this.writable = writable;
+    this.posts = post?.content.map(data => new PostModel(data)) ?? [];
   }
 
   reset(): void {
+    this.boardId = '';
     this.boardName = '';
+    this.writable = false;
+    this.posts = [];
   }
 
   //
   rootStore: Store.Root;
   postId?: string;
-  posts: Model.Post[] = [];
   post?: Model.Post;
 
   constructor(rootStore: Store.Root) {
@@ -33,12 +39,12 @@ export class PostStore {
       boardId: observable,
       boardName: observable,
       writable: observable,
+      posts: observable,
 
       fetch: flow.bound,
       reset: action.bound,
 
       //
-      posts: observable,
 
       postId: observable,
       post: observable,

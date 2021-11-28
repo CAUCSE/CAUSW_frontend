@@ -19,7 +19,6 @@ export const PagePostDetail: React.FC = observer(() => {
           <Breadcrumb />
           <Title>{post.title}</Title>
           <PostAuthor model={post} />
-          <Content dangerouslySetInnerHTML={{ __html: post.content }} />
           <NumComment>
             <Icon /> {post.numComment}
           </NumComment>

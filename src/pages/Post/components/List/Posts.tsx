@@ -7,9 +7,10 @@ import { PAGE_URL } from '@/configs/path';
 
 export const Posts: React.FC = observer(() => {
   const {
-    board: { boardId },
-    post: { posts },
+    post: { boardId, posts },
   } = useRootStore();
+
+  console.debug(posts);
 
   return (
     <>

@@ -29,6 +29,7 @@ import { useRootStore } from '@/stores/RootStore';
 import { PAGE_URL } from '@/configs/path';
 import { Header } from '@/components/header';
 import { PostCreateButton } from './components/List/PostCreateButton';
+import { Posts } from './components/List/Posts';
 
 export const PagePostList: React.FC = observer(() => {
   const { boardId } = useParams<{ boardId: string }>();
@@ -45,6 +46,7 @@ export const PagePostList: React.FC = observer(() => {
   return (
     <>
       <Header title={boardName} withBack={PAGE_URL.Board} RightComponent={PostCreateButton} />
+      <Posts />
     </>
   );
 });

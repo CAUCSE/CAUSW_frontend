@@ -4,11 +4,12 @@ import { ClearLink } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/message.svg';
 
 export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
-  ({ to, model: { title, content, numComment, formatedCreatedAt } }) => (
+  ({ to, model: { title, writerName, numComment, formatedCreatedAt } }) => (
     <Link to={to}>
       <Card>
         <Title>{title}</Title>
-        <Content className="text-ellipsis" dangerouslySetInnerHTML={{ __html: content }} />
+        <Date>{formatedCreatedAt}</Date>
+        <AuthorName>{writerName}</AuthorName>
         <Comment>
           {numComment ? (
             <>
@@ -16,7 +17,6 @@ export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
             </>
           ) : null}
         </Comment>
-        <Date>{formatedCreatedAt}</Date>
       </Card>
     </Link>
   ),
@@ -25,48 +25,45 @@ export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
 const Link = styled(ClearLink)`
   display: block;
   border-bottom: 1px solid #f5f5f5;
-
-  &:last-child {
-    border-bottom: 0;
-  }
 `;
 
 const Card = styled.article`
-  padding: 22.5px 0 10px;
+  overflow: hidden;
+  padding: 1rem 0 0.75rem;
   color: #3f4040;
 `;
 
 const Title = styled.h3`
+  float: left;
   margin: 0;
+  width: calc(100% - 50px);
   font-size: 13px;
   line-height: 15px;
   font-weight: normal;
 `;
 
-const Content = styled.p`
-  margin: 9px 0 0;
-  max-height: 39px;
-  -webkit-line-clamp: 3;
-  font-size: 11px;
-  line-height: 13px;
-
-  > p {
-    margin: 0;
-  }
-`;
-
-const Comment = styled.div`
-  margin-top: 2px;
-  text-align: right;
-  font-size: 8px;
-  line-height: 9px;
-  color: #518cff;
-`;
-
 const Date = styled.div`
-  margin-top: 3px;
+  float: right;
+  width: 50px;
   text-align: right;
   font-size: 10px;
   line-height: 12px;
   color: #a3a1a1;
+`;
+
+const AuthorName = styled.div`
+  clear: both;
+  float: left;
+  margin-top: 0.75rem;
+  font-size: 10px;
+  line-height: 12px;
+`;
+
+const Comment = styled.div`
+  float: right;
+  text-align: right;
+  margin-top: 0.75rem;
+  font-size: 8px;
+  line-height: 9px;
+  color: #518cff;
 `;

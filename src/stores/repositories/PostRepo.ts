@@ -1,17 +1,18 @@
 import { API } from 'configs/axios';
 import { PostModel } from '../models/PostModel';
-import { PostResponseDTO, PostRequestDTO } from './PostType';
+import { PostAllWithBoardResponseDto } from '../types/PostType';
+import { PostRequestDTO } from './PostType';
 
 class PostRepo {
   private URI = '/api/v1/posts';
 
-  fetch = async (boardId: string): Promise<FindAllResponse> => {
+  fetch = async (boardId: string): Promise<PostAllWithBoardResponseDto> => {
     const { data } = await API.get(`${this.URI}?boardId=${boardId}`);
-
-    // return data.map((item: PostResponseDTO) => new PostModel(item));
 
     return data;
   };
+
+  //
 
   fetchById = async (postId: string): Promise<PostModel> => {
     const { data } = await API.get(`${this.URI}/${postId}`);
@@ -27,9 +28,3 @@ class PostRepo {
 }
 
 export const PostRepoImpl = new PostRepo();
-
-export interface FindAllResponse {
-  boardId: string;
-  boardName: string;
-  writable: boolean;
-}
