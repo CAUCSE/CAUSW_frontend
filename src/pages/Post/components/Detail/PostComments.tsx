@@ -22,7 +22,7 @@ const PostComment: React.FC<{ model: Model.Comment }> = memo(
     <>
       <li>
         {isChild ? <ReCommentIcon /> : null}
-        <Comment isChild={false}>
+        <Comment isChild={isChild}>
           <Profile>
             <ProfileImage>
               <img src={author.profileImage} alt="author profile image" />

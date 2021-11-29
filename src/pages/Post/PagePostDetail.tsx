@@ -20,6 +20,8 @@ export const PagePostDetail: React.FC = observer(() => {
     fetchPost(postId);
   }, [postId]);
 
+  console.debug(comments);
+
   return post ? (
     <>
       <Header TopComponent={Breadcrumb} title={post.title} withBack />
