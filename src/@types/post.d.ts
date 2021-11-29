@@ -27,22 +27,6 @@ declare namespace PostDetail {
     childCommentList: any[];
   }
 
-  export interface Content {
-    id: string;
-    content: string;
-    createdAt: Date;
-    updatedAt: Date;
-    isDeleted: boolean;
-    postId: string;
-    writerId: string;
-    writerName: string;
-    writerProfileImage?: any;
-    updatable: boolean;
-    deletable: boolean;
-    parentCommentId?: any;
-    childCommentList: ChildCommentList[];
-  }
-
   export interface Sort {
     sorted: boolean;
     unsorted: boolean;
@@ -65,7 +49,7 @@ declare namespace PostDetail {
   }
 
   export interface CommentList {
-    content: Content[];
+    content: Comment.Dto[];
     pageable: Pageable;
     totalElements: number;
     last: boolean;

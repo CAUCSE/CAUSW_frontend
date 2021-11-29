@@ -11,6 +11,8 @@ export class PostModel {
   createdAt: Date;
   updatedAt: Date;
   numComment: number;
+
+  //
   updatable = false;
   deletable = false;
 

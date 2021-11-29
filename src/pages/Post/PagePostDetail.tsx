@@ -8,11 +8,12 @@ import { Breadcrumb } from './components/Detail/Breadcrumb';
 import { PostAuthor } from './components/Detail/PostAuthor';
 import { PostContent } from './components/Detail/styled';
 import { CommentNum } from './components/Detail/CommentNum';
+import { PostComments } from './components/Detail/PostComments';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
   const {
-    post: { fetchPost, post },
+    post: { fetchPost, post, comments },
   } = useRootStore();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export const PagePostDetail: React.FC = observer(() => {
       <PostAuthor model={post.author} date={post.formatedCreatedAt} />
       <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
       <CommentNum num={post.numComment} />
-      {/* <PostComments model={post} /> */}
+      <PostComments list={comments} />
     </>
   ) : null;
 });

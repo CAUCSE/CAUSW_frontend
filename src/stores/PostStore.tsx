@@ -6,13 +6,17 @@ import { PostRepoImpl as Repo } from './repositories/PostRepo';
 import { PostRequestDTO } from './repositories/PostType';
 import { PostAllWithBoardResponseDto } from './types/PostType';
 import { PostModel } from './models/PostModel';
+import { CommentModel } from './models/CommentModel';
 
 export class PostStore {
   boardId = '';
   boardName = '';
   writable = false;
+  // 게시글 목록
   posts: Model.Post[] = [];
+  // 게시글 상세
   post?: Model.Post;
+  comments: Model.Comment[] = [];
 
   *fetch(bid: string): Generator {
     const { boardId, boardName, writable, post } = (yield Repo.findAll(bid)) as PostAllWithBoardResponseDto;
@@ -24,11 +28,12 @@ export class PostStore {
   }
 
   *fetchPost(pid: string): Generator {
-    const { boardId, boardName, ...data } = (yield Repo.findById(pid)) as PostDetail.RootObject;
+    const { boardId, boardName, commentList, ...data } = (yield Repo.findById(pid)) as PostDetail.RootObject;
 
     this.boardId = boardId;
     this.boardName = boardName;
     this.post = new PostModel(data);
+    this.comments = commentList.content.map(data => new CommentModel(data));
   }
 
   reset(): void {
@@ -37,6 +42,7 @@ export class PostStore {
     this.writable = false;
     this.posts = [];
     this.post = undefined;
+    this.comments = [];
   }
 
   //

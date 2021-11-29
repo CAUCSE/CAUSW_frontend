@@ -1,5 +1,6 @@
 import { HeaderUiStore } from 'components/common/header';
 import { action, makeObservable, observable } from 'mobx';
+import React from 'react';
 
 enum DISPLAY {
   MOBILE = 480,
@@ -10,6 +11,7 @@ enum DISPLAY {
 export class UiStore {
   rootStore: Store.Root;
   header: HeaderUiStore;
+  FooterNavigation?: React.FC;
   displayType: DISPLAY;
 
   constructor(rootStore: Store.Root) {
