@@ -17,6 +17,7 @@ export class UiStore {
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
       displayType: observable,
+      FooterNavigation: observable,
       setDisplayType: action.bound,
     });
 

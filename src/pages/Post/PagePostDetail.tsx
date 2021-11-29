@@ -10,12 +10,19 @@ import { PostContent } from './components/Detail/styled';
 import { CommentNum } from './components/Detail/CommentNum';
 import { PostComments } from './components/Detail/PostComments';
 import { ContextMenu } from '@/pages/Post/components/Detail/ContextMenu';
+import { CommentInput } from './components/Detail/CommentInput';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
   const {
+    ui,
     post: { fetchPost, post, comments },
   } = useRootStore();
+
+  useLayoutEffect(() => {
+    ui.FooterNavigation = CommentInput;
+    return () => (ui.FooterNavigation = undefined);
+  }, []);
 
   useEffect(() => {
     fetchPost(postId);

@@ -40,7 +40,7 @@ const PostComment: React.FC<{ model: Model.Comment }> = memo(
 );
 
 const Wrapper = styled(ClearUl)`
-  margin: 10px 0 0;
+  margin: 10px 0;
   padding: 5px 0 0;
   border-top: 1px solid #f5f5f5;
 
