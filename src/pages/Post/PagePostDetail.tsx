@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useParams } from 'react-router';
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from '@/stores/RootStore';
@@ -9,6 +9,7 @@ import { PostAuthor } from './components/Detail/PostAuthor';
 import { PostContent } from './components/Detail/styled';
 import { CommentNum } from './components/Detail/CommentNum';
 import { PostComments } from './components/Detail/PostComments';
+import { ContextMenu } from '@/pages/Post/components/Detail/ContextMenu';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
@@ -20,11 +21,9 @@ export const PagePostDetail: React.FC = observer(() => {
     fetchPost(postId);
   }, [postId]);
 
-  console.debug(comments);
-
   return post ? (
     <>
-      <Header TopComponent={Breadcrumb} title={post.title} withBack />
+      <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={ContextMenu} />
       <PostAuthor model={post.author} date={post.formatedCreatedAt} />
       <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
       <CommentNum num={post.numComment} />

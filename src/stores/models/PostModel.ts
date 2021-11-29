@@ -11,10 +11,8 @@ export class PostModel {
   createdAt: Date;
   updatedAt: Date;
   numComment: number;
-
-  //
-  updatable = false;
-  deletable = false;
+  updatable: boolean;
+  deletable: boolean;
 
   constructor(props: Content | PostDetail.RootObject) {
     this.id = props.id;
@@ -24,9 +22,8 @@ export class PostModel {
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
     this.numComment = props.numComment;
-
-    this.updatable = false;
-    this.deletable = false;
+    this.updatable = (props as PostDetail.RootObject).updatable ?? false;
+    this.deletable = (props as PostDetail.RootObject).deletable ?? false;
   }
 
   get formatedCreatedAt(): string {

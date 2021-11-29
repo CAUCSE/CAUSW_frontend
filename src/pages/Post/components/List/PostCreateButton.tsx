@@ -1,9 +1,11 @@
-import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
-import { useRootStore } from '@/stores/RootStore';
-import { ClearLink } from '@/components/atoms/clear';
 import { generatePath } from 'react-router';
+import { observer } from 'mobx-react-lite';
 import { PAGE_URL } from '@/configs/path';
+import { useRootStore } from '@/stores/RootStore';
+import { RightButtonWrapper } from '@/components/header/styled';
+import { PencilIcon } from '@/components/atoms/Icon';
+import { ClearLink } from '@/components/atoms/clear';
 
 export const PostCreateButton: React.FC = observer(() => {
   const {
@@ -11,22 +13,18 @@ export const PostCreateButton: React.FC = observer(() => {
   } = useRootStore();
 
   return writable ? (
-    <WriteButton to={generatePath(PAGE_URL.PostWrite, { boardId })}>
-      <img src="/images/icons/pencil.svg" alt="Pencil icon" />
-    </WriteButton>
+    <Wrapper to={generatePath(PAGE_URL.PostWrite, { boardId })}>
+      <Icon />
+    </Wrapper>
   ) : null;
 });
 
-const WriteButton = styled(ClearLink)`
-  position: relative;
-  right: -20px;
-  display: block;
-  width: 50px;
-  height: 50px;
+const Wrapper = styled(ClearLink)`
+  ${RightButtonWrapper}
+`;
 
-  > img {
-    position: absolute;
-    top: 14px;
-    right: 20px;
-  }
+const Icon = styled(PencilIcon)`
+  position: absolute;
+  top: 14px;
+  right: 20px;
 `;

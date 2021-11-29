@@ -7,7 +7,6 @@ export const ClearButton = styled.button`
   background-color: Transparent;
   background-repeat: no-repeat;
   cursor: pointer;
-  overflow: hidden;
   outline: none;
 `;
 

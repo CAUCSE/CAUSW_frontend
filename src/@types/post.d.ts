@@ -72,6 +72,8 @@ declare namespace PostDetail {
     createdAt: Date;
     updatedAt: Date;
     numComment: number;
+    updatable: boolean;
+    deletable: boolean;
 
     isDeleted: boolean;
     board: Board;
