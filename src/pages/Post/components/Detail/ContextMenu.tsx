@@ -1,34 +1,35 @@
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useCallback, useRef } from 'react';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+import { useRootStore } from '@/stores/RootStore';
 import { MenuIcon } from '@/components/atoms/Icon';
 import { ClearButton } from '@/components/atoms/clear';
-import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@/stores/RootStore';
 import { MenuBox, MenuButton, RightButtonWrapper } from '@/components/header/styled';
+import { useOutsideVisiable } from '@/hooks/useOutsideVisiable';
 
 export const ContextMenu = observer(() => {
   const {
     post: { post },
   } = useRootStore();
-  const [visiable, setVisiable] = useState(false);
+  const ref = useRef(null);
+  const [visiable, setVisiable] = useOutsideVisiable(ref);
+  const toggle = useCallback(() => setVisiable(state => !state), [setVisiable]);
 
   if (!post) {
     return null;
   }
 
-  const { updatable, deletable } = post;
-
   return (
-    <>
-      <Wrapper onClick={() => setVisiable(state => !state)}>
+    <div ref={ref}>
+      <Wrapper onClick={toggle}>
         <MenuIcon className="absolute-center" />
         <span className="a11y-hidden">메뉴</span>
       </Wrapper>
       <MenuBox visiable={visiable}>
-        {updatable ? <MenuButton>게시글 수정</MenuButton> : null}
-        {deletable ? <MenuButton>게시글 삭제</MenuButton> : null}
+        {post.updatable ? <MenuButton>게시글 수정</MenuButton> : null}
+        {post.deletable ? <MenuButton>게시글 삭제</MenuButton> : null}
       </MenuBox>
-    </>
+    </div>
   );
 });
 
