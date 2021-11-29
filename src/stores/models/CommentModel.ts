@@ -29,6 +29,6 @@ export class CommentModel {
   get formatedCreatedAt(): string {
     const zonedDate = utcToZonedTime(this.createdAt, 'Asis/Seoul');
 
-    return format(zonedDate, 'yyyy-MM-dd HH:mm:ss');
+    return format(zonedDate, 'yyyy-MM-dd HH:mm');
   }
 }
