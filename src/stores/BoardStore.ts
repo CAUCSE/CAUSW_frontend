@@ -4,7 +4,7 @@ import { BoardRepoImpl as Repo } from './repositories/BoardRepo';
 export class BoardStore {
   rootStore: Store.Root;
   boardId = '';
-  boards: Map<string, any> = new Map();
+  boards: Map<string, Model.Board[]> = new Map();
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
@@ -25,17 +25,5 @@ export class BoardStore {
       if (arr) arr.push(board);
       else this.boards.set(board.category, [board]);
     });
-  }
-
-  // XXX
-  get boardName(): string {
-    // return this.boardMap.get(this.boardId)?.name ?? '';
-    return '123';
-  }
-
-  // XXX
-  get writable(): boolean {
-    // return this.boardMap.get(this.boardId)?.writable ?? false;
-    return true;
   }
 }

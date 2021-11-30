@@ -7,7 +7,7 @@ class BoardRepo {
   fetch = async (): Promise<Model.Board[]> => {
     const { data } = await API.get(this.URI);
 
-    return data.map((item: BoardDto) => new BoardModel(item));
+    return data.map(({ id, category, name }: BoardDto) => new BoardModel(id, category, name));
   };
 }
 
@@ -17,6 +17,8 @@ export interface BoardDto {
   id: string;
   category: string;
   name: string;
+
+  // XXX: 사용 안함
   writable: boolean;
   isDeleted: boolean;
   circleId: string;

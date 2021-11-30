@@ -5,10 +5,10 @@ export enum PAGE_URL {
   Home = '/home',
   Circle = '/circle',
 
-  Board = '/board',
-  Post = '/board/:boardId',
-  PostWrite = '/board/:boardId/post/write',
-  PostDetail = '/board/:boardId/post/:postId',
+  Board = '/boards',
+  Post = '/boards/:boardId',
+  PostWrite = '/posts/write',
+  PostDetail = '/posts/:postId',
 
   Err404 = '/error/404',
 }

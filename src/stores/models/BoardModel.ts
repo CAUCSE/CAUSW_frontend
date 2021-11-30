@@ -1,13 +1,24 @@
-import { BoardDto } from '../repositories/BoardRepo';
+import { PAGE_URL } from '@/configs/path';
+import { generatePath } from 'react-router';
+
+export interface BoardModelProps {
+  id: string;
+  category: string;
+  name: string;
+}
 
 export class BoardModel {
   id: string;
-  name: string;
   category: string;
+  name: string;
 
-  constructor(props: BoardDto) {
-    this.id = props.id;
-    this.name = props.name;
-    this.category = props.category;
+  constructor(id: string, category: string, name: string) {
+    this.id = id;
+    this.name = name;
+    this.category = category;
+  }
+
+  get BoardLink(): string {
+    return generatePath(PAGE_URL.Post, { boardId: this.id });
   }
 }

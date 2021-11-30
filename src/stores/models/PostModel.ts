@@ -4,7 +4,7 @@ import { utcToZonedTime, format } from 'date-fns-tz';
 import { AuthorModel } from './AuthorModel';
 
 export class PostModel {
-  id?: string;
+  id: string;
   title: string;
   author: Model.Author;
   content: string;

@@ -21,7 +21,7 @@ export const PagePostEditor: React.FC = observer(() => {
       try {
         const post = (await create(data)) as unknown as Model.Post;
 
-        replace(generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id as string }));
+        replace(generatePath(PAGE_URL.PostDetail, { postId: post.id as string }));
       } catch (err) {
         replace(PAGE_URL.Err404);
       }

@@ -7,7 +7,7 @@ import { PAGE_URL } from '@/configs/path';
 
 export const Posts: React.FC = observer(() => {
   const {
-    post: { boardId, posts },
+    post: { posts },
   } = useRootStore();
 
   console.debug(posts);
@@ -15,11 +15,7 @@ export const Posts: React.FC = observer(() => {
   return (
     <>
       {posts.map(post => (
-        <PostCard
-          key={post.id}
-          model={post}
-          to={generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id as string })}
-        />
+        <PostCard key={post.id} model={post} to={generatePath(PAGE_URL.PostDetail, { postId: post.id as string })} />
       ))}
     </>
   );

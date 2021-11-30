@@ -7,10 +7,10 @@ import { Header } from '@/components/header';
 import { Breadcrumb } from './components/Detail/Breadcrumb';
 import { PostAuthor } from './components/Detail/PostAuthor';
 import { PostContent } from './components/Detail/styled';
-import { CommentNum } from './components/Detail/CommentNum';
 import { PostComments } from './components/Detail/PostComments';
 import { ContextMenu } from '@/pages/Post/components/Detail/ContextMenu';
 import { CommentInput } from './components/Detail/CommentInput';
+import { CommentNum } from '@/components/StyledPost';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
