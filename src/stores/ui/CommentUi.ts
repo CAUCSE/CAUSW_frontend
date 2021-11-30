@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 export enum CommentInputState {
   WRITE,
@@ -7,6 +7,7 @@ export enum CommentInputState {
 }
 
 export class CommentUiStore {
+  buf?: Model.Comment;
   target?: Model.Comment;
   state: CommentInputState = CommentInputState.WRITE;
   visiableMenuModal = false;
@@ -19,7 +20,11 @@ export class CommentUiStore {
       visiableMenuModal: observable,
       visiableDeleteModal: observable,
 
+      isReply: computed,
+      isEdit: computed,
+
       setState: action.bound,
+      resetState: action.bound,
       openMenuModal: action.bound,
       closeMenuModal: action.bound,
       openDeleteModal: action.bound,
@@ -27,13 +32,28 @@ export class CommentUiStore {
     });
   }
 
+  get isReply(): boolean {
+    return this.state === CommentInputState.REPLY;
+  }
+
+  get isEdit(): boolean {
+    return this.state === CommentInputState.EDIT;
+  }
+
   setState(state: CommentInputState): void {
     this.state = state;
+    this.target = this.buf;
+  }
+
+  resetState(): void {
+    this.state = CommentInputState.WRITE;
+    this.buf = undefined;
+    this.target = undefined;
   }
 
   openMenuModal(target: Model.Comment): void {
     this.visiableMenuModal = true;
-    this.target = target;
+    this.buf = target;
   }
 
   closeMenuModal(): void {

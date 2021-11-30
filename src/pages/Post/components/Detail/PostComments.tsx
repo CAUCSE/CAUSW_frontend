@@ -1,4 +1,6 @@
 import { memo, useCallback } from 'react';
+import { computed } from 'mobx';
+import { observer } from 'mobx-react-lite';
 import { useLongPress } from 'use-long-press';
 import styled from 'styled-components';
 import { useRootStore } from '@/stores/RootStore';
@@ -19,13 +21,14 @@ const Comments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   </>
 ));
 
-const PostComment: React.FC<{ model: Model.Comment }> = memo(({ model }) => {
+const PostComment: React.FC<{ model: Model.Comment }> = observer(({ model }) => {
   const {
-    ui: {
-      commentUi: { openMenuModal },
-    },
+    ui: { commentUi },
   } = useRootStore();
-  const handeLongPress = useCallback(model => () => openMenuModal(model), [openMenuModal]);
+  const isReply = computed(() => commentUi.target?.id === model.id && commentUi.isReply).get();
+  const isEdit = computed(() => commentUi.target?.id === model.id && commentUi.isEdit).get();
+
+  const handeLongPress = useCallback(model => () => commentUi.openMenuModal(model), [commentUi]);
   const bind = useLongPress(handeLongPress(model), {
     cancelOnMovement: true,
     captureEvent: true,
@@ -38,7 +41,7 @@ const PostComment: React.FC<{ model: Model.Comment }> = memo(({ model }) => {
     <>
       <li>
         {isChild ? <ReCommentIcon /> : null}
-        <Comment isChild={isChild} {...bind}>
+        <Comment isChild={isChild} reply={isReply} edit={isEdit} {...bind}>
           <Profile>
             <ProfileImage>
               <img src={author.profileImage} alt="author profile image" />
@@ -69,14 +72,19 @@ const ReCommentIcon = styled(Icon)`
   top: 15px;
 `;
 
-const Comment = styled.div<{ isChild: boolean }>`
+const Comment = styled.div<{ isChild: boolean; reply: boolean; edit: boolean }>`
   position: relative;
   margin-top: 5px;
   ${({ isChild }) => (isChild ? 'margin-left: 20px' : null)};
   padding: 7px 10px;
   width: ${({ isChild }) => (isChild ? 'calc(100% - 20px)' : '100%')};
   box-sizing: border-box;
-  background: #f5f5f5;
+  background: ${({ reply, edit }) => {
+    if (reply) return 'rgba(255, 202, 202, 0.94)';
+    else if (edit) return 'rgba(255, 234, 202, 0.94)';
+
+    return '#f5f5f5';
+  }};
   border-radius: 10px;
   user-select: none;
 
