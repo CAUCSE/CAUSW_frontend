@@ -7,9 +7,6 @@ import { computed } from 'mobx';
 import { useRootStore } from '@/stores/RootStore';
 import { UI_COMMENT_MENU } from '@/configs/uiStoreKey';
 
-import type { CommentMenuUiStore } from './CommentContextMenu';
-import { observer } from 'mobx-react-lite';
-
 export const PostComments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   <Wrapper>
     <Comments list={list} />
@@ -24,18 +21,15 @@ const Comments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   </>
 ));
 
-const PostComment: React.FC<{ model: Model.Comment }> = observer(
+const PostComment: React.FC<{ model: Model.Comment }> = memo(
   ({ model: { isChild, author, content, childComments, formatedCreatedAt } }) => {
     const {
-      ui: { localUiStores },
+      ui: {
+        commentUi: { openMenuModal },
+      },
     } = useRootStore();
-    const store = computed(() => localUiStores.get(UI_COMMENT_MENU)).get() as CommentMenuUiStore | undefined;
 
-    const callback = useCallback(() => {
-      if (store) store.setVisiable(true);
-    }, [store]);
-
-    const bind = useLongPress(callback, {
+    const bind = useLongPress(openMenuModal, {
       cancelOnMovement: true,
     });
 

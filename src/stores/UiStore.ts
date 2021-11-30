@@ -1,6 +1,7 @@
 import { HeaderUiStore } from 'components/common/header';
 import { action, makeObservable, observable } from 'mobx';
 import React from 'react';
+import { CommentUiStore } from './ui/CommentUi';
 
 enum DISPLAY {
   MOBILE = 480,
@@ -11,16 +12,14 @@ enum DISPLAY {
 export class UiStore {
   rootStore: Store.Root;
   displayType: DISPLAY = DISPLAY.MOBILE;
-  header: HeaderUiStore = new HeaderUiStore();
+  header = new HeaderUiStore();
   FooterNavigation?: React.FC;
-  localUiStores: Map<string, unknown> = new Map();
+  commentUi = new CommentUiStore();
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
       displayType: observable,
       FooterNavigation: observable,
-      localUiStores: observable,
-
       setDisplayType: action.bound,
     });
 
