@@ -1,11 +1,9 @@
 import { memo, useCallback } from 'react';
-import styled from 'styled-components';
 import { useLongPress } from 'use-long-press';
+import styled from 'styled-components';
+import { useRootStore } from '@/stores/RootStore';
 import { ClearUl } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/comment_arrow_icon.svg';
-import { computed } from 'mobx';
-import { useRootStore } from '@/stores/RootStore';
-import { UI_COMMENT_MENU } from '@/configs/uiStoreKey';
 
 export const PostComments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   <Wrapper>
@@ -21,38 +19,40 @@ const Comments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   </>
 ));
 
-const PostComment: React.FC<{ model: Model.Comment }> = memo(
-  ({ model: { isChild, author, content, childComments, formatedCreatedAt } }) => {
-    const {
-      ui: {
-        commentUi: { openMenuModal },
-      },
-    } = useRootStore();
+const PostComment: React.FC<{ model: Model.Comment }> = memo(({ model }) => {
+  const {
+    ui: {
+      commentUi: { openMenuModal },
+    },
+  } = useRootStore();
+  const handeLongPress = useCallback(model => () => openMenuModal(model), [openMenuModal]);
+  const bind = useLongPress(handeLongPress(model), {
+    cancelOnMovement: true,
+    captureEvent: true,
+    onFinish: ev => ev?.preventDefault(),
+  });
 
-    const bind = useLongPress(openMenuModal, {
-      cancelOnMovement: true,
-    });
+  const { isChild, author, content, childComments, formatedCreatedAt } = model;
 
-    return (
-      <>
-        <li>
-          {isChild ? <ReCommentIcon /> : null}
-          <Comment isChild={isChild} {...bind}>
-            <Profile>
-              <ProfileImage>
-                <img src={author.profileImage} alt="author profile image" />
-              </ProfileImage>
-              <Name>{author.nameWithAdmission}</Name>
-              <Date>{formatedCreatedAt}</Date>
-            </Profile>
-            <Content dangerouslySetInnerHTML={{ __html: content }} />
-          </Comment>
-        </li>
-        <Comments list={childComments} />
-      </>
-    );
-  },
-);
+  return (
+    <>
+      <li>
+        {isChild ? <ReCommentIcon /> : null}
+        <Comment isChild={isChild} {...bind}>
+          <Profile>
+            <ProfileImage>
+              <img src={author.profileImage} alt="author profile image" />
+            </ProfileImage>
+            <Name>{author.nameWithAdmission}</Name>
+            <Date>{formatedCreatedAt}</Date>
+          </Profile>
+          <Content dangerouslySetInnerHTML={{ __html: content }} />
+        </Comment>
+      </li>
+      <Comments list={childComments} />
+    </>
+  );
+});
 
 const Wrapper = styled(ClearUl)`
   margin: 10px 0;

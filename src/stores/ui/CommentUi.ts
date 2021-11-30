@@ -16,7 +16,7 @@ export class CommentUiStore {
     makeObservable(this, {
       visiableMenuModal: observable,
       visiableDeleteModal: observable,
-      setTarget: action.bound,
+      setState: action.bound,
       openMenuModal: action.bound,
       closeMenuModal: action.bound,
       openDeleteModal: action.bound,
@@ -24,17 +24,18 @@ export class CommentUiStore {
     });
   }
 
-  setTarget(state: CommentInputState, target: Model.Comment): void {
+  setState(state: CommentInputState): void {
     this.state = state;
-    this.target = target;
   }
 
-  openMenuModal(): void {
+  openMenuModal(target: Model.Comment): void {
     this.visiableMenuModal = true;
+    this.target = target;
   }
 
   closeMenuModal(): void {
     this.visiableMenuModal = false;
+    this.target = undefined;
   }
 
   openDeleteModal(): void {

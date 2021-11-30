@@ -9,9 +9,9 @@ import { PostAuthor } from './components/Detail/PostAuthor';
 import { PostContent } from './components/Detail/styled';
 import { PostComments } from './components/Detail/PostComments';
 import { ContextMenu } from '@/pages/Post/components/Detail/ContextMenu';
-import { CommentInput } from './components/Detail/CommentInput';
+import { CommentInput } from './components/Comment/CommentInput';
 import { CommentNum } from '@/components/StyledPost';
-import { CommentContextMenu } from './components/Detail/CommentContextMenu';
+import { CommentMenuModal } from './components/Comment/CommentMenuModal';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
@@ -37,7 +37,7 @@ export const PagePostDetail: React.FC = observer(() => {
       <CommentNum num={post.numComment} />
       <PostComments list={comments} />
 
-      <CommentContextMenu />
+      <CommentMenuModal />
     </>
   ) : null;
 });
