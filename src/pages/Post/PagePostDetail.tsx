@@ -11,6 +11,7 @@ import { PostComments } from './components/Detail/PostComments';
 import { ContextMenu } from '@/pages/Post/components/Detail/ContextMenu';
 import { CommentInput } from './components/Detail/CommentInput';
 import { CommentNum } from '@/components/StyledPost';
+import { CommentContextMenu } from './components/Detail/CommentContextMenu';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
@@ -35,6 +36,8 @@ export const PagePostDetail: React.FC = observer(() => {
       <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
       <CommentNum num={post.numComment} />
       <PostComments list={comments} />
+
+      <CommentContextMenu />
     </>
   ) : null;
 });

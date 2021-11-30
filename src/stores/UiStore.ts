@@ -10,21 +10,21 @@ enum DISPLAY {
 
 export class UiStore {
   rootStore: Store.Root;
-  header: HeaderUiStore;
+  displayType: DISPLAY = DISPLAY.MOBILE;
+  header: HeaderUiStore = new HeaderUiStore();
   FooterNavigation?: React.FC;
-  displayType: DISPLAY;
+  localUiStores: Map<string, unknown> = new Map();
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
       displayType: observable,
       FooterNavigation: observable,
+      localUiStores: observable,
+
       setDisplayType: action.bound,
     });
 
     this.rootStore = rootStore;
-    this.header = new HeaderUiStore();
-    this.displayType = DISPLAY.MOBILE;
-
     this.initWindowMatchMedia();
   }
 

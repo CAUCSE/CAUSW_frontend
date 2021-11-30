@@ -1,7 +1,14 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import styled from 'styled-components';
+import { useLongPress } from 'use-long-press';
 import { ClearUl } from '@/components/atoms/clear';
 import { ReactComponent as Icon } from '@/assets/icons/comment_arrow_icon.svg';
+import { computed } from 'mobx';
+import { useRootStore } from '@/stores/RootStore';
+import { UI_COMMENT_MENU } from '@/configs/uiStoreKey';
+
+import type { CommentMenuUiStore } from './CommentContextMenu';
+import { observer } from 'mobx-react-lite';
 
 export const PostComments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   <Wrapper>
@@ -17,26 +24,40 @@ const Comments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   </>
 ));
 
-const PostComment: React.FC<{ model: Model.Comment }> = memo(
-  ({ model: { isChild, author, content, childComments, formatedCreatedAt } }) => (
-    <>
-      <li>
-        {isChild ? <ReCommentIcon /> : null}
-        <Comment isChild={isChild}>
-          <Profile>
-            <ProfileImage>
-              <img src={author.profileImage} alt="author profile image" />
-            </ProfileImage>
-            <Name>{author.nameWithAdmission}</Name>
+const PostComment: React.FC<{ model: Model.Comment }> = observer(
+  ({ model: { isChild, author, content, childComments, formatedCreatedAt } }) => {
+    const {
+      ui: { localUiStores },
+    } = useRootStore();
+    const store = computed(() => localUiStores.get(UI_COMMENT_MENU)).get() as CommentMenuUiStore | undefined;
 
-            <Date>{formatedCreatedAt}</Date>
-          </Profile>
-          <Content dangerouslySetInnerHTML={{ __html: content }} />
-        </Comment>
-      </li>
-      <Comments list={childComments} />
-    </>
-  ),
+    const callback = useCallback(() => {
+      if (store) store.setVisiable(true);
+    }, [store]);
+
+    const bind = useLongPress(callback, {
+      cancelOnMovement: true,
+    });
+
+    return (
+      <>
+        <li>
+          {isChild ? <ReCommentIcon /> : null}
+          <Comment isChild={isChild} {...bind}>
+            <Profile>
+              <ProfileImage>
+                <img src={author.profileImage} alt="author profile image" />
+              </ProfileImage>
+              <Name>{author.nameWithAdmission}</Name>
+              <Date>{formatedCreatedAt}</Date>
+            </Profile>
+            <Content dangerouslySetInnerHTML={{ __html: content }} />
+          </Comment>
+        </li>
+        <Comments list={childComments} />
+      </>
+    );
+  },
 );
 
 const Wrapper = styled(ClearUl)`
@@ -63,6 +84,7 @@ const Comment = styled.div<{ isChild: boolean }>`
   box-sizing: border-box;
   background: #f5f5f5;
   border-radius: 10px;
+  user-select: none;
 
   > * {
     display: inline-block;

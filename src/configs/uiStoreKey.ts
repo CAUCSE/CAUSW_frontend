@@ -1,0 +1,1 @@
+export const UI_COMMENT_MENU = 'COMMENT_MENU';

@@ -1,6 +1,7 @@
 import { API } from 'configs/axios';
 import { BoardModel } from '../models/BoardModel';
 import { PostModel } from '../models/PostModel';
+import { Content } from '../types/PostType';
 
 class HomeRepo {
   URI = '/api/v1/home';
@@ -12,7 +13,7 @@ class HomeRepo {
 
     return data.map(({ board, posts: { content } }: HomeDto) => ({
       board: new BoardModel(board.id, board.category, board.name),
-      posts: content.map((data: any) => new PostModel(data)),
+      posts: content.map((data: Content) => new PostModel(data)),
     }));
   };
 }
@@ -26,6 +27,6 @@ export interface HomeDto {
     name: string;
   };
   posts: {
-    content: any[];
+    content: Content[];
   };
 }
