@@ -41,3 +41,32 @@ export const ModalMenuLink = styled(ClearLink)`
 export const ModalMenuButton = styled(ClearButton)`
   ${MenuItemCSS}
 `;
+
+export const ModalAlertTitle = styled.div`
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+`;
+
+export const ModalAlertMessage = styled.div`
+  font-size: 12px;
+  line-height: 14px;
+  color: #a3a1a1;
+`;
+
+export const ModalFooter = styled.div`
+  display: flex;
+  border-top: 1px solid #e4e4e4;
+`;
+
+export const ModalFooterButton = styled(ClearButton)`
+  flex: 1 1 0;
+  height: 38px;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+
+  & + & {
+    border-left: 1px solid #e4e4e4;
+  }
+`;

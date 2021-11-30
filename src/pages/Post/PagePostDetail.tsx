@@ -12,6 +12,7 @@ import { ContextMenu } from '@/pages/Post/components/Detail/ContextMenu';
 import { CommentInput } from './components/Comment/CommentInput';
 import { CommentNum } from '@/components/StyledPost';
 import { CommentMenuModal } from './components/Comment/CommentMenuModal';
+import { CommentDeleteModal } from './components/Comment/CommentDeleteModal';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
@@ -38,6 +39,7 @@ export const PagePostDetail: React.FC = observer(() => {
       <PostComments list={comments} />
 
       <CommentMenuModal />
+      <CommentDeleteModal />
     </>
   ) : null;
 });

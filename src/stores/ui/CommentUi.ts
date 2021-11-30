@@ -7,15 +7,18 @@ export enum CommentInputState {
 }
 
 export class CommentUiStore {
+  target?: Model.Comment;
+  state: CommentInputState = CommentInputState.WRITE;
   visiableMenuModal = false;
   visiableDeleteModal = false;
-  state: CommentInputState = CommentInputState.WRITE;
-  target?: Model.Comment;
 
   constructor() {
     makeObservable(this, {
+      target: observable,
+      state: observable,
       visiableMenuModal: observable,
       visiableDeleteModal: observable,
+
       setState: action.bound,
       openMenuModal: action.bound,
       closeMenuModal: action.bound,
@@ -35,7 +38,6 @@ export class CommentUiStore {
 
   closeMenuModal(): void {
     this.visiableMenuModal = false;
-    this.target = undefined;
   }
 
   openDeleteModal(): void {
