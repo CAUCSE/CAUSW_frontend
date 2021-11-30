@@ -19,10 +19,8 @@ export const Breadcrumb = observer(() => {
   );
 });
 
-const Wrapper = styled.h2`
-  margin: 0;
+const Wrapper = styled.div`
   font-size: 10px;
-  font-weight: normal;
   line-height: 12px;
 
   ${ClearLink} {
