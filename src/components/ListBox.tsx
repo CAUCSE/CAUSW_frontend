@@ -5,15 +5,19 @@ interface Props<T> {
   title: string;
   items: T[];
   ItemComponent: React.FC<{ model: T }>;
+  EmptyComponent?: React.FC;
 }
 
-function ListBoxComponent<T extends { id: string }>({ title, items, ItemComponent }: Props<T>) {
+function ListBoxComponent<T extends { id: string }>({
+  title,
+  items,
+  ItemComponent,
+  EmptyComponent = DefaultEmptyComponent,
+}: Props<T>) {
   return (
     <Box>
       <Title>{title}</Title>
-      {items.map(item => (
-        <ItemComponent key={item.id} model={item} />
-      ))}
+      {items.length ? items.map(item => <ItemComponent key={item.id} model={item} />) : <EmptyComponent />}
     </Box>
   );
 }
@@ -38,4 +42,25 @@ const Title = styled.h2`
   margin: 0;
   font-size: 14px;
   line-height: 16px;
+`;
+
+const DefaultEmptyComponent: React.FC = () => (
+  <EmptyComponentWrapper>
+    <img src="/images/empty.png" alt="Empty list logo" />
+    <br />
+    작성된 게시글이 없습니다
+  </EmptyComponentWrapper>
+);
+
+const EmptyComponentWrapper = styled.div`
+  margin: 25px 0 7px;
+  font-size: 10px;
+  line-height: 12px;
+  color: #a3a1a1;
+  text-align: center;
+
+  > img {
+    margin-bottom: 0.15rem;
+    width: 15vw;
+  }
 `;
