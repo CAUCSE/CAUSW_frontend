@@ -79,10 +79,11 @@ export class CommentUiStore {
     this.resetState();
   }
 
-  *remove(id: string): Generator {
-    yield Repo.delete(id);
+  *remove(target: Model.Comment): Generator {
+    yield Repo.delete(target.id);
 
-    this.comments = this.comments.filter(comment => comment.id !== id);
+    // this.comments = this.comments.filter(comment => comment.id !== id);
+    target.delete();
     this.resetState();
   }
 
