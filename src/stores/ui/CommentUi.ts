@@ -83,6 +83,7 @@ export class CommentUiStore {
     yield Repo.delete(id);
 
     this.comments = this.comments.filter(comment => comment.id !== id);
+    this.resetState();
   }
 
   setState(state: CommentInputState): void {
