@@ -73,6 +73,7 @@ export class CommentUiStore {
     const comment = (yield Repo.update(id, content)) as Model.Comment;
 
     this.target?.refresh(comment);
+    this.resetState();
   }
 
   *remove(id: string): Generator {
