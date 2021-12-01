@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 import { ClearButton } from '@/components/atoms/clear';
@@ -10,6 +11,10 @@ export const CommentInput: React.FC = observer(() => {
       commentUi: { isReply, isEdit, target, resetState },
     },
   } = useRootStore();
+
+  useEffect(() => {
+    return () => resetState();
+  }, [resetState]);
 
   // TODO: 컴포넌트 분리
   return (
