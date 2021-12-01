@@ -18,7 +18,7 @@ class CommentRepo {
   };
 
   delete = async (id: string) => {
-    return await API.get(`${this.URI}/${id}`);
+    return await API.delete(`${this.URI}/${id}`);
   };
 }
 

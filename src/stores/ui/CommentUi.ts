@@ -1,6 +1,4 @@
-import { resolve } from 'dns';
-import { action, computed, flow, makeObservable, observable, runInAction } from 'mobx';
-import { runInContext } from 'vm';
+import { action, computed, flow, makeObservable, observable } from 'mobx';
 import { CommentRepoImpl as Repo } from '../repositories/CommentRepo';
 
 export enum CommentInputState {
@@ -30,6 +28,7 @@ export class CommentUiStore {
 
       setComments: action.bound,
       create: flow.bound,
+      remove: flow.bound,
 
       setState: action.bound,
       resetState: action.bound,
@@ -61,6 +60,12 @@ export class CommentUiStore {
     this.comments.push(comment);
   }
 
+  *remove(id: string): Generator {
+    yield Repo.delete(id);
+
+    this.comments = this.comments.filter(comment => comment.id !== id);
+  }
+
   setState(state: CommentInputState): void {
     this.state = state;
     this.target = this.buf;
@@ -83,9 +88,11 @@ export class CommentUiStore {
 
   openDeleteModal(): void {
     this.visiableDeleteModal = true;
+    this.target = this.buf;
   }
 
   closeDeleteModal(): void {
     this.visiableDeleteModal = false;
+    this.target = undefined;
   }
 }

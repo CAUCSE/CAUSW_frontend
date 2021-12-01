@@ -14,17 +14,17 @@ import {
 
 export const CommentDeleteModal: React.FC = observer(() => {
   const {
-    ui: {
-      commentUi: { visiableDeleteModal: visiable, closeDeleteModal, target },
-    },
+    ui: { commentUi },
   } = useRootStore();
+  const { visiableDeleteModal: visiable, closeDeleteModal } = commentUi;
+
   const handleDelete = useCallback(async () => {
-    if (target) {
+    if (commentUi.target) {
       // TODO: 댓글 삭제 API 연결
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      closeDeleteModal();
+      await commentUi.remove(commentUi.target.id);
+      commentUi.closeDeleteModal();
     }
-  }, [target, closeDeleteModal]);
+  }, [commentUi]);
 
   return visiable ? (
     <Portal>
