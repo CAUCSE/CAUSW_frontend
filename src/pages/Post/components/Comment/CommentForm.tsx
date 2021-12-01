@@ -43,10 +43,12 @@ export const CommentForm: React.FC = observer(() => {
     if (commentUi.isEdit) {
       setValue('content', commentUi.target?.content);
       setFocus('content');
+    } else if (commentUi.isReply) {
+      setFocus('content');
     } else {
       setValue('content', '');
     }
-  }, [commentUi.isEdit, commentUi.target, setValue]);
+  }, [commentUi.isEdit, commentUi.isReply]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
