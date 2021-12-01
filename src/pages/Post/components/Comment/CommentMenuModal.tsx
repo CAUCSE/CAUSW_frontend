@@ -9,7 +9,7 @@ import { CommentInputState } from '@/stores/ui/CommentUi';
 export const CommentMenuModal: React.FC = observer(() => {
   const {
     ui: {
-      commentUi: { visiableMenuModal: visiable, closeMenuModal, setState, openDeleteModal },
+      commentUi: { visiableMenuModal: visiable, buf, closeMenuModal, setState, openDeleteModal },
     },
   } = useRootStore();
   const handleSetState = useCallback(
@@ -24,13 +24,17 @@ export const CommentMenuModal: React.FC = observer(() => {
     openDeleteModal();
   }, [closeMenuModal, openDeleteModal]);
 
-  return visiable ? (
+  return visiable && buf ? (
     <Portal>
       <>
         <Box>
-          <ModalMenuButton onClick={handleSetState(CommentInputState.REPLY)}>답글 달기</ModalMenuButton>
-          <ModalMenuButton onClick={handleSetState(CommentInputState.EDIT)}>댓글 수정</ModalMenuButton>
-          <ModalMenuButton onClick={handleOpenDeleteModal}>댓글 삭제</ModalMenuButton>
+          {!buf.isChild ? (
+            <ModalMenuButton onClick={handleSetState(CommentInputState.REPLY)}>답글 달기</ModalMenuButton>
+          ) : null}
+          {buf.updatable ? (
+            <ModalMenuButton onClick={handleSetState(CommentInputState.EDIT)}>댓글 수정</ModalMenuButton>
+          ) : null}
+          {buf.deletable ? <ModalMenuButton onClick={handleOpenDeleteModal}>댓글 삭제</ModalMenuButton> : null}
         </Box>
         <Dimmed onClick={closeMenuModal} />
       </>
