@@ -58,6 +58,7 @@ export class CommentUiStore {
     })) as Model.Comment;
 
     this.comments.push(comment);
+    this.resetState();
   }
 
   *remove(id: string): Generator {
