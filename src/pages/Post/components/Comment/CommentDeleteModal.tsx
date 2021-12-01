@@ -15,16 +15,20 @@ import {
 export const CommentDeleteModal: React.FC = observer(() => {
   const {
     ui: { commentUi },
+    post,
   } = useRootStore();
   const { visiableDeleteModal: visiable, closeDeleteModal } = commentUi;
 
   const handleDelete = useCallback(async () => {
-    if (commentUi.target) {
+    const { post: currentPost } = post;
+
+    if (commentUi.target && currentPost) {
       // TODO: 댓글 삭제 API 연결
       await commentUi.remove(commentUi.target.id);
       commentUi.closeDeleteModal();
+      currentPost.downCommentCount();
     }
-  }, [commentUi]);
+  }, [commentUi, post]);
 
   return visiable ? (
     <Portal>

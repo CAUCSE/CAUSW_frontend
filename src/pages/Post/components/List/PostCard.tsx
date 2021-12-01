@@ -4,14 +4,14 @@ import { ClearLink } from '@/components/atoms/clear';
 import * as Post from '@/components/StyledPost';
 
 export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
-  ({ to, model: { title, author, numComment, formatedCreatedAt } }) => (
+  ({ to, model: { title, author, commentCount, formatedCreatedAt } }) => (
     <Link to={to}>
       <Card>
         <Title>{title}</Title>
         <Post.CreatedDate>{formatedCreatedAt}</Post.CreatedDate>
         <Post.Break />
         <AuthorName>{author.nameWithAdmission}</AuthorName>
-        <Post.CommentNum num={numComment} />
+        <Post.CommentNum num={commentCount} />
       </Card>
     </Link>
   ),

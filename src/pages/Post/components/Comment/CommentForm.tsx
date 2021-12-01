@@ -24,6 +24,7 @@ export const CommentForm: React.FC = () => {
             content,
           });
           setValue('content', '');
+          currentPost.upCommentCount();
           // TODO: 댓글 신규 추가 된 경우 해당 댓글로 스크롤 이동
         }
       } catch (e) {

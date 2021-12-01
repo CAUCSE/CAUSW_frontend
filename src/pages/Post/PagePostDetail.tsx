@@ -35,7 +35,7 @@ export const PagePostDetail: React.FC = observer(() => {
       <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={ContextMenu} />
       <PostAuthor model={post.author} date={post.formatedCreatedAt} />
       <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
-      <CommentNum num={post.numComment} />
+      <CommentNum num={post.commentCount} />
       <PostComments list={ui.commentUi.comments} />
 
       <CommentMenuModal />

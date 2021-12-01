@@ -6,13 +6,13 @@ import { ClearLink } from '@/components/atoms/clear';
 import * as Post from '@/components/StyledPost';
 
 export const HomeBoardListItem: React.FC<{ model: Model.Post }> = memo(
-  ({ model: { id, title, formatedCreatedAt, author, numComment } }) => (
+  ({ model: { id, title, formatedCreatedAt, author, commentCount } }) => (
     <Link to={generatePath(PAGE_URL.PostDetail, { postId: id })}>
       <Title>{title}</Title>
       <Post.CreatedDate>{formatedCreatedAt}</Post.CreatedDate>
       <Post.Break />
       <AuthorName>{author.nameWithAdmission}</AuthorName>
-      <Post.CommentNum num={numComment} />
+      <Post.CommentNum num={commentCount} />
     </Link>
   ),
 );
