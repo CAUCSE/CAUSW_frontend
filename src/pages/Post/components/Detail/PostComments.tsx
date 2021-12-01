@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import { computed } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useLongPress } from 'use-long-press';
@@ -26,6 +26,7 @@ const PostComment: React.FC<{ model: Model.Comment }> = observer(({ model }) => 
   const {
     ui: { commentUi },
   } = useRootStore();
+  const ref = useRef<HTMLLIElement>(null);
   const isReply = computed(() => commentUi.target?.id === model.id && commentUi.isReply).get();
   const isEdit = computed(() => commentUi.target?.id === model.id && commentUi.isEdit).get();
 
@@ -36,11 +37,17 @@ const PostComment: React.FC<{ model: Model.Comment }> = observer(({ model }) => 
     onFinish: ev => ev?.preventDefault(),
   });
 
+  useEffect(() => {
+    if (commentUi.scollFocusId === model.id) {
+      ref.current?.scrollIntoView({ block: 'center' });
+    }
+  }, [commentUi.scollFocusId, model, ref]);
+
   const { isChild, author, content, childComments, formatedCreatedAt } = model;
 
   return (
     <>
-      <li>
+      <li ref={ref}>
         {isChild ? <ReCommentIcon /> : null}
         <Comment isChild={isChild} reply={isReply} edit={isEdit} {...bind}>
           <Profile>

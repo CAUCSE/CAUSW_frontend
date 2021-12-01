@@ -12,6 +12,7 @@ export class CommentUiStore {
   buf?: Model.Comment;
   target?: Model.Comment;
   state: CommentInputState = CommentInputState.WRITE;
+  scollFocusId?: string;
   inputContent = '';
   visiableMenuModal = false;
   visiableDeleteModal = false;
@@ -22,6 +23,7 @@ export class CommentUiStore {
       target: observable,
       state: observable,
       inputContent: observable,
+      scollFocusId: observable,
       visiableMenuModal: observable,
       visiableDeleteModal: observable,
 
@@ -66,6 +68,7 @@ export class CommentUiStore {
       this.target?.childComments.push(comment);
     }
 
+    this.scollFocusId = comment.id;
     this.resetState();
   }
 
