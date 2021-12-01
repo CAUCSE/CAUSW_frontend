@@ -1,4 +1,5 @@
 import { utcToZonedTime, format } from 'date-fns-tz';
+import { makeObservable, observable } from 'mobx';
 import { AuthorModel } from './AuthorModel';
 
 export class CommentModel {
@@ -14,6 +15,10 @@ export class CommentModel {
   childComments: Model.Comment[] = [];
 
   constructor(props: Comment.Dto, isChild = false) {
+    makeObservable(this, {
+      childComments: observable,
+    });
+
     this.isChild = isChild;
     this.postId = props.postId;
     this.id = props.id;

@@ -57,7 +57,12 @@ export class CommentUiStore {
       ...data,
     })) as Model.Comment;
 
-    this.comments.push(comment);
+    if (!this.isReply) {
+      this.comments.push(comment);
+    } else {
+      this.target?.childComments.push(comment);
+    }
+
     this.resetState();
   }
 
