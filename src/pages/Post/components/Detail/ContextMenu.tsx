@@ -19,7 +19,7 @@ export const ContextMenu = observer(() => {
     return null;
   }
 
-  return (
+  return post.updatable || post.deletable ? (
     <div ref={ref}>
       <Wrapper onClick={toggle}>
         <MenuIcon className="absolute-center" />
@@ -30,7 +30,7 @@ export const ContextMenu = observer(() => {
         {post.deletable ? <MenuButton>게시글 삭제</MenuButton> : null}
       </MenuBox>
     </div>
-  );
+  ) : null;
 });
 
 const Wrapper = styled(ClearButton)<{ onClick: MouseEventHandler<HTMLButtonElement> }>`
