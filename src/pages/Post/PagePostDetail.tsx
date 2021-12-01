@@ -18,7 +18,7 @@ export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
   const {
     ui,
-    post: { fetchPost, post, comments },
+    post: { fetchPost, post },
   } = useRootStore();
 
   useLayoutEffect(() => {
@@ -36,7 +36,7 @@ export const PagePostDetail: React.FC = observer(() => {
       <PostAuthor model={post.author} date={post.formatedCreatedAt} />
       <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
       <CommentNum num={post.numComment} />
-      <PostComments list={comments} />
+      <PostComments list={ui.commentUi.comments} />
 
       <CommentMenuModal />
       <CommentDeleteModal />

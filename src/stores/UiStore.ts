@@ -1,6 +1,6 @@
-import { HeaderUiStore } from 'components/common/header';
-import { action, makeObservable, observable } from 'mobx';
 import React from 'react';
+import { action, makeObservable, observable } from 'mobx';
+import { HeaderUiStore } from 'components/common/header';
 import { CommentUiStore } from './ui/CommentUi';
 
 enum DISPLAY {

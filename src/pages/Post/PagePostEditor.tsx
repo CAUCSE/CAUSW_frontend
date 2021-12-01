@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRootStore } from '@/stores/RootStore';
-import { PostProvider } from '@/stores/PostStore';
 import { Breadcrumb } from './components/Detail/Breadcrumb';
 import { PostEditor } from './components/Editor/PostEditor';
 import { Form, TitleInput, SubmitButton } from './components/Editor/styled';
@@ -30,15 +29,13 @@ export const PagePostEditor: React.FC = observer(() => {
   );
 
   return (
-    <PostProvider>
-      <FormProvider {...methods}>
-        <Form onSubmit={methods.handleSubmit(onSubmit)}>
-          <Breadcrumb />
-          <SubmitButton>완료</SubmitButton>
-          <TitleInput {...methods.register('title')} placeholder="제목을 입력하세요" />
-          <PostEditor />
-        </Form>
-      </FormProvider>
-    </PostProvider>
+    <FormProvider {...methods}>
+      <Form onSubmit={methods.handleSubmit(onSubmit)}>
+        <Breadcrumb />
+        <SubmitButton>완료</SubmitButton>
+        <TitleInput {...methods.register('title')} placeholder="제목을 입력하세요" />
+        <PostEditor />
+      </Form>
+    </FormProvider>
   );
 });

@@ -1,9 +1,8 @@
-import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { ClearButton } from '@/components/atoms/clear';
-import { SendIcon } from '@/components/atoms/Icon';
 import { useRootStore } from '@/stores/RootStore';
 import { observer } from 'mobx-react-lite';
+import { CommentForm } from './CommentForm';
 
 export const CommentInput: React.FC = observer(() => {
   const {
@@ -11,8 +10,6 @@ export const CommentInput: React.FC = observer(() => {
       commentUi: { isReply, isEdit, target, resetState },
     },
   } = useRootStore();
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => console.log(data);
 
   // TODO: 컴포넌트 분리
   return (
@@ -28,13 +25,7 @@ export const CommentInput: React.FC = observer(() => {
           댓글 수정: {target?.author.nameWithAdmission}
         </Chip>
       ) : null}
-      {/* 인풋 컴포넌트 */}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Textarea rows={1} placeholder="댓글 내용 입력" {...register('content', { required: true })} />
-        <SendButton>
-          <SendIcon />
-        </SendButton>
-      </form>
+      <CommentForm />
     </Wrapper>
   );
 });
@@ -68,30 +59,4 @@ const Wrapper = styled.footer`
   min-height: 57px;
   background: #fff;
   box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 25%);
-
-  > form {
-    display: flex;
-    width: 100%;
-  }
-`;
-
-const Textarea = styled.textarea`
-  box-sizing: border-box;
-  flex: 1 1 0;
-  margin: 5px 0 5px 8px;
-  padding: 17px;
-  background: #f3f3f3;
-  border: 0;
-  border-radius: 15px;
-  resize: none;
-  font-size: 13px;
-  line-height: 15px;
-
-  &::placeholder {
-    color: '#BDBDBD';
-  }
-`;
-
-const SendButton = styled(ClearButton)`
-  width: 50px;
 `;

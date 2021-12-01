@@ -13,7 +13,7 @@ export const PostComments: React.FC<{ list: Model.Comment[] }> = memo(({ list })
   </Wrapper>
 ));
 
-const Comments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
+const Comments: React.FC<{ list: Model.Comment[] }> = observer(({ list }) => (
   <>
     {list.map(comment => (
       <PostComment key={comment.id} model={comment} />

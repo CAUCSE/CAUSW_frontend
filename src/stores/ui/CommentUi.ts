@@ -1,4 +1,7 @@
-import { action, computed, makeObservable, observable } from 'mobx';
+import { resolve } from 'dns';
+import { action, computed, flow, makeObservable, observable, runInAction } from 'mobx';
+import { runInContext } from 'vm';
+import { CommentRepoImpl as Repo } from '../repositories/CommentRepo';
 
 export enum CommentInputState {
   WRITE,
@@ -7,6 +10,7 @@ export enum CommentInputState {
 }
 
 export class CommentUiStore {
+  comments: Model.Comment[] = [];
   buf?: Model.Comment;
   target?: Model.Comment;
   state: CommentInputState = CommentInputState.WRITE;
@@ -15,6 +19,7 @@ export class CommentUiStore {
 
   constructor() {
     makeObservable(this, {
+      comments: observable,
       target: observable,
       state: observable,
       visiableMenuModal: observable,
@@ -22,6 +27,9 @@ export class CommentUiStore {
 
       isReply: computed,
       isEdit: computed,
+
+      setComments: action.bound,
+      create: flow.bound,
 
       setState: action.bound,
       resetState: action.bound,
@@ -38,6 +46,19 @@ export class CommentUiStore {
 
   get isEdit(): boolean {
     return this.state === CommentInputState.EDIT;
+  }
+
+  setComments(comments: Model.Comment[]): void {
+    this.comments = comments;
+  }
+
+  *create(data: { postId: string; content: string }): Generator {
+    const comment = (yield Repo.create({
+      parentCommentId: this.isReply ? this.target?.id : undefined,
+      ...data,
+    })) as Model.Comment;
+
+    this.comments.push(comment);
   }
 
   setState(state: CommentInputState): void {

@@ -1,7 +1,4 @@
-import { memo, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { action, flow, makeObservable, observable } from 'mobx';
-import { useRootStore } from './RootStore';
 import { PostRepoImpl as Repo } from './repositories/PostRepo';
 import { PostRequestDTO } from './repositories/PostType';
 import { PostAllWithBoardResponseDto } from './types/PostType';
@@ -9,6 +6,7 @@ import { PostModel } from './models/PostModel';
 import { CommentModel } from './models/CommentModel';
 
 export class PostStore {
+  rootStore: Store.Root;
   boardId = '';
   boardName = '';
   writable = false;
@@ -16,7 +14,6 @@ export class PostStore {
   posts: Model.Post[] = [];
   // 게시글 상세
   post?: Model.Post;
-  comments: Model.Comment[] = [];
 
   *fetch(bid: string): Generator {
     const { boardId, boardName, writable, post } = (yield Repo.findAll(bid)) as PostAllWithBoardResponseDto;
@@ -33,7 +30,7 @@ export class PostStore {
     this.boardId = boardId;
     this.boardName = boardName;
     this.post = new PostModel(data);
-    this.comments = commentList.content.map(data => new CommentModel(data));
+    this.rootStore.ui.commentUi.setComments(commentList.content.map(data => new CommentModel(data)));
   }
 
   reset(): void {
@@ -42,11 +39,9 @@ export class PostStore {
     this.writable = false;
     this.posts = [];
     this.post = undefined;
-    this.comments = [];
   }
 
   //
-  rootStore: Store.Root;
   postId?: string;
 
   constructor(rootStore: Store.Root) {
@@ -83,28 +78,3 @@ export class PostStore {
     this.post = undefined;
   }
 }
-
-export const PostProvider: React.FC = memo(({ children }) => {
-  const { boardId, postId } = useParams<{ boardId: string; postId: string }>();
-  const { board, post } = useRootStore();
-
-  useEffect(() => {
-    const init = async () => {
-      if (boardId) {
-        board.boardId = boardId;
-
-        await board.fetch();
-        if (!postId) await post.fetch(boardId);
-      }
-    };
-
-    init();
-
-    return () => {
-      post.reset();
-      post.resetDetail();
-    };
-  }, [boardId, postId]);
-
-  return <>{children}</>;
-});
