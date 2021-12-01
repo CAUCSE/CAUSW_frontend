@@ -8,7 +8,7 @@ declare namespace Comment {
     content: string;
     createdAt: Date;
     updatedAt: Date;
-    // isDeleted: boolean;
+    isDeleted: boolean;
     // parentCommentId?: any;
     childCommentList: Dto[];
     updatable: boolean;
