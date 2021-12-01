@@ -26,8 +26,24 @@ export const Break = styled(FlexBreak)`
   margin-top: 0.25rem;
 `;
 
+export const ProfileImage = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  overflow: hidden;
+
+  > img {
+    height: 100%;
+    display: 100%;
+  }
+`;
+
 export const AuthorNameCSS = css`
   flex: 1 1 0;
+
+  ${ProfileImage} + & {
+    margin-left: 0.35rem;
+  }
 `;
 
 const CommentNumWrapper = styled.div`

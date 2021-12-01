@@ -5,6 +5,7 @@ import { useLongPress } from 'use-long-press';
 import styled from 'styled-components';
 import { useRootStore } from '@/stores/RootStore';
 import { ClearUl } from '@/components/atoms/clear';
+import * as Post from '@/components/StyledPost';
 import { ReactComponent as Icon } from '@/assets/icons/comment_arrow_icon.svg';
 
 export const PostComments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
@@ -43,11 +44,11 @@ const PostComment: React.FC<{ model: Model.Comment }> = observer(({ model }) => 
         {isChild ? <ReCommentIcon /> : null}
         <Comment isChild={isChild} reply={isReply} edit={isEdit} {...bind}>
           <Profile>
-            <ProfileImage>
+            <Post.ProfileImage>
               <img src={author.profileImage} alt="author profile image" />
-            </ProfileImage>
-            <Name>{author.nameWithAdmission}</Name>
-            <Date>{formatedCreatedAt}</Date>
+            </Post.ProfileImage>
+            <AuthorName>{author.nameWithAdmission}</AuthorName>
+            <Post.CreatedDate>{formatedCreatedAt}</Post.CreatedDate>
           </Profile>
           <Content dangerouslySetInnerHTML={{ __html: content }} />
         </Comment>
@@ -95,37 +96,14 @@ const Comment = styled.div<{ isChild: boolean; reply: boolean; edit: boolean }>`
 `;
 
 const Profile = styled.div`
-  display: flex;
+  ${Post.WrapperCSS}
   align-items: center;
 `;
 
-const ProfileImage = styled.div`
-  width: 30px;
-  height: 30px;
-  border-radius: 30px;
-  overflow: hidden;
-
-  > img {
-    height: 100%;
-    display: 100%;
-  }
-`;
-
-const Name = styled.div`
-  flex: 1 1 0;
-  margin-left: 0.5rem;
+const AuthorName = styled.div`
+  ${Post.AuthorNameCSS}
   font-size: 10px;
   line-height: 12px;
-  color: #3f4040;
-  overflow: hidden;
-`;
-
-const Date = styled.div`
-  width: 50px;
-  text-align: right;
-  font-size: 10px;
-  line-height: 12px;
-  color: #a3a1a1;
 `;
 
 const Content = styled.p`
