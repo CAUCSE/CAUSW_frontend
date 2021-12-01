@@ -8,7 +8,7 @@ class CommentRepo {
   create = async (body: CreateCommentBody): Promise<Model.Comment> => {
     const { data } = (await API.post(this.URI, body)) as AxiosResponse<Comment.Dto>;
 
-    return new CommentModel(data);
+    return new CommentModel(data, body.parentCommentId ? true : false);
   };
 
   put = async (content: string) => {
