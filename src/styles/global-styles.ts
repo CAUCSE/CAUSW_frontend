@@ -13,9 +13,15 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.333px;
 
     #root {
-      position: relative;
+      display: flex;
+	    flex-direction: column;
       width: 100%;
       height: 100%;
+
+      + * {
+		    display: flex;
+		    flex-direction: column;
+      }
     }
   }
 

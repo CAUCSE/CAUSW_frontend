@@ -1,7 +1,7 @@
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 import { ClearButton } from '@/components/atoms/clear';
 import { useRootStore } from '@/stores/RootStore';
-import { observer } from 'mobx-react-lite';
 import { CommentForm } from './CommentForm';
 
 export const CommentInput: React.FC = observer(() => {
@@ -30,6 +30,11 @@ export const CommentInput: React.FC = observer(() => {
   );
 });
 
+const Wrapper = styled.nav`
+  background: #fff;
+  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 25%);
+`;
+
 const Chip = styled(ClearButton)<{ reply?: boolean; edit?: boolean }>`
   position: relative;
   margin: 6px 8px 4px;
@@ -50,13 +55,4 @@ const Chip = styled(ClearButton)<{ reply?: boolean; edit?: boolean }>`
     right: 0.5rem;
     content: 'X';
   }
-`;
-
-const Wrapper = styled.footer`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  min-height: 57px;
-  background: #fff;
-  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 25%);
 `;

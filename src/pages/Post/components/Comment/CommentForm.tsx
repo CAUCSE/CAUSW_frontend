@@ -48,8 +48,8 @@ export const CommentForm: React.FC = () => {
 };
 
 const Form = styled.form`
-  box-sizing: border-box;
   display: flex;
+  width: 100%;
 `;
 
 const Wrapper = styled.div`

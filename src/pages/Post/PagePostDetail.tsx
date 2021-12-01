@@ -22,8 +22,8 @@ export const PagePostDetail: React.FC = observer(() => {
   } = useRootStore();
 
   useLayoutEffect(() => {
-    ui.FooterNavigation = CommentInput;
-    return () => (ui.FooterNavigation = undefined);
+    ui.CustomNav = CommentInput;
+    return () => (ui.CustomNav = undefined);
   }, []);
 
   useEffect(() => {

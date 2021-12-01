@@ -6,14 +6,14 @@ import { ReactComponent as CircleIcon } from 'assets/icons/nav_circle_icon.svg';
 import { ReactComponent as BoardIcon } from 'assets/icons/nav_board_icon.svg';
 import { Nav, NavLink } from './NavigationView';
 
-export const MobileNavigation: React.FC = observer(() => {
+export const MobileFooter: React.FC = observer(() => {
   const {
     auth: { isSignIn },
-    ui: { FooterNavigation },
+    ui: { CustomNav },
   } = useRootStore();
 
   return isSignIn ? (
-    !FooterNavigation ? (
+    !CustomNav ? (
       <Nav>
         <h2 className="a11y-hidden">CAUCSE 하단 네비게이션</h2>
         <NavLink to={PAGE_URL.Home} a11y="메인 페이지">
@@ -27,7 +27,7 @@ export const MobileNavigation: React.FC = observer(() => {
         </NavLink>
       </Nav>
     ) : (
-      <FooterNavigation />
+      <CustomNav />
     )
   ) : null;
 });

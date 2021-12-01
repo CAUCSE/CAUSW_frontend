@@ -1,1 +1,1 @@
-export { MobileNavigation } from './MobileNavigation';
+export { MobileFooter } from './MobileFooter';

@@ -19,5 +19,5 @@ export const HomeBoards: React.FC = observer(() => {
 });
 
 const Wrapper = styled.div`
-  margin-top: 32px;
+  margin: 32px 0;
 `;

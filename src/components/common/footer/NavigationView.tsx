@@ -1,13 +1,11 @@
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const footerHeight = 57;
 export const Nav = styled.nav`
-  position: absolute;
-  bottom: 0;
   display: flex;
+  flex-direction: row;
   width: 100%;
-  height: ${footerHeight}px;
+  height: 57px;
   background: #f8f8f8;
 `;
 
@@ -20,8 +18,7 @@ export const NavLink: React.FC<{ to: string; a11y: string }> = ({ to, a11y, chil
 
 const LinkStyle = styled(Link)`
   position: relative;
-  flex-grow: 1;
-  width: 33.33%;
+  flex: 1 1 0;
 
   &.active svg path {
     fill: ${({ theme }) => theme.color.blue.main};
