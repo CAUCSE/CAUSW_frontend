@@ -12,6 +12,7 @@ export class CommentUiStore {
   buf?: Model.Comment;
   target?: Model.Comment;
   state: CommentInputState = CommentInputState.WRITE;
+  inputContent = '';
   visiableMenuModal = false;
   visiableDeleteModal = false;
 
@@ -20,6 +21,7 @@ export class CommentUiStore {
       comments: observable,
       target: observable,
       state: observable,
+      inputContent: observable,
       visiableMenuModal: observable,
       visiableDeleteModal: observable,
 
@@ -28,6 +30,7 @@ export class CommentUiStore {
 
       setComments: action.bound,
       create: flow.bound,
+      update: flow.bound,
       remove: flow.bound,
 
       setState: action.bound,
@@ -64,6 +67,12 @@ export class CommentUiStore {
     }
 
     this.resetState();
+  }
+
+  *update(id: string, content: string): Generator {
+    const comment = (yield Repo.update(id, content)) as Model.Comment;
+
+    this.target?.refresh(comment);
   }
 
   *remove(id: string): Generator {

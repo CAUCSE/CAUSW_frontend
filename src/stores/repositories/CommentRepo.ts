@@ -11,8 +11,8 @@ class CommentRepo {
     return new CommentModel(data, body.parentCommentId ? true : false);
   };
 
-  put = async (content: string) => {
-    const { data } = (await API.put(this.URI, content)) as AxiosResponse<Comment.Dto>;
+  update = async (id: string, content: string) => {
+    const { data } = (await API.put(`${this.URI}/${id}`, { content })) as AxiosResponse<Comment.Dto>;
 
     return new CommentModel(data);
   };

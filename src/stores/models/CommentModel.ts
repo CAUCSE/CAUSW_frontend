@@ -1,5 +1,5 @@
 import { utcToZonedTime, format } from 'date-fns-tz';
-import { makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { AuthorModel } from './AuthorModel';
 
 export class CommentModel {
@@ -16,7 +16,10 @@ export class CommentModel {
 
   constructor(props: Comment.Dto, isChild = false) {
     makeObservable(this, {
+      content: observable,
       childComments: observable,
+
+      refresh: action.bound,
     });
 
     this.isChild = isChild;
@@ -35,5 +38,10 @@ export class CommentModel {
     const zonedDate = utcToZonedTime(this.createdAt, 'Asis/Seoul');
 
     return format(zonedDate, 'yyyy-MM-dd HH:mm');
+  }
+
+  refresh(data: CommentModel): void {
+    this.content = data.content;
+    this.updatedAt = data.updatedAt;
   }
 }

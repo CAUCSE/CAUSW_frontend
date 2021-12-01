@@ -1,30 +1,34 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 import { useRootStore } from '@/stores/RootStore';
 import { SendIcon } from '@/components/atoms/Icon';
 import { ClearButton } from '@/components/atoms/clear';
 
-export const CommentForm: React.FC = () => {
+export const CommentForm: React.FC = observer(() => {
   const {
-    ui: {
-      commentUi: { create },
-    },
+    ui: { commentUi },
     post,
   } = useRootStore();
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, setFocus } = useForm();
   const onSubmit = useCallback(
     async ({ content }: { content: string }) => {
       const { post: currentPost } = post;
 
       try {
         if (currentPost) {
-          await create({
-            postId: currentPost.id,
-            content,
-          });
+          if (!commentUi.isEdit) {
+            await commentUi.create({
+              postId: currentPost.id,
+              content,
+            });
+            currentPost.upCommentCount();
+          } else if (commentUi.target) {
+            await commentUi.update(commentUi.target.id, content);
+          }
+
           setValue('content', '');
-          currentPost.upCommentCount();
           // TODO: 댓글 신규 추가 된 경우 해당 댓글로 스크롤 이동
         }
       } catch (e) {
@@ -32,20 +36,29 @@ export const CommentForm: React.FC = () => {
         alert('잠시 후에 시도해주세요.');
       }
     },
-    [post, create, setValue],
+    [commentUi, post, setValue],
   );
+
+  useEffect(() => {
+    if (commentUi.isEdit) {
+      setValue('content', commentUi.target?.content);
+      setFocus('content');
+    } else {
+      setValue('content', '');
+    }
+  }, [commentUi.isEdit, commentUi.target, setValue]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Wrapper>
-        <Textarea rows={1} placeholder="댓글 내용 입력" {...register('content', { required: true })} />
+        <Textarea {...register('content', { required: true })} rows={1} placeholder="댓글 내용 입력" />
       </Wrapper>
       <SendButton>
         <SendIcon />
       </SendButton>
     </Form>
   );
-};
+});
 
 const Form = styled.form`
   display: flex;
