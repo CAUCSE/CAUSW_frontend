@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { PAGE_URL } from './configs/path';
 import { AuthRouter } from './AuthRouter';
 import * as Pages from './pages';
@@ -10,6 +10,10 @@ import { Main, Container } from './components/layout/MobileLayout';
 
 export const PageRouter: React.FC = React.memo(() => (
   <Router>
+    <Route exact path="/">
+      <Redirect to={PAGE_URL.Home} />
+    </Route>
+
     <MobileHeader />
     {/* 회원 페이지 */}
     <Switch>
@@ -23,6 +27,7 @@ export const PageRouter: React.FC = React.memo(() => (
             <Switch>
               <Route path={PAGE_URL.Home} component={Pages.Home} />
               <Route path={PAGE_URL.Circle} component={Pages.Circle} />
+              <Route path={PAGE_URL.Setting} component={Pages.Setting} />
 
               <Route path={PAGE_URL.PostWrite} component={Pages.PostEditor} />
               <Route path={PAGE_URL.PostDetail} component={Pages.PostDetail} />

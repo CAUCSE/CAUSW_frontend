@@ -1,0 +1,1 @@
+export { PageSetting } from './PageSetting';

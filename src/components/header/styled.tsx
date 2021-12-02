@@ -4,7 +4,6 @@ import { ClearButton, ClearUl } from '../atoms/clear';
 
 export const RightButtonWrapper = css`
   position: relative;
-  right: 0;
   display: block;
   width: 50px;
   height: 50px;

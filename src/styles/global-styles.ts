@@ -8,11 +8,14 @@ export const GlobalStyle = createGlobalStyle`
   body {
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 101vh;
     font-family: Roboto;
     letter-spacing: -0.333px;
 
     #root {
+      position: absolute;
+      bottom: 0;
+      height: 100vh;
       display: flex;
 	    flex-direction: column;
       width: 100%;

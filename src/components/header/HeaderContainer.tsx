@@ -56,4 +56,8 @@ const Right = styled.div`
   position: relative;
   flex-shrink: 0;
   width: 30px;
+
+  > img {
+    margin-left: -20px;
+  }
 `;

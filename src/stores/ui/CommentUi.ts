@@ -20,6 +20,7 @@ export class CommentUiStore {
   constructor() {
     makeObservable(this, {
       comments: observable,
+      buf: observable,
       target: observable,
       state: observable,
       inputContent: observable,
@@ -82,8 +83,7 @@ export class CommentUiStore {
   *remove(target: Model.Comment): Generator {
     yield Repo.delete(target.id);
 
-    // this.comments = this.comments.filter(comment => comment.id !== id);
-    target.delete();
+    this.comments = this.comments.filter(comment => comment.id !== target.id);
     this.resetState();
   }
 
@@ -99,8 +99,8 @@ export class CommentUiStore {
   }
 
   openMenuModal(target: Model.Comment): void {
-    this.visiableMenuModal = true;
-    this.buf = target;
+    this.visiableMenuModal = true && (!target.isChild || target.updatable || target.deletable);
+    if (this.visiableMenuModal) this.buf = target;
   }
 
   closeMenuModal(): void {

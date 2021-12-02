@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { useRootStore } from '@/stores/RootStore';
 import { ClearUl } from '@/components/atoms/clear';
 import * as Post from '@/components/StyledPost';
-import { ReactComponent as Icon } from '@/assets/icons/comment_arrow_icon.svg';
 
 export const PostComments: React.FC<{ list: Model.Comment[] }> = memo(({ list }) => (
   <Wrapper>
@@ -75,7 +74,7 @@ const Wrapper = styled(ClearUl)`
   }
 `;
 
-const ReCommentIcon = styled(Icon)`
+const ReCommentIcon = styled.img.attrs({ src: '/images/icons/comment_arrow_icon.svg' })`
   position: absolute;
   top: 15px;
 `;

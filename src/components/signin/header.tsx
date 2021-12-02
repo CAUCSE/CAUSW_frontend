@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Back from '../../assets/icons/Left.png';
 
 const Wrapper = styled.header`
   position: relative;
@@ -16,14 +15,11 @@ const Wrapper = styled.header`
   background: #ffffff;
 `;
 
-const Image = styled.img`
+const Image = styled.img.attrs({ src: '/images/icons/Left.png' })`
   margin-left: 20px;
   width: 20px;
   height: 20px;
 `;
-Image.defaultProps = {
-  src: Back,
-};
 
 const Title = styled.div`
   width: 80%;

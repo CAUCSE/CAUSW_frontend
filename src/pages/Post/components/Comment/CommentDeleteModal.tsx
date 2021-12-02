@@ -24,8 +24,9 @@ export const CommentDeleteModal: React.FC = observer(() => {
 
     if (commentUi.target && currentPost) {
       await commentUi.remove(commentUi.target);
+
+      currentPost.downCommentCount();
       commentUi.closeDeleteModal();
-      // currentPost.downCommentCount();
     }
   }, [commentUi, post]);
 

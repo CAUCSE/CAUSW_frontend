@@ -1,10 +1,10 @@
 import { API, setAuth, storeAuth } from 'configs/axios';
 import { DtoUserCreate } from './AuthType';
+import { UserModel } from '../models/UserModel';
 
 class AuthRepo {
   URI = '/api/v1/users';
 
-  signUp = (body: DtoUserCreate) => API.post(`${this.URI}/sign-up`, body);
   signIn = async (body: DtoUserSignInRequest) => {
     const { data: token } = await API.post(`${this.URI}/sign-in`, body);
 
@@ -13,6 +13,15 @@ class AuthRepo {
 
     return token;
   };
+
+  findCurrentUser = async (): Promise<Model.User> => {
+    const { data } = await API.get(`${this.URI}/me`);
+
+    return new UserModel(data);
+  };
+
+  // ---
+  signUp = (body: DtoUserCreate) => API.post(`${this.URI}/sign-up`, body);
 }
 
 export const AuthRepoImpl = new AuthRepo();

@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { ReactComponent as BackIcon } from 'assets/icons/header_back_icon.svg';
 import { ClearButton } from 'components/atoms/clear';
 
 export const Header = styled.header`
@@ -38,6 +37,8 @@ const ButtonWrapper = styled.div`
     height: 35px;
   }
 `;
+
+const BackIcon = styled.img.attrs({ src: '/images/icons/header_back_icon.svg' })``;
 
 export const BackButton: React.FC<{ link?: string }> = memo(({ link }) => {
   const { goBack } = useHistory();

@@ -24,7 +24,7 @@ function ListBoxComponent<T extends { id: string }>({
 
 export const ListBox = memo(ListBoxComponent) as typeof ListBoxComponent;
 
-const Box = styled.section`
+export const Box = styled.section`
   padding: 12px 16px 18px;
   border: 0.5px solid #f5f5f5;
   border-radius: 20px;
@@ -38,7 +38,7 @@ const Box = styled.section`
   }
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   margin: 0;
   font-size: 14px;
   line-height: 16px;

@@ -13,4 +13,4 @@ export const Container = styled.section`
   padding: 0 20px;
   overflow-x: hidden;
   overflow-y: auto;
-`;
+`

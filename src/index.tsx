@@ -1,11 +1,17 @@
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Root } from './Root';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { ThemeProvider } from 'styled-components';
+import * as theme from './styles/themes';
+import { GlobalStyle } from './styles/global-styles';
+import { PageRouter } from './PageRouter';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Root />
+    <ThemeProvider theme={theme.default}>
+      <GlobalStyle />
+      <PageRouter />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
