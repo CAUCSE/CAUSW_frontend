@@ -13,6 +13,7 @@ import type { AuthorModel } from './stores/models/AuthorModel';
 import type { PostModel } from './stores/models/PostModel';
 import type { CommentModel } from './stores/models/CommentModel';
 import type { UserModel } from './stores/models/UserModel';
+import type { CircleModel } from './stores/models/CircleModel';
 
 declare global {
   namespace Store {
@@ -31,5 +32,6 @@ declare global {
     type Post = PostModel;
     type Comment = CommentModel;
     type User = UserModel;
+    type Circle = CircleModel;
   }
 }

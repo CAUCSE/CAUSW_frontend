@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { EmptyList } from '.';
 
 interface ListProps {
-  readonly items: unknown[];
+  readonly items: Model.Circle[];
 }
 export type ListComponent = React.FC<ListProps>;
 

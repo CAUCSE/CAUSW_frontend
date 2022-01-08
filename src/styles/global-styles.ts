@@ -4,6 +4,11 @@ import { normalize } from 'styled-normalize';
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
 
+  * {
+    box-sizing: border-box;
+    color: #3f4040;
+  }
+
   // NOTE: 전역 스타일링, 외부 라이브러리 스타일링 변형 추가
   body {
     position: absolute;

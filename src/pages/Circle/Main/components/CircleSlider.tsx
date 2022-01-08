@@ -3,10 +3,10 @@ import { observer } from 'mobx-react-lite';
 import { Carousel } from 'react-responsive-carousel';
 import { ListComponent } from './CircleListFrame';
 import { CircleSlideCard } from './CircleSlideCard';
+import styled from 'styled-components';
 
-export const CircleSlider: ListComponent = observer(() => {
+export const CircleSlider: ListComponent = observer(({ items }) => {
   const [config] = useState({
-    infiniteLoop: true,
     autoPlay: false,
     // XXX: swipe 이후 자동으로 움직이는 버그가 있음
     // https://github.com/leandrowd/react-responsive-carousel/issues/621
@@ -21,10 +21,16 @@ export const CircleSlider: ListComponent = observer(() => {
   });
 
   return (
-    <Carousel {...config}>
-      <CircleSlideCard />
-      <CircleSlideCard />
-      <CircleSlideCard />
-    </Carousel>
+    <StyledCarousel {...config}>
+      {items.map(item => (
+        <CircleSlideCard key={item.id} {...item} />
+      ))}
+    </StyledCarousel>
   );
 });
+
+const StyledCarousel = styled(Carousel)`
+  .slider {
+    padding-bottom: 6px;
+  }
+`;

@@ -22,4 +22,5 @@ const Messsage = styled.div`
   margin-top: 14px;
   font-size: 13px;
   line-height: 15px;
+  color: #a3a1a1;
 `;

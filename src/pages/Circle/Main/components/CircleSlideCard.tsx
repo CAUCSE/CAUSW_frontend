@@ -1,18 +1,19 @@
 import { memo, useState } from 'react';
 import styled from 'styled-components';
 
-export const CircleSlideCard: React.FC = memo(() => {
-  const [isFliped, setFliped] = useState(false);
-
+export const CircleSlideCard: React.FC<Model.Circle> = memo(({ name, description }) => {
   return (
     <Card>
       <Inner>
         <Body>
           <Cover></Cover>
-          <Content></Content>
+          <Content>
+            <ContentName>{name}</ContentName>
+            {description}
+          </Content>
         </Body>
         <Footer>
-          <Name className="text-ellipsis">CAUCSE 테니스부</Name>
+          <Name className="text-ellipsis">{name}</Name>
         </Footer>
       </Inner>
     </Card>
@@ -28,6 +29,7 @@ const Card = styled.article`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   overflow: hidden;
+  text-align: left;
 `;
 
 const Body = styled.div`
@@ -52,14 +54,6 @@ const Cover = styled.div`
   background-color: #03446a;
 `;
 
-const Content = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #f8f8f8;
-  border-radius: 5px;
-  transform: rotateY(180deg);
-`;
-
 const Footer = styled.div`
   position: absolute;
   bottom: 0;
@@ -67,7 +61,7 @@ const Footer = styled.div`
   height: 40px;
 `;
 
-const Name = styled.h2`
+const Name = styled.h3`
   box-sizing: border-box;
   margin: 0;
   padding: 0 35px 0 13px;
@@ -87,4 +81,20 @@ const Inner = styled.div`
       transform: rotateY(180deg);
     }
   }
+`;
+
+const Content = styled.div`
+  padding: 13px 9px;
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  transform: rotateY(180deg);
+`;
+
+const ContentName = styled.div`
+  margin-bottom: 9px;
+  line-height: 18px;
+  font-size: 15px;
+  font-weight: bold;
 `;

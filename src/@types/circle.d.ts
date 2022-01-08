@@ -5,5 +5,10 @@ declare namespace Circle {
     name: string;
     description: string;
     isJoined: boolean;
+    joinedAt: string | null;
+    leaderId: string;
+    leaderName: string;
+    createdAt: string;
+    numMember: number;
   }
 }
