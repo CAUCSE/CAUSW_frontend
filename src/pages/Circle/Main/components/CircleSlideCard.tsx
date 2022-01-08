@@ -5,7 +5,9 @@ import { ClearButton } from '@/components/atoms/clear';
 import { generatePath, useHistory } from 'react-router';
 import { PAGE_URL } from '@/configs/path';
 
-export const CircleSlideCard: React.FC<Model.Circle> = memo(({ id: circleId, mainImage, name, description }) => {
+type Props = Pick<Model.Circle, 'id' | 'mainImage' | 'name' | 'description'>;
+
+export const CircleSlideCard: React.FC<Props> = memo(({ id: circleId, mainImage, name, description }) => {
   const { push } = useHistory();
   const [isFlipped, setFlip] = useState(false);
   const handleClick = () => {
