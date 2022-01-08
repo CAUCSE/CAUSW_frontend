@@ -43,7 +43,7 @@ export const CircleSlideCard: React.FC<Model.Circle> = memo(({ id: circleId, mai
 
 const Card = styled.article`
   box-sizing: border-box;
-  width: 80%;
+  width: 90%;
   max-width: 360px;
   background: #fff;
   border: 1px solid #dadada;
