@@ -7,6 +7,8 @@ export enum PAGE_URL {
   Board = '/boards',
   Setting = '/settings',
 
+  CircleJoin = '/circle/:circleId/join',
+
   Post = '/boards/:boardId',
   PostWrite = '/posts/write',
   PostDetail = '/posts/:postId',

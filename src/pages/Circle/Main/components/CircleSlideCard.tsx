@@ -2,12 +2,26 @@ import { memo, useState } from 'react';
 import styled from 'styled-components';
 import { Icon as I } from '@/assets';
 import { ClearButton } from '@/components/atoms/clear';
+import { generatePath, useHistory } from 'react-router';
+import { PAGE_URL } from '@/configs/path';
 
-export const CircleSlideCard: React.FC<Model.Circle> = memo(({ mainImage, name, description }) => {
+export const CircleSlideCard: React.FC<Model.Circle> = memo(({ id: circleId, mainImage, name, description }) => {
+  const { push } = useHistory();
   const [isFlipped, setFlip] = useState(false);
+  const handleClick = () => {
+    if (isFlipped) {
+      setFlip(c => !c);
+    } else {
+      push(generatePath(PAGE_URL.CircleJoin, { circleId }));
+    }
+  };
+  const handleFlip = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    setFlip(c => !c);
+  };
 
   return (
-    <Card>
+    <Card onClick={handleClick}>
       <Inner isFlipped={isFlipped}>
         <Body>
           <Cover mainImage={mainImage} />
@@ -18,7 +32,7 @@ export const CircleSlideCard: React.FC<Model.Circle> = memo(({ mainImage, name, 
         </Body>
         <Footer>
           <Name className="text-ellipsis">{name}</Name>
-          <ClearButton onClick={() => setFlip(c => !c)}>
+          <ClearButton onClick={handleFlip}>
             <Icon active={isFlipped} />
           </ClearButton>
         </Footer>
