@@ -4,22 +4,23 @@ import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 import { useRootStore } from '@/stores/RootStore';
 import { Header } from '@/components/header';
-import { JoinNav } from './JoinNav';
+import { JoinButton } from './JoinButton';
 
 export const PageCircleJoin: React.FC = observer(() => {
   const { circleId } = useParams<{ circleId: string }>();
   const {
     ui: { setNav },
-    circle: { fetch, circle },
+    circle: { fetch, reset, circle },
   } = useRootStore();
 
   useLayoutEffect(() => {
-    setNav(JoinNav);
+    setNav(JoinButton);
     return () => setNav();
   }, []);
 
   useEffect(() => {
     fetch(circleId);
+    return () => reset();
   }, [circleId]);
 
   return circle ? (

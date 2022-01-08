@@ -1,4 +1,4 @@
-import { computed, flow, makeObservable, observable } from 'mobx';
+import { action, computed, flow, makeObservable, observable } from 'mobx';
 import { CircleRepoImpl as Repo } from './repositories/CircleRepo';
 
 export class CircleStore {
@@ -8,10 +8,11 @@ export class CircleStore {
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {
-      fetch: flow.bound,
       circleMap: observable,
       circles: computed,
       circle: observable,
+      fetch: flow.bound,
+      reset: action.bound,
     });
 
     this.rootStore = rootStore;
@@ -19,6 +20,10 @@ export class CircleStore {
 
   get circles(): Model.Circle[] {
     return Array.from(this.circleMap.values());
+  }
+
+  reset(): void {
+    this.circle = undefined;
   }
 
   *fetch(circleId?: string): Generator {

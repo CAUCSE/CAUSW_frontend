@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ClearButton } from '@/components/atoms/clear';
 import { useRootStore } from '@/stores/RootStore';
 
-export const JoinNav: React.FC = () => {
+export const JoinButton: React.FC = () => {
   const {
     circle: { join },
   } = useRootStore();
