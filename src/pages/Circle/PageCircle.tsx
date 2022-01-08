@@ -5,20 +5,20 @@ import styled from 'styled-components';
 import { Header } from '@/components/header';
 
 export const PageCircle: React.FC = () => {
-  // const { circle } = useRootStore();
+  const { circle } = useRootStore();
 
-  // useEffect(() => {
-  //   circle.fetch();
-  // }, []);
+  useEffect(() => {
+    circle.fetch();
+  }, []);
 
   return (
     <>
       <Header title="학부 소모임" />
-      {/* <Circle.SearchBar />
+      <Circle.SearchBar />
       <H2>컴공 소모임</H2>
       <Circle.ListFrame items={[1, 2, 3]} emptyText={'아직 등록된 소모임이 없어요!'} ListComponent={Circle.Slider} />
       <H2>내 소모임</H2>
-      <Circle.ListFrame items={[]} emptyText={'아직 가입한 소모임이 없어요!'} ListComponent={Circle.Slider} /> */}
+      <Circle.ListFrame items={[]} emptyText={'아직 가입한 소모임이 없어요!'} ListComponent={Circle.Slider} />
     </>
   );
 };
