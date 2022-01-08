@@ -1,1 +1,1 @@
-export { PageCircle } from './PageCircle';
+export { CircleRouter as Circle } from './CircleRouter';

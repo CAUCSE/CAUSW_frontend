@@ -10,6 +10,12 @@ class CircleRepo {
 
     return data.map(dto => new CircleModel(dto));
   };
+
+  fetchById = async (circleId: string): Promise<CircleModel> => {
+    const { data } = (await API.get(`${this.URI}/${circleId}`)) as AxiosResponse<Circle.Dto>;
+
+    return new CircleModel(data);
+  };
 }
 
 export const CircleRepoImpl = new CircleRepo();

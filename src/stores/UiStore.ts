@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { CommentUiStore } from './ui/CommentUi';
 import { HeaderUiStore } from '@/components/common/header';
 import React from 'react';
@@ -20,7 +20,7 @@ export class UiStore {
     makeObservable(this, {
       displayType: observable,
       CustomNav: observable,
-      setDisplayType: action.bound,
+      setNav: action.bound,
     });
 
     this.rootStore = rootStore;
@@ -30,16 +30,28 @@ export class UiStore {
   private initWindowMatchMedia() {
     this.setDisplayType();
 
-    window.matchMedia(`screen and (max-width: ${DISPLAY.MOBILE}px)`).addEventListener('change', this.setDisplayType);
-    window.matchMedia(`screen and (max-width: ${DISPLAY.TABLET}px)`).addEventListener('change', this.setDisplayType);
-    window.matchMedia(`screen and (min-width: ${DISPLAY.TABLET}px)`).addEventListener('change', this.setDisplayType);
+    window
+      .matchMedia(`screen and (max-width: ${DISPLAY.MOBILE}px)`)
+      .addEventListener('change', this.setDisplayType.bind(this));
+    window
+      .matchMedia(`screen and (max-width: ${DISPLAY.TABLET}px)`)
+      .addEventListener('change', this.setDisplayType.bind(this));
+    window
+      .matchMedia(`screen and (min-width: ${DISPLAY.TABLET}px)`)
+      .addEventListener('change', this.setDisplayType.bind(this));
   }
 
-  setDisplayType(): void {
+  private setDisplayType(): void {
     const { innerWidth } = window;
 
-    if (innerWidth <= DISPLAY.MOBILE) this.displayType = DISPLAY.MOBILE;
-    else if (innerWidth <= DISPLAY.TABLET) this.displayType = DISPLAY.TABLET;
-    else this.displayType = DISPLAY.DESKTOP;
+    runInAction(() => {
+      if (innerWidth <= DISPLAY.MOBILE) this.displayType = DISPLAY.MOBILE;
+      else if (innerWidth <= DISPLAY.TABLET) this.displayType = DISPLAY.TABLET;
+      else this.displayType = DISPLAY.DESKTOP;
+    });
+  }
+
+  setNav(nav?: React.FC): void {
+    this.CustomNav = nav;
   }
 }

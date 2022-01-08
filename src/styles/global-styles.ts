@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     position: absolute;
     width: 100vw;
-    height: 101vh;
+    height: 100.1vh;
     font-family: Roboto;
     letter-spacing: -0.333px;
 

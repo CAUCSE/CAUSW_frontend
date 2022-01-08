@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { DefaultLogo } from './DefaultLogo';
 import { DefaultTop } from './DefaultTop';
 import { BackButton } from './BackButton';
@@ -8,19 +8,20 @@ interface Props {
   title: string;
   withBack?: boolean | string;
   TopComponent?: React.FC;
-  RightComponent?: React.FC;
+  RightComponent?: React.FC | null;
+  mini?: boolean;
 }
 export const HeaderContainer: React.FC<Props> = memo(
-  ({ withBack = false, TopComponent = DefaultTop, title, RightComponent = DefaultLogo }) => (
-    <Wrapper>
+  ({ withBack = false, TopComponent = DefaultTop, title, RightComponent = DefaultLogo, mini = false }) => (
+    <Wrapper mini={mini}>
       {withBack ? (
         <Left>
           <BackButton link={withBack} />
         </Left>
       ) : null}
       <Center>
-        <TopComponent />
-        <Title>{title}</Title>
+        {!mini ? <TopComponent /> : null}
+        <Title mini={mini}>{title}</Title>
       </Center>
       {RightComponent ? (
         <Right>
@@ -31,9 +32,13 @@ export const HeaderContainer: React.FC<Props> = memo(
   ),
 );
 
-const Wrapper = styled.header`
+interface Mini {
+  mini: boolean;
+}
+
+const Wrapper = styled.header<Mini>`
   display: flex;
-  margin: 20px 0 15px;
+  margin: ${({ mini }) => (mini ? null : '20px 0 15px')};
 `;
 
 const Left = styled.div`
@@ -45,11 +50,21 @@ const Center = styled.div`
   flex-grow: 1;
 `;
 
-const Title = styled.h1`
-  margin: 5px 0 0;
+const Title = styled.h1<Mini>`
   font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
+
+  ${({ mini }) =>
+    mini
+      ? css`
+          font-size: 20px;
+          line-height: 23px;
+          text-align: center;
+        `
+      : css`
+          margin: 5px 0 0;
+          font-size: 24px;
+          line-height: 28px;
+        `}
 `;
 
 const Right = styled.div`
