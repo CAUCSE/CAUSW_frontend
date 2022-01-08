@@ -1,12 +1,16 @@
 import { memo, useState } from 'react';
 import styled from 'styled-components';
+import { Icon as I } from '@/assets';
+import { ClearButton } from '@/components/atoms/clear';
 
-export const CircleSlideCard: React.FC<Model.Circle> = memo(({ name, description }) => {
+export const CircleSlideCard: React.FC<Model.Circle> = memo(({ mainImage, name, description }) => {
+  const [isFlipped, setFlip] = useState(false);
+
   return (
     <Card>
-      <Inner>
+      <Inner isFlipped={isFlipped}>
         <Body>
-          <Cover></Cover>
+          <Cover mainImage={mainImage} />
           <Content>
             <ContentName>{name}</ContentName>
             {description}
@@ -14,6 +18,9 @@ export const CircleSlideCard: React.FC<Model.Circle> = memo(({ name, description
         </Body>
         <Footer>
           <Name className="text-ellipsis">{name}</Name>
+          <ClearButton onClick={() => setFlip(c => !c)}>
+            <Icon active={isFlipped} />
+          </ClearButton>
         </Footer>
       </Inner>
     </Card>
@@ -45,20 +52,15 @@ const Body = styled.div`
   }
 `;
 
-const Cover = styled.div`
+const Cover = styled.div<{ mainImage: string | null }>`
   top: 6px;
   left: 6px;
   width: calc(100% - 12px);
   height: calc(100% - 6px);
   border-radius: 5px;
-  background-color: #03446a;
-`;
-
-const Footer = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
+  background: center / contain no-repeat url(${({ mainImage }) => mainImage ?? '/images/empty.png'});
+  background-size: 65%;
+  background-color: #efefef;
 `;
 
 const Name = styled.h3`
@@ -71,15 +73,13 @@ const Name = styled.h3`
   backface-visibility: hidden;
 `;
 
-const Inner = styled.div`
+const Inner = styled.div<{ isFlipped: boolean }>`
   position: relative;
   width: 100%;
   padding-bottom: 140%; // 5:7 비율
 
-  &:hover {
-    ${Body}, ${Name} {
-      transform: rotateY(180deg);
-    }
+  ${Body}, ${Name} {
+    transform: ${({ isFlipped }) => (isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
   }
 `;
 
@@ -97,4 +97,17 @@ const ContentName = styled.div`
   line-height: 18px;
   font-size: 15px;
   font-weight: bold;
+`;
+
+const Footer = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+`;
+
+const Icon = styled(I.Article)`
+  position: absolute;
+  top: 9px;
+  right: 5px;
 `;
