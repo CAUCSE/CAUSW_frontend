@@ -1,1 +1,1 @@
-export { AuthPageRouter as AuthPage } from './AuthPageRouter';
+export { AuthPageSwitch } from './AuthPageSwitch';

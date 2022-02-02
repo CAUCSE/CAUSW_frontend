@@ -11,7 +11,7 @@ export const PageRouter: React.FC = memo(() => (
     </Route>
 
     <Switch>
-      <Route path={PAGE_URL.Auth} component={Router.AuthPage} />
+      <Route path={PAGE_URL.Auth} component={Router.AuthPageSwitch} />
 
       <AuthRouter></AuthRouter>
     </Switch>

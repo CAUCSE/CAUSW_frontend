@@ -17,8 +17,6 @@ export const PageRouter: React.FC = React.memo(() => (
     <MobileHeader />
     {/* 회원 페이지 */}
     <Switch>
-      <Route path={PAGE_URL.SignIn} component={Pages.SignIn} />
-      <Route path={PAGE_URL.SignUp} component={Pages.SignUp} />
       <Route path={PAGE_URL.Err404} component={() => <>404</>} />
 
       <AuthRouter>

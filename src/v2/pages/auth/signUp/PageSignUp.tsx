@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { SigninWrapper, CommonInput, SubmitButton } from '../../components/signin/SigninComponents.js';
-import { Header } from '../../components/signin/header';
+import { SigninWrapper, CommonInput, SubmitButton } from './SigninComponents.js';
+import { Header } from './header';
 
 export const PageSignUp: React.FC = React.memo(() => {
   return (
