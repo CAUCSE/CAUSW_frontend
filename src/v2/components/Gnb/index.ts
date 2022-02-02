@@ -1,0 +1,1 @@
+export { MobileGnb } from './MobileGnb';

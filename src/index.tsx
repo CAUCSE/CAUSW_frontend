@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import * as theme from './styles/themes';
 import { GlobalStyle } from './styles/global-styles';
-import { PageRouter } from './PageRouter';
+import { PageRouter } from './v2';
 
 ReactDOM.render(
   <React.StrictMode>

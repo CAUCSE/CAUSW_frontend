@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 import { ClearButton } from '@/components/atoms/clear';
 import { useRootStore } from '@/stores/RootStore';
+import { useState } from 'react';
+import { JoinModal } from './JoinModal';
 
 export const JoinButton: React.FC = () => {
   const {
     circle: { join },
   } = useRootStore();
-  return <Button>가입하기</Button>;
+  const [visible, setVisible] = useState();
+
+  return (
+    <>
+      <Button>가입하기</Button>
+      <JoinModal />
+    </>
+  );
 };
 
 const Button = styled(ClearButton)`
