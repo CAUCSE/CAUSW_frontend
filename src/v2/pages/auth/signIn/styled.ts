@@ -24,9 +24,9 @@ export const Logo = styled(LogoImage)`
   margin: 0 auto 30px;
 `;
 
-export const EmailIcon = styled.img.attrs({ src: 'imgaes/icons/email_icon.png', alt: 'email icon' })``;
+export const EmailIcon = styled.img.attrs({ src: '/images/icons/email_icon.png', alt: 'email icon' })``;
 
-export const PasswordIcon = styled.img.attrs({ src: 'imgaes/icons/password_icon.png', alt: 'password icon' })``;
+export const PasswordIcon = styled.img.attrs({ src: '/images/icons/password_icon.png', alt: 'password icon' })``;
 
 export const InputRow = styled.div`
   position: relative;

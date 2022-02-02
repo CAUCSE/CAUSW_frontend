@@ -13,7 +13,7 @@ export const AuthRouter: React.FC = observer(({ children, ...rest }) => {
       render={({ location }) =>
         auth.isSignIn ? (
           <>
-            <MobileHeader />
+            {/* <MobileHeader /> */}
             <Body>
               <ScreenArea>{children}</ScreenArea>
             </Body>

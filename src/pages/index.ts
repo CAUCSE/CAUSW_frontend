@@ -1,4 +1,3 @@
-export { PageHome as Home } from './Home';
 export { Circle } from './Circle';
 export { PageBoard as Board } from './Board';
 export { PageSetting as Setting } from './Setting';

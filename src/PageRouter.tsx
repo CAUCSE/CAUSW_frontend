@@ -23,7 +23,6 @@ export const PageRouter: React.FC = React.memo(() => (
         <Main>
           <Container>
             <Switch>
-              <Route path={PAGE_URL.Home} component={Pages.Home} />
               <Route path={PAGE_URL.Circle} component={Pages.Circle} />
               <Route path={PAGE_URL.Setting} component={Pages.Setting} />
 

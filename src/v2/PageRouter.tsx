@@ -12,7 +12,9 @@ export const PageRouter: React.FC = () => (
     <RootSwitch>
       <Route path={PAGE_URL.Auth} component={Switch.AuthPage} />
 
-      <AuthRouter></AuthRouter>
+      <AuthRouter>
+        <Route path={PAGE_URL.Home} component={Switch.HomePage} />
+      </AuthRouter>
     </RootSwitch>
   </RootRouter>
 );
