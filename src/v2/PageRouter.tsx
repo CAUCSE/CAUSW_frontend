@@ -1,19 +1,18 @@
-import { memo } from 'react';
-import { BrowserRouter as RootRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as RootRouter, Redirect, Route, Switch as RootSwitch } from 'react-router-dom';
 import { PAGE_URL } from '@/configs/path';
-import * as Router from './pages';
+import * as Switch from './pages';
 import { AuthRouter } from './AuthRouter';
 
-export const PageRouter: React.FC = memo(() => (
+export const PageRouter: React.FC = () => (
   <RootRouter>
     <Route exact path="/">
       <Redirect to={PAGE_URL.Home} />
     </Route>
 
-    <Switch>
-      <Route path={PAGE_URL.Auth} component={Router.AuthPageSwitch} />
+    <RootSwitch>
+      <Route path={PAGE_URL.Auth} component={Switch.AuthPage} />
 
       <AuthRouter></AuthRouter>
-    </Switch>
+    </RootSwitch>
   </RootRouter>
-));
+);
