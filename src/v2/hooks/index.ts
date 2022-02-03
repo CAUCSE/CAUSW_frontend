@@ -1,0 +1,1 @@
+export { useInitPage } from './useInitPage';

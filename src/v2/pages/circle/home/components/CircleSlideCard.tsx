@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Icon as I } from '@/assets';
 import { ClearButton } from '@/components/atoms/clear';
 import { generatePath, useHistory } from 'react-router';
@@ -74,8 +74,16 @@ const Cover = styled.div<{ mainImage: string | null }>`
   width: calc(100% - 12px);
   height: calc(100% - 6px);
   border-radius: 5px;
-  background: center / contain no-repeat url(${({ mainImage }) => mainImage ?? '/images/empty.png'});
-  background-size: 65%;
+
+  ${({ mainImage }) =>
+    mainImage
+      ? css`
+          background: center / contain no-repeat url(${mainImage});
+        `
+      : css`
+          background: center / contain no-repeat url('/images/empty.png');
+          background-size: 65%;
+        `}
   background-color: #efefef;
 `;
 

@@ -8,7 +8,6 @@ export const JoinButton: React.FC = () => {
   const {
     circle: { join },
   } = useRootStore();
-  const [visible, setVisible] = useState();
 
   return (
     <>

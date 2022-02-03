@@ -14,6 +14,7 @@ export const PageRouter: React.FC = () => (
 
       <AuthRouter>
         <Route path={PAGE_URL.Home} component={Switch.HomePage} />
+        <Route path={PAGE_URL.Circle} component={Switch.CirclePage} />
       </AuthRouter>
     </RootSwitch>
   </RootRouter>

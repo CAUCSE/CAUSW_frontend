@@ -4,11 +4,12 @@ export enum PAGE_URL {
   SignUp = '/singup',
 
   Home = '/home',
+
   Circle = '/circle',
+  CircleJoin = '/circle/:circleId/join',
+
   Board = '/boards',
   Setting = '/settings',
-
-  CircleJoin = '/circle/:circleId/join',
 
   Post = '/boards/:boardId',
   PostWrite = '/posts/write',
