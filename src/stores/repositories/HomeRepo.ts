@@ -1,7 +1,8 @@
-import { API } from 'configs/axios';
 import { BoardModel } from '../models/BoardModel';
 import { PostModel } from '../models/PostModel';
 import { Content } from '../types/PostType';
+
+import { API } from 'configs/axios';
 
 class HomeRepo {
   URI = '/api/v1/home';

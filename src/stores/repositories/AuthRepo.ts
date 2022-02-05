@@ -1,6 +1,7 @@
-import { API, setAuth, storeAuth } from 'configs/axios';
-import { DtoUserCreate } from './AuthType';
 import { UserModel } from '../models/UserModel';
+import { DtoUserCreate } from './AuthType';
+
+import { API, setAuth, storeAuth } from 'configs/axios';
 
 class AuthRepo {
   URI = '/api/v1/users';

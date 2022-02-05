@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { ClearButton } from 'components/atoms/clear';
 
 export const Header = styled.header`

@@ -1,8 +1,9 @@
-import type { Content } from '../types/PostType';
 import { isToday } from 'date-fns';
 import { utcToZonedTime, format } from 'date-fns-tz';
-import { AuthorModel } from './AuthorModel';
 import { action, makeObservable, observable } from 'mobx';
+
+import type { Content } from '../types/PostType';
+import { AuthorModel } from './AuthorModel';
 
 export class PostModel {
   id: string;

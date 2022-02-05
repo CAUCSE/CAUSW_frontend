@@ -1,9 +1,11 @@
-import { observer } from 'mobx-react-lite';
 import Modal from '@mui/material/Modal';
+import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+
+import { useJoinStore } from './JoinStore';
+
 import * as M from '@/components/StyledModal';
 import { useRootStore } from '@/stores/RootStore';
-import { useJoinStore } from './JoinStore';
 
 export const JoinModal: React.FC = observer(() => {
   const {

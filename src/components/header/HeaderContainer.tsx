@@ -1,8 +1,9 @@
 import { memo } from 'react';
 import styled, { css } from 'styled-components';
+
+import { BackButton } from './BackButton';
 import { DefaultLogo } from './DefaultLogo';
 import { DefaultTop } from './DefaultTop';
-import { BackButton } from './BackButton';
 
 interface Props {
   title: string;

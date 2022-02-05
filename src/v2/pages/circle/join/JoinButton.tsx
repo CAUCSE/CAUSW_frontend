@@ -1,7 +1,9 @@
-import { ClearButton } from '@/components/atoms/clear';
 import styled from '@emotion/styled';
+
 import { JoinModal } from './JoinModal';
 import { useJoinStore } from './JoinStore';
+
+import { ClearButton } from '@/components/atoms/clear';
 
 export const JoinButton: React.FC = () => {
   const { setVisible } = useJoinStore();

@@ -1,4 +1,5 @@
 import { memo } from 'react';
+
 import { EmptyList } from '.';
 
 interface ListProps {

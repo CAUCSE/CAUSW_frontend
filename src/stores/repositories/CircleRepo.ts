@@ -1,6 +1,8 @@
 import { AxiosResponse } from 'axios';
-import { API } from 'configs/axios';
+
 import { CircleModel } from '../models/CircleModel';
+
+import { API } from 'configs/axios';
 
 class CircleRepo {
   URI = '/api/v1/circles';

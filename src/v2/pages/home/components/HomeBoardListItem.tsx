@@ -1,9 +1,10 @@
 import { memo } from 'react';
 import { generatePath } from 'react-router';
 import styled from 'styled-components';
-import { PAGE_URL } from '@/configs/path';
+
 import { ClearLink } from '@/components/atoms/clear';
 import * as Post from '@/components/StyledPost';
+import { PAGE_URL } from '@/configs/path';
 
 export const HomeBoardListItem: React.FC<{ model: Model.Post }> = memo(
   ({ model: { id, title, formatedCreatedAt, author, commentCount } }) => (

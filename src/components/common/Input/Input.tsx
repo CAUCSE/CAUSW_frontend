@@ -1,11 +1,13 @@
 import * as React from 'react';
-import styled, { Color, css } from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type ColorSet = 'blue' | 'green' | 'black' | 'approach' | 'white';
 
 interface InputProps extends Omit<React.HTMLProps<HTMLInputElement>, 'size'> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   round?: boolean;
   value?: string | number;
-  color?: Color;
+  color?: ColorSet;
 }
 
 const Input: React.FC<InputProps> = ({ type, round = true, color = 'black', ...rest }) => {
@@ -17,7 +19,7 @@ export default Input;
 
 interface InputBlockProps {
   round: boolean;
-  color: Color;
+  color: ColorSet;
 }
 
 const InputBlock = styled.input<InputBlockProps>`

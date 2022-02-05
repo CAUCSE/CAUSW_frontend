@@ -1,5 +1,6 @@
 import Skeleton from '@mui/material/Skeleton';
 import { styled } from '@mui/material/styles';
+
 import * as S from './styled';
 
 export const PageSkeleton: React.FC = () => (

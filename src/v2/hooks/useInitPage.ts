@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect } from 'react';
+
 import { useRootStore } from '@/stores/RootStore';
 
 export const useInitPage = (

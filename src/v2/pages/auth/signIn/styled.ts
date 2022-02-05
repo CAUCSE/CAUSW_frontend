@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Input from 'components/common/Input/Input';
-import { Checkbox } from 'components/atoms/form';
+
 import { LogoImage } from '@/components/atoms/Logo';
+import { Checkbox } from 'components/atoms/form';
+import Input from 'components/common/Input/Input';
 
 export const Wrapper = styled.div`
   position: relative;

@@ -1,7 +1,9 @@
 import { action, makeObservable, observable, runInAction } from 'mobx';
-import { CommentUiStore } from './ui/CommentUi';
-import { HeaderUiStore } from '@/components/common/header';
 import React from 'react';
+
+import { CommentUiStore } from './ui/CommentUi';
+
+import { HeaderUiStore } from '@/components/common/header';
 
 enum DISPLAY {
   MOBILE = 480,

@@ -1,6 +1,8 @@
 import { flow, makeObservable, observable } from 'mobx';
-import { restoreAuth } from 'configs/axios';
+
 import { AuthRepoImpl as Repo, DtoUserSignInRequest as SignInRequest } from './repositories/AuthRepo';
+
+import { restoreAuth } from 'configs/axios';
 
 export class AuthStore {
   rootStore: Store.Root;

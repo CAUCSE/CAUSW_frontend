@@ -1,6 +1,8 @@
-import { PAGE_URL } from '@/configs/path';
 import { Route, Switch } from 'react-router-dom';
+
 import { SignIn } from './signIn';
+
+import { PAGE_URL } from '@/configs/path';
 
 export const AuthPageSwitch: React.FC = () => (
   <Switch>

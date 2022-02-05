@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { ClearButton, ClearLink } from './atoms/clear';
 
 export const Dimmed = styled.div`
@@ -43,7 +44,7 @@ export const ModalMenuButton = styled(ClearButton)`
 `;
 
 export const ModalAlertTitle = styled.div`
-  font-size: 16px;
+  font-size: 16px;w
   line-height: 19px;
   text-align: center;
 `;

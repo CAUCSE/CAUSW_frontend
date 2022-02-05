@@ -1,12 +1,13 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import * as theme from './styles/themes';
+
 import { GlobalStyle } from './styles/global-styles';
+import * as theme from './styles/themes';
 import { PageRouter } from './v2';
 
-ReactDOM.render(
+render(
   <React.StrictMode>
     <ThemeProvider theme={theme.default}>
       <GlobalStyle />

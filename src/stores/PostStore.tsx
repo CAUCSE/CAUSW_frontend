@@ -1,9 +1,10 @@
 import { action, flow, makeObservable, observable } from 'mobx';
+
+import { CommentModel } from './models/CommentModel';
+import { PostModel } from './models/PostModel';
 import { PostRepoImpl as Repo } from './repositories/PostRepo';
 import { PostRequestDTO } from './repositories/PostType';
 import { PostAllWithBoardResponseDto } from './types/PostType';
-import { PostModel } from './models/PostModel';
-import { CommentModel } from './models/CommentModel';
 
 export class PostStore {
   rootStore: Store.Root;

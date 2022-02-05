@@ -1,5 +1,6 @@
-import { PAGE_URL } from '@/configs/path';
 import { generatePath } from 'react-router';
+
+import { PAGE_URL } from '@/configs/path';
 
 export interface BoardModelProps {
   id: string;

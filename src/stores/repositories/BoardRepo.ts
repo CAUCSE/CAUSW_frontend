@@ -1,5 +1,6 @@
-import { API } from 'configs/axios';
 import { BoardModel } from '../models/BoardModel';
+
+import { API } from 'configs/axios';
 
 class BoardRepo {
   URI = '/api/v1/boards';

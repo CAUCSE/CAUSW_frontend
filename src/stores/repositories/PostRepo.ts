@@ -1,7 +1,8 @@
-import { API } from 'configs/axios';
 import { PostModel } from '../models/PostModel';
 import { PostAllWithBoardResponseDto } from '../types/PostType';
 import { PostRequestDTO } from './PostType';
+
+import { API } from 'configs/axios';
 
 class PostRepo {
   private URI = '/api/v1/posts';

@@ -1,12 +1,14 @@
-import { useParams } from 'react-router';
 import { observer } from 'mobx-react-lite';
+import { useParams } from 'react-router';
+
+import { JoinButton } from './JoinButton';
+import { JoinStoreProvider } from './JoinStore';
+import { PageSkeleton } from './PageSkeleton';
+import * as S from './styled';
+
+import { Header } from '@/components/header';
 import { useRootStore } from '@/stores/RootStore';
 import { useInitPage } from '@/v2/hooks/useInitPage';
-import { Header } from '@/components/header';
-import * as S from './styled';
-import { JoinButton } from './JoinButton';
-import { PageSkeleton } from './PageSkeleton';
-import { JoinStoreProvider } from './JoinStore';
 
 export const PageCircleJoin: React.FC = observer(() => {
   const { circleId } = useParams<{ circleId: string }>();

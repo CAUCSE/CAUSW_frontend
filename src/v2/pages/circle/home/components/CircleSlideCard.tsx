@@ -1,8 +1,9 @@
 import { memo, useState } from 'react';
+import { generatePath, useHistory } from 'react-router';
 import styled, { css } from 'styled-components';
+
 import { Icon as I } from '@/assets';
 import { ClearButton } from '@/components/atoms/clear';
-import { generatePath, useHistory } from 'react-router';
 import { PAGE_URL } from '@/configs/path';
 
 type Props = Pick<Model.Circle, 'id' | 'mainImage' | 'name' | 'description'>;

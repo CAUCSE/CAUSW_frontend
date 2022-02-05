@@ -1,8 +1,10 @@
-import { Route, Redirect } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import { Route, Redirect } from 'react-router-dom';
+
+import { MobileGnb, Body, ScreenArea } from './components';
+
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
-import { MobileHeader, MobileGnb, Body, ScreenArea } from './components';
 
 export const AuthRouter: React.FC = observer(({ children, ...rest }) => {
   const { auth } = useRootStore();
@@ -13,7 +15,6 @@ export const AuthRouter: React.FC = observer(({ children, ...rest }) => {
       render={({ location }) =>
         auth.isSignIn ? (
           <>
-            {/* <MobileHeader /> */}
             <Body>
               <ScreenArea>{children}</ScreenArea>
             </Body>

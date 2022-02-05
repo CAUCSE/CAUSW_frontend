@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
-import { useRootStore } from '@/stores/RootStore';
-import * as Circle from './components';
-import styled from 'styled-components';
-import { Header } from '@/components/header';
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
+import styled from 'styled-components';
+
+import * as Circle from './components';
+
+import { Header } from '@/components/header';
+import { useRootStore } from '@/stores/RootStore';
 
 export const PageCircleHome: React.FC = observer(() => {
   const {

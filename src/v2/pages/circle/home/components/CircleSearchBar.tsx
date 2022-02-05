@@ -1,7 +1,8 @@
 import { memo, useCallback } from 'react';
-import styled from 'styled-components';
-import { ClearButton } from '@/components/atoms/clear';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+
+import { ClearButton } from '@/components/atoms/clear';
 
 export const CircleSearchBar = memo(() => {
   const { handleSubmit, register } = useForm();

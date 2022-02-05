@@ -1,5 +1,5 @@
-import { createContext, useContext } from 'react';
 import { action, makeAutoObservable } from 'mobx';
+import { createContext, useContext } from 'react';
 
 export class JoinStore {
   visible = false;

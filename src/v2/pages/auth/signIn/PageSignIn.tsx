@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, memo } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+
+import * as S from './styled';
+
+import { AuthButton } from 'components/auth/AuthButton';
 import { PAGE_URL } from 'configs/path';
 import { useRootStore } from 'stores/RootStore';
 
-import * as S from './styled';
-import { AuthButton } from 'components/auth/AuthButton';
-
-export const PageSignIn: React.FC = React.memo(() => {
+export const PageSignIn: React.FC = memo(() => {
   const {
     auth: { signIn: handleSignIn, isSignIn },
   } = useRootStore();

@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+
 import { ClearButton } from '../atoms/clear';
 
 export const BackButton: React.FC<{ link?: boolean | string }> = memo(({ link }) => {

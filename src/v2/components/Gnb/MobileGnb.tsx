@@ -1,8 +1,10 @@
 import { observer } from 'mobx-react-lite';
+
+import { Nav, NavLink } from './GnbView';
+
+import * as I from '@/components/atoms/Icon';
 import { PAGE_URL } from 'configs/path';
 import { useRootStore } from 'stores/RootStore';
-import { Nav, NavLink } from './GnbView';
-import * as I from '@/components/atoms/Icon';
 
 export const MobileGnb: React.FC = observer(() => {
   const {

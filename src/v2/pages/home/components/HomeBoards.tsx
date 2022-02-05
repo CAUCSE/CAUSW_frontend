@@ -1,8 +1,10 @@
-import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@/stores/RootStore';
-import { ListBox } from '@/components/ListBox';
+import styled from 'styled-components';
+
 import { HomeBoardListItem } from './HomeBoardListItem';
+
+import { ListBox } from '@/components/ListBox';
+import { useRootStore } from '@/stores/RootStore';
 
 export const HomeBoards: React.FC = observer(() => {
   const {

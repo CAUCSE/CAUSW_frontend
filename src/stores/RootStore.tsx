@@ -1,4 +1,5 @@
-import React from 'react';
+import { createContext, useContext } from 'react';
+
 import { AuthStore } from './AuthStore';
 import { BoardStore } from './BoardStore';
 import { CircleStore } from './CircleStore';
@@ -25,6 +26,6 @@ export class RootStore {
 }
 
 const RootStoreInstance = new RootStore();
-const RootStoreContext = React.createContext(RootStoreInstance);
+const RootStoreContext = createContext(RootStoreInstance);
 
-export const useRootStore = (): RootStore => React.useContext(RootStoreContext);
+export const useRootStore = (): RootStore => useContext(RootStoreContext);

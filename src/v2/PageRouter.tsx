@@ -1,7 +1,9 @@
 import { BrowserRouter as RootRouter, Redirect, Route, Switch as RootSwitch } from 'react-router-dom';
-import { PAGE_URL } from '@/configs/path';
-import * as Switch from './pages';
+
 import { AuthRouter } from './AuthRouter';
+import * as Switch from './pages';
+
+import { PAGE_URL } from '@/configs/path';
 
 export const PageRouter: React.FC = () => (
   <RootRouter>

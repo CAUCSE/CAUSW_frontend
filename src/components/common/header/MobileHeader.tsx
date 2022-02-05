@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
-import { useRootStore } from 'stores/RootStore';
+import { useEffect, useRef } from 'react';
+
 import { BackButton, Header } from './HeaderView';
+
+import { useRootStore } from 'stores/RootStore';
 
 export const MobileHeader: React.FC = observer(() => {
   const {

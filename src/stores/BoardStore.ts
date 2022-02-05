@@ -1,4 +1,5 @@
 import { flow, makeObservable, observable } from 'mobx';
+
 import { BoardRepoImpl as Repo } from './repositories/BoardRepo';
 
 export class BoardStore {

@@ -1,4 +1,5 @@
 import { flow, makeObservable, observable } from 'mobx';
+
 import { HomeRepoImpl as Repo } from './repositories/HomeRepo';
 
 type HomeBoard = { board: Model.Board; posts: Model.Post[] };

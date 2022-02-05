@@ -1,6 +1,8 @@
 import { AxiosResponse } from 'axios';
-import { API } from 'configs/axios';
+
 import { CommentModel } from '../models/CommentModel';
+
+import { API } from 'configs/axios';
 
 class CommentRepo {
   URI = '/api/v1/comments';
