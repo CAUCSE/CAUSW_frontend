@@ -22,6 +22,6 @@ declare namespace Circle {
   }
 
   // Client
-  // 기본, 신청완료, 대기중, 제한
-  export type JoinStatus = 'NONE' | 'DONE' | 'AWAIT' | 'BLOCK';
+  // 기본, 신청완료, 대기중, 가입됨, 제한
+  export type JoinStatus = 'NONE' | 'DONE' | 'AWAIT' | 'MEMBER' | 'BLOCK';
 }

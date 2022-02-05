@@ -11,7 +11,7 @@ export const JoinModal: React.FC = observer(() => {
   const {
     circle: { circle, join },
   } = useRootStore();
-  const { visible, setVisible, setStatus, isAwait, isBlock, isDone } = useJoinStore();
+  const { visible, setVisible, setStatus, isAwait, isBlock, isDone, isMember } = useJoinStore();
 
   const handleOk = async () => {
     if (circle) {
@@ -36,12 +36,14 @@ export const JoinModal: React.FC = observer(() => {
         <Message>
           {isDone || isAwait
             ? '소모임 동아리장이 가입을 허가해 줄 때 까지 기다려주세요.'
+            : isMember
+            ? '이미 가입한 소모임 사용자 입니다.'
             : isBlock
             ? '소모임장 혹은 관리자에게 문의해주세요.'
             : `${circle.name} 소모임에 가입하시겠습니까?`}
         </Message>
         <M.ModalFooter>
-          {isDone || isAwait || isBlock ? (
+          {isDone || isAwait || isBlock || isMember ? (
             <M.ModalFooterButton onClick={handleCancel}>확인</M.ModalFooterButton>
           ) : (
             <>

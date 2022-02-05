@@ -26,6 +26,9 @@ export class JoinStore {
   get isAwait(): boolean {
     return this.status === 'AWAIT';
   }
+  get isMember(): boolean {
+    return this.status === 'MEMBER';
+  }
   get isBlock(): boolean {
     return this.status === 'BLOCK';
   }
