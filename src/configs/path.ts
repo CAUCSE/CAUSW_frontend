@@ -5,7 +5,9 @@ export enum PAGE_URL {
 
   Home = '/home',
 
+  // 소모임
   Circle = '/circle',
+  CircleMain = '/circle/:circleId',
   CircleJoin = '/circle/:circleId/join',
 
   Board = '/boards',
