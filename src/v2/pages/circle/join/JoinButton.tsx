@@ -1,10 +1,15 @@
 import { ClearButton } from '@/components/atoms/clear';
 import styled from '@emotion/styled';
+import { JoinModal } from './JoinModal';
+import { useJoinStore } from './JoinStore';
 
 export const JoinButton: React.FC = () => {
+  const { setVisible } = useJoinStore();
+
   return (
     <>
-      <Button>가입하기</Button>
+      <Button onClick={() => setVisible(true)}>가입하기</Button>
+      <JoinModal />
     </>
   );
 };

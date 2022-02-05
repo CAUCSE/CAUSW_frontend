@@ -11,8 +11,11 @@ export class CircleStore {
       circleMap: observable,
       circles: computed,
       circle: observable,
-      fetch: flow.bound,
+
       reset: action.bound,
+
+      fetch: flow.bound,
+      join: flow.bound,
     });
 
     this.rootStore = rootStore;
@@ -39,6 +42,7 @@ export class CircleStore {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  *join(circleId?: string): Generator {}
+  *join(circle: Model.Circle): Generator {
+    return yield Repo.join(circle.id);
+  }
 }

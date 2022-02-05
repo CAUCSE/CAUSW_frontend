@@ -1,4 +1,5 @@
 declare namespace Circle {
+  // Server
   export interface Dto {
     id: string;
     mainImage: string | null;
@@ -11,4 +12,16 @@ declare namespace Circle {
     createdAt: string;
     numMember: number;
   }
+
+  export interface userApplyDto {
+    circle: Dto;
+    id: string;
+    status: 'AWAIT';
+    userId: string;
+    userName: string;
+  }
+
+  // Client
+  // 기본, 신청완료, 대기중, 제한
+  export type JoinStatus = 'NONE' | 'DONE' | 'AWAIT' | 'BLOCK';
 }

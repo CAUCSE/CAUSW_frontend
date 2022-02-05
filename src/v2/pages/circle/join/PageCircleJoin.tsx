@@ -6,6 +6,7 @@ import { Header } from '@/components/header';
 import * as S from './styled';
 import { JoinButton } from './JoinButton';
 import { PageSkeleton } from './PageSkeleton';
+import { JoinStoreProvider } from './JoinStore';
 
 export const PageCircleJoin: React.FC = observer(() => {
   const { circleId } = useParams<{ circleId: string }>();
@@ -23,7 +24,7 @@ export const PageCircleJoin: React.FC = observer(() => {
   );
 
   return (
-    <>
+    <JoinStoreProvider>
       <Header mini title="소모임 가입" withBack RightComponent={null} />
       {circle ? (
         <>
@@ -39,6 +40,6 @@ export const PageCircleJoin: React.FC = observer(() => {
       ) : (
         <PageSkeleton />
       )}
-    </>
+    </JoinStoreProvider>
   );
 });
