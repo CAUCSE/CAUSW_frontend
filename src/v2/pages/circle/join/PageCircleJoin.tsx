@@ -16,14 +16,14 @@ export const PageCircleJoin: React.FC = observer(() => {
     circle: { fetch, reset, circle },
   } = useRootStore();
 
-  useInitPage(
-    JoinButton,
-    () => {
+  useInitPage({
+    Nav: JoinButton,
+    effect: () => {
       fetch(circleId);
       return () => reset();
     },
-    [circleId],
-  );
+    deps: [circleId],
+  });
 
   return (
     <JoinStoreProvider>

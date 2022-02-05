@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 
+import { CircleBoardModel } from '../models/CircleBoardModel';
 import { CircleModel } from '../models/CircleModel';
 
 import { API } from 'configs/axios';
@@ -8,13 +9,13 @@ class CircleRepo {
   URI = '/api/v1/circles';
 
   fetch = async (): Promise<CircleModel[]> => {
-    const { data } = (await API.get(this.URI)) as AxiosResponse<Circle.Dto[]>;
+    const { data } = (await API.get(this.URI)) as AxiosResponse<Circle.findByIdDto[]>;
 
     return data.map(dto => new CircleModel(dto));
   };
 
   fetchById = async (circleId: string): Promise<CircleModel> => {
-    const { data } = (await API.get(`${this.URI}/${circleId}`)) as AxiosResponse<Circle.Dto>;
+    const { data } = (await API.get(`${this.URI}/${circleId}`)) as AxiosResponse<Circle.findByIdDto>;
 
     return new CircleModel(data);
   };
@@ -46,6 +47,18 @@ class CircleRepo {
 
     return 'NONE';
   };
+
+  findBoards = async (circleId: string): Promise<FindBoardsRes> => {
+    const { data } = (await API.get(`${this.URI}/${circleId}/boards`)) as AxiosResponse<Circle.findBoardsDto>;
+
+    console.debug(data);
+
+    return {
+      circle: new CircleModel(data.circle),
+      boards: data.boardList.map(item => new CircleBoardModel(item)),
+    };
+  };
 }
 
 export const CircleRepoImpl = new CircleRepo();
+export type FindBoardsRes = { circle: CircleModel; boards: CircleBoardModel[] };

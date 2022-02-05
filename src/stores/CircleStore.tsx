@@ -1,21 +1,18 @@
-import { action, computed, flow, makeObservable, observable } from 'mobx';
+import { action, flow, makeAutoObservable } from 'mobx';
 
-import { CircleRepoImpl as Repo } from './repositories/CircleRepo';
+import { CircleRepoImpl as Repo, FindBoardsRes } from './repositories/CircleRepo';
 
 export class CircleStore {
   rootStore: Store.Root;
   circleMap: Map<string, Model.Circle> = new Map();
   circle?: Model.Circle;
+  boards: Model.CircleBoard[] = [];
 
   constructor(rootStore: Store.Root) {
-    makeObservable(this, {
-      circleMap: observable,
-      circles: computed,
-      circle: observable,
-
+    makeAutoObservable(this, {
       reset: action.bound,
-
       fetch: flow.bound,
+      fetchMain: flow.bound,
       join: flow.bound,
     });
 
@@ -28,6 +25,7 @@ export class CircleStore {
 
   reset(): void {
     this.circle = undefined;
+    this.boards = [];
   }
 
   *fetch(circleId?: string): Generator {
@@ -41,6 +39,14 @@ export class CircleStore {
       this.circleMap.set(circle.id, circle);
       this.circle = circle;
     }
+  }
+
+  *fetchMain(circleId: string): Generator {
+    const { circle, boards } = (yield Repo.findBoards(circleId)) as FindBoardsRes;
+
+    this.circleMap.set(circle.id, circle);
+    this.circle = circle;
+    this.boards = boards;
   }
 
   *join(circle: Model.Circle): Generator {

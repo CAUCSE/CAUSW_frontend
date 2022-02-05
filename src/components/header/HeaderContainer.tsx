@@ -6,14 +6,14 @@ import { DefaultLogo } from './DefaultLogo';
 import { DefaultTop } from './DefaultTop';
 
 interface Props {
-  title: string;
+  title?: string;
   withBack?: boolean | string;
   TopComponent?: React.FC;
   RightComponent?: React.FC | null;
   mini?: boolean;
 }
 export const HeaderContainer: React.FC<Props> = memo(
-  ({ withBack = false, TopComponent = DefaultTop, title, RightComponent = DefaultLogo, mini = false }) => (
+  ({ withBack = false, TopComponent = DefaultTop, title = '', RightComponent = DefaultLogo, mini = false }) => (
     <Wrapper mini={mini}>
       {withBack ? (
         <Left>

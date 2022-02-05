@@ -11,7 +11,7 @@ export class CircleModel {
   numMember: number;
   isJoined: boolean;
 
-  constructor(props: Circle.Dto) {
+  constructor(props: Circle.findByIdDto) {
     this.id = props.id;
     this.mainImage = props.mainImage;
     this.name = props.name;

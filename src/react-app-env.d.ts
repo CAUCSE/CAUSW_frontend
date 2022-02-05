@@ -1,19 +1,19 @@
 /// <reference types="react-scripts" />
 
-import type { RootStore } from './stores/RootStore';
 import type { AuthStore } from './stores/AuthStore';
-import type { UiStore } from './stores/UiStore';
-import type { HomeStore } from './stores/HomeStore';
-import type { CircleStore } from './stores/CircleStore';
 import type { BoardStore } from './stores/BoardStore';
-import type { PostStore } from './stores/PostStore';
-
-import type { BoardModel } from './stores/models/BoardModel';
+import type { CircleStore } from './stores/CircleStore';
+import type { HomeStore } from './stores/HomeStore';
 import type { AuthorModel } from './stores/models/AuthorModel';
-import type { PostModel } from './stores/models/PostModel';
-import type { CommentModel } from './stores/models/CommentModel';
-import type { UserModel } from './stores/models/UserModel';
+import type { BoardModel } from './stores/models/BoardModel';
+import type { CircleBoardModel } from './stores/models/CircleBoardModel';
 import type { CircleModel } from './stores/models/CircleModel';
+import type { CommentModel } from './stores/models/CommentModel';
+import type { PostModel } from './stores/models/PostModel';
+import type { UserModel } from './stores/models/UserModel';
+import type { PostStore } from './stores/PostStore';
+import type { RootStore } from './stores/RootStore';
+import type { UiStore } from './stores/UiStore';
 
 declare global {
   namespace Store {
@@ -33,5 +33,8 @@ declare global {
     type Comment = CommentModel;
     type User = UserModel;
     type Circle = CircleModel;
+    type CircleBoard = CircleBoardModel;
   }
 }
+
+type NonNullable<T> = Exclude<T, null | undefined>;

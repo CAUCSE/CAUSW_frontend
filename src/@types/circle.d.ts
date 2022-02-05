@@ -1,6 +1,6 @@
 declare namespace Circle {
   // Server
-  export interface Dto {
+  export interface findByIdDto {
     id: string;
     mainImage: string | null;
     name: string;
@@ -19,6 +19,27 @@ declare namespace Circle {
     status: 'AWAIT';
     userId: string;
     userName: string;
+  }
+
+  export interface Board {
+    id: string;
+    name: string;
+    postId: string;
+    postTitle: string;
+    postCreatedAt: string;
+    postNumComment: number;
+    postWriterName: string;
+
+    // TODO: 제거 필요
+    // category: '공지게시판';
+    // isDeleted: false;
+    // circleId: '8ab880b67cc5d8e3017ce14684c00001';
+    // circleName: 'CLUG';
+    // createRoleList: ['admin', 'president', 'leader_circle', 'admin'];
+  }
+  export interface findBoardsDto {
+    boardList: Board[];
+    circle: findByIdDto;
   }
 
   // Client
