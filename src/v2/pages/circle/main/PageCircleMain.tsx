@@ -22,7 +22,7 @@ export const PageCircleMain: React.FC = observer(() => {
     deps: [circleId],
   });
 
-  return (
+  return (  
     <>
       <Header mini title={circle?.name} withBack RightComponent={CircleMainMenu} />
       {circle?.mainImage ? <CircleImage src={circle.mainImage} /> : null}

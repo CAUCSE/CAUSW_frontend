@@ -23,15 +23,15 @@ export class CircleBoardModel {
       name: props.name,
     };
 
-    if (props.postId && props.postCreatedAt && props.postWriterName) {
+    if (props.postId && props.postCreatedAt) {
       const zonedDate = utcToZonedTime(props.postCreatedAt, 'Asis/Seoul');
 
       this.post = {
         id: props.postId,
-        title: props.postTitle,
+        title: props.postTitle ?? '',
         formatedCreatedAt: format(zonedDate, 'yyyy.MM.dd HH:mm'),
-        writerName: props.postWriterName,
-        numComment: props.postNumComment,
+        writerName: `${props.postWriterName} (${props.postWriterStudentId?.slice(2, 4)})`,
+        numComment: props.postNumComment ?? 0,
       };
     }
   }
