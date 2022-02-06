@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   * {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
     color: #3f4040;
   }
