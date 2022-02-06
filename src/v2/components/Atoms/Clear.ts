@@ -15,3 +15,9 @@ export const ClearLink = styled(Link)`
   user-select: none;
   text-decoration: none;
 `;
+
+export const ClearUl = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`;

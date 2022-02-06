@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import { memo } from 'react';
-import styled from 'styled-components';
 
 export const Porfile: React.FC<{ model: Model.User }> = memo(
   ({ model: { profileImage, email, nameWithAdmission, roleTxt } }) => {
@@ -19,7 +19,7 @@ export const Porfile: React.FC<{ model: Model.User }> = memo(
 );
 
 const Wrapper = styled.div`
-  margin: 32px 0 12px;
+  margin: 42px 0 22px;
   font-size: 14px;
   line-height: 18px;
   text-align: center;

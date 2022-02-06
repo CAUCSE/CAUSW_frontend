@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { PAGE_URL } from './configs/path';
+
 import { AuthRouter } from './AuthRouter';
+import { Main, Container } from './components/layout/MobileLayout';
+import { PAGE_URL } from './configs/path';
 import * as Pages from './pages';
 
-import { MobileHeader } from 'components/common/header';
 import { MobileFooter } from 'components/common/footer';
-import { Main, Container } from './components/layout/MobileLayout';
+import { MobileHeader } from 'components/common/header';
 
 export const PageRouter: React.FC = React.memo(() => (
   <Router>
@@ -23,8 +24,6 @@ export const PageRouter: React.FC = React.memo(() => (
         <Main>
           <Container>
             <Switch>
-              <Route path={PAGE_URL.Setting} component={Pages.Setting} />
-
               <Route path={PAGE_URL.PostWrite} component={Pages.PostEditor} />
               <Route path={PAGE_URL.PostDetail} component={Pages.PostDetail} />
               <Route path={PAGE_URL.Post} component={Pages.PostList} />

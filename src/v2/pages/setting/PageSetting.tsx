@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
+
+import { Porfile } from './components/Profile';
+
+import { Box, Title } from '@/components/ListBox';
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
-import { Link } from './styled';
-import { Box, Title } from '@/components/ListBox';
-import { Porfile } from './components/Profile';
+import { ClearLink } from '@/v2/components';
 
 export const PageSetting: React.FC = observer(() => {
   const {
@@ -15,8 +18,9 @@ export const PageSetting: React.FC = observer(() => {
     fetch();
   }, []);
 
+  // TODO: 페이지 스켈레톤
   return me ? (
-    <div>
+    <>
       <Porfile model={me} />
 
       <Box>
@@ -36,7 +40,7 @@ export const PageSetting: React.FC = observer(() => {
           <Title>관리</Title>
           {me.isAdmin || me.isPresident ? (
             <>
-              <Link to={PAGE_URL.Setting}>학생회 관리</Link>
+              <Link to={PAGE_URL.Setting}>권한 관리</Link>
               <Link to={PAGE_URL.Setting}>유저 관리</Link>
               <Link to={PAGE_URL.Setting}>게시판 관리</Link>
               <Link to={PAGE_URL.Setting}>권한 위임</Link>
@@ -54,6 +58,17 @@ export const PageSetting: React.FC = observer(() => {
           ) : null}
         </Box>
       ) : null}
-    </div>
+    </>
   ) : null;
 });
+
+const Link = styled(ClearLink)`
+  display: block;
+  margin: 12px 0;
+  font-size: 12px;
+  line-height: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
