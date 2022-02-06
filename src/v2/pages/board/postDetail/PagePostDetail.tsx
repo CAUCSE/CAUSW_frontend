@@ -3,7 +3,14 @@ import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 
 import { Breadcrumb } from '../components';
-import { CommentDeleteModal, CommentInput, CommentMenuModal, PostAuthor, PostComments } from './components';
+import {
+  CommentDeleteModal,
+  CommentInput,
+  CommentMenuModal,
+  PostAuthor,
+  PostComments,
+  PostDetailMenu,
+} from './components';
 
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
@@ -26,7 +33,7 @@ export const PagePostDetail: React.FC = observer(() => {
 
   return post ? (
     <>
-      <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={null} />
+      <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={PostDetailMenu} />
       <PostAuthor model={post.author} date={post.formatedCreatedAt} />
       <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
       <PostCommentNum num={post.commentCount} />
