@@ -18,7 +18,6 @@ export const PageSetting: React.FC = observer(() => {
     fetch();
   }, []);
 
-  // TODO: 페이지 스켈레톤
   return me ? (
     <>
       <Porfile model={me} />

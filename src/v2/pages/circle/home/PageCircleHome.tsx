@@ -16,6 +16,7 @@ export const PageCircleHome: React.FC = observer(() => {
     fetch();
   }, []);
 
+  // TODO: 페이지 스켈레톤
   return (
     <>
       <Header title="학부 소모임" />

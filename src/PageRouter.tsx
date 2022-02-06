@@ -27,7 +27,6 @@ export const PageRouter: React.FC = React.memo(() => (
               <Route path={PAGE_URL.PostWrite} component={Pages.PostEditor} />
               <Route path={PAGE_URL.PostDetail} component={Pages.PostDetail} />
               <Route path={PAGE_URL.Post} component={Pages.PostList} />
-              <Route path={PAGE_URL.Board} component={Pages.Board} />
             </Switch>
           </Container>
         </Main>

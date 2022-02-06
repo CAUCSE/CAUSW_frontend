@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
-import { useRootStore } from '@/stores/RootStore';
-import { Header, UniformLogo } from '@/components/header';
-import { Boards } from './components/Boards';
 
-export const PageBoard: React.FC = observer(() => {
+import { Boards } from './components';
+
+import { useRootStore } from '@/stores/RootStore';
+import { Header, UniformLogo } from '@/v2/components';
+
+export const PageBoard: React.FC = () => {
   const { board } = useRootStore();
 
   useEffect(() => {
@@ -17,4 +18,4 @@ export const PageBoard: React.FC = observer(() => {
       <Boards />
     </>
   );
-});
+};

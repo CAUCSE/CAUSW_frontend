@@ -1,4 +1,4 @@
-import { flow, makeObservable, observable } from 'mobx';
+import { flow, makeAutoObservable } from 'mobx';
 
 import { BoardRepoImpl as Repo } from './repositories/BoardRepo';
 
@@ -8,8 +8,7 @@ export class BoardStore {
   boards: Map<string, Model.Board[]> = new Map();
 
   constructor(rootStore: Store.Root) {
-    makeObservable(this, {
-      boards: observable,
+    makeAutoObservable(this, {
       fetch: flow.bound,
     });
 
