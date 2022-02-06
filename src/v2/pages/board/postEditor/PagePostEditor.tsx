@@ -4,15 +4,15 @@ import { useCallback } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { generatePath, useHistory } from 'react-router';
 
+// import { PostEditor } from '../components/Editor/PostEditor';
+
 import { Breadcrumb } from '../components';
-import { PostEditor } from '../components/Editor/PostEditor';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
-import { ClearButton } from '@/v2/components';
 import { useInitPage } from '@/v2/hooks';
 
-export const PagePostEdit: React.FC = observer(() => {
+export const PagePostEditor: React.FC = observer(() => {
   const { replace } = useHistory();
   const {
     board: { boardId },
@@ -39,7 +39,7 @@ export const PagePostEdit: React.FC = observer(() => {
   return (
     <FormProvider {...methods}>
       <Form onSubmit={methods.handleSubmit(onSubmit)}>
-        {/* <Breadcrumb /> */}
+        <Breadcrumb />
         {/* <SubmitButton type="submit">완료</SubmitButton> */}
         {/* <TitleInput {...methods.register('title')} placeholder="제목을 입력하세요" />
         <PostEditor /> */}
