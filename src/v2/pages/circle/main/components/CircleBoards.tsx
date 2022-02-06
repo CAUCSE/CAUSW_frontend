@@ -16,8 +16,8 @@ export const CircleBoards: React.FC = observer(() => {
   return (
     <>
       {boards.map(({ board: { id, name }, post }) => (
-        <BoradIdProvider value={id}>
-          <ListBox<Model> key={id} title={name} items={post ? [post] : []} ItemComponent={CircleBoardListItem} />
+        <BoradIdProvider key={id} value={id}>
+          <ListBox<Model> title={name} items={post ? [post] : []} ItemComponent={CircleBoardListItem} />
         </BoradIdProvider>
       ))}
     </>

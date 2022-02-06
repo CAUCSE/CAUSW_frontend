@@ -15,8 +15,8 @@ export const HomeBoards: React.FC = observer(() => {
   return (
     <Wrapper>
       {boards.map(({ board: { id, name }, posts }) => (
-        <BoradIdProvider value={id}>
-          <ListBox<Model.Post> key={id} title={name} items={posts} ItemComponent={HomeBoardListItem} />
+        <BoradIdProvider key={id} value={id}>
+          <ListBox<Model.Post> title={name} items={posts} ItemComponent={HomeBoardListItem} />
         </BoradIdProvider>
       ))}
     </Wrapper>
