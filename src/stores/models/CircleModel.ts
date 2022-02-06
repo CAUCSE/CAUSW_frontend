@@ -10,6 +10,7 @@ export class CircleModel {
   leaderName: string;
   numMember: number;
   isJoined: boolean;
+  joinedAt: string | null;
 
   constructor(props: Circle.findByIdDto) {
     this.id = props.id;
@@ -20,9 +21,11 @@ export class CircleModel {
     this.leaderName = props.leaderName;
     this.numMember = props.numMember;
     this.isJoined = props.isJoined;
+    this.joinedAt = props.joinedAt;
 
     makeObservable(this, {
       isJoined: observable,
+      joinedAt: observable,
     });
   }
 
@@ -30,5 +33,15 @@ export class CircleModel {
     const zonedDate = utcToZonedTime(this.createdAt, 'Asis/Seoul');
 
     return format(zonedDate, 'yyyy년 MM월 dd일');
+  }
+
+  get formatJoinedAt(): string {
+    if (this.joinedAt) {
+      const zonedDate = utcToZonedTime(this.joinedAt, 'Asis/Seoul');
+
+      return format(zonedDate, 'yyyy년 MM월 dd일');
+    } else {
+      return '';
+    }
   }
 }

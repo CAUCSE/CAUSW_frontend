@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { EmptyList } from '.';
+import { EmptyList } from './EmptyList';
 
 interface ListProps {
   readonly items: Model.Circle[];

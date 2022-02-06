@@ -23,6 +23,10 @@ export class CircleStore {
     return Array.from(this.circleMap.values());
   }
 
+  get joinedCircles(): Model.Circle[] {
+    return Array.from(this.circleMap.values()).filter(({ isJoined }) => isJoined);
+  }
+
   reset(): void {
     this.circle = undefined;
     this.boards = [];

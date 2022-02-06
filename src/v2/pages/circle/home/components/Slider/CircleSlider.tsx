@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 
-import { ListComponent } from './CircleListFrame';
+import { ListComponent } from '../CircleListFrame';
 import { CircleSlideCard } from './CircleSlideCard';
 
 export const CircleSlider: ListComponent = observer(({ items }) => {

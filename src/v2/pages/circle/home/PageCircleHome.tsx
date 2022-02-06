@@ -9,7 +9,7 @@ import { useRootStore } from '@/stores/RootStore';
 
 export const PageCircleHome: React.FC = observer(() => {
   const {
-    circle: { fetch, circles },
+    circle: { fetch, circles, joinedCircles },
   } = useRootStore();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export const PageCircleHome: React.FC = observer(() => {
       <H2>전체 소모임</H2>
       <Circle.ListFrame items={circles} emptyText={'아직 등록된 소모임이 없어요!'} ListComponent={Circle.Slider} />
       <H2>내 소모임</H2>
-      <Circle.ListFrame items={[]} emptyText={'아직 가입한 소모임이 없어요!'} ListComponent={Circle.Slider} />
+      <Circle.ListFrame items={joinedCircles} emptyText={'아직 가입한 소모임이 없어요!'} ListComponent={Circle.List} />
     </>
   );
 });

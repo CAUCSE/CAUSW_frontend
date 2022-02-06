@@ -14,10 +14,7 @@ export const CircleBoardListItem: React.FC<{ model: Model }> = memo(
       <Title>{title}</Title>
       <Post.CreatedDate>{formatedCreatedAt}</Post.CreatedDate>
       <Post.Break />
-      <AuthorName>
-        {writerName}
-        {/* {author.nameWithAdmission} */}
-      </AuthorName>
+      <AuthorName>{writerName}</AuthorName>
       <Post.CommentNum num={numComment} />
     </Link>
   ),
