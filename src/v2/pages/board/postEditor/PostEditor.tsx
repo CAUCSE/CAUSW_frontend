@@ -1,8 +1,8 @@
+import 'react-quill/dist/quill.snow.css';
+import styled from '@emotion/styled';
 import { useMemo, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import styled from 'styled-components';
 
 export const PostEditor: React.FC = () => {
   const { setValue } = useFormContext();
@@ -24,8 +24,14 @@ export const PostEditor: React.FC = () => {
 };
 
 const Wrapper = styled.div`
+  flex: 1 0 0;
+
+  .quill {
+    height: 100%;
+  }
+
   .ql-toolbar.ql-snow {
-    padding: 8px 0;
+    padding: 0 0 8px;
     border: 0;
   }
 

@@ -5,22 +5,32 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { ClearButton } from '../atoms';
 
-export const BackButton: React.FC<{ link?: boolean | string }> = memo(({ link }) => {
-  const { goBack } = useHistory();
+export const BackButton: React.FC<{ className?: string; link?: boolean | string }> = memo(
+  ({ className, link = false }) => {
+    const { goBack } = useHistory();
 
-  const Icon = (
-    <>
-      <img src="/images/icons/back.svg" alt="back icon" />
-      <span className="a11y-hidden">뒤로가기</span>
-    </>
-  );
+    const Icon = (
+      <>
+        <img src="/images/icons/back.svg" alt="back icon" />
+        <span className="a11y-hidden">뒤로가기</span>
+      </>
+    );
 
-  if (typeof link === 'string' && link !== '') {
-    return <StyledLink to={link}>{Icon}</StyledLink>;
-  } else {
-    return <StyledButton onClick={goBack}>{Icon}</StyledButton>;
-  }
-});
+    if (typeof link === 'string' && link !== '') {
+      return (
+        <StyledLink className={className} to={link}>
+          {Icon}
+        </StyledLink>
+      );
+    } else {
+      return (
+        <StyledButton type="button" className={className} onClick={goBack}>
+          {Icon}
+        </StyledButton>
+      );
+    }
+  },
+);
 
 const styledCss = css`
   position: relative;
