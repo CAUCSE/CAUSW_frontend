@@ -20,6 +20,6 @@ export class BoardModel {
   }
 
   get BoardLink(): string {
-    return generatePath(PAGE_URL.Post, { boardId: this.id });
+    return generatePath(PAGE_URL.PostList, { boardId: this.id });
   }
 }

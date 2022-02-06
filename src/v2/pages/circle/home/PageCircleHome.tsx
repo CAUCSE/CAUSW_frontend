@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import * as Circle from './components';
 
-import { Header } from '@/components/header';
 import { useRootStore } from '@/stores/RootStore';
+import { Header } from '@/v2/components';
 
 export const PageCircleHome: React.FC = observer(() => {
   const {

@@ -7,8 +7,8 @@ export const useInitPage = ({
   effect = () => undefined,
   deps,
 }: {
-  Nav?: React.FC;
-  effect: React.EffectCallback;
+  Nav?: React.FC | null;
+  effect?: React.EffectCallback;
   deps?: React.DependencyList;
 }): void => {
   const {
@@ -16,10 +16,8 @@ export const useInitPage = ({
   } = useRootStore();
 
   useLayoutEffect(() => {
-    if (Nav) {
-      setNav(Nav);
-      return () => setNav();
-    }
+    setNav(Nav);
+    return () => setNav();
   }, []);
 
   useEffect(effect, deps);

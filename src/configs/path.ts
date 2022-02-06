@@ -10,12 +10,14 @@ export enum PAGE_URL {
   CircleMain = '/circle/:circleId',
   CircleJoin = '/circle/:circleId/join',
 
+  // 게시글
   Board = '/boards',
-  Setting = '/settings',
+  PostList = '/boards/:boardId/posts',
+  PostWrite = '/boards/:boardId/posts/write',
+  PostDetail = '/boards/:boardId/posts/:postId',
+  PostEdit = '/boards/:boardId/posts/:postId/edit',
 
-  Post = '/boards/:boardId',
-  PostWrite = '/posts/write',
-  PostDetail = '/posts/:postId',
+  Setting = '/settings',
 
   Err404 = '/error/404',
 }

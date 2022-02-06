@@ -1,38 +1,50 @@
+import styled from '@emotion/styled';
 import { memo } from 'react';
 import { generatePath } from 'react-router';
-import styled from 'styled-components';
 
 import { Model } from './CircleBoards';
 
-import { ClearLink } from '@/components/atoms/clear';
-import * as Post from '@/components/StyledPost';
 import { PAGE_URL } from '@/configs/path';
+import {
+  ClearLink,
+  PostAuthorNameCSS,
+  PostBreak,
+  PostCommentNum,
+  PostCreatedAt,
+  PostTitleCSS,
+  PostWrapperCSS,
+  useGetBoardId,
+} from '@/v2/components';
 
 export const CircleBoardListItem: React.FC<{ model: Model }> = memo(
-  ({ model: { id, title, formatedCreatedAt, writerName, numComment } }) => (
-    <Link to={generatePath(PAGE_URL.PostDetail, { postId: id })}>
-      <Title>{title}</Title>
-      <Post.CreatedDate>{formatedCreatedAt}</Post.CreatedDate>
-      <Post.Break />
-      <AuthorName>{writerName}</AuthorName>
-      <Post.CommentNum num={numComment} />
-    </Link>
-  ),
+  ({ model: { id: postId, title, formatedCreatedAt, writerName, numComment } }) => {
+    const boardId = useGetBoardId();
+
+    return (
+      <Link to={generatePath(PAGE_URL.PostDetail, { boardId, postId })}>
+        <Title>{title}</Title>
+        <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
+        <PostBreak />
+        <AuthorName>{writerName}</AuthorName>
+        <PostCommentNum num={numComment} />
+      </Link>
+    );
+  },
 );
 
 const Link = styled(ClearLink)`
-  ${Post.WrapperCSS}
+  ${PostWrapperCSS}
   margin: 16px 0 0;
 `;
 
 const Title = styled.h3`
-  ${Post.TitleCSS}
+  ${PostTitleCSS}
   font-size: 12px;
   line-height: 14px;
 `;
 
 const AuthorName = styled.div`
-  ${Post.AuthorNameCSS}
+  ${PostAuthorNameCSS}
   font-size: 9px;
   line-height: 11px;
 `;

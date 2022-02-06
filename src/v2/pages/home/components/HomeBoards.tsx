@@ -1,10 +1,11 @@
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
-import styled from 'styled-components';
 
 import { HomeBoardListItem } from './HomeBoardListItem';
 
 import { ListBox } from '@/components/ListBox';
 import { useRootStore } from '@/stores/RootStore';
+import { BoradIdProvider } from '@/v2/components';
 
 export const HomeBoards: React.FC = observer(() => {
   const {
@@ -14,7 +15,9 @@ export const HomeBoards: React.FC = observer(() => {
   return (
     <Wrapper>
       {boards.map(({ board: { id, name }, posts }) => (
-        <ListBox<Model.Post> key={id} title={name} items={posts} ItemComponent={HomeBoardListItem} />
+        <BoradIdProvider value={id}>
+          <ListBox<Model.Post> key={id} title={name} items={posts} ItemComponent={HomeBoardListItem} />
+        </BoradIdProvider>
       ))}
     </Wrapper>
   );

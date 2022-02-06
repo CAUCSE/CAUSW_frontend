@@ -6,8 +6,8 @@ import { JoinStoreProvider } from './JoinStore';
 import { PageSkeleton } from './PageSkeleton';
 import * as S from './styled';
 
-import { Header } from '@/components/header';
 import { useRootStore } from '@/stores/RootStore';
+import { Header } from '@/v2/components';
 import { useInitPage } from '@/v2/hooks/useInitPage';
 
 export const PageCircleJoin: React.FC = observer(() => {

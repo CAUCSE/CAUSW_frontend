@@ -3,8 +3,8 @@ import { memo, useEffect } from 'react';
 import { CircleLinks } from './components/CircleLinks';
 import { HomeBoards } from './components/HomeBoards';
 
-import { Header } from '@/components/header';
 import { useRootStore } from '@/stores/RootStore';
+import { Header } from '@/v2/components/';
 
 export const PageHome: React.FC = memo(() => {
   const {

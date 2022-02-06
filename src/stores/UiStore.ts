@@ -15,7 +15,7 @@ export class UiStore {
   rootStore: Store.Root;
   displayType: DISPLAY = DISPLAY.MOBILE;
   header = new HeaderUiStore();
-  CustomNav?: React.FC;
+  CustomNav?: React.FC | null;
   commentUi = new CommentUiStore();
 
   constructor(rootStore: Store.Root) {
@@ -53,7 +53,7 @@ export class UiStore {
     });
   }
 
-  setNav(nav?: React.FC): void {
+  setNav(nav?: React.FC | null): void {
     this.CustomNav = nav;
   }
 }

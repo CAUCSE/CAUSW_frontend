@@ -1,36 +1,48 @@
-import { memo } from 'react';
+import styled from '@emotion/styled';
+import { observer } from 'mobx-react-lite';
 import { generatePath } from 'react-router';
-import styled from 'styled-components';
 
-import { ClearLink } from '@/components/atoms/clear';
-import * as Post from '@/components/StyledPost';
 import { PAGE_URL } from '@/configs/path';
+import {
+  ClearLink,
+  PostAuthorNameCSS,
+  PostBreak,
+  PostCommentNum,
+  PostCreatedAt,
+  PostTitleCSS,
+  PostWrapperCSS,
+  useGetBoardId,
+} from '@/v2/components';
 
-export const HomeBoardListItem: React.FC<{ model: Model.Post }> = memo(
-  ({ model: { id, title, formatedCreatedAt, author, commentCount } }) => (
-    <Link to={generatePath(PAGE_URL.PostDetail, { postId: id })}>
-      <Title>{title}</Title>
-      <Post.CreatedDate>{formatedCreatedAt}</Post.CreatedDate>
-      <Post.Break />
-      <AuthorName>{author.nameWithAdmission}</AuthorName>
-      <Post.CommentNum num={commentCount} />
-    </Link>
-  ),
+export const HomeBoardListItem: React.FC<{ model: Model.Post }> = observer(
+  ({ model: { id: postId, title, formatedCreatedAt, author, commentCount } }) => {
+    const boardId = useGetBoardId();
+
+    return (
+      <Link to={generatePath(PAGE_URL.PostDetail, { boardId, postId })}>
+        <Title>{title}</Title>
+        <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
+        <PostBreak />
+        <AuthorName>{author.nameWithAdmission}</AuthorName>
+        <PostCommentNum num={commentCount} />
+      </Link>
+    );
+  },
 );
 
 const Link = styled(ClearLink)`
-  ${Post.WrapperCSS}
+  ${PostWrapperCSS}
   margin: 16px 0 0;
 `;
 
 const Title = styled.h3`
-  ${Post.TitleCSS}
+  ${PostTitleCSS}
   font-size: 12px;
   line-height: 14px;
 `;
 
 const AuthorName = styled.div`
-  ${Post.AuthorNameCSS}
+  ${PostAuthorNameCSS}
   font-size: 9px;
   line-height: 11px;
 `;

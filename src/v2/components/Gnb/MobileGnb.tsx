@@ -13,7 +13,7 @@ export const MobileGnb: React.FC = observer(() => {
   } = useRootStore();
 
   return isSignIn ? (
-    !CustomNav ? (
+    CustomNav === undefined ? (
       <Nav>
         <h2 className="a11y-hidden">CAUCSE 하단 네비게이션</h2>
         <NavLink to={PAGE_URL.Home} a11y="메인 페이지">
@@ -29,8 +29,8 @@ export const MobileGnb: React.FC = observer(() => {
           <I.SettingIcon />
         </NavLink>
       </Nav>
-    ) : (
+    ) : CustomNav !== null ? (
       <CustomNav />
-    )
+    ) : null
   ) : null;
 });

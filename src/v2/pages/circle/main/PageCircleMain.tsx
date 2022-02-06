@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { CircleBoards, CircleMainMenu } from './components';
 
-import { Header } from '@/components/header';
 import { useRootStore } from '@/stores/RootStore';
+import { Header } from '@/v2/components';
 import { useInitPage } from '@/v2/hooks';
 
 export const PageCircleMain: React.FC = observer(() => {
@@ -22,7 +22,7 @@ export const PageCircleMain: React.FC = observer(() => {
     deps: [circleId],
   });
 
-  return (  
+  return (
     <>
       <Header mini title={circle?.name} withBack RightComponent={CircleMainMenu} />
       {circle?.mainImage ? <CircleImage src={circle.mainImage} /> : null}
