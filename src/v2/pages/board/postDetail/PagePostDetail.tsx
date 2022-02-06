@@ -1,13 +1,9 @@
 import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 import { Breadcrumb } from '../components';
-import { CommentDeleteModal } from '../components/Comment/CommentDeleteModal';
-import { CommentInput } from '../components/Comment/CommentInput';
-import { CommentMenuModal } from '../components/Comment/CommentMenuModal';
-import { PostAuthor } from './components';
-import { PostComments } from './components/PostComments';
+import { CommentDeleteModal, CommentInput, CommentMenuModal, PostAuthor, PostComments } from './components';
 
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
@@ -34,9 +30,9 @@ export const PagePostDetail: React.FC = observer(() => {
       <PostAuthor model={post.author} date={post.formatedCreatedAt} />
       <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
       <PostCommentNum num={post.commentCount} />
-      {/* <PostComments list={ui.commentUi.comments} />
+      <PostComments list={ui.commentUi.comments} />
       <CommentMenuModal />
-      <CommentDeleteModal /> */}
+      <CommentDeleteModal />
     </>
   ) : null;
 });

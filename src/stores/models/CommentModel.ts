@@ -30,7 +30,8 @@ export class CommentModel {
     this.updatedAt = props.updatedAt;
     this.updatable = props.updatable;
     this.deletable = props.deletable;
-    this.childComments = props.childCommentList.map(data => new CommentModel(data, true));
+    this.childComments = [];
+    // props.childCommentList.map(data => new CommentModel(data, true));
   }
 
   get formatedCreatedAt(): string {
