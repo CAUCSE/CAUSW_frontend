@@ -31,23 +31,3 @@ export interface Sort2 {
   empty: boolean;
 }
 
-export interface Post {
-  content: Content[];
-  pageable: Pageable;
-  totalPages: number;
-  totalElements: number;
-  last: boolean;
-  size: number;
-  number: number;
-  sort: Sort2;
-  numberOfElements: number;
-  first: boolean;
-  empty: boolean;
-}
-
-export interface PostAllWithBoardResponseDto {
-  boardId: string;
-  boardName: string;
-  writable: boolean;
-  post: Post;
-}

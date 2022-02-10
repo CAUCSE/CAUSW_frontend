@@ -3,7 +3,6 @@ import { makeAutoObservable } from 'mobx';
 import { CommentModel } from './models/CommentModel';
 import { PostModel } from './models/PostModel';
 import { PostRepoImpl as Repo } from './repositories/PostRepo';
-import { PostAllWithBoardResponseDto } from './types/PostType';
 
 export class PostStore {
   rootStore: Store.Root;
@@ -11,6 +10,8 @@ export class PostStore {
   boardName = '';
   writable = false;
   // 게시글 목록
+  totalPages = 0;
+  page = 0;
   posts: Model.Post[] = [];
   // 게시글 상세
   post?: Model.Post;
@@ -21,13 +22,27 @@ export class PostStore {
     this.rootStore = rootStore;
   }
 
-  *fetchAll(bid: string): Generator {
-    const { boardId, boardName, writable, post } = (yield Repo.findAll(bid)) as PostAllWithBoardResponseDto;
+  setPage(page: number): void {
+    this.page = page;
+  }
+
+  get hasMore(): boolean {
+    return this.page !== this.totalPages - 1;
+  }
+
+  *fetchAll(bid: string, page = 0): Generator {
+    const {
+      boardId,
+      boardName,
+      writable,
+      post: { content: posts, totalPages },
+    } = (yield Repo.findAll(bid, page)) as Post.FindAllResponseDto;
 
     this.boardId = boardId;
     this.boardName = boardName;
     this.writable = writable;
-    this.posts = post?.content.map(data => new PostModel(data)) ?? [];
+    this.posts = this.posts.concat(posts.map(data => new PostModel(data)));
+    this.totalPages = totalPages;
   }
 
   *create(data: Partial<Post.CreateRequestDto>): Generator {
@@ -70,6 +85,7 @@ export class PostStore {
     this.boardName = '';
     this.writable = false;
     this.posts = [];
+    this.page = 0;
     this.post = undefined;
   }
 

@@ -1,4 +1,14 @@
 declare namespace Post {
+  export interface FindAllResponseDto {
+    boardId: string;
+    boardName: string;
+    writable: boolean;
+    post: {
+      content: Content[];
+      totalPages: number;
+    };
+  }
+
   export interface CreateRequestDto {
     boardId: string;
     title: string;

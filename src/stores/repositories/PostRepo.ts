@@ -1,13 +1,12 @@
 import { PostModel } from '../models/PostModel';
-import { PostAllWithBoardResponseDto } from '../types/PostType';
 
 import { API } from 'configs/axios';
 
 class PostRepo {
   private URI = '/api/v1/posts';
 
-  findAll = async (boardId: string): Promise<PostAllWithBoardResponseDto> => {
-    const { data } = await API.get(`${this.URI}?boardId=${boardId}`);
+  findAll = async (boardId: string, page: number): Promise<Post.FindAllResponseDto> => {
+    const { data } = await API.get(`${this.URI}?boardId=${boardId}&pageNum=${page}`);
 
     return data;
   };

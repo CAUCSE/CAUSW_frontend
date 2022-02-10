@@ -1,2 +1,2 @@
+export { PostCard } from './PostCard';
 export { PostCreateButton } from './PostCreateButton';
-export { Posts } from './Posts';
