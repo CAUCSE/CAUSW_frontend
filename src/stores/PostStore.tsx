@@ -3,7 +3,6 @@ import { makeAutoObservable } from 'mobx';
 import { CommentModel } from './models/CommentModel';
 import { PostModel } from './models/PostModel';
 import { PostRepoImpl as Repo } from './repositories/PostRepo';
-import { PostRequestDTO } from './repositories/PostType';
 import { PostAllWithBoardResponseDto } from './types/PostType';
 
 export class PostStore {
@@ -22,7 +21,7 @@ export class PostStore {
     this.rootStore = rootStore;
   }
 
-  *fetch(bid: string): Generator {
+  *fetchAll(bid: string): Generator {
     const { boardId, boardName, writable, post } = (yield Repo.findAll(bid)) as PostAllWithBoardResponseDto;
 
     this.boardId = boardId;
@@ -31,7 +30,15 @@ export class PostStore {
     this.posts = post?.content.map(data => new PostModel(data)) ?? [];
   }
 
-  *fetchPost(pid: string): Generator {
+  *create(data: Partial<Post.CreateRequestDto>): Generator {
+    const body = { ...data, boardId: this.boardId } as Post.CreateRequestDto;
+
+    this.post = (yield Repo.create(body)) as Model.Post;
+
+    return this.post;
+  }
+
+  *fetch(pid: string): Generator {
     const { boardId, boardName, commentList, ...data } = (yield Repo.findById(pid)) as PostDetail.RootObject;
 
     this.boardId = boardId;
@@ -40,12 +47,13 @@ export class PostStore {
     this.rootStore.ui.commentUi.setComments(commentList.content.map(data => new CommentModel(data)));
   }
 
-  *create(data: Partial<PostRequestDTO>): Generator {
-    const body = { ...data, boardId: this.boardId } as PostRequestDTO;
+  *edit(pid: string, data: Post.UpdateRequestDto): Generator {
+    if (this.post) {
+      yield Repo.update(pid, data);
 
-    this.post = (yield Repo.create(body)) as Model.Post;
-
-    return this.post;
+      this.post.title = data.title;
+      this.post.content = data.content;
+    }
   }
 
   *deletePost(pid: string): Generator {

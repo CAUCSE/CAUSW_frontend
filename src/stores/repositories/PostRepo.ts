@@ -1,6 +1,5 @@
 import { PostModel } from '../models/PostModel';
 import { PostAllWithBoardResponseDto } from '../types/PostType';
-import { PostRequestDTO } from './PostType';
 
 import { API } from 'configs/axios';
 
@@ -13,16 +12,24 @@ class PostRepo {
     return data;
   };
 
+  create = async (body: Post.CreateRequestDto): Promise<PostModel> => {
+    const { data } = await API.post(this.URI, body);
+
+    return new PostModel(data);
+  };
+
   findById = async (postId: string): Promise<PostDetail.RootObject> => {
     const { data } = await API.get(`${this.URI}/${postId}`);
 
     return data;
   };
 
-  create = async (body: PostRequestDTO): Promise<PostModel> => {
-    const { data } = await API.post(this.URI, body);
+  update = async (postId: string, body: Post.UpdateRequestDto): Promise<void> => {
+    const { data } = await API.put(`${this.URI}/${postId}`, body);
 
-    return new PostModel(data);
+    console.debug(data);
+
+    // return data;
   };
 
   delete = async (postId: string): Promise<void> => {

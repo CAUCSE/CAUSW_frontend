@@ -1,3 +1,17 @@
+declare namespace Post {
+  export interface CreateRequestDto {
+    boardId: string;
+    title: string;
+    content: string;
+  }
+
+  export interface UpdateRequestDto {
+    title: string;
+    content: string;
+  }
+}
+
+//
 declare namespace PostDetail {
   export interface Board {
     id: string;

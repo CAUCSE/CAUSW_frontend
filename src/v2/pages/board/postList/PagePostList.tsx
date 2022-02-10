@@ -12,12 +12,11 @@ import { Header } from '@/v2/components';
 export const PagePostList: React.FC = observer(() => {
   const { boardId } = useParams<{ boardId: string }>();
   const {
-    post: { boardName, fetch, reset },
+    post: { boardName, fetchAll, reset },
   } = useRootStore();
 
   useEffect(() => {
-    fetch(boardId);
-
+    fetchAll(boardId);
     return () => reset();
   }, [boardId]);
 

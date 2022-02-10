@@ -1,12 +1,23 @@
 import 'react-quill/dist/quill.snow.css';
 import styled from '@emotion/styled';
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useState, useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 
-export const PostEditor: React.FC = () => {
-  const { setValue } = useFormContext();
-  const handleChange = useCallback(data => setValue('content', data), [setValue]);
+interface Props {
+  content?: string;
+}
+
+export const Editor: React.FC<Props> = ({ content = '' }) => {
+  const [value, setValue] = useState(content);
+  const { setValue: set } = useFormContext();
+  const handleChange = useCallback(
+    data => {
+      set('content', data);
+      setValue(data);
+    },
+    [setValue],
+  );
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -16,9 +27,20 @@ export const PostEditor: React.FC = () => {
     [],
   );
 
+  useEffect(() => {
+    setValue(content);
+    set('content', content);
+  }, [content]);
+
   return (
     <Wrapper>
-      <ReactQuill theme="snow" onChange={handleChange} modules={modules} placeholder="내용을 입력하세요." />
+      <ReactQuill
+        theme="snow"
+        value={value}
+        onChange={handleChange}
+        modules={modules}
+        placeholder="내용을 입력하세요."
+      />
     </Wrapper>
   );
 };

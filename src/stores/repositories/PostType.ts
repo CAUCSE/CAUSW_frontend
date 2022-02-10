@@ -12,9 +12,3 @@ export interface PostResponseDTO {
   numComment: number;
   board?: BoardResponseDto;
 }
-
-export interface PostRequestDTO {
-  boardId: string;
-  title: string;
-  content: string;
-}

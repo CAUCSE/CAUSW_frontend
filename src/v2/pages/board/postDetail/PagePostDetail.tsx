@@ -22,13 +22,13 @@ export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
   const {
     ui,
-    post: { fetchPost, post },
+    post: { fetch, post },
   } = useRootStore();
 
   useInitPage({
     Nav: CommentInput,
     effect: () => {
-      fetchPost(postId);
+      fetch(postId);
     },
     deps: [postId],
   });
