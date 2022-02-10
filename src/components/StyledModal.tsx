@@ -2,17 +2,6 @@ import styled, { css } from 'styled-components';
 
 import { ClearButton, ClearLink } from './atoms/clear';
 
-export const Dimmed = styled.div`
-  position: absolute;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(50, 50, 50, 0.4);
-  user-select: none;
-`;
-
 export const ModalBox = styled.article`
   position: absolute;
   z-index: 1000;
@@ -44,12 +33,17 @@ export const ModalMenuButton = styled(ClearButton)`
 `;
 
 export const ModalAlertTitle = styled.div`
-  font-size: 16px;w
+  margin: 26px 0 14px;
+
+  font-size: 16px;
   line-height: 19px;
   text-align: center;
 `;
 
 export const ModalAlertMessage = styled.div`
+  margin: 14px 0 20px;
+  padding: 0 26px;
+
   font-size: 12px;
   line-height: 14px;
   color: #a3a1a1;

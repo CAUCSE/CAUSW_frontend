@@ -1,4 +1,4 @@
-import { action, flow, makeObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 import { CommentModel } from './models/CommentModel';
 import { PostModel } from './models/PostModel';
@@ -15,6 +15,12 @@ export class PostStore {
   posts: Model.Post[] = [];
   // 게시글 상세
   post?: Model.Post;
+
+  constructor(rootStore: Store.Root) {
+    makeAutoObservable(this, {}, { autoBind: true });
+
+    this.rootStore = rootStore;
+  }
 
   *fetch(bid: string): Generator {
     const { boardId, boardName, writable, post } = (yield Repo.findAll(bid)) as PostAllWithBoardResponseDto;
@@ -34,45 +40,29 @@ export class PostStore {
     this.rootStore.ui.commentUi.setComments(commentList.content.map(data => new CommentModel(data)));
   }
 
-  reset(): void {
-    this.boardId = '';
-    this.boardName = '';
-    this.writable = false;
-    this.posts = [];
-    this.post = undefined;
-  }
-
-  //
-  postId?: string;
-
-  constructor(rootStore: Store.Root) {
-    makeObservable(this, {
-      boardId: observable,
-      boardName: observable,
-      writable: observable,
-      posts: observable,
-      post: observable,
-
-      fetch: flow.bound,
-      fetchPost: flow.bound,
-      reset: action.bound,
-
-      //
-
-      postId: observable,
-      create: flow.bound,
-      resetDetail: action.bound,
-    });
-
-    this.rootStore = rootStore;
-  }
-
   *create(data: Partial<PostRequestDTO>): Generator {
     const body = { ...data, boardId: this.boardId } as PostRequestDTO;
 
     this.post = (yield Repo.create(body)) as Model.Post;
 
     return this.post;
+  }
+
+  *deletePost(pid: string): Generator {
+    try {
+      yield Repo.delete(pid);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  reset(): void {
+    this.boardId = '';
+    this.boardName = '';
+    this.writable = false;
+    this.posts = [];
+    this.post = undefined;
   }
 
   resetDetail(): void {

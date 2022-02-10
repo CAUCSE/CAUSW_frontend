@@ -3,14 +3,7 @@ import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Portal } from '@/components/Portal';
-import {
-  Dimmed,
-  ModalAlertMessage,
-  ModalAlertTitle,
-  ModalBox,
-  ModalFooter,
-  ModalFooterButton,
-} from '@/components/StyledModal';
+import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/components/StyledModal';
 import { useRootStore } from '@/stores/RootStore';
 
 export const CommentDeleteModal: React.FC = observer(() => {
@@ -42,7 +35,7 @@ export const CommentDeleteModal: React.FC = observer(() => {
             <ModalFooterButton onClick={handleDelete}>확인</ModalFooterButton>
           </ModalFooter>
         </Box>
-        <Dimmed />
+        {/* <Dimmed /> */}
       </>
     </Portal>
   ) : null;

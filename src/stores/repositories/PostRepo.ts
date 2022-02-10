@@ -19,12 +19,14 @@ class PostRepo {
     return data;
   };
 
-  //
-
   create = async (body: PostRequestDTO): Promise<PostModel> => {
     const { data } = await API.post(this.URI, body);
 
     return new PostModel(data);
+  };
+
+  delete = async (postId: string): Promise<void> => {
+    await API.delete(`${this.URI}/${postId}`);
   };
 }
 

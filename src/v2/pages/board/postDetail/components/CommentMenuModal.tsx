@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import styled from 'styled-components';
 
 import { Portal } from '@/components/Portal';
-import { Dimmed, ModalBox, ModalMenuButton } from '@/components/StyledModal';
+import { ModalBox, ModalMenuButton } from '@/components/StyledModal';
 import { useRootStore } from '@/stores/RootStore';
 import { CommentInputState } from '@/stores/ui/CommentUi';
 
@@ -37,7 +37,7 @@ export const CommentMenuModal: React.FC = observer(() => {
           ) : null}
           {buf.deletable ? <ModalMenuButton onClick={handleOpenDeleteModal}>댓글 삭제</ModalMenuButton> : null}
         </Box>
-        <Dimmed onClick={closeMenuModal} />
+        {/* <Dimmed onClick={closeMenuModal} /> */}
       </>
     </Portal>
   ) : null;

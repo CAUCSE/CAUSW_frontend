@@ -7,10 +7,12 @@ import {
   CommentDeleteModal,
   CommentInput,
   CommentMenuModal,
+  DeleteStoreProvider,
   PostAuthor,
   PostComments,
   PostDetailMenu,
 } from './components';
+import { DeleteModal } from './components/PostDeleteModal';
 
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
@@ -31,17 +33,22 @@ export const PagePostDetail: React.FC = observer(() => {
     deps: [postId],
   });
 
-  return post ? (
-    <>
-      <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={PostDetailMenu} />
-      <PostAuthor model={post.author} date={post.formatedCreatedAt} />
-      <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
-      <PostCommentNum num={post.commentCount} />
-      <PostComments list={ui.commentUi.comments} />
-      <CommentMenuModal />
-      <CommentDeleteModal />
-    </>
-  ) : null;
+  return (
+    <DeleteStoreProvider>
+      {post ? (
+        <>
+          <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={PostDetailMenu} />
+          <PostAuthor model={post.author} date={post.formatedCreatedAt} />
+          <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
+          <PostCommentNum num={post.commentCount} />
+          <PostComments list={ui.commentUi.comments} />
+          <CommentMenuModal />
+          <CommentDeleteModal />
+        </>
+      ) : null}
+      <DeleteModal />
+    </DeleteStoreProvider>
+  );
 });
 
 const PostContent = styled.p`

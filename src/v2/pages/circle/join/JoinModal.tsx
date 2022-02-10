@@ -24,7 +24,7 @@ export const JoinModal: React.FC = observer(() => {
   return circle ? (
     <Modal open={visible} closeAfterTransition>
       <Box>
-        <Title>
+        <M.ModalAlertTitle>
           {isDone
             ? '가입 신청이 완료되었습니다.'
             : isAwait
@@ -32,8 +32,8 @@ export const JoinModal: React.FC = observer(() => {
             : isBlock
             ? '가입이 제한되었습니다.'
             : '소모임 신청'}
-        </Title>
-        <Message>
+        </M.ModalAlertTitle>
+        <M.ModalAlertMessage>
           {isDone || isAwait
             ? '소모임 동아리장이 가입을 허가해 줄 때 까지 기다려주세요.'
             : isMember
@@ -41,7 +41,7 @@ export const JoinModal: React.FC = observer(() => {
             : isBlock
             ? '소모임장 혹은 관리자에게 문의해주세요.'
             : `${circle.name} 소모임에 가입하시겠습니까?`}
-        </Message>
+        </M.ModalAlertMessage>
         <M.ModalFooter>
           {isDone || isAwait || isBlock || isMember ? (
             <M.ModalFooterButton onClick={handleCancel}>확인</M.ModalFooterButton>
@@ -61,13 +61,4 @@ const Box = styled(M.ModalBox)`
   box-sizing: border-box;
   width: 240px;
   overflow: hidden;
-`;
-
-const Title = styled(M.ModalAlertTitle)`
-  margin: 1.5rem 0;
-`;
-
-const Message = styled(M.ModalAlertMessage)`
-  margin-bottom: 20px;
-  padding: 0 26px;
 `;
