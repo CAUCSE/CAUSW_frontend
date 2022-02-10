@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { generatePath, useParams } from 'react-router-dom';
 import { Virtuoso } from 'react-virtuoso';
 
@@ -11,17 +11,22 @@ import { Header } from '@/v2/components';
 
 export const PagePostList: React.FC = observer(() => {
   const { boardId } = useParams<{ boardId: string }>();
+  const timer = useRef<NodeJS.Timeout>();
   const {
     post: { boardName, posts, hasMore, page, setPage, fetchAll, reset },
   } = useRootStore();
   const loadMore = useCallback(
-    (page: number) => () =>
-      hasMore &&
-      setTimeout(() => {
-        fetchAll(boardId, page + 1);
-        setPage(page + 1);
-      }, 50),
-    [hasMore, boardId],
+    (hasMore: boolean, page: number) => () => {
+      if (timer.current) clearTimeout(timer.current);
+
+      if (hasMore) {
+        timer.current = setTimeout(() => {
+          fetchAll(boardId, page + 1);
+          setPage(page + 1);
+        }, 50);
+      }
+    },
+    [boardId],
   );
 
   useEffect(() => {
@@ -36,7 +41,7 @@ export const PagePostList: React.FC = observer(() => {
       <Virtuoso
         style={{ height: 'calc(100% - 85px)' }}
         data={posts}
-        endReached={loadMore(page)}
+        endReached={loadMore(hasMore, page)}
         overscan={200}
         itemContent={(index, post) => (
           <PostCard key={post.id} model={post} to={generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id })} />
