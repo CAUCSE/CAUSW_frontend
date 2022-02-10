@@ -27,6 +27,8 @@ const Wrapper = styled.div`
   flex: 1 0 0;
 
   .quill {
+    display: flex;
+    flex-direction: column;
     height: 100%;
   }
 
@@ -36,6 +38,7 @@ const Wrapper = styled.div`
   }
 
   .ql-container.ql-snow {
+    flex: 1 0 0;
     padding: 8px 0;
     border: 0;
   }
