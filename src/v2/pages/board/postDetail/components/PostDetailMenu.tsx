@@ -23,7 +23,7 @@ export const PostDetailMenu: React.FC = observer(() => {
 
   const handleClose = () => setAnchorEl(null);
   const handleClick = (evt: React.MouseEvent<HTMLElement>) => setAnchorEl(evt.currentTarget);
-  const handleEdit = () => push(generatePath(PAGE_URL.PostEdit, { boardId, postId: post.id }));
+  const handleEdit = () => push(generatePath(PAGE_URL.PostEdit, { boardId, postId: post.id }), { prevDetail: true });
   const handleDelete = () => {
     setAnchorEl(null);
     setVisible(true);

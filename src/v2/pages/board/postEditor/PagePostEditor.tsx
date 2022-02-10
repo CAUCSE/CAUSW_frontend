@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
-import { generatePath, useHistory } from 'react-router';
+import { generatePath, useHistory, useLocation } from 'react-router';
 import { useParams, useRouteMatch } from 'react-router-dom';
 
 import { PageView } from './PageView';
@@ -11,7 +11,8 @@ import { useInitPage } from '@/v2/hooks';
 
 export const PagePostEditor: React.FC = observer(() => {
   const isEdit = !!useRouteMatch(PAGE_URL.PostEdit);
-  const { replace } = useHistory();
+  const { state } = useLocation<{ prevDetail: boolean }>();
+  const { replace, goBack } = useHistory();
   const { boardId, postId } = useParams<{ boardId: string; postId: string }>();
   const {
     post: { create, edit, fetchAll, fetch },
@@ -28,9 +29,10 @@ export const PagePostEditor: React.FC = observer(() => {
         curPostId = post.id;
       }
 
-      replace(generatePath(PAGE_URL.PostDetail, { boardId, postId: curPostId }));
+      if (state?.prevDetail) goBack();
+      else replace(generatePath(PAGE_URL.PostDetail, { boardId, postId: curPostId }));
     },
-    [replace],
+    [replace, state],
   );
 
   useInitPage({
@@ -41,6 +43,8 @@ export const PagePostEditor: React.FC = observer(() => {
     },
     deps: [boardId],
   });
+
+  console.debug(state?.prevDetail);
 
   return <PageView isEdit={isEdit} onSubmit={onSubmit} />;
 });
