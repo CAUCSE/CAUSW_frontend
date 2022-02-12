@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { useJoinStore } from './JoinStore';
 
-import * as M from '@/components/StyledModal';
 import { useRootStore } from '@/stores/RootStore';
+import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
 
 export const JoinModal: React.FC = observer(() => {
   const {
@@ -24,7 +24,7 @@ export const JoinModal: React.FC = observer(() => {
   return circle ? (
     <Modal open={visible} closeAfterTransition>
       <Box>
-        <M.ModalAlertTitle>
+        <ModalAlertTitle>
           {isDone
             ? '가입 신청이 완료되었습니다.'
             : isAwait
@@ -32,8 +32,8 @@ export const JoinModal: React.FC = observer(() => {
             : isBlock
             ? '가입이 제한되었습니다.'
             : '소모임 신청'}
-        </M.ModalAlertTitle>
-        <M.ModalAlertMessage>
+        </ModalAlertTitle>
+        <ModalAlertMessage>
           {isDone || isAwait
             ? '소모임 동아리장이 가입을 허가해 줄 때 까지 기다려주세요.'
             : isMember
@@ -41,23 +41,23 @@ export const JoinModal: React.FC = observer(() => {
             : isBlock
             ? '소모임장 혹은 관리자에게 문의해주세요.'
             : `${circle.name} 소모임에 가입하시겠습니까?`}
-        </M.ModalAlertMessage>
-        <M.ModalFooter>
+        </ModalAlertMessage>
+        <ModalFooter>
           {isDone || isAwait || isBlock || isMember ? (
-            <M.ModalFooterButton onClick={handleCancel}>확인</M.ModalFooterButton>
+            <ModalFooterButton onClick={handleCancel}>확인</ModalFooterButton>
           ) : (
             <>
-              <M.ModalFooterButton onClick={handleCancel}>취소</M.ModalFooterButton>
-              <M.ModalFooterButton onClick={handleOk}>확인</M.ModalFooterButton>
+              <ModalFooterButton onClick={handleCancel}>취소</ModalFooterButton>
+              <ModalFooterButton onClick={handleOk}>확인</ModalFooterButton>
             </>
           )}
-        </M.ModalFooter>
+        </ModalFooter>
       </Box>
     </Modal>
   ) : null;
 });
 
-const Box = styled(M.ModalBox)`
+const Box = styled(ModalBox)`
   box-sizing: border-box;
   width: 240px;
   overflow: hidden;

@@ -1,8 +1,6 @@
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import React from 'react';
 
-import { CommentUiStore } from './ui/CommentUi';
-
 import { HeaderUiStore } from '@/components/common/header';
 
 enum DISPLAY {
@@ -13,10 +11,10 @@ enum DISPLAY {
 
 export class UiStore {
   rootStore: Store.Root;
+
   displayType: DISPLAY = DISPLAY.MOBILE;
   header = new HeaderUiStore();
   CustomNav?: React.FC | null;
-  commentUi = new CommentUiStore();
 
   constructor(rootStore: Store.Root) {
     makeObservable(this, {

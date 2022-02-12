@@ -5,10 +5,26 @@ export const ClearButton = styled.button`
   user-select: none;
   padding: 0;
   border: none;
-  background-color: Transparent;
+  background-color: transparent;
   background-repeat: no-repeat;
   cursor: pointer;
   outline: none;
+
+  &:focus,
+  &:active {
+    -webkit-tap-highlight-color: transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    outline: none;
+  }
+`;
+
+export const ClearTextarea = styled.textarea`
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: inherit;
+  resize: none;
 `;
 
 export const ClearLink = styled(Link)`

@@ -7,27 +7,21 @@ import { API } from 'configs/axios';
 class CommentRepo {
   URI = '/api/v1/comments';
 
-  create = async (body: CreateCommentBody): Promise<Model.Comment> => {
-    const { data } = (await API.post(this.URI, body)) as AxiosResponse<Comment.Dto>;
-
-    return new CommentModel(data, body.parentCommentId ? true : false);
-  };
-
-  update = async (id: string, content: string) => {
-    const { data } = (await API.put(`${this.URI}/${id}`, { content })) as AxiosResponse<Comment.Dto>;
+  create = async (body: Comment.CreateRequestDto): Promise<Model.Comment> => {
+    const { data } = (await API.post(this.URI, body)) as AxiosResponse<Comment.CreateReponseDto>;
 
     return new CommentModel(data);
   };
 
-  delete = async (id: string) => {
-    return await API.delete(`${this.URI}/${id}`);
+  update = async (cid: string, content: string) => {
+    const { data } = (await API.put(`${this.URI}/${cid}`, { content })) as AxiosResponse<Comment.CreateReponseDto>;
+
+    return new CommentModel(data);
+  };
+
+  delete = async (cid: string) => {
+    await API.delete(`${this.URI}/${cid}`);
   };
 }
 
 export const CommentRepoImpl = new CommentRepo();
-
-export interface CreateCommentBody {
-  postId: string;
-  parentCommentId?: string;
-  content: string;
-}

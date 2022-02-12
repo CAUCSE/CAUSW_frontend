@@ -4,11 +4,11 @@ import { generatePath, useHistory } from 'react-router-dom';
 
 import { useDeleteStore } from './DeleteStore';
 
-import * as M from '@/components/StyledModal';
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
+import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
 
-export const DeleteModal: React.FC = observer(() => {
+export const PostDeleteModalContainer: React.FC = observer(() => {
   const { replace } = useHistory();
   const {
     post: { boardId, post, deletePost },
@@ -30,22 +30,21 @@ export const DeleteModal: React.FC = observer(() => {
   return (
     <Modal open={visible} closeAfterTransition>
       <Box>
-        <M.ModalAlertTitle>게시글 삭제</M.ModalAlertTitle>
-        <M.ModalAlertMessage>
+        <ModalAlertTitle>게시글 삭제</ModalAlertTitle>
+        <ModalAlertMessage>
           작성한 게시글을 삭제하시겠습니까? <br />
           삭제된 게시글은 복구할 수 없습니다.
-        </M.ModalAlertMessage>
-        <M.ModalFooter>
-          <M.ModalFooterButton onClick={handleCancel}>취소</M.ModalFooterButton>
-          <M.ModalFooterButton onClick={handleOk}>확인</M.ModalFooterButton>
-        </M.ModalFooter>
+        </ModalAlertMessage>
+        <ModalFooter>
+          <ModalFooterButton onClick={handleCancel}>취소</ModalFooterButton>
+          <ModalFooterButton onClick={handleOk}>확인</ModalFooterButton>
+        </ModalFooter>
       </Box>
     </Modal>
   );
 });
 
-const Box = styled(M.ModalBox)`
-  box-sizing: border-box;
+const Box = styled(ModalBox)`
   width: 240px;
   overflow: hidden;
 `;

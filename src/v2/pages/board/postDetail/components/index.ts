@@ -1,7 +1,6 @@
-export { CommentDeleteModal } from './CommentDeleteModal';
+export { PostComments } from './Comment';
 export { CommentInput } from './CommentInput';
-export { CommentMenuModal } from './CommentMenuModal';
+export { CommentMenu } from './CommentMenu';
 export { PostAuthor } from './PostAuthor';
-export { PostComments } from './PostComments';
 export { DeleteStoreProvider } from './PostDeleteModal';
 export { PostDetailMenu } from './PostDetailMenu';

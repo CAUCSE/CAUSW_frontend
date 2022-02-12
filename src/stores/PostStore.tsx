@@ -59,7 +59,7 @@ export class PostStore {
     this.boardId = boardId;
     this.boardName = boardName;
     this.post = new PostModel(data);
-    this.rootStore.ui.commentUi.setComments(commentList.content.map(data => new CommentModel(data)));
+    this.rootStore.comment.setComments(commentList.content.map(data => new CommentModel(data)));
   }
 
   *edit(pid: string, data: Post.UpdateRequestDto): Generator {

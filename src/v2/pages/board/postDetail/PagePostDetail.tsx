@@ -3,16 +3,9 @@ import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 
 import { Breadcrumb } from '../components';
-import {
-  CommentDeleteModal,
-  CommentInput,
-  CommentMenuModal,
-  DeleteStoreProvider,
-  PostAuthor,
-  PostComments,
-  PostDetailMenu,
-} from './components';
-import { DeleteModal } from './components/PostDeleteModal';
+import { CommentInput, CommentMenu, DeleteStoreProvider, PostAuthor, PostComments, PostDetailMenu } from './components';
+import { CommentDeleteModal } from './components/CommentDeleteModal';
+import { PostDeleteModal } from './components/PostDeleteModal';
 
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
@@ -21,7 +14,7 @@ import { useInitPage } from '@/v2/hooks';
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<{ boardId: string; postId: string }>();
   const {
-    ui,
+    comment,
     post: { fetch, post },
   } = useRootStore();
 
@@ -41,12 +34,12 @@ export const PagePostDetail: React.FC = observer(() => {
           <PostAuthor model={post.author} date={post.formatedCreatedAt} />
           <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
           <PostCommentNum num={post.commentCount} />
-          <PostComments list={ui.commentUi.comments} />
-          <CommentMenuModal />
-          <CommentDeleteModal />
+          <PostComments list={comment.comments} />
         </>
       ) : null}
-      <DeleteModal />
+      <PostDeleteModal />
+      <CommentMenu />
+      <CommentDeleteModal />
     </DeleteStoreProvider>
   );
 });
