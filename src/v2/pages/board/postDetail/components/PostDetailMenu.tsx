@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { generatePath, useHistory } from 'react-router-dom';
 
-import { useDeleteStore } from './PostDeleteModal/DeleteStore';
+import { usePageUiStore } from '../PagePostDetailUiStore';
 
 import { MenuIcon } from '@/components/atoms/Icon';
 import { PAGE_URL } from '@/configs/path';
@@ -13,7 +13,7 @@ export const PostDetailMenu: React.FC = observer(() => {
   const {
     post: { boardId, post },
   } = useRootStore();
-  const { setVisible } = useDeleteStore();
+  const { postDeleteModal } = usePageUiStore();
 
   if (!boardId || !post) return null;
 
@@ -26,7 +26,7 @@ export const PostDetailMenu: React.FC = observer(() => {
   const handleEdit = () => push(generatePath(PAGE_URL.PostEdit, { boardId, postId: post.id }), { prevDetail: true });
   const handleDelete = () => {
     setAnchorEl(null);
-    setVisible(true);
+    postDeleteModal.open();
   };
 
   return post.updatable || post.deletable ? (

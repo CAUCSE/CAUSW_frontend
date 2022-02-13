@@ -3,17 +3,10 @@ import { observer } from 'mobx-react-lite';
 import { Route, Switch, useParams } from 'react-router-dom';
 
 import { Breadcrumb } from '../components';
-import {
-  CommentInput,
-  CommentMenu,
-  DeleteStoreProvider,
-  PostAuthor,
-  PostReplyComments,
-  PostComments,
-  PostDetailMenu,
-} from './components';
+import { CommentInput, CommentMenu, PostAuthor, PostReplyComments, PostComments, PostDetailMenu } from './components';
 import { CommentDeleteModal } from './components/CommentDeleteModal';
 import { PostDeleteModal } from './components/PostDeleteModal';
+import { PageUiProvider } from './PagePostDetailUiStore';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
@@ -36,7 +29,7 @@ export const PagePostDetail: React.FC = observer(() => {
   });
 
   return (
-    <DeleteStoreProvider>
+    <PageUiProvider>
       {post ? (
         <>
           <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={PostDetailMenu} />
@@ -56,7 +49,7 @@ export const PagePostDetail: React.FC = observer(() => {
       <PostDeleteModal />
       <CommentMenu />
       <CommentDeleteModal />
-    </DeleteStoreProvider>
+    </PageUiProvider>
   );
 });
 

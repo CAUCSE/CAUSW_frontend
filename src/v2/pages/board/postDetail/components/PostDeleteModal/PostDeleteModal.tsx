@@ -1,19 +1,21 @@
-import { Modal, styled } from '@mui/material';
+import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { generatePath, useHistory } from 'react-router-dom';
 
-import { useDeleteStore } from './DeleteStore';
+import { usePageUiStore } from '../../PagePostDetailUiStore';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
 
-export const PostDeleteModalContainer: React.FC = observer(() => {
+export const PostDeleteModal: React.FC = observer(() => {
   const { replace } = useHistory();
   const {
     post: { boardId, post, deletePost },
   } = useRootStore();
-  const { visible, setVisible } = useDeleteStore();
+  const {
+    postDeleteModal: { visible, close },
+  } = usePageUiStore();
 
   if (!boardId || !post) return null;
 
@@ -23,13 +25,13 @@ export const PostDeleteModalContainer: React.FC = observer(() => {
     // TODO: alert('게시글이 삭제되었습니다.')
     if (success) replace(generatePath(PAGE_URL.PostList, { boardId }));
     // else // TODO: alert('에러가 발생했습니다.')
-    setVisible(false);
+    close();
   };
-  const handleCancel = () => setVisible(false);
+  const handleCancel = () => close();
 
   return (
     <Modal open={visible} closeAfterTransition>
-      <Box>
+      <ModalBox>
         <ModalAlertTitle>게시글 삭제</ModalAlertTitle>
         <ModalAlertMessage>
           작성한 게시글을 삭제하시겠습니까? <br />
@@ -39,12 +41,7 @@ export const PostDeleteModalContainer: React.FC = observer(() => {
           <ModalFooterButton onClick={handleCancel}>취소</ModalFooterButton>
           <ModalFooterButton onClick={handleOk}>확인</ModalFooterButton>
         </ModalFooter>
-      </Box>
+      </ModalBox>
     </Modal>
   );
 });
-
-const Box = styled(ModalBox)`
-  width: 240px;
-  overflow: hidden;
-`;
