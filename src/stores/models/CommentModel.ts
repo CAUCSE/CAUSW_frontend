@@ -1,5 +1,5 @@
 import { utcToZonedTime, format } from 'date-fns-tz';
-import { makeAutoObservable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 import { AuthorModel } from './AuthorModel';
 
@@ -28,7 +28,17 @@ export class CommentModel {
     // TODO: content가 '삭제된 댓글입니다.'로 변경시 필요 없음, deletable만 필요
     this.isDeleted = props.isDeleted;
 
-    makeAutoObservable(this, {}, { autoBind: true });
+    makeObservable(
+      this,
+      {
+        content: observable,
+        updatedAt: observable,
+
+        refresh: action,
+        formatedDate: computed,
+      },
+      { autoBind: true },
+    );
   }
 
   /**

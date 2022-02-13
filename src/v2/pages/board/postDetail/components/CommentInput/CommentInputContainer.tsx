@@ -1,12 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useRouteMatch } from 'react-router-dom';
 
 import { CommentInputView } from './CommentInputView';
 import { EditChip } from './EditChip';
 import { ReplyChip } from './ReplyChip';
 import { Nav } from './styled';
 
+import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 
 interface FormBody {
@@ -14,29 +16,35 @@ interface FormBody {
 }
 
 export const CommentInputContainer: React.FC = observer(() => {
+  const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
   const {
+    replyComment,
     comment,
     post: { post },
   } = useRootStore();
   const methods = useForm<FormBody>();
   const onSubmit = useCallback(
     async ({ content }: FormBody) => {
-      const { isEdit, target } = comment;
+      const { isEdit } = comment;
 
-      if (!post) return;
-
-      if (isEdit && target) {
-        comment.update(target.id, content);
+      if (isReplyComment) {
+        await replyComment.create(content);
       } else {
-        await comment.create({
-          postId: post.id,
-          content,
-        });
-        post.upCommentCount();
-        methods.setValue('content', '');
+        if (!post) return;
+
+        if (isEdit && comment.target) {
+          comment.update(comment.target.id, content);
+        } else {
+          await comment.create({
+            postId: post.id,
+            content,
+          });
+          post.upCommentCount();
+          methods.setValue('content', '');
+        }
       }
     },
-    [comment, post],
+    [comment, post, isReplyComment],
   );
 
   useEffect(() => {

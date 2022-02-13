@@ -11,8 +11,3 @@ export const CommentsBox = styled(ClearUl)`
     position: relative;
   }
 `;
-
-// const ReCommentIcon = styled.img.attrs({ src: '/images/icons/comment_arrow_icon.svg' })`
-//   position: absolute;
-//   top: 15px;
-// `;

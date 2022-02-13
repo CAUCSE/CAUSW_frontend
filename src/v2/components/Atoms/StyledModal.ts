@@ -13,6 +13,8 @@ export const ModalBox = styled.article`
   border-radius: 10px;
   user-select: none;
   outline: none;
+  width: 280px;
+  overflow: hidden;
 `;
 
 const MenuItemCSS = css`

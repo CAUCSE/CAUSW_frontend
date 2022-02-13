@@ -14,7 +14,6 @@ export class CommentStore {
   rootStore: Store.Root;
   comments: Model.Comment[] = [];
   scollFocusId?: string;
-  buf?: Model.Comment; //
   target?: Model.Comment;
   state: InputState = InputState.WRITE;
 
@@ -45,7 +44,6 @@ export class CommentStore {
 
   resetState(): void {
     this.state = InputState.WRITE;
-    this.buf = undefined;
     this.target = undefined;
   }
 

@@ -10,7 +10,7 @@ interface Props {
   model: Model.Comment;
 }
 
-export const CommentView: React.FC<Props> = observer(
+export const CommentCardView: React.FC<Props> = observer(
   ({
     state,
     model: {

@@ -6,6 +6,7 @@ import { CircleStore } from './CircleStore';
 import { CommentStore } from './CommentStore';
 import { HomeStore } from './HomeStore';
 import { PostStore } from './PostStore';
+import { ReplyCommentStore } from './ReplyCommentStore';
 import { UiStore } from './UiStore';
 
 export class RootStore {
@@ -16,6 +17,7 @@ export class RootStore {
   board: Store.Board;
   post: Store.Post;
   comment: Store.Comment;
+  replyComment: Store.ReplyComment;
 
   constructor() {
     this.auth = new AuthStore(this);
@@ -25,6 +27,7 @@ export class RootStore {
     this.board = new BoardStore(this);
     this.post = new PostStore(this);
     this.comment = new CommentStore(this);
+    this.replyComment = new ReplyCommentStore(this);
   }
 }
 

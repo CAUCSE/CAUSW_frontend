@@ -14,10 +14,17 @@ export enum PAGE_URL {
   Board = '/boards',
   PostList = '/boards/:boardId/posts',
   PostWrite = '/boards/:boardId/posts/write',
-  PostDetail = '/boards/:boardId/posts/:postId',
   PostEdit = '/boards/:boardId/posts/:postId/edit',
+  PostDetail = '/boards/:boardId/posts/:postId',
+  PostReplyComment = '/boards/:boardId/posts/:postId/comment/:commentId',
 
   Setting = '/settings',
 
   Err404 = '/error/404',
+}
+
+export interface PostReplyCommentParams {
+  boardId: string;
+  postId: string;
+  commentId: string;
 }

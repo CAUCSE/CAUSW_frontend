@@ -1,12 +1,21 @@
 import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
-import { useParams } from 'react-router-dom';
+import { Route, Switch, useParams } from 'react-router-dom';
 
 import { Breadcrumb } from '../components';
-import { CommentInput, CommentMenu, DeleteStoreProvider, PostAuthor, PostComments, PostDetailMenu } from './components';
+import {
+  CommentInput,
+  CommentMenu,
+  DeleteStoreProvider,
+  PostAuthor,
+  PostReplyComments,
+  PostComments,
+  PostDetailMenu,
+} from './components';
 import { CommentDeleteModal } from './components/CommentDeleteModal';
 import { PostDeleteModal } from './components/PostDeleteModal';
 
+import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
 import { useInitPage } from '@/v2/hooks';
@@ -34,7 +43,14 @@ export const PagePostDetail: React.FC = observer(() => {
           <PostAuthor model={post.author} date={post.formatedCreatedAt} />
           <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
           <PostCommentNum num={post.commentCount} />
-          <PostComments list={comment.comments} />
+          <Switch>
+            <Route path={PAGE_URL.PostReplyComment}>
+              <PostReplyComments />
+            </Route>
+            <Route>
+              <PostComments list={comment.comments} />
+            </Route>
+          </Switch>
         </>
       ) : null}
       <PostDeleteModal />
