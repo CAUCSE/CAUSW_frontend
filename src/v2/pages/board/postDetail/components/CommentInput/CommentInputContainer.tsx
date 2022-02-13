@@ -28,7 +28,7 @@ export const CommentInputContainer: React.FC = observer(() => {
       async ({ content }: FormBody) => {
         if (!post) return;
 
-        const { isReply, isEdit, target } = commentInput;
+        const { isEdit, target } = commentInput;
 
         if (isReplyComment) {
           if (!isEdit) await replyComment.create(content, target);
@@ -38,7 +38,6 @@ export const CommentInputContainer: React.FC = observer(() => {
           else if (target) await comment.update(content, target);
         }
 
-        if (!isReply) post.upCommentCount();
         methods.setValue('content', '');
         commentInput.resetState();
       },

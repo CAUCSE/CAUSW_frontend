@@ -18,6 +18,7 @@ export class CommentStore {
   *create(data: Comment.CreateRequestDto): Generator {
     const comment = (yield Repo.create(data)) as Model.Comment;
     this.comments.unshift(comment);
+    this.rootStore.post.post?.setCommentCount(num => num + 1);
   }
 
   *update(content: string, target: Model.Comment): Generator {
@@ -28,5 +29,6 @@ export class CommentStore {
   *deleteComment(target: Model.Comment): Generator {
     const comment = (yield Repo.delete(target.id)) as Model.Comment;
     target.refresh(comment);
+    this.rootStore.post.post?.setCommentCount(num => num - 1);
   }
 }

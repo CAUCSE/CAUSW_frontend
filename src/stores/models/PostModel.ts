@@ -19,9 +19,9 @@ export class PostModel {
   constructor(props: Content | PostDetail.RootObject) {
     makeObservable(this, {
       commentCount: observable,
-      upCommentCount: action.bound,
-      downCommentCount: action.bound,
+      setCommentCount: action.bound,
     });
+
     this.id = props.id;
     this.title = props.title;
     this.author = new AuthorModel(props.writerAdmissionYear, props.writerName, props.writerProfileImage);
@@ -33,11 +33,9 @@ export class PostModel {
     this.deletable = (props as PostDetail.RootObject).deletable ?? false;
   }
 
-  upCommentCount(): void {
-    this.commentCount++;
-  }
-  downCommentCount(): void {
-    this.commentCount--;
+  setCommentCount(param: (num: number) => number | number): void {
+    if ('number' === typeof param) this.commentCount = param;
+    else this.commentCount = param(this.commentCount);
   }
 
   get formatedCreatedAt(): string {
