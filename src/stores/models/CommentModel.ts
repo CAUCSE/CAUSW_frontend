@@ -30,10 +30,25 @@ export class CommentModel {
     makeObservable(this, {
       content: observable,
       updatedAt: observable,
+      numChildComment: observable,
+      updatable: observable,
+      deletable: observable,
+      isDeleted: observable,
 
+      setNumChildComment: action.bound,
       refresh: action.bound,
+
       formatedDate: computed,
+      linedContent: computed,
     });
+  }
+
+  /**
+   * 답글 수 설정
+   */
+  setNumChildComment(param: (num: number) => number | number): void {
+    if ('number' === typeof param) this.numChildComment = param;
+    else this.numChildComment = param(this.numChildComment);
   }
 
   /**
@@ -56,6 +71,9 @@ export class CommentModel {
     return format(zonedDate, 'yyyy.MM.dd HH:mm');
   }
 
+  /**
+   * <br>로 개행된 내용
+   */
   get linedContent(): string {
     return this.content.replace(/(?:\r\n|\r|\n)/g, '<br/>');
   }

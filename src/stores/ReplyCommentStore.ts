@@ -36,6 +36,7 @@ export class ReplyCommentStore {
 
     const comment = (yield Repo.create(body as ReplyComment.CreateRequestDto)) as Model.ReplyComment;
     this.comments.push(comment);
+    this.parent.setNumChildComment(num => num + 1);
   }
 
   *update(content: string, target: Model.Comment): Generator {
@@ -44,7 +45,10 @@ export class ReplyCommentStore {
   }
 
   *deleteComment(target: Model.ReplyComment): Generator {
+    if (!this.parent) throw new Error('[ReplyCommentStore]: parent is undefined');
+
     const comment = (yield Repo.delete(target.id)) as Model.ReplyComment;
     target.refresh(comment);
+    this.parent.setNumChildComment(num => num - 1);
   }
 }
