@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { Route, Switch, useParams } from 'react-router-dom';
 
@@ -7,16 +6,16 @@ import { CommentInput, CommentMenu, PostAuthor, PostReplyComments, PostComments,
 import { CommentDeleteModal } from './components/CommentDeleteModal';
 import { PostDeleteModal } from './components/PostDeleteModal';
 import { PageUiProvider } from './PagePostDetailUiStore';
+import { PostContent } from './styled';
 
-import { PAGE_URL } from '@/configs/path';
+import { PAGE_URL, PostParams } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
 import { useInitPage } from '@/v2/hooks';
 
 export const PagePostDetail: React.FC = observer(() => {
-  const { postId } = useParams<{ boardId: string; postId: string }>();
+  const { postId } = useParams<PostParams>();
   const {
-    comment,
     post: { fetch, post },
   } = useRootStore();
 
@@ -37,27 +36,16 @@ export const PagePostDetail: React.FC = observer(() => {
           <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
           <PostCommentNum num={post.commentCount} />
           <Switch>
-            <Route path={PAGE_URL.PostReplyComment}>
-              <PostReplyComments />
-            </Route>
-            <Route>
-              <PostComments list={comment.comments} />
-            </Route>
+            <Route path={PAGE_URL.PostReplyComment} component={PostReplyComments} />
+            <Route path={PAGE_URL.PostDetail} component={PostComments} />
           </Switch>
         </>
-      ) : null}
+      ) : (
+        <>{/* TODO: 페이지 스켈레톤 */}</>
+      )}
       <PostDeleteModal />
       <CommentMenu />
       <CommentDeleteModal />
     </PageUiProvider>
   );
 });
-
-const PostContent = styled.p`
-  font-size: 14px;
-  line-height: 16px;
-
-  img {
-    width: 100%;
-  }
-`;

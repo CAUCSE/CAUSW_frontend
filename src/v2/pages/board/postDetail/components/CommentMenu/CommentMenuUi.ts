@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 export class CommentMenuUi {
   visible = false;
-  target?: Model.Comment;
+  target?: Model.Comment | Model.ReplyComment;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });

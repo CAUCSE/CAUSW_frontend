@@ -43,13 +43,14 @@ export const ModalAlertTitle = styled.div`
   text-align: center;
 `;
 
-export const ModalAlertMessage = styled.div`
+export const ModalAlertMessage = styled.div<{ center?: boolean }>`
   margin: 14px 0 20px;
   padding: 0 26px;
 
   font-size: 12px;
   line-height: 14px;
   color: #a3a1a1;
+  text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 
 export const ModalFooter = styled.div`

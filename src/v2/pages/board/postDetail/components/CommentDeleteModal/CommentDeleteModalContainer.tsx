@@ -2,36 +2,40 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 
-import { Box } from './styled';
+import { usePageUiStore } from '../../PagePostDetailUiStore';
 
+import { ReplyCommentModel } from '@/stores/models/ReplyCommentModel';
 import { useRootStore } from '@/stores/RootStore';
-import { ModalAlertMessage, ModalAlertTitle, ModalFooter, ModalFooterButton } from '@/v2/components';
+import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
 
 export const CommentDeleteModalContainer: React.FC = observer(() => {
+  const { comment, replyComment } = useRootStore();
   const {
-    comment: {
-      deleteModal: { visible, close, target },
-      deleteComment,
-    },
-  } = useRootStore();
+    commentDeleteModal: { visible, close, target },
+  } = usePageUiStore();
 
-  const handleOk = useCallback(async () => {
-    if (target) {
-      await deleteComment(target);
+  const handleOk = useCallback(
+    (target?: Model.Comment | Model.ReplyComment) => async () => {
+      if (!target) return;
+
+      if (target instanceof ReplyCommentModel) await replyComment.deleteComment(target);
+      else await comment.deleteComment(target);
+
       close();
-    }
-  }, [target]);
+    },
+    [],
+  );
 
   return (
     <Modal open={visible} closeAfterTransition>
-      <Box>
+      <ModalBox>
         <ModalAlertTitle>댓글 삭제</ModalAlertTitle>
-        <ModalAlertMessage>작성한 댓글을 삭제하시겠습니까?</ModalAlertMessage>
+        <ModalAlertMessage center>작성한 댓글을 삭제하시겠습니까?</ModalAlertMessage>
         <ModalFooter>
           <ModalFooterButton onClick={close}>취소</ModalFooterButton>
-          <ModalFooterButton onClick={handleOk}>확인</ModalFooterButton>
+          <ModalFooterButton onClick={handleOk(target)}>확인</ModalFooterButton>
         </ModalFooter>
-      </Box>
+      </ModalBox>
     </Modal>
   );
 });

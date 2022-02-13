@@ -1,25 +1,21 @@
 import { computed } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useLongPress } from 'use-long-press';
 
-import { InputState } from '../../../../../../stores/CommentStore';
+import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { CommentCardView } from '../Comment';
-import { Icon, Li } from './styled';
-
-import { useRootStore } from '@/stores/RootStore';
+import { InputState } from '../CommentInput';
+import { Li } from './styled';
 
 export const ReplyCommentContainer: React.FC<{ model: Model.Comment }> = observer(({ model }) => {
   const ref = useRef<HTMLLIElement>(null);
+
   const {
-    comment: {
-      target,
-      state,
-      scollFocusId,
-      menuModal: { open },
-    },
-  } = useRootStore();
-  const commentState = computed(() => (target?.id === model.id ? state : InputState.WRITE)).get();
+    commentInput,
+    commentMenuModal: { open },
+  } = usePageUiStore();
+  const state = computed(() => (commentInput.target?.id === model.id ? commentInput.state : InputState.WRITE)).get();
 
   const handeLongPress = useCallback(model => () => open(model), [open]);
   const bind = useLongPress(handeLongPress(model), {
@@ -28,14 +24,9 @@ export const ReplyCommentContainer: React.FC<{ model: Model.Comment }> = observe
     onFinish: ev => ev?.preventDefault(),
   });
 
-  useEffect(() => {
-    if (scollFocusId === model.id) ref.current?.scrollIntoView({ block: 'center' });
-  }, [scollFocusId, model, ref]);
-
   return (
     <Li ref={ref} {...bind}>
-      <Icon src="/images/icons/comment_arrow_icon.svg" alt="reply icon" />
-      <CommentCardView state={commentState} model={model} />
+      <CommentCardView state={state} model={model} />
     </Li>
   );
 });

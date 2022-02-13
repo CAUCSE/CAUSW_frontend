@@ -1,57 +1,64 @@
 import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
-import { generatePath, useHistory, useParams } from 'react-router-dom';
+import { generatePath, useHistory, useParams, useRouteMatch } from 'react-router-dom';
 
-import { InputState } from '../../../../../../stores/CommentStore';
+import { usePageUiStore } from '../../PagePostDetailUiStore';
+import { InputState } from '../CommentInput';
 import { Box } from './styled';
 
-import { PAGE_URL, PostReplyCommentParams } from '@/configs/path';
-import { useRootStore } from '@/stores/RootStore';
+import { PAGE_URL, PostParams } from '@/configs/path';
 import { ModalMenuButton } from '@/v2/components/atoms';
 
 export const CommentMenuContainer: React.FC = observer(() => {
-  const params = useParams<PostReplyCommentParams>();
+  const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
+  const params = useParams<PostParams>();
   const { replace } = useHistory();
   const {
-    comment: {
-      setState,
-      menuModal: { visible, close, target },
-      deleteModal: { open },
-    },
-  } = useRootStore();
-  const handleSetState = useCallback(
-    (state: InputState, params: PostReplyCommentParams, target?: Model.Comment) => () => {
-      setState(state);
-      close();
+    commentInput: { setState },
+    commentMenuModal: { visible, close, target },
+    commentDeleteModal: { open },
+  } = usePageUiStore();
 
-      if (target && state === InputState.REPLY) {
-        replace(generatePath(PAGE_URL.PostReplyComment, { ...params, commentId: target.id }));
-      }
-    },
-    [close, setState],
+  const handleSetState = useCallback(
+    (isReplyComment: boolean, state: InputState, params: PostParams, target?: Model.Comment | Model.ReplyComment) =>
+      () => {
+        if (!target) return;
+
+        close();
+        if (!isReplyComment && state === InputState.REPLY)
+          replace(generatePath(PAGE_URL.PostReplyComment, { ...params, commentId: target.id }));
+        else setState(state, target);
+      },
+    [],
   );
   const handleOpenDeleteModal = useCallback(
-    (target?: Model.Comment) => () => {
-      if (target) {
-        close();
-        open(target);
-      }
+    (target?: Model.Comment | Model.ReplyComment) => () => {
+      if (!target) return;
+
+      close();
+      open(target);
     },
-    [close],
+    [],
   );
 
-  return (
+  return target ? (
     <Modal open={visible} onClose={close} closeAfterTransition>
       <Box>
-        <ModalMenuButton onClick={handleSetState(InputState.REPLY, params, target)}>답글 달기</ModalMenuButton>
+        {!target?.isDeleted ? (
+          <ModalMenuButton onClick={handleSetState(isReplyComment, InputState.REPLY, params, target)}>
+            답글 달기
+          </ModalMenuButton>
+        ) : null}
         {target?.updatable ? (
-          <ModalMenuButton onClick={handleSetState(InputState.EDIT, params, target)}>댓글 수정</ModalMenuButton>
+          <ModalMenuButton onClick={handleSetState(isReplyComment, InputState.EDIT, params, target)}>
+            댓글 수정
+          </ModalMenuButton>
         ) : null}
         {target?.deletable ? (
           <ModalMenuButton onClick={handleOpenDeleteModal(target)}>댓글 삭제</ModalMenuButton>
         ) : null}
       </Box>
     </Modal>
-  );
+  ) : null;
 });

@@ -23,7 +23,7 @@ export enum PAGE_URL {
   Err404 = '/error/404',
 }
 
-export interface PostReplyCommentParams {
+export interface PostParams {
   boardId: string;
   postId: string;
   commentId: string;

@@ -26,15 +26,16 @@ class ReplyCommentRepo {
     return new ReplyCommentModel(data);
   };
 
-  update = async (rcid: string, content: string) => {
-    await API.put(`${this.URI}/${rcid}`, { content });
+  update = async (rcid: string, content: string): Promise<Model.ReplyComment> => {
+    const { data } = await API.put(`${this.URI}/${rcid}`, { content });
 
-    // return new CommentModel(data);
+    return new ReplyCommentModel(data);
   };
 
-  // delete = async (cid: string) => {
-  //   await API.delete(`${this.URI}/${cid}`);
-  // };
+  delete = async (rcid: string): Promise<Model.ReplyComment> => {
+    const { data } = await API.delete(`${this.URI}/${rcid}`);
+    return new ReplyCommentModel(data);
+  };
 }
 
 export const ReplyCommentRepoImpl = new ReplyCommentRepo();

@@ -1,13 +1,16 @@
 import { createContext, useContext } from 'react';
 
+import { CommentDeleteModalUi } from './components/CommentDeleteModal';
+import { CommentInputUiStroe } from './components/CommentInput';
+import { CommentMenuUi } from './components/CommentMenu';
 import { PostDeleteModalUiStore } from './components/PostDeleteModal/PostDeleteModalUiStore';
 
 class PagePostDetailUiStore {
-  postDeleteModal = new PostDeleteModalUiStore();
+  commentInput = new CommentInputUiStroe();
 
-  // constructor() {
-  //   this.postDeleteModal;
-  // }
+  postDeleteModal = new PostDeleteModalUiStore();
+  commentMenuModal = new CommentMenuUi();
+  commentDeleteModal = new CommentDeleteModalUi();
 }
 
 const pageUiStore = new PagePostDetailUiStore();

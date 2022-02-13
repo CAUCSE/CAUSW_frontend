@@ -1,23 +1,28 @@
 import { computed } from 'mobx';
 import { observer } from 'mobx-react-lite';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useRef } from 'react';
+import { generatePath, useHistory, useParams } from 'react-router-dom';
 import { useLongPress } from 'use-long-press';
 
-import { InputState } from '../../../../../../stores/CommentStore';
+import { usePageUiStore } from '../../PagePostDetailUiStore';
+import { InputState } from '../CommentInput/CommentInputUiStroe';
 import { CommentCardView } from './CommentCardView';
+import { ReplyLink } from './styled';
 
-import { useRootStore } from '@/stores/RootStore';
+import { PAGE_URL, PostParams } from '@/configs/path';
 
-export const CommentCardContainer: React.FC<{ model: Model.Comment }> = observer(({ model }) => {
+interface Props {
+  model: Model.Comment;
+  withReplyLink?: boolean;
+}
+export const CommentCardContainer: React.FC<Props> = observer(({ model, withReplyLink = false }) => {
+  const params = useParams<PostParams>();
+  const { replace } = useHistory();
   const ref = useRef<HTMLLIElement>(null);
   const {
-    comment: {
-      target,
-      state,
-      scollFocusId,
-      menuModal: { open },
-    },
-  } = useRootStore();
+    commentInput: { target, state },
+    commentMenuModal: { open },
+  } = usePageUiStore();
   const commentState = computed(() => (target?.id === model.id ? state : InputState.WRITE)).get();
 
   const handeLongPress = useCallback(model => () => open(model), [open]);
@@ -27,13 +32,23 @@ export const CommentCardContainer: React.FC<{ model: Model.Comment }> = observer
     onFinish: ev => ev?.preventDefault(),
   });
 
-  useEffect(() => {
-    if (scollFocusId === model.id) ref.current?.scrollIntoView({ block: 'center' });
-  }, [scollFocusId, model, ref]);
+  const handleGoReply = useCallback(
+    (params: PostParams, target?: Model.Comment | Model.ReplyComment) => () => {
+      if (!target) return;
+
+      replace(generatePath(PAGE_URL.PostReplyComment, { ...params, commentId: target.id }));
+    },
+    [],
+  );
 
   return (
     <li ref={ref} {...bind}>
       <CommentCardView state={commentState} model={model} />
+      {withReplyLink && model.numChildComment ? (
+        <ReplyLink onClick={handleGoReply(params, model)}>
+          {'>'} 답글 {model.numChildComment}개 더보기
+        </ReplyLink>
+      ) : null}
     </li>
   );
 });

@@ -1,13 +1,12 @@
 import { observer } from 'mobx-react-lite';
 
+import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { Chip } from './styled';
-
-import { useRootStore } from '@/stores/RootStore';
 
 export const ReplyChip = observer(() => {
   const {
-    comment: { isReply, target, resetState },
-  } = useRootStore();
+    commentInput: { isReply, resetState, target },
+  } = usePageUiStore();
 
   return isReply ? (
     <Chip isReply onClick={resetState}>

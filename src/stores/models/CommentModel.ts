@@ -8,7 +8,7 @@ export class CommentModel {
   id: string;
   author: Model.Author;
   content: string;
-  // createdAt: string;
+  createdAt: string;
   updatedAt: string;
   numChildComment: number;
   updatable: boolean;
@@ -20,25 +20,20 @@ export class CommentModel {
     this.id = props.id;
     this.author = new AuthorModel(props.writerAdmissionYear, props.writerName, props.writerProfileImage);
     this.content = props.content;
-    // this.createdAt = props.createdAt;
+    this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
     this.numChildComment = props.numChildComment;
     this.updatable = props.updatable;
     this.deletable = props.deletable;
-    // TODO: content가 '삭제된 댓글입니다.'로 변경시 필요 없음, deletable만 필요
     this.isDeleted = props.isDeleted;
 
-    makeObservable(
-      this,
-      {
-        content: observable,
-        updatedAt: observable,
+    makeObservable(this, {
+      content: observable,
+      updatedAt: observable,
 
-        refresh: action,
-        formatedDate: computed,
-      },
-      { autoBind: true },
-    );
+      refresh: action.bound,
+      formatedDate: computed,
+    });
   }
 
   /**
@@ -47,6 +42,9 @@ export class CommentModel {
   refresh(data: CommentModel): void {
     this.content = data.content;
     this.updatedAt = data.updatedAt;
+    this.updatable = data.updatable;
+    this.deletable = data.deletable;
+    this.isDeleted = data.isDeleted;
   }
 
   /**
@@ -56,5 +54,9 @@ export class CommentModel {
     const zonedDate = utcToZonedTime(this.updatedAt, 'Asis/Seoul');
 
     return format(zonedDate, 'yyyy.MM.dd HH:mm');
+  }
+
+  get linedContent(): string {
+    return this.content.replace(/(?:\r\n|\r|\n)/g, '<br/>');
   }
 }
