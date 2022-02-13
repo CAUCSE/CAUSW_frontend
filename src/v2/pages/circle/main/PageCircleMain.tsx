@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 
-import { CircleBoards, CircleMainMenu } from './components';
+import { CircleBoards, CircleInfoModal, CircleMainMenu } from './components';
+import { PageUiProvider } from './PageCircleMainUiStore';
 
 import { useRootStore } from '@/stores/RootStore';
 import { Header } from '@/v2/components';
@@ -23,11 +24,13 @@ export const PageCircleMain: React.FC = observer(() => {
   });
 
   return (
-    <>
+    <PageUiProvider>
       <Header mini title={circle?.name} withBack RightComponent={CircleMainMenu} />
       {circle?.mainImage ? <CircleImage src={circle.mainImage} /> : null}
       <CircleBoards />
-    </>
+
+      <CircleInfoModal />
+    </PageUiProvider>
   );
 });
 
