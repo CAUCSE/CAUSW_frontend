@@ -27,13 +27,15 @@ class ReplyCommentRepo {
   };
 
   update = async (rcid: string, content: string): Promise<Model.ReplyComment> => {
-    const { data } = await API.put(`${this.URI}/${rcid}`, { content });
+    const { data } = (await API.put(`${this.URI}/${rcid}`, {
+      content,
+    })) as AxiosResponse<ReplyComment.CreateReponseDto>;
 
     return new ReplyCommentModel(data);
   };
 
   delete = async (rcid: string): Promise<Model.ReplyComment> => {
-    const { data } = await API.delete(`${this.URI}/${rcid}`);
+    const { data } = (await API.delete(`${this.URI}/${rcid}`)) as AxiosResponse<ReplyComment.CreateReponseDto>;
     return new ReplyCommentModel(data);
   };
 }

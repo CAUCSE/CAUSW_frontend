@@ -20,7 +20,8 @@ class CommentRepo {
   };
 
   delete = async (cid: string) => {
-    await API.delete(`${this.URI}/${cid}`);
+    const { data } = (await API.delete(`${this.URI}/${cid}`)) as AxiosResponse<Comment.CreateReponseDto>;
+    return new CommentModel(data);
   };
 }
 
