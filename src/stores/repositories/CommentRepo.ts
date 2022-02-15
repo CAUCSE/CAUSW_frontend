@@ -13,7 +13,7 @@ class CommentRepo {
     } = (await API.get(`${this.URI}?postId=${pid}&pageNum=${page}`)) as AxiosResponse<PostComment.GetResponseDto>;
 
     return {
-      content: content.map(comment => new CommentModel(comment)),
+      comments: content.map(comment => new CommentModel(comment)),
       ...other,
     };
   };

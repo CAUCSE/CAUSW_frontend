@@ -30,21 +30,28 @@ export class CommentStore {
   }
 
   *fetch(pid: string, page: number): Generator {
-    const { content, last } = (yield Repo.findAll(pid, page)) as PostComment.FindAllResponse;
+    const { comments, last } = (yield Repo.findAll(pid, page)) as PostComment.FindAllResponse;
     this.page = page;
     this.hasMore = !last;
-    this.comments = this.comments.concat(content);
+
+    const result = this.comments.concat(comments);
+    const ids = this.comments.concat(comments).map(({ id }) => id);
+    this.comments = result.filter(({ id }, index) => !ids.includes(id, index + 1));
   }
 
   *create(data: PostComment.CreateRequestDto): Generator {
     const comment = (yield Repo.create(data)) as Model.Comment;
     this.comments.unshift(comment);
     this.rootStore.post.post?.setCommentCount(num => num + 1);
+
+    return comment;
   }
 
   *update(content: string, target: Model.Comment): Generator {
     const comment = (yield Repo.update(target.id, content)) as Model.Comment;
     target.refresh(comment);
+
+    return comment;
   }
 
   *deleteComment(target: Model.Comment): Generator {

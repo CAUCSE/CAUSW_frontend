@@ -5,7 +5,7 @@ declare namespace PostComment {
   }
 
   export interface FindAllResponse {
-    content: Model.Comment[];
+    comments: Model.Comment[];
     last: boolean;
   }
 

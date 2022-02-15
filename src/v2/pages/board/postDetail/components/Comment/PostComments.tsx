@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Virtuoso } from 'react-virtuoso';
 
+import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { CommentCardContainer } from './CommentCardContainer';
 import { CommentsBox } from './styled';
 
@@ -11,11 +12,13 @@ import { useRootStore } from '@/stores/RootStore';
 
 export const PostComments: React.FC = observer(() => {
   const { postId } = useParams<PostParams>();
+  const virtuoso = useRef(null);
   const timer = useRef<NodeJS.Timeout>();
   const {
     ui: { mainRef },
     comment: { hasMore, page, fetch, comments },
   } = useRootStore();
+  const { setVirtuosoRef } = usePageUiStore();
 
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => {
@@ -30,9 +33,14 @@ export const PostComments: React.FC = observer(() => {
     [postId],
   );
 
+  useEffect(() => {
+    setVirtuosoRef(virtuoso);
+  }, []);
+
   return (
     <CommentsBox>
       <Virtuoso
+        ref={virtuoso}
         style={{ height: '100vh' }}
         customScrollParent={mainRef?.current as HTMLElement}
         endReached={loadMore(hasMore, page)}

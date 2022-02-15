@@ -1,4 +1,4 @@
-import { action, makeAutoObservable, observable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import React from 'react';
 
 import { HeaderUiStore } from '@/components/common/header';

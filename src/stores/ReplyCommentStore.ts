@@ -14,12 +14,20 @@ export class ReplyCommentStore {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
+  reset(): void {
+    this.comments = [];
+    this.hasMore = true;
+    this.page = 0;
+  }
+
   *fetch(pcid: string, page: number): Generator {
     const { parent, comments, last } = (yield Repo.findAll(pcid, page)) as ReplyComment.FindAllResponse;
 
     this.page = page;
     this.hasMore = !last;
-    this.comments = this.comments.concat(comments);
+    const result = this.comments.concat(comments);
+    const ids = this.comments.concat(comments).map(({ id }) => id);
+    this.comments = result.filter(({ id }, index) => !ids.includes(id, index + 1));
 
     // 댓글 스토어의 부모에 해당하는 모델 치환
     this.parent = parent;
@@ -40,11 +48,15 @@ export class ReplyCommentStore {
     const comment = (yield Repo.create(body as ReplyComment.CreateRequestDto)) as Model.ReplyComment;
     this.comments = [...this.comments, comment];
     this.parent.setNumChildComment(num => num + 1);
+
+    return comment;
   }
 
   *update(content: string, target: Model.Comment): Generator {
     const comment = (yield Repo.update(target.id, content)) as Model.ReplyComment;
     target.refresh(comment);
+
+    return comment;
   }
 
   *deleteComment(target: Model.ReplyComment): Generator {
