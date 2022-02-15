@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { ClearButton } from '../atoms';
+import { ClearButton } from '..';
 
 export const BackButton: React.FC<{ className?: string; link?: boolean | string }> = memo(
   ({ className, link = false }) => {

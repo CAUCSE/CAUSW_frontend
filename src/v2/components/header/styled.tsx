@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { MouseEventHandler } from 'react';
 
-import { ClearButton, ClearUl } from '../atoms';
+import { ClearButton, ClearUl } from '..';
 
 export const RightButtonWrapper = css`
   position: relative;

@@ -1,3 +1,3 @@
-export * from './atoms';
-export * from './header';
-export * from './gnb';
+export * from './Atoms';
+export * from './Header';
+export * from './Gnb';
