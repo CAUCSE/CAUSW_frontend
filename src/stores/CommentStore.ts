@@ -5,10 +5,16 @@ import { CommentRepoImpl as Repo } from './repositories/CommentRepo';
 export class CommentStore {
   rootStore: Store.Root;
   comments: Model.Comment[] = [];
+  hasMore = true;
+  page = 0;
 
   constructor(rootStore: Store.Root) {
     this.rootStore = rootStore;
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
+  }
+
+  setPage(page: number): void {
+    this.page = page;
   }
 
   setComment(target: Model.Comment): void {
@@ -17,11 +23,20 @@ export class CommentStore {
     if (index !== -1) this.comments[index] = target;
   }
 
-  setComments(comments: Model.Comment[]): void {
+  resetComments(comments: Model.Comment[], last: boolean): void {
     this.comments = comments;
+    this.page = 0;
+    this.hasMore = !last;
   }
 
-  *create(data: Comment.CreateRequestDto): Generator {
+  *fetch(pid: string, page: number): Generator {
+    const { content, last } = (yield Repo.findAll(pid, page)) as PostComment.FindAllResponse;
+    this.page = page;
+    this.hasMore = !last;
+    this.comments.concat(content);
+  }
+
+  *create(data: PostComment.CreateRequestDto): Generator {
     const comment = (yield Repo.create(data)) as Model.Comment;
     this.comments.unshift(comment);
     this.rootStore.post.post?.setCommentCount(num => num + 1);

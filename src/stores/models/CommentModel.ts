@@ -15,7 +15,7 @@ export class CommentModel {
   deletable: boolean;
   isDeleted: boolean;
 
-  constructor(props: Comment.CreateReponseDto) {
+  constructor(props: PostComment.CreateResponseDto) {
     this.postId = props.postId;
     this.id = props.id;
     this.author = new AuthorModel(props.writerAdmissionYear, props.writerName, props.writerProfileImage);

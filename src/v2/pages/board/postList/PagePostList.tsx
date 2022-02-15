@@ -40,9 +40,9 @@ export const PagePostList: React.FC = observer(() => {
       <Header title={boardName} withBack={PAGE_URL.Board} RightComponent={PostCreateButton} />
       <Virtuoso
         style={{ height: 'calc(100% - 85px)' }}
-        data={posts}
         endReached={loadMore(hasMore, page)}
         overscan={200}
+        data={posts}
         itemContent={(index, post) => (
           <PostCard key={post.id} model={post} to={generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id })} />
         )}

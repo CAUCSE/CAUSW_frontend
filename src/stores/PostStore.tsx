@@ -59,7 +59,10 @@ export class PostStore {
     this.boardId = boardId;
     this.boardName = boardName;
     this.post = new PostModel(data);
-    this.rootStore.comment.setComments(commentList.content.map(data => new CommentModel(data)));
+    this.rootStore.comment.resetComments(
+      commentList.content.map(data => new CommentModel(data)),
+      commentList.last,
+    );
   }
 
   *edit(pid: string, data: Post.UpdateRequestDto): Generator {

@@ -6,8 +6,8 @@ export class ReplyCommentStore {
   rootStore: Store.Root;
   parent?: Model.Comment;
   comments: Model.Comment[] = [];
+  hasMore = true;
   page = 0;
-  totalPages = 0;
 
   constructor(rootStore: Store.Root) {
     this.rootStore = rootStore;
@@ -15,12 +15,12 @@ export class ReplyCommentStore {
   }
 
   *fetch(pcid: string, page: number): Generator {
-    const { parent, comments, totalPages } = (yield Repo.findAll(pcid, page)) as ReplyComment.FindAllResponse;
+    const { parent, comments, last } = (yield Repo.findAll(pcid, page)) as ReplyComment.FindAllResponse;
 
     this.page = page;
     this.parent = parent;
     this.comments = comments;
-    this.totalPages = totalPages;
+    this.hasMore = !last;
     // 댓글 스토어의 부모에 해당하는 모델 치환
     this.rootStore.comment.setComment(parent);
   }

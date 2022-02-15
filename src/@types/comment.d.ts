@@ -1,10 +1,20 @@
-declare namespace Comment {
+declare namespace PostComment {
+  export interface GetResponseDto {
+    content: CreateResponseDto[];
+    last: boolean;
+  }
+
+  export interface FindAllResponse {
+    content: Model.Comment[];
+    last: boolean;
+  }
+
   export interface CreateRequestDto {
     postId: string;
     content: string;
   }
 
-  export interface CreateReponseDto {
+  export interface CreateResponseDto {
     postId: string;
     id: string;
     writerAdmissionYear: number;

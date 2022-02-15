@@ -2,7 +2,7 @@ declare namespace ReplyComment {
   export interface GetResponseDto {
     childComments: {
       content: CreateReponseDto[];
-      totalPages: number;
+      last: boolean;
     };
     parentComment: Comment.CreateReponseDto;
   }
@@ -10,7 +10,7 @@ declare namespace ReplyComment {
   export interface FindAllResponse {
     parent: Model.Comment;
     comments: Model.ReplyComment[];
-    totalPages: number;
+    last: boolean;
   }
 
   export interface CreateRequestDto {
@@ -21,7 +21,7 @@ declare namespace ReplyComment {
     tagUserName?: strin;
   }
 
-  export interface CreateReponseDto extends Comment.CreateReponseDto {
+  export interface CreateResponseDto extends PostComment.CreateResponseDto {
     refChildComment: string | null;
     tagUserName: string | null;
   }

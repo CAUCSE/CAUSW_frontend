@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
+import { Virtuoso } from 'react-virtuoso';
 
 import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { CommentCard } from '../Comment';
@@ -12,9 +13,10 @@ import { useRootStore } from '@/stores/RootStore';
 
 export const PostReplyComments: React.FC = observer(() => {
   const { boardId, postId, commentId } = useParams<PostParams>();
+  const timer = useRef<NodeJS.Timeout>();
   const { replace } = useHistory();
   const {
-    replyComment: { fetch, parent, comments },
+    replyComment: { fetch, hasMore, page, parent, comments },
   } = useRootStore();
   const {
     commentInput: { resetState },
@@ -23,6 +25,19 @@ export const PostReplyComments: React.FC = observer(() => {
   const handleBack = useCallback(
     () => replace(generatePath(PAGE_URL.PostDetail, { boardId, postId })),
     [boardId, postId],
+  );
+
+  const loadMore = useCallback(
+    (hasMore: boolean, page: number) => () => {
+      if (timer.current) clearTimeout(timer.current);
+
+      if (hasMore) {
+        timer.current = setTimeout(() => {
+          fetch(postId, page + 1);
+        }, 50);
+      }
+    },
+    [postId],
   );
 
   useEffect(() => {
@@ -36,9 +51,13 @@ export const PostReplyComments: React.FC = observer(() => {
     <CommentsBox>
       <BackLink onClick={handleBack}>전체 댓글</BackLink>
       <CommentCard model={parent} />
-      {comments.map(comment => (
-        <ReplyCommentContainer key={comment.id} model={comment} />
-      ))}
+      <Virtuoso
+        useWindowScroll
+        endReached={loadMore(hasMore, page)}
+        overscan={200}
+        data={comments}
+        itemContent={(index, comment) => <ReplyCommentContainer key={comment.id} model={comment} />}
+      />
     </CommentsBox>
   ) : null;
 });

@@ -16,12 +16,12 @@ class ReplyCommentRepo {
     return {
       parent: new CommentModel(data.parentComment),
       comments: data.childComments.content.map(comment => new ReplyCommentModel(comment)),
-      totalPages: data.childComments.totalPages,
+      last: data.childComments.last,
     };
   };
 
   create = async (body: ReplyComment.CreateRequestDto): Promise<Model.ReplyComment> => {
-    const { data } = (await API.post(this.URI, body)) as AxiosResponse<ReplyComment.CreateReponseDto>;
+    const { data } = (await API.post(this.URI, body)) as AxiosResponse<ReplyComment.CreateResponseDto>;
 
     return new ReplyCommentModel(data);
   };
@@ -29,13 +29,13 @@ class ReplyCommentRepo {
   update = async (rcid: string, content: string): Promise<Model.ReplyComment> => {
     const { data } = (await API.put(`${this.URI}/${rcid}`, {
       content,
-    })) as AxiosResponse<ReplyComment.CreateReponseDto>;
+    })) as AxiosResponse<ReplyComment.CreateResponseDto>;
 
     return new ReplyCommentModel(data);
   };
 
   delete = async (rcid: string): Promise<Model.ReplyComment> => {
-    const { data } = (await API.delete(`${this.URI}/${rcid}`)) as AxiosResponse<ReplyComment.CreateReponseDto>;
+    const { data } = (await API.delete(`${this.URI}/${rcid}`)) as AxiosResponse<ReplyComment.CreateResponseDto>;
     return new ReplyCommentModel(data);
   };
 }
