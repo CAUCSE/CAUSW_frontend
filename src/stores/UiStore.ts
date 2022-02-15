@@ -1,8 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import React from 'react';
 
-import { HeaderUiStore } from '@/components/common/header';
-
 enum DISPLAY {
   MOBILE = 480,
   TABLET = 768,
@@ -11,7 +9,6 @@ enum DISPLAY {
 
 export class UiStore {
   rootStore: Store.Root;
-  header = new HeaderUiStore();
 
   displayType: DISPLAY = DISPLAY.MOBILE;
   mainRef?: React.MutableRefObject<HTMLDivElement | null>;
@@ -21,7 +18,6 @@ export class UiStore {
       this,
       {
         rootStore: false,
-        header: false,
       },
       { autoBind: true },
     );

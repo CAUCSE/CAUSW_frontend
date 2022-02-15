@@ -1,1 +1,1 @@
-export { default as SettingPage } from './PageSetting';
+export { SettingPageSwitch as SettingPage } from './SettingPageSwitch';

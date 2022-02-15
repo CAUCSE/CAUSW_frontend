@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
-import { Porfile } from './components/Profile';
+import { Porfile } from './components';
 import { Link } from './styeld';
 
 import { Box, Title } from '@/components/ListBox';
@@ -9,7 +9,7 @@ import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { LayoutHOC } from '@/v2/components';
 
-const PageSetting: React.FC = observer(() => {
+const SettingHomePage: React.FC = observer(() => {
   const {
     auth: { fetch, me },
   } = useRootStore();
@@ -24,14 +24,14 @@ const PageSetting: React.FC = observer(() => {
 
       <Box>
         <Title>계정</Title>
-        <Link to={PAGE_URL.Setting}>개인정보 관리</Link>
-        <Link to={PAGE_URL.Setting}>비밀번호 변경</Link>
+        <Link to={PAGE_URL.SettingProfile}>개인정보 관리</Link>
+        <Link to={PAGE_URL.SettingPassword}>비밀번호 변경</Link>
       </Box>
 
       <Box>
         <Title>활동</Title>
-        <Link to={PAGE_URL.Setting}>내가 쓴 글</Link>
-        <Link to={PAGE_URL.Setting}>내가 쓴 댓글</Link>
+        <Link to={PAGE_URL.SettingHistoryPost}>내가 쓴 글</Link>
+        <Link to={PAGE_URL.SettingHistoryComment}>내가 쓴 댓글</Link>
       </Box>
 
       {!me.isStudent || !me.isProfessor ? (
@@ -61,4 +61,4 @@ const PageSetting: React.FC = observer(() => {
   ) : null;
 });
 
-export default LayoutHOC(PageSetting);
+export default LayoutHOC(SettingHomePage);

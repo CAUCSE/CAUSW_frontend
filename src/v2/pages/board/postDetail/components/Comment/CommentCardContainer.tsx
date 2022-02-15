@@ -45,9 +45,7 @@ export const CommentCardContainer: React.FC<Props> = observer(({ model, withRepl
     <li ref={ref} {...bind}>
       <CommentCardView state={commentState} model={model} />
       {withReplyLink && model.numChildComment ? (
-        <ReplyLink onClick={handleGoReply(params, model)}>
-          {'>'} 답글 {model.numChildComment}개 더보기
-        </ReplyLink>
+        <ReplyLink onClick={handleGoReply(params, model)}>답글 {model.numChildComment}개 더보기</ReplyLink>
       ) : null}
     </li>
   );

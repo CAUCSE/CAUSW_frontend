@@ -18,7 +18,11 @@ export enum PAGE_URL {
   PostDetail = '/boards/:boardId/posts/:postId',
   PostReplyComment = '/boards/:boardId/posts/:postId/comment/:commentId',
 
-  Setting = '/settings',
+  Setting = '/setting',
+  SettingProfile = '/setting/profile',
+  SettingPassword = '/setting/password',
+  SettingHistoryPost = '/setting/history/post',
+  SettingHistoryComment = '/setting/history/comment',
 
   Err404 = '/error/404',
 }

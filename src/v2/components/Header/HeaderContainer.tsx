@@ -24,11 +24,7 @@ export const HeaderContainer: React.FC<Props> = memo(
         {!mini ? <TopComponent /> : null}
         <Title mini={mini}>{title}</Title>
       </Center>
-      {RightComponent ? (
-        <Right>
-          <RightComponent />
-        </Right>
-      ) : null}
+      <Right>{RightComponent ? <RightComponent /> : null}</Right>
     </Wrapper>
   ),
 );
@@ -57,6 +53,7 @@ const Title = styled.h1<Mini>`
   ${({ mini }) =>
     mini
       ? css`
+          margin: 15px 0 12px;
           font-size: 20px;
           line-height: 23px;
           text-align: center;

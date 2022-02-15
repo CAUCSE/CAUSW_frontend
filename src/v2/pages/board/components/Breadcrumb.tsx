@@ -23,10 +23,4 @@ export const Breadcrumb = observer(() => {
 const Wrapper = styled.div`
   font-size: 10px;
   line-height: 12px;
-
-  ${ClearLink} {
-    &:after {
-      content: ' >';
-    }
-  }
 `;
