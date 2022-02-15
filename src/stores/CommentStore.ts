@@ -11,6 +11,12 @@ export class CommentStore {
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
   }
 
+  setComment(target: Model.Comment): void {
+    const index = this.comments.findIndex(({ id }) => id === target.id);
+
+    if (index !== -1) this.comments[index] = target;
+  }
+
   setComments(comments: Model.Comment[]): void {
     this.comments = comments;
   }

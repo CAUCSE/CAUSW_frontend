@@ -21,6 +21,8 @@ export class ReplyCommentStore {
     this.parent = parent;
     this.comments = comments;
     this.totalPages = totalPages;
+    // 댓글 스토어의 부모에 해당하는 모델 치환
+    this.rootStore.comment.setComment(parent);
   }
 
   *create(content: string, target?: Model.Comment | Model.ReplyComment): Generator {
