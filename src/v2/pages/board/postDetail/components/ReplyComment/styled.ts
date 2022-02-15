@@ -15,5 +15,5 @@ export const BackLink = styled(ClearButton)`
 `;
 
 export const Li = styled.li`
-  padding-left: 15px;
+  padding: 5px 0 0 15px;
 `;

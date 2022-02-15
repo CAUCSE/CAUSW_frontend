@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, makeAutoObservable, observable, runInAction } from 'mobx';
 import React from 'react';
 
 import { HeaderUiStore } from '@/components/common/header';
@@ -11,17 +11,21 @@ enum DISPLAY {
 
 export class UiStore {
   rootStore: Store.Root;
+  header = new HeaderUiStore();
 
   displayType: DISPLAY = DISPLAY.MOBILE;
-  header = new HeaderUiStore();
   CustomNav?: React.FC | null;
+  mainRef?: React.MutableRefObject<HTMLDivElement | null>;
 
   constructor(rootStore: Store.Root) {
-    makeObservable(this, {
-      displayType: observable,
-      CustomNav: observable,
-      setNav: action.bound,
-    });
+    makeAutoObservable(
+      this,
+      {
+        rootStore: false,
+        header: false,
+      },
+      { autoBind: true },
+    );
 
     this.rootStore = rootStore;
     this.initWindowMatchMedia();
@@ -53,5 +57,9 @@ export class UiStore {
 
   setNav(nav?: React.FC | null): void {
     this.CustomNav = nav;
+  }
+
+  setMainRef(ref: React.MutableRefObject<HTMLDivElement | null>): void {
+    this.mainRef = ref;
   }
 }

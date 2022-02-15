@@ -18,10 +18,11 @@ export class ReplyCommentStore {
     const { parent, comments, last } = (yield Repo.findAll(pcid, page)) as ReplyComment.FindAllResponse;
 
     this.page = page;
-    this.parent = parent;
-    this.comments = comments;
     this.hasMore = !last;
+    this.comments = this.comments.concat(comments);
+
     // 댓글 스토어의 부모에 해당하는 모델 치환
+    this.parent = parent;
     this.rootStore.comment.setComment(parent);
   }
 

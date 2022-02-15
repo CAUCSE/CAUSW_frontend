@@ -16,6 +16,7 @@ export const PostReplyComments: React.FC = observer(() => {
   const timer = useRef<NodeJS.Timeout>();
   const { replace } = useHistory();
   const {
+    ui: { mainRef },
     replyComment: { fetch, hasMore, page, parent, comments },
   } = useRootStore();
   const {
@@ -33,7 +34,7 @@ export const PostReplyComments: React.FC = observer(() => {
 
       if (hasMore) {
         timer.current = setTimeout(() => {
-          fetch(postId, page + 1);
+          fetch(commentId, page + 1);
         }, 50);
       }
     },
@@ -52,7 +53,8 @@ export const PostReplyComments: React.FC = observer(() => {
       <BackLink onClick={handleBack}>전체 댓글</BackLink>
       <CommentCard model={parent} />
       <Virtuoso
-        useWindowScroll
+        style={{ height: '100vh' }}
+        customScrollParent={mainRef?.current as HTMLElement}
         endReached={loadMore(hasMore, page)}
         overscan={200}
         data={comments}

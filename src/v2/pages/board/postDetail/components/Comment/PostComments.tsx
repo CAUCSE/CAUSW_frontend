@@ -13,6 +13,7 @@ export const PostComments: React.FC = observer(() => {
   const { postId } = useParams<PostParams>();
   const timer = useRef<NodeJS.Timeout>();
   const {
+    ui: { mainRef },
     comment: { hasMore, page, fetch, comments },
   } = useRootStore();
 
@@ -32,7 +33,8 @@ export const PostComments: React.FC = observer(() => {
   return (
     <CommentsBox>
       <Virtuoso
-        useWindowScroll
+        style={{ height: '100vh' }}
+        customScrollParent={mainRef?.current as HTMLElement}
         endReached={loadMore(hasMore, page)}
         overscan={200}
         data={comments}

@@ -12,13 +12,13 @@ export const CommentsBox = styled(ClearUl)`
 
   li {
     position: relative;
+    padding-top: 5px;
   }
 `;
 
 export const CommentCard = styled.div<{ state: InputState }>`
   flex: 1 0 0;
   position: relative;
-  margin-top: 5px;
   padding: 7px 10px;
 
   border-radius: 10px;

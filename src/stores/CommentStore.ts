@@ -33,7 +33,7 @@ export class CommentStore {
     const { content, last } = (yield Repo.findAll(pid, page)) as PostComment.FindAllResponse;
     this.page = page;
     this.hasMore = !last;
-    this.comments.concat(content);
+    this.comments = this.comments.concat(content);
   }
 
   *create(data: PostComment.CreateRequestDto): Generator {
