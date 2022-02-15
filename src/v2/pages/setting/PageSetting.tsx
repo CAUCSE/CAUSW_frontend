@@ -1,15 +1,15 @@
-import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
 import { Porfile } from './components/Profile';
+import { Link } from './styeld';
 
 import { Box, Title } from '@/components/ListBox';
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
-import { ClearLink } from '@/v2/components';
+import { LayoutHOC } from '@/v2/components';
 
-export const PageSetting: React.FC = observer(() => {
+const PageSetting: React.FC = observer(() => {
   const {
     auth: { fetch, me },
   } = useRootStore();
@@ -61,13 +61,4 @@ export const PageSetting: React.FC = observer(() => {
   ) : null;
 });
 
-const Link = styled(ClearLink)`
-  display: block;
-  margin: 12px 0;
-  font-size: 12px;
-  line-height: 14px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
+export default LayoutHOC(PageSetting);

@@ -7,9 +7,9 @@ import { PostCard, PostCreateButton } from './components';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
-import { Header } from '@/v2/components';
+import { Header, LayoutHOC } from '@/v2/components';
 
-export const PagePostList: React.FC = observer(() => {
+const PagePostList: React.FC = observer(() => {
   const { boardId } = useParams<{ boardId: string }>();
   const timer = useRef<NodeJS.Timeout>();
   const {
@@ -50,3 +50,5 @@ export const PagePostList: React.FC = observer(() => {
     </>
   );
 });
+
+export default LayoutHOC(PagePostList);

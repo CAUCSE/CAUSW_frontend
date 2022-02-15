@@ -1,1 +1,1 @@
-export { PagePostList as PostList } from './PagePostList';
+export { default as PostList } from './PagePostList';

@@ -1,1 +1,1 @@
-export { PageCircleMain as CircleMain } from './PageCircleMain';
+export { default as CircleMain } from './PageCircleMain';

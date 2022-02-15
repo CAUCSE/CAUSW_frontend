@@ -6,10 +6,9 @@ import * as I from '@/components/atoms/Icon';
 import { PAGE_URL } from 'configs/path';
 import { useRootStore } from 'stores/RootStore';
 
-export const MobileGnb: React.FC = observer(() => {
+export const MobileGnb: React.FC<{ CustomNav?: React.FC | null }> = observer(({ CustomNav }) => {
   const {
     auth: { isSignIn },
-    ui: { CustomNav },
   } = useRootStore();
 
   return isSignIn ? (

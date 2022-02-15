@@ -1,1 +1,1 @@
-export { PageCircleHome as CircleHome } from './PageCircleHome';
+export { default as CircleHome } from './PageCircleHome';

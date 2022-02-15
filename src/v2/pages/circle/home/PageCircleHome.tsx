@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import styled from 'styled-components';
 
 import * as Circle from './components';
+import { H2 } from './styled';
 
 import { useRootStore } from '@/stores/RootStore';
-import { Header } from '@/v2/components';
+import { Header, LayoutHOC } from '@/v2/components';
 
-export const PageCircleHome: React.FC = observer(() => {
+const PageCircleHome: React.FC = observer(() => {
   const {
     circle: { fetch, circles, joinedCircles },
   } = useRootStore();
@@ -29,9 +29,4 @@ export const PageCircleHome: React.FC = observer(() => {
   );
 });
 
-const H2 = styled.h2`
-  margin: 23px 0;
-  font-size: 18px;
-  line-height: 21px;
-  color: #3f4040;
-`;
+export default LayoutHOC(PageCircleHome);

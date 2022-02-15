@@ -1,1 +1,0 @@
-export { MobileFooter } from './MobileFooter';

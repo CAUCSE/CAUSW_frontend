@@ -2,7 +2,6 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { generatePath, useHistory } from 'react-router-dom';
 
-
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';

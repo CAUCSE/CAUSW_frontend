@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
 import { JoinButton } from './JoinButton';
@@ -7,23 +8,18 @@ import { PageSkeleton } from './PageSkeleton';
 import * as S from './styled';
 
 import { useRootStore } from '@/stores/RootStore';
-import { Header } from '@/v2/components';
-import { useInitPage } from '@/v2/hooks/useInitPage';
+import { Header, LayoutHOC } from '@/v2/components';
 
-export const PageCircleJoin: React.FC = observer(() => {
+const PageCircleJoin: React.FC = observer(() => {
   const { circleId } = useParams<{ circleId: string }>();
   const {
     circle: { fetch, reset, circle },
   } = useRootStore();
 
-  useInitPage({
-    Nav: JoinButton,
-    effect: () => {
-      fetch(circleId);
-      return () => reset();
-    },
-    deps: [circleId],
-  });
+  useEffect(() => {
+    fetch(circleId);
+    return () => reset();
+  }, [circleId]);
 
   return (
     <JoinStoreProvider>
@@ -45,3 +41,5 @@ export const PageCircleJoin: React.FC = observer(() => {
     </JoinStoreProvider>
   );
 });
+
+export default LayoutHOC(PageCircleJoin, { Nav: JoinButton });

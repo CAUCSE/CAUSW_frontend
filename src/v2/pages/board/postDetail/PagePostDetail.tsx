@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { Route, Switch, useParams } from 'react-router-dom';
 
 import { Breadcrumb } from '../components';
@@ -11,24 +12,22 @@ import { PostContent } from './styled';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
-import { PageUiProvider, useInitPage } from '@/v2/hooks';
+import { LayoutHOC } from '@/v2/components/LayoutHOC';
 
-export const PagePostDetail: React.FC = observer(() => {
+const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<PostParams>();
   const {
-    post: { fetch, post },
+    post: { fetch, reset, post },
   } = useRootStore();
 
-  useInitPage({
-    Nav: CommentInput,
-    effect: () => {
-      fetch(postId);
-    },
-    deps: [postId],
-  });
+  useEffect(() => {
+    fetch(postId);
+
+    return () => reset();
+  }, [postId]);
 
   return (
-    <PageUiProvider store={PageUiStoreImpl}>
+    <>
       {post ? (
         <>
           <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={PostDetailMenu} />
@@ -46,6 +45,8 @@ export const PagePostDetail: React.FC = observer(() => {
       <PostDeleteModal />
       <CommentMenu />
       <CommentDeleteModal />
-    </PageUiProvider>
+    </>
   );
 });
+
+export default LayoutHOC(PagePostDetail, { pageUiStore: PageUiStoreImpl, Nav: CommentInput });

@@ -1,1 +1,1 @@
-export { PagePostDetail as PostDetail } from './PagePostDetail';
+export { default as PostDetail } from './PagePostDetail';

@@ -1,1 +1,1 @@
-export { PageCircleJoin as CircleJoin } from './PageCircleJoin';
+export { default as CircleJoin } from './PageCircleJoin';

@@ -4,9 +4,9 @@ import { CircleLinks } from './components/CircleLinks';
 import { HomeBoards } from './components/HomeBoards';
 
 import { useRootStore } from '@/stores/RootStore';
-import { Header } from '@/v2/components/';
+import { Header, LayoutHOC } from '@/v2/components/';
 
-export const PageHome: React.FC = memo(() => {
+const PageHome: React.FC = memo(() => {
   const {
     home: { fetch },
   } = useRootStore();
@@ -23,3 +23,5 @@ export const PageHome: React.FC = memo(() => {
     </>
   );
 });
+
+export default LayoutHOC(PageHome);

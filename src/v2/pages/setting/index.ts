@@ -1,1 +1,1 @@
-export { PageSetting as SettingPage } from './PageSetting';
+export { default as SettingPage } from './PageSetting';

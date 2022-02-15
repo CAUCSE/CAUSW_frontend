@@ -1,1 +1,1 @@
-export { PagePostEditor as PostEditor } from './PagePostEditor';
+export { default as PostEditor } from './PagePostEditor';

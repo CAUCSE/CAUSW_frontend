@@ -14,7 +14,6 @@ export class UiStore {
   header = new HeaderUiStore();
 
   displayType: DISPLAY = DISPLAY.MOBILE;
-  CustomNav?: React.FC | null;
   mainRef?: React.MutableRefObject<HTMLDivElement | null>;
 
   constructor(rootStore: Store.Root) {
@@ -53,10 +52,6 @@ export class UiStore {
       else if (innerWidth <= DISPLAY.TABLET) this.displayType = DISPLAY.TABLET;
       else this.displayType = DISPLAY.DESKTOP;
     });
-  }
-
-  setNav(nav?: React.FC | null): void {
-    this.CustomNav = nav;
   }
 
   setMainRef(ref: React.MutableRefObject<HTMLDivElement | null>): void {

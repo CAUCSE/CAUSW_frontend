@@ -3,14 +3,14 @@ import { useEffect } from 'react';
 import { Boards } from './components';
 
 import { useRootStore } from '@/stores/RootStore';
-import { Header, UniformLogo } from '@/v2/components';
+import { Header, LayoutHOC, UniformLogo } from '@/v2/components';
 
-export const PageBoardList: React.FC = () => {
+const PageBoardList: React.FC = () => {
   const { board } = useRootStore();
 
   useEffect(() => {
     board.fetch();
-  }, [board]);
+  }, []);
 
   return (
     <>
@@ -19,3 +19,5 @@ export const PageBoardList: React.FC = () => {
     </>
   );
 };
+
+export default LayoutHOC(PageBoardList);
