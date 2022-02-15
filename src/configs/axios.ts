@@ -23,18 +23,21 @@ export const restoreAuth = (): boolean => {
 
   return !!token;
 };
+export const removeAuth = (): void => {
+  localStorage.removeItem(storageKey);
+};
 
 API.interceptors.response.use(
   response => response,
   error => {
     const {
-      response: { status },
+      response: { data },
     } = error;
 
-    if (status === 404) {
-      location.href = PAGE_URL.Err404;
-    } else if (status === 500) {
-      location.href = PAGE_URL.Err404;
+    if (data.errorCode === '4105') {
+      // message: "다시 로그인 해주세요."
+      location.href = PAGE_URL.SignIn;
+      removeAuth();
     }
 
     return Promise.reject(error);
