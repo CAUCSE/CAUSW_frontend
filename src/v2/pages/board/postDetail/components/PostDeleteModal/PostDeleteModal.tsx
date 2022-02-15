@@ -2,11 +2,11 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { generatePath, useHistory } from 'react-router-dom';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks';
 
 export const PostDeleteModal: React.FC = observer(() => {
   const { replace } = useHistory();
@@ -15,7 +15,7 @@ export const PostDeleteModal: React.FC = observer(() => {
   } = useRootStore();
   const {
     postDeleteModal: { visible, close },
-  } = usePageUiStore();
+  } = usePageUiStore<PageUiStore.PostDetail>();
 
   if (!boardId || !post) return null;
 

@@ -1,12 +1,13 @@
 import { observer } from 'mobx-react-lite';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { Chip } from './styled';
+
+import { usePageUiStore } from '@/v2/hooks';
 
 export const EditChip = observer(() => {
   const {
     commentInput: { isEdit, resetState, target },
-  } = usePageUiStore();
+  } = usePageUiStore<PageUiStore.PostDetail>();
 
   return isEdit ? (
     <Chip isEdit onClick={resetState}>

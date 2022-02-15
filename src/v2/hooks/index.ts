@@ -1,1 +1,2 @@
-export { useInitPage } from './useInitPage';
+export * from './useInitPage';
+export * from './usePageUiStore';

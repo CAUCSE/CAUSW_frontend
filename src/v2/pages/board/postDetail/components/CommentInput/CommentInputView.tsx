@@ -2,17 +2,17 @@ import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { Form, InputBox, SendButton, Textarea } from './styled';
 
 import { SendIcon } from '@/components/atoms/Icon';
+import { usePageUiStore } from '@/v2/hooks';
 
 interface Props {
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
 }
 export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const { commentInput } = usePageUiStore();
+  const { commentInput } = usePageUiStore<PageUiStore.PostDetail>();
   const { register, setFocus, setValue } = useFormContext();
   const { ref, ...rest } = register('content', { required: true });
   const handleResizeHeight = useCallback(({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -3,12 +3,12 @@ import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 import { generatePath, useHistory, useParams, useRouteMatch } from 'react-router-dom';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { InputState } from '../CommentInput';
 import { Box } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { ModalMenuButton } from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks';
 
 export const CommentMenuContainer: React.FC = observer(() => {
   const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
@@ -18,7 +18,7 @@ export const CommentMenuContainer: React.FC = observer(() => {
     commentInput: { setState },
     commentMenuModal: { visible, close, target },
     commentDeleteModal: { open },
-  } = usePageUiStore();
+  } = usePageUiStore<PageUiStore.PostDetail>();
 
   const handleSetState = useCallback(
     (isReplyComment: boolean, state: InputState, params: PostParams, target?: Model.Comment | Model.ReplyComment) =>

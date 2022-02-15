@@ -3,12 +3,12 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Virtuoso } from 'react-virtuoso';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { CommentCardContainer } from './CommentCardContainer';
 import { CommentsBox } from './styled';
 
 import { PostParams } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
+import { usePageUiStore } from '@/v2/hooks';
 
 export const PostComments: React.FC = observer(() => {
   const { postId } = useParams<PostParams>();
@@ -18,7 +18,7 @@ export const PostComments: React.FC = observer(() => {
     ui: { mainRef },
     comment: { hasMore, page, fetch, comments },
   } = useRootStore();
-  const { setVirtuosoRef } = usePageUiStore();
+  const { setVirtuosoRef } = usePageUiStore<PageUiStore.PostDetail>();
 
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => {
@@ -41,7 +41,7 @@ export const PostComments: React.FC = observer(() => {
     <CommentsBox>
       <Virtuoso
         ref={virtuoso}
-        style={{ height: '100vh' }}
+        style={{ maxHeight: '100vh' }}
         customScrollParent={mainRef?.current as HTMLElement}
         endReached={loadMore(hasMore, page)}
         overscan={200}

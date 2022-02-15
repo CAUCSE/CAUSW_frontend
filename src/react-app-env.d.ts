@@ -17,6 +17,8 @@ import type { PostStore } from './stores/PostStore';
 import type { ReplyCommentStore } from './stores/ReplyCommentStore';
 import type { RootStore } from './stores/RootStore';
 import type { UiStore } from './stores/UiStore';
+import type { PostDetailPageUiStore } from './v2/pages/board/postDetail/PageUiStore.PostDetail';
+import type { CircleMainPageUiStore } from './v2/pages/circle/main/CircleMainPageUiStore';
 
 declare global {
   namespace Store {
@@ -29,6 +31,11 @@ declare global {
     type Post = PostStore;
     type Comment = CommentStore;
     type ReplyComment = ReplyCommentStore;
+  }
+
+  namespace PageUiStore {
+    type CircleMain = CircleMainPageUiStore;
+    type PostDetail = PostDetailPageUiStore;
   }
 
   namespace Model {

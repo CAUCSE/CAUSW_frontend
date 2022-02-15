@@ -6,7 +6,7 @@ export enum InputState {
   EDIT,
 }
 
-export class CommentInputUiStroe {
+export class CommentInputUiStore {
   state: InputState = InputState.WRITE;
   target?: Model.Comment | Model.ReplyComment;
 

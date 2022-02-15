@@ -2,17 +2,16 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
-
 import { ReplyCommentModel } from '@/stores/models/ReplyCommentModel';
 import { useRootStore } from '@/stores/RootStore';
 import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks';
 
 export const CommentDeleteModalContainer: React.FC = observer(() => {
   const { comment, replyComment } = useRootStore();
   const {
     commentDeleteModal: { visible, close, target },
-  } = usePageUiStore();
+  } = usePageUiStore<PageUiStore.PostDetail>();
 
   const handleOk = useCallback(
     (target?: Model.Comment | Model.ReplyComment) => async () => {

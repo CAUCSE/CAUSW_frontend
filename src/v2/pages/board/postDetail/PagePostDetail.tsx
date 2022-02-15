@@ -5,13 +5,13 @@ import { Breadcrumb } from '../components';
 import { CommentInput, CommentMenu, PostAuthor, PostReplyComments, PostComments, PostDetailMenu } from './components';
 import { CommentDeleteModal } from './components/CommentDeleteModal';
 import { PostDeleteModal } from './components/PostDeleteModal';
-import { PageUiProvider } from './PagePostDetailUiStore';
+import { PageUiStoreImpl } from './PagePostDetailUiStore';
 import { PostContent } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { Header, PostCommentNum } from '@/v2/components';
-import { useInitPage } from '@/v2/hooks';
+import { PageUiProvider, useInitPage } from '@/v2/hooks';
 
 export const PagePostDetail: React.FC = observer(() => {
   const { postId } = useParams<PostParams>();
@@ -28,7 +28,7 @@ export const PagePostDetail: React.FC = observer(() => {
   });
 
   return (
-    <PageUiProvider>
+    <PageUiProvider store={PageUiStoreImpl}>
       {post ? (
         <>
           <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={PostDetailMenu} />

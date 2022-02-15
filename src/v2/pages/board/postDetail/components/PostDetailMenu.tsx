@@ -1,21 +1,20 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
-import { generatePath, useHistory } from 'react-router-dom';
+import { generatePath, useHistory, useParams } from 'react-router-dom';
 
-import { usePageUiStore } from '../PagePostDetailUiStore';
 
 import { MenuIcon } from '@/components/atoms/Icon';
-import { PAGE_URL } from '@/configs/path';
+import { PAGE_URL, PostParams } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks';
 
 export const PostDetailMenu: React.FC = observer(() => {
+  const { boardId, postId } = useParams<PostParams>();
   const {
-    post: { boardId, post },
+    post: { post },
   } = useRootStore();
-  const { postDeleteModal } = usePageUiStore();
-
-  if (!boardId || !post) return null;
+  const { postDeleteModal } = usePageUiStore<PageUiStore.PostDetail>();
 
   const { push } = useHistory();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -23,13 +22,13 @@ export const PostDetailMenu: React.FC = observer(() => {
 
   const handleClose = () => setAnchorEl(null);
   const handleClick = (evt: React.MouseEvent<HTMLElement>) => setAnchorEl(evt.currentTarget);
-  const handleEdit = () => push(generatePath(PAGE_URL.PostEdit, { boardId, postId: post.id }), { prevDetail: true });
+  const handleEdit = () => push(generatePath(PAGE_URL.PostEdit, { boardId, postId }), { prevDetail: true });
   const handleDelete = () => {
     setAnchorEl(null);
     postDeleteModal.open();
   };
 
-  return post.updatable || post.deletable ? (
+  return post?.updatable || post?.deletable ? (
     <>
       <HeaderIconButton onClick={handleClick} disableRipple={true}>
         <MenuIcon className="absolute-center" />

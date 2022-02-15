@@ -4,12 +4,12 @@ import { useCallback, useRef } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 import { useLongPress } from 'use-long-press';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
-import { InputState } from '../CommentInput/CommentInputUiStroe';
+import { InputState } from '../CommentInput';
 import { CommentCardView } from './CommentCardView';
 import { ReplyLink } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
+import { usePageUiStore } from '@/v2/hooks';
 
 interface Props {
   model: Model.Comment;
@@ -22,7 +22,7 @@ export const CommentCardContainer: React.FC<Props> = observer(({ model, withRepl
   const {
     commentInput: { target, state },
     commentMenuModal: { open },
-  } = usePageUiStore();
+  } = usePageUiStore<PageUiStore.PostDetail>();
   const commentState = computed(() => (target?.id === model.id ? state : InputState.WRITE)).get();
 
   const handeLongPress = useCallback(model => () => open(model), [open]);

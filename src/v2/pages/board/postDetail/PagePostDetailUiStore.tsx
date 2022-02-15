@@ -1,15 +1,14 @@
 import { action, makeObservable, observable } from 'mobx';
-import { createContext, useContext } from 'react';
 import { VirtuosoHandle } from 'react-virtuoso';
 
 import { CommentDeleteModalUi } from './components/CommentDeleteModal';
-import { CommentInputUiStroe } from './components/CommentInput';
+import { CommentInputUiStore } from './components/CommentInput';
 import { CommentMenuUi } from './components/CommentMenu';
 import { PostDeleteModalUiStore } from './components/PostDeleteModal/PostDeleteModalUiStore';
 
-class PagePostDetailUiStore {
+export class PostDetailPageUiStore {
   virtuosoRef?: React.MutableRefObject<VirtuosoHandle | null>;
-  commentInput = new CommentInputUiStroe();
+  commentInput = new CommentInputUiStore();
 
   postDeleteModal = new PostDeleteModalUiStore();
   commentMenuModal = new CommentMenuUi();
@@ -27,10 +26,4 @@ class PagePostDetailUiStore {
   }
 }
 
-const pageUiStore = new PagePostDetailUiStore();
-const Context = createContext(pageUiStore);
-
-export const PageUiProvider: React.FC = ({ children }) => (
-  <Context.Provider value={pageUiStore}>{children}</Context.Provider>
-);
-export const usePageUiStore = (): PagePostDetailUiStore => useContext(Context) ?? pageUiStore;
+export const PageUiStoreImpl = new PostDetailPageUiStore();

@@ -3,13 +3,13 @@ import { useCallback, useEffect, useRef } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 import { Virtuoso } from 'react-virtuoso';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { CommentCard } from '../Comment';
 import { ReplyCommentContainer } from './ReplyCommentContainer';
 import { BackLink, CommentsBox } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
+import { usePageUiStore } from '@/v2/hooks';
 
 export const PostReplyComments: React.FC = observer(() => {
   const { boardId, postId, commentId } = useParams<PostParams>();
@@ -23,7 +23,7 @@ export const PostReplyComments: React.FC = observer(() => {
   const {
     setVirtuosoRef,
     commentInput: { resetState },
-  } = usePageUiStore();
+  } = usePageUiStore<PageUiStore.PostDetail>();
 
   const handleBack = useCallback(
     () => replace(generatePath(PAGE_URL.PostDetail, { boardId, postId })),
@@ -62,7 +62,7 @@ export const PostReplyComments: React.FC = observer(() => {
       <CommentCard model={parent} />
       <Virtuoso
         ref={virtuoso}
-        style={{ height: '100vh' }}
+        style={{ maxHeight: '100vh' }}
         customScrollParent={mainRef?.current as HTMLElement}
         endReached={loadMore(hasMore, page)}
         overscan={200}

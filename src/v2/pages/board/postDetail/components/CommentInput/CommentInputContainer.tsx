@@ -4,7 +4,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useRouteMatch } from 'react-router-dom';
 import { VirtuosoHandle } from 'react-virtuoso';
 
-import { usePageUiStore } from '../../PagePostDetailUiStore';
 import { CommentInputView } from './CommentInputView';
 import { EditChip } from './EditChip';
 import { ReplyChip } from './ReplyChip';
@@ -12,6 +11,7 @@ import { Nav } from './styled';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
+import { usePageUiStore } from '@/v2/hooks';
 
 type FormBody = { content: string };
 
@@ -22,7 +22,7 @@ export const CommentInputContainer: React.FC = observer(() => {
     replyComment,
     post: { post },
   } = useRootStore();
-  const { virtuosoRef, commentInput } = usePageUiStore();
+  const { virtuosoRef, commentInput } = usePageUiStore<PageUiStore.PostDetail>();
   const methods = useForm<FormBody>();
   const handleSubmit = useCallback(
     (isReplyComment: boolean, virtuosoRef?: React.MutableRefObject<VirtuosoHandle | null>, post?: Model.Post) =>
