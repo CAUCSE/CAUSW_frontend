@@ -38,7 +38,7 @@ export class ReplyCommentStore {
     }
 
     const comment = (yield Repo.create(body as ReplyComment.CreateRequestDto)) as Model.ReplyComment;
-    this.comments.push(comment);
+    this.comments = [...this.comments, comment];
     this.parent.setNumChildComment(num => num + 1);
   }
 
