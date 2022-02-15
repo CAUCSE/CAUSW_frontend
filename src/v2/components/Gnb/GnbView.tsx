@@ -4,9 +4,12 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   display: flex;
   flex-direction: row;
+  padding: 0 0 calc(constant(safe-area-inset-bottom));
+  padding: 0 0 calc(env(safe-area-inset-bottom));
   width: 100%;
   height: 57px;
   background: #f8f8f8;
+  box-sizing: content-box;
 `;
 
 export const NavLink: React.FC<{ to: string; a11y: string }> = ({ to, a11y, children }) => (

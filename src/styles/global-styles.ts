@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
+import { css } from '@emotion/react';
+import emotionNormalize from 'emotion-normalize';
 
-export const GlobalStyle = createGlobalStyle`
-  ${normalize}
+export const GlobalStyle = css`
+  ${emotionNormalize}
 
   * {
     font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -10,26 +10,24 @@ export const GlobalStyle = createGlobalStyle`
     color: #3f4040;
   }
 
-  // NOTE: 전역 스타일링, 외부 라이브러리 스타일링 변형 추가
   body {
     position: absolute;
     width: 100vw;
-    height: 100.1vh;
+    height: 100%;
     font-family: Roboto;
     letter-spacing: -0.333px;
 
     #root {
       position: absolute;
       bottom: 0;
-      height: 100vh;
       display: flex;
-	    flex-direction: column;
+      flex-direction: column;
       width: 100%;
       height: 100%;
 
       + * {
-		    display: flex;
-		    flex-direction: column;
+        display: flex;
+        flex-direction: column;
       }
     }
   }
@@ -47,7 +45,7 @@ export const GlobalStyle = createGlobalStyle`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    word-wrap:break-word; 
+    word-wrap: break-word;
     text-overflow: ellipsis;
   }
 
@@ -55,8 +53,8 @@ export const GlobalStyle = createGlobalStyle`
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 `;
