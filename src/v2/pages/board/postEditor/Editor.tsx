@@ -1,42 +1,50 @@
 import 'react-quill/dist/quill.snow.css';
 import styled from '@emotion/styled';
-import { useMemo, useCallback, useState, useEffect } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
+
+import { API } from '@/configs/axios';
+import { IMAGE_TYPE } from '@/configs/image';
+import { API_URL } from '@/configs/path';
+import ImageUploader from 'quill-image-uploader';
 
 interface Props {
   content?: string;
 }
 
+Quill.register('modules/imageUploader', ImageUploader);
+
 export const Editor: React.FC<Props> = ({ content = '' }) => {
-  const [value, setValue] = useState(content);
   const { setValue: set } = useFormContext();
-  const handleChange = useCallback(
-    data => {
-      set('content', data);
-      setValue(data);
-    },
-    [setValue],
-  );
+
+  const handleChange = useCallback(data => set('content', data), [set]);
+
   const modules = useMemo(
     () => ({
       toolbar: {
         container: [['bold', 'italic', { align: '' }, { align: 'center' }, { align: 'right' }, 'image', 'link']],
       },
+      imageUploader: {
+        upload: (file: string | Blob) =>
+          new Promise((resolve, reject) => {
+            const formData = new FormData();
+            formData.append('image', file);
+
+            API.post(`${API_URL.Storage}?imageLocation=${IMAGE_TYPE.POST}`, formData)
+              .then(({ data: { path } }) => resolve(path))
+              .catch(e => reject(e));
+          }),
+      },
     }),
     [],
   );
-
-  useEffect(() => {
-    setValue(content);
-    set('content', content);
-  }, [content]);
 
   return (
     <Wrapper>
       <ReactQuill
         theme="snow"
-        value={value}
+        defaultValue={content}
         onChange={handleChange}
         modules={modules}
         placeholder="내용을 입력하세요."
