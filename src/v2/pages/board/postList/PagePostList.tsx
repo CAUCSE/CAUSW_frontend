@@ -3,11 +3,11 @@ import { useCallback, useEffect, useRef } from 'react';
 import { generatePath, useParams } from 'react-router-dom';
 import { Virtuoso } from 'react-virtuoso';
 
-import { PostCard, PostCreateButton } from './components';
+import { PostCreateButton } from './components';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
-import { Header, LayoutHOC } from '@/v2/components';
+import { Header, LayoutHOC, PostCard } from '@/v2/components';
 
 const PagePostList: React.FC = observer(() => {
   const { boardId } = useParams<{ boardId: string }>();
