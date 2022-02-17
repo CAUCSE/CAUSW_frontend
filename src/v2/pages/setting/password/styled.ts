@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { inputLabelClasses } from '@mui/material';
 
-import { Button, PasswordInput } from '@/v2/components';
+import { PasswordInput } from '@/v2/components';
 
 export const Input = styled(PasswordInput)`
   margin-top: 13px;
@@ -12,15 +12,6 @@ export const Input = styled(PasswordInput)`
     color: #383743;
     transform: translate(0, -1.5px) scale(1);
   }
-`;
-
-export const SmallButton = styled(Button)`
-  margin-top: 33px;
-  margin-left: 10px;
-  width: 72px;
-  height: 28px;
-  font-size: 11px;
-  line-height: 13px;
 `;
 
 export const GuideText = styled.div`
