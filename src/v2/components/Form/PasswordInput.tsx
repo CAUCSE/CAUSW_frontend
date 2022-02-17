@@ -18,7 +18,7 @@ interface Props {
   className?: string;
   style?: React.CSSProperties;
 }
-export const PasswordInput: React.FC<Props> = ({ className, id, name, label, helperText, error }) => {
+export const PasswordInput: React.FC<Props> = ({ className, style, id, label, helperText, error }) => {
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false,
@@ -40,11 +40,10 @@ export const PasswordInput: React.FC<Props> = ({ className, id, name, label, hel
   };
 
   return (
-    <FormControl className={className} style={{ width: '100%' }} variant="standard">
+    <FormControl className={className} style={{ width: '100%', ...style }} variant="standard">
       <InputLabel htmlFor={id}>{label}</InputLabel>
       <Input
         id={id}
-        name={name}
         type={values.showPassword ? 'text' : 'password'}
         value={values.password}
         onChange={handleChange('password')}

@@ -42,3 +42,7 @@ export const Button: React.FC<Props> = ({ children, ...props }) => (
     {children}
   </ButtonUnstyled>
 );
+
+export const NavButtonWrapper = styled('div')`
+  padding: 14px 33px;
+`;

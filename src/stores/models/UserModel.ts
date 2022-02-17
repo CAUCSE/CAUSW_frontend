@@ -20,14 +20,15 @@ export class UserModel {
   admissionYear: number;
   role: UserRole; // TODO: ENUM으로 변경
   profileImage?: string;
-  student_id?: string;
+  studentId?: string;
 
-  constructor(data: UserResponseDto) {
-    this.email = data.email;
-    this.name = data.name;
-    this.admissionYear = data.admissionYear;
-    this.role = data.role;
-    this.profileImage = data.profileImage ?? '/images/default_profile.png';
+  constructor(props: UserResponseDto) {
+    this.email = props.email;
+    this.name = props.name;
+    this.admissionYear = props.admissionYear;
+    this.role = props.role;
+    this.profileImage = props.profileImage ?? '/images/default_profile.png';
+    this.studentId = props.studentId;
   }
 
   get roleTxt(): string {
