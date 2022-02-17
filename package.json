@@ -6,6 +6,8 @@
     "@craco/craco": "^6.4.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@mui/base": "^5.0.0-alpha.69",
+    "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

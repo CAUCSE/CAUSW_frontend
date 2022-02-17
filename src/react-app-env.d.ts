@@ -19,6 +19,7 @@ import type { RootStore } from './stores/RootStore';
 import type { UiStore } from './stores/UiStore';
 import type { PostDetailPageUiStore } from './v2/pages/board/postDetail/PageUiStore.PostDetail';
 import type { CircleMainPageUiStore } from './v2/pages/circle/main/CircleMainPageUiStore';
+import type { SettingPasswordPageUiStore } from './v2/pages/setting/password/SettingPasswordPageUiStore';
 
 declare global {
   namespace Store {
@@ -36,6 +37,7 @@ declare global {
   namespace PageUiStore {
     type CircleMain = CircleMainPageUiStore;
     type PostDetail = PostDetailPageUiStore;
+    type SettingPassword = SettingPasswordPageUiStore;
   }
 
   namespace Model {
