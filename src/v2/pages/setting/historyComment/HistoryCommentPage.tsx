@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
+import { HistoryCommentCard } from './HistoryCommentCard';
 import { PageUiStoreImpl } from './HistoryCommentPageUiStore';
 
 import { Header, InfinityFrame, LayoutHOC } from '@/v2/components';
@@ -19,7 +20,7 @@ const HistoryCommentPage: React.FC = () => {
       <InfinityFrame
         loadMore={loadMore(hasMore, page)}
         data={comments}
-        ItemComponent={(index, comment) => <div>1</div>}
+        ItemComponent={(index, comment) => <HistoryCommentCard key={comment.id} model={comment} />}
       />
     </>
   );

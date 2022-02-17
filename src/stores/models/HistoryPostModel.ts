@@ -1,5 +1,8 @@
 import { isToday } from 'date-fns';
 import { format, utcToZonedTime } from 'date-fns-tz';
+import { generatePath } from 'react-router-dom';
+
+import { PAGE_URL } from '@/configs/path';
 
 export class HistoryPostModel {
   circleName: string | null;
@@ -11,7 +14,7 @@ export class HistoryPostModel {
   createdAt: string;
   updatedAt: string;
 
-  constructor(props: Post.History) {
+  constructor(props: HistoryData.Post) {
     this.circleName = props.circleName ?? '';
     this.boardId = props.boardId;
     this.boardName = props.boardName;
@@ -20,6 +23,10 @@ export class HistoryPostModel {
     this.numComment = props.numComment;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
+  }
+
+  get to(): string {
+    return generatePath(PAGE_URL.PostDetail, { boardId: this.boardId, postId: this.id });
   }
 
   get formatedCreatedAt(): string {

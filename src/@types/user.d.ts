@@ -6,29 +6,19 @@ declare namespace User {
 
   export interface FindPostsResponseDto {
     post: {
-      content: Post.History[];
+      content: HistoryData.Post[];
       last: boolean;
     };
   }
 
-  //
-
   export interface FindCommentsResponse {
-    comments: Model.Comment[];
+    comments: Model.HistoryComment[];
     last: boolean;
   }
 
   export interface FindCommentsResponseDto {
-    // TODO: 필요 없음
-    // email: string
-    // id: string
-    // studentId: string
-
-    admissionYear: number;
-    name: string;
-    profileImage: string | null;
     comment: {
-      content: Content[];
+      content: HistoryData.Comment[];
       last: boolean;
     };
   }

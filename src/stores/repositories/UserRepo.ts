@@ -1,7 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import { AuthorModel } from '../models/AuthorModel';
-import { CommentModel } from '../models/CommentModel';
+import { HistoryCommentModel } from '../models/HistoryCommentModel';
 import { HistoryPostModel } from '../models/HistoryPostModel';
 
 import { API } from 'configs/axios';
@@ -25,20 +24,12 @@ class UserRepo {
   findComments = async (page: number): Promise<User.FindCommentsResponse> => {
     const {
       data: {
-        admissionYear,
-        name,
-        profileImage,
         comment: { content, last },
       },
     } = (await API.get(`${this.URI}/comments?pageNum=${page}`)) as AxiosResponse<User.FindCommentsResponseDto>;
 
     return {
-      comments: content.map(comment => {
-        const model = new CommentModel(comment);
-        model.author = new AuthorModel(admissionYear, name, profileImage);
-
-        return model;
-      }),
+      comments: content.map(comment => new HistoryCommentModel(comment)),
       last,
     };
   };

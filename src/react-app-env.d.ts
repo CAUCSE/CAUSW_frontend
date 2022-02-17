@@ -10,6 +10,7 @@ import type { BoardModel } from './stores/models/BoardModel';
 import type { CircleBoardModel } from './stores/models/CircleBoardModel';
 import type { CircleModel } from './stores/models/CircleModel';
 import type { CommentModel } from './stores/models/CommentModel';
+import type { HistoryCommentModel } from './stores/models/HistoryCommentModel';
 import type { HistoryPostModel } from './stores/models/HistoryPostModel';
 import type { PostModel } from './stores/models/PostModel';
 import type { ReplyCommentModel } from './stores/models/ReplyCommentModel';
@@ -51,12 +52,12 @@ declare global {
     type User = UserModel;
     type Circle = CircleModel;
     type CircleBoard = CircleBoardModel;
-    //
+
     type Post = PostModel;
     type HistoryPost = HistoryPostModel;
-    //
     type Comment = CommentModel;
     type ReplyComment = ReplyCommentModel;
+    type HistoryComment = HistoryCommentModel;
   }
 }
 

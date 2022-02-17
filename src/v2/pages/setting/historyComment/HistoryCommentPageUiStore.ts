@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx';
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
 export class HistoryCommentPageUiStore {
-  comments: Model.Comment[] = [];
+  comments: Model.HistoryComment[] = [];
   hasMore = true;
   page = 0;
 

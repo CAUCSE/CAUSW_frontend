@@ -5,28 +5,29 @@ import {
   ClearLink,
   PostAuthorNameCSS,
   PostBreak,
-  PostCommentNum,
-  PostCreatedAt,
+  PostCreatedAt as CreatedAt,
   PostTitleCSS,
   PostWrapperCSS,
 } from '@/v2/components';
 
-export const HistoryPostCard: React.FC<{
-  model: Model.HistoryPost;
-}> = observer(({ model: { to, title, formatedCreatedAt, circleName, boardName, numComment } }) => (
-  <Link to={to}>
-    <Card>
-      <Title>{title}</Title>
-      <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
-      <PostBreak />
-      <Breadcrumb>
-        {circleName ? <span>{circleName}</span> : null}
-        {boardName}
-      </Breadcrumb>
-      <PostCommentNum>{numComment}</PostCommentNum>
-    </Card>
-  </Link>
-));
+export const HistoryCommentCard: React.FC<{ model: Model.HistoryComment }> = observer(
+  ({ model: { to, content, formatedCreatedAt, circleName, boardName, postName } }) => (
+    <Link to={to}>
+      <Card>
+        <Title>
+          <p dangerouslySetInnerHTML={{ __html: content }} />
+        </Title>
+        <CreatedAt>{formatedCreatedAt}</CreatedAt>
+        <PostBreak />
+        <Breadcrumb>
+          {circleName ? <span>{circleName}</span> : null}
+          <span>{boardName}</span>
+          {postName}
+        </Breadcrumb>
+      </Card>
+    </Link>
+  ),
+);
 
 const Link = styled(ClearLink)`
   display: block;
