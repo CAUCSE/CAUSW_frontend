@@ -1,4 +1,17 @@
 declare namespace Post {
+  // 정리 _________________________________
+  export interface History {
+    circleName: string | null;
+    boardId: string;
+    boardName: string;
+    id: string;
+    title: string;
+    numComment: number;
+    createdAt: string;
+    updatedAt: string;
+  }
+
+  // 미정리 ________________________________
   export interface FindAllResponseDto {
     boardId: string;
     boardName: string;

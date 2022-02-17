@@ -1,11 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect } from 'react';
-import { generatePath } from 'react-router-dom';
 
+import { HistoryPostCard } from './HistoryPostCard';
 import { PageUiStoreImpl } from './HistoryPostPageUiStore';
 
-import { PAGE_URL } from '@/configs/path';
-import { Header, InfinityFrame, LayoutHOC, PostCard } from '@/v2/components';
+import { Header, InfinityFrame, LayoutHOC } from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 const HistoryPostPage: React.FC = observer(() => {
@@ -22,13 +21,7 @@ const HistoryPostPage: React.FC = observer(() => {
       <InfinityFrame
         loadMore={loadMore(hasMore, page)}
         data={posts}
-        ItemComponent={(index, post) => (
-          <PostCard
-            key={post.id}
-            model={post}
-            to={generatePath(PAGE_URL.PostDetail, { boardId: '1', postId: post.id })}
-          />
-        )}
+        ItemComponent={(index, post) => <HistoryPostCard key={post.id} model={post} />}
       />
     </>
   );

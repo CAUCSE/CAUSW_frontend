@@ -10,6 +10,7 @@ import type { BoardModel } from './stores/models/BoardModel';
 import type { CircleBoardModel } from './stores/models/CircleBoardModel';
 import type { CircleModel } from './stores/models/CircleModel';
 import type { CommentModel } from './stores/models/CommentModel';
+import type { HistoryPostModel } from './stores/models/HistoryPostModel';
 import type { PostModel } from './stores/models/PostModel';
 import type { ReplyCommentModel } from './stores/models/ReplyCommentModel';
 import type { UserModel } from './stores/models/UserModel';
@@ -19,6 +20,7 @@ import type { RootStore } from './stores/RootStore';
 import type { UiStore } from './stores/UiStore';
 import type { PostDetailPageUiStore } from './v2/pages/board/postDetail/PageUiStore.PostDetail';
 import type { CircleMainPageUiStore } from './v2/pages/circle/main/CircleMainPageUiStore';
+import type { HistoryCommentPageUiStore } from './v2/pages/setting/historyComment/HistoryCommentPageUiStore';
 import type { HistoryPostPageUiStore } from './v2/pages/setting/historyPost/HistoryPostPageUiStore';
 import type { SettingPasswordPageUiStore } from './v2/pages/setting/password/SettingPasswordPageUiStore';
 
@@ -40,15 +42,19 @@ declare global {
     type PostDetail = PostDetailPageUiStore;
     type SettingPassword = SettingPasswordPageUiStore;
     type HistroyPost = HistoryPostPageUiStore;
+    type HistroyComment = HistoryCommentPageUiStore;
   }
 
   namespace Model {
     type Board = BoardModel;
     type Author = AuthorModel;
-    type Post = PostModel;
     type User = UserModel;
     type Circle = CircleModel;
     type CircleBoard = CircleBoardModel;
+    //
+    type Post = PostModel;
+    type HistoryPost = HistoryPostModel;
+    //
     type Comment = CommentModel;
     type ReplyComment = ReplyCommentModel;
   }

@@ -1,10 +1,24 @@
 declare namespace User {
   export interface FindPostsResponse {
-    posts: Model.Post[];
+    posts: Model.HistoryPost[];
     last: boolean;
   }
 
   export interface FindPostsResponseDto {
+    post: {
+      content: Post.History[];
+      last: boolean;
+    };
+  }
+
+  //
+
+  export interface FindCommentsResponse {
+    comments: Model.Comment[];
+    last: boolean;
+  }
+
+  export interface FindCommentsResponseDto {
     // TODO: 필요 없음
     // email: string
     // id: string
@@ -13,7 +27,7 @@ declare namespace User {
     admissionYear: number;
     name: string;
     profileImage: string | null;
-    post: {
+    comment: {
       content: Content[];
       last: boolean;
     };

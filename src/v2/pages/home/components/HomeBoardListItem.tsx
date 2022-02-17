@@ -24,7 +24,7 @@ export const HomeBoardListItem: React.FC<{ model: Model.Post }> = observer(
         <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
         <PostBreak />
         <AuthorName>{author.nameWithAdmission}</AuthorName>
-        <PostCommentNum num={commentCount} />
+        <PostCommentNum>{commentCount}</PostCommentNum>
       </Link>
     );
   },

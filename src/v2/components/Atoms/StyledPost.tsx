@@ -61,9 +61,9 @@ const CommentNumIcon = styled(CommentBubbleIcon)`
   margin-right: 0.2rem;
 `;
 
-export const PostCommentNum: React.FC<{ num: number }> = memo(({ num }) => (
+export const PostCommentNum: React.FC = memo(({ children }) => (
   <CommentNumWrapper>
-    <CommentNumIcon /> {num}
+    <CommentNumIcon /> {children}
   </CommentNumWrapper>
 ));
 

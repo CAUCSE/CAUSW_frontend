@@ -33,7 +33,7 @@ const PagePostDetail: React.FC = observer(() => {
           <Header TopComponent={Breadcrumb} title={post.title} withBack RightComponent={PostDetailMenu} />
           <PostAuthor model={post.author} date={post.formatedCreatedAt} />
           <PostContent dangerouslySetInnerHTML={{ __html: post.content }} />
-          <PostCommentNum num={post.commentCount} />
+          <PostCommentNum>{post.commentCount}</PostCommentNum>
           <Switch>
             <Route path={PAGE_URL.PostReplyComment} component={PostReplyComments} />
             <Route path={PAGE_URL.PostDetail} component={PostComments} />

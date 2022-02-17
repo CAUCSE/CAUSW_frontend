@@ -2,8 +2,8 @@ import { makeAutoObservable } from 'mobx';
 
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
-export class HistoryPostPageUiStore {
-  posts: Model.HistoryPost[] = [];
+export class HistoryCommentPageUiStore {
+  comments: Model.Comment[] = [];
   hasMore = true;
   page = 0;
 
@@ -12,12 +12,12 @@ export class HistoryPostPageUiStore {
   }
 
   *fetch(page = 0): Generator {
-    const { posts, last } = (yield Repo.findPosts(page)) as User.FindPostsResponse;
+    const { comments, last } = (yield Repo.findComments(page)) as User.FindCommentsResponse;
 
     this.page = page;
     this.hasMore = !last;
-    this.posts = posts;
+    this.comments = comments;
   }
 }
 
-export const PageUiStoreImpl = new HistoryPostPageUiStore();
+export const PageUiStoreImpl = new HistoryCommentPageUiStore();
