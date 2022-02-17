@@ -5,7 +5,7 @@ declare namespace Post {
     writable: boolean;
     post: {
       content: Content[];
-      totalPages: number;
+      last: boolean;
     };
   }
 

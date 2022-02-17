@@ -10,9 +10,9 @@ export class PostStore {
   boardName = '';
   writable = false;
   // 게시글 목록
-  totalPages = 0;
-  page = 0;
   posts: Model.Post[] = [];
+  hasMore = true;
+  page = 0;
   // 게시글 상세
   post?: Model.Post;
 
@@ -22,27 +22,21 @@ export class PostStore {
     this.rootStore = rootStore;
   }
 
-  setPage(page: number): void {
-    this.page = page;
-  }
-
-  get hasMore(): boolean {
-    return this.page !== this.totalPages - 1;
-  }
-
   *fetchAll(bid: string, page = 0): Generator {
     const {
       boardId,
       boardName,
       writable,
-      post: { content: posts, totalPages },
+      post: { content: posts, last },
     } = (yield Repo.findAll(bid, page)) as Post.FindAllResponseDto;
 
     this.boardId = boardId;
     this.boardName = boardName;
     this.writable = writable;
+
+    this.page = page;
+    this.hasMore = !last;
     this.posts = this.posts.concat(posts.map(data => new PostModel(data)));
-    this.totalPages = totalPages;
   }
 
   *create(data: Partial<Post.CreateRequestDto>): Generator {

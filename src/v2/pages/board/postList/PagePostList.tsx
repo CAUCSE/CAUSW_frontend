@@ -13,18 +13,13 @@ const PagePostList: React.FC = observer(() => {
   const { boardId } = useParams<{ boardId: string }>();
   const timer = useRef<NodeJS.Timeout>();
   const {
-    post: { boardName, posts, hasMore, page, setPage, fetchAll, reset },
+    ui: { mainRef },
+    post: { boardName, posts, hasMore, page, fetchAll, reset },
   } = useRootStore();
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => {
       if (timer.current) clearTimeout(timer.current);
-
-      if (hasMore) {
-        timer.current = setTimeout(() => {
-          fetchAll(boardId, page + 1);
-          setPage(page + 1);
-        }, 50);
-      }
+      if (hasMore) timer.current = setTimeout(() => fetchAll(boardId, page + 1), 50);
     },
     [boardId],
   );
@@ -39,7 +34,8 @@ const PagePostList: React.FC = observer(() => {
     <>
       <Header title={boardName} withBack={PAGE_URL.Board} RightComponent={PostCreateButton} />
       <Virtuoso
-        style={{ height: 'calc(100% - 85px)' }}
+        customScrollParent={mainRef?.current as HTMLElement}
+        style={{ maxHeight: '100vh' }}
         endReached={loadMore(hasMore, page)}
         overscan={200}
         data={posts}

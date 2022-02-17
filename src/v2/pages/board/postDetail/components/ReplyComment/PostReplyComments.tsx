@@ -33,18 +33,13 @@ export const PostReplyComments: React.FC = observer(() => {
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => {
       if (timer.current) clearTimeout(timer.current);
-
-      if (hasMore) {
-        timer.current = setTimeout(() => {
-          fetch(commentId, page + 1);
-        }, 50);
-      }
+      if (hasMore) timer.current = setTimeout(() => fetch(commentId, page + 1), 50);
     },
     [postId],
   );
 
   useEffect(() => {
-    fetch(commentId, 0);
+    fetch(commentId);
 
     return () => {
       reset();

@@ -20,7 +20,7 @@ export class ReplyCommentStore {
     this.page = 0;
   }
 
-  *fetch(pcid: string, page: number): Generator {
+  *fetch(pcid: string, page = 0): Generator {
     const { parent, comments, last } = (yield Repo.findAll(pcid, page)) as ReplyComment.FindAllResponse;
 
     this.page = page;
