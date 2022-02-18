@@ -13,3 +13,9 @@ export const ScreenArea = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
 `;
+
+export const PageWraaper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;

@@ -8,6 +8,10 @@ import { API } from 'configs/axios';
 class UserRepo {
   private URI = '/api/v1/users';
 
+  update = async (body: User.UserUpdateDto): Promise<void> => {
+    await API.put(this.URI, body);
+  };
+
   findPosts = async (page: number): Promise<User.FindPostsResponse> => {
     const {
       data: {

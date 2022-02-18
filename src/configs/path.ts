@@ -27,10 +27,6 @@ export enum PAGE_URL {
   Err404 = '/error/404',
 }
 
-export enum API_URL {
-  Storage = '/api/v1/storage/image/upload',
-}
-
 export interface PostParams {
   boardId: string;
   postId: string;

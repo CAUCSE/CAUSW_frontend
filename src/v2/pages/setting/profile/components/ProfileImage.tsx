@@ -2,19 +2,17 @@ import styled from '@emotion/styled';
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 import React, { useEffect, useRef, useState } from 'react';
 
+import { ImageState } from '../SettingProfilePageUiStore';
+
 import { ClearButton, ProfileImageBox } from '@/v2/components';
 
-interface State {
-  file: File | null;
-  blobUrl?: string;
-}
-
 interface Props {
-  defaultSrc?: string;
+  defaultSrc?: string | null;
+  onChange?: (state: ImageState) => void;
 }
-export const ProfileImage: React.FC<Props> = ({ defaultSrc }) => {
+export const ProfileImage: React.FC<Props> = ({ defaultSrc, onChange }) => {
   const ref = useRef<HTMLInputElement | null>(null);
-  const [values, setValues] = useState<State>({
+  const [values, setValues] = useState<ImageState>({
     file: null,
     blobUrl: undefined,
   });
@@ -24,24 +22,29 @@ export const ProfileImage: React.FC<Props> = ({ defaultSrc }) => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
-    input.addEventListener('change', () => {
-      console.debug(1);
+    input.addEventListener('change', () =>
       setValues(values => {
         const file = (input.files ?? [])[0];
-        const blobUrl = URL.createObjectURL(file);
 
-        if (values.blobUrl) URL.revokeObjectURL(values.blobUrl);
+        if (file) {
+          const blobUrl = URL.createObjectURL(file);
 
-        return { file, blobUrl };
-      });
-    });
+          if (values.blobUrl) URL.revokeObjectURL(values.blobUrl);
+          if ('function' === typeof onChange) onChange({ file, blobUrl });
+
+          return { file, blobUrl };
+        } else {
+          return values;
+        }
+      }),
+    );
 
     ref.current = input;
   }, []);
 
   return (
     <Button type="button" onClick={handleClick}>
-      <Image src={values.blobUrl ?? defaultSrc} />
+      <Image src={values.blobUrl ?? defaultSrc ?? ''} />
       <ProfileIcon />
     </Button>
   );

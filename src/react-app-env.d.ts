@@ -24,6 +24,7 @@ import type { CircleMainPageUiStore } from './v2/pages/circle/main/CircleMainPag
 import type { HistoryCommentPageUiStore } from './v2/pages/setting/historyComment/HistoryCommentPageUiStore';
 import type { HistoryPostPageUiStore } from './v2/pages/setting/historyPost/HistoryPostPageUiStore';
 import type { SettingPasswordPageUiStore } from './v2/pages/setting/password/SettingPasswordPageUiStore';
+import type { SettingProfilePageUiStore } from './v2/pages/setting/profile/SettingProfilePageUiStore';
 
 declare global {
   namespace Store {
@@ -44,6 +45,7 @@ declare global {
     type SettingPassword = SettingPasswordPageUiStore;
     type HistroyPost = HistoryPostPageUiStore;
     type HistroyComment = HistoryCommentPageUiStore;
+    type SettingProfile = SettingProfilePageUiStore;
   }
 
   namespace Model {

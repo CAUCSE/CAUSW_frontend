@@ -1,34 +1,50 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { ContextMenu, ProfileImage } from './components';
-import { Nav } from './Nav';
+import { PageUiStoreImpl } from './SettingProfilePageUiStore';
+import { Form } from './styled';
 
 import { PAGE_URL } from '@/configs/path';
-import { useRootStore } from '@/stores/RootStore';
-import { Header, Input, LayoutHOC } from '@/v2/components';
+import { Button, Header, Input, LayoutHOC, NavButtonWrapper, PageWraaper } from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks';
 
 const SettingProfilePage: React.FC = observer(() => {
-  const {
-    auth: { me, fetch },
-  } = useRootStore();
+  const { fetch, me, set, update, submitDisabled } = usePageUiStore<PageUiStore.SettingProfile>();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    update();
+  };
 
   useEffect(() => {
     fetch();
   }, []);
 
   return (
-    <>
+    <PageWraaper>
       <Header title="개인정보 관리" mini withBack={PAGE_URL.Setting} RightComponent={ContextMenu} />
 
-      <form>
-        <ProfileImage defaultSrc={me?.profileImage} />
-        <Input id="ipt-email" label="이메일" name="email" defaultValue={me?.email} disabled />
-        <Input id="ipt-name" label="이름" name="name" defaultValue={me?.name} disabled />
-        <Input id="ipt-studentId" label="학번" name="studentId" defaultValue={me?.studentId} />
-      </form>
-    </>
+      <Form onSubmit={handleSubmit}>
+        <div style={{ flex: '1 0 0' }}>
+          <ProfileImage defaultSrc={me?.profileImage} onChange={set('image')} />
+          <Input id="ipt-email" label="이메일" name="email" defaultValue={me?.email} disabled />
+          <Input id="ipt-name" label="이름" name="name" defaultValue={me?.name} disabled />
+          <Input
+            id="ipt-studentId"
+            label="학번"
+            name="studentId"
+            defaultValue={me?.studentId}
+            onChange={set('studentId')}
+          />
+        </div>
+        <NavButtonWrapper>
+          <Button type="submit" disabled={submitDisabled}>
+            개인정보 변경
+          </Button>
+        </NavButtonWrapper>
+      </Form>
+    </PageWraaper>
   );
 });
 
-export default LayoutHOC(SettingProfilePage, { Nav });
+export default LayoutHOC(SettingProfilePage, { Nav: null, pageUiStore: PageUiStoreImpl });

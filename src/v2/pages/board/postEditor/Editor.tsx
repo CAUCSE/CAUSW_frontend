@@ -4,9 +4,7 @@ import { useMemo, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import ReactQuill, { Quill } from 'react-quill';
 
-import { API } from '@/configs/axios';
-import { IMAGE_TYPE } from '@/configs/image';
-import { API_URL } from '@/configs/path';
+import { IMAGE_TYPE, StorageRepoImpl } from '@/stores/repositories/StorageRepo';
 import ImageUploader from 'quill-image-uploader';
 
 interface Props {
@@ -26,13 +24,10 @@ export const Editor: React.FC<Props> = ({ content = '' }) => {
         container: [['bold', 'italic', { align: '' }, { align: 'center' }, { align: 'right' }, 'image', 'link']],
       },
       imageUploader: {
-        upload: (file: string | Blob) =>
+        upload: (file: File) =>
           new Promise((resolve, reject) => {
-            const formData = new FormData();
-            formData.append('image', file);
-
-            API.post(`${API_URL.Storage}?imageLocation=${IMAGE_TYPE.POST}`, formData)
-              .then(({ data: { path } }) => resolve(path))
+            StorageRepoImpl.upload(IMAGE_TYPE.POST, file)
+              .then(path => resolve(path))
               .catch(e => reject(e));
           }),
       },

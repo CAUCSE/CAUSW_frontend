@@ -18,10 +18,23 @@ interface Props {
   disabled?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  onChange?: (value: string) => void;
 }
-export const Input: React.FC<Props> = ({ defaultValue, className, style, id, label, type = 'text', ...props }) => {
+export const Input: React.FC<Props> = ({
+  defaultValue,
+  className,
+  style,
+  id,
+  label,
+  type = 'text',
+  onChange,
+  ...props
+}) => {
   const [value, setValue] = useState(defaultValue);
-  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => setValue(evt.target.value);
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(evt.target.value);
+    if ('function' === typeof onChange) onChange(evt.target.value);
+  };
 
   useEffect(() => {
     setValue(defaultValue);

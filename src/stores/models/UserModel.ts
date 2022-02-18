@@ -19,7 +19,7 @@ export class UserModel {
   name: string;
   admissionYear: number;
   role: UserRole; // TODO: ENUM으로 변경
-  profileImage?: string;
+  profileImage?: string | null;
   studentId?: string;
 
   constructor(props: UserResponseDto) {

@@ -1,4 +1,12 @@
 declare namespace User {
+  export interface UserUpdateDto {
+    admissionYear: number;
+    email: string;
+    name: string;
+    profileImage: string | null;
+    studentId: string;
+  }
+
   export interface FindPostsResponse {
     posts: Model.HistoryPost[];
     last: boolean;
