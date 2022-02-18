@@ -1,27 +1,23 @@
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { Checkbox } from '@mui/material';
 import { observer } from 'mobx-react-lite';
-import { useLayoutEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 
 import { PasswordInput } from './components';
 import { CheckboxLabel, Form, Input, Link, LoginButton, LogoImage, PageWrapper, SubLink } from './styled';
 
 import { PAGE_URL } from '@/configs/path';
+import { useAuthRedirect } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
 import { LayoutHOC } from '@/v2/components';
 
 const SignInPage: React.FC = observer(() => {
-  const { replace } = useHistory();
   const {
-    auth: { signIn, isSignIn },
+    auth: { signIn },
   } = useRootStore();
   const { control, handleSubmit } = useForm();
 
-  useLayoutEffect(() => {
-    if (isSignIn) replace(PAGE_URL.Home);
-  }, [isSignIn]);
+  useAuthRedirect();
 
   return (
     <PageWrapper>
