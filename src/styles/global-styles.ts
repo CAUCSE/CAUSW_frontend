@@ -4,7 +4,7 @@ import emotionNormalize from 'emotion-normalize';
 export const GlobalStyle = css`
   ${emotionNormalize}
 
-  p, div, span, input {
+  p, div, span, input, a {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
     color: #3f4040;
