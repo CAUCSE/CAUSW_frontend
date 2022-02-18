@@ -6,7 +6,7 @@ export const Porfile: React.FC<{ model: Model.User }> = memo(
     return (
       <Wrapper>
         <ProfileImage>
-          <img src={profileImage} alt="user profile image" />
+          <img src={profileImage ?? ''} alt="user profile image" />
         </ProfileImage>
         <strong>{email}</strong>
         <br />
