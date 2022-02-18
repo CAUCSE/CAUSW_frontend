@@ -4,7 +4,7 @@ import emotionNormalize from 'emotion-normalize';
 export const GlobalStyle = css`
   ${emotionNormalize}
 
-  * {
+  p, div, span, input {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
     color: #3f4040;
@@ -56,5 +56,13 @@ export const GlobalStyle = css`
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+  input[data-autocompleted] {
+    background-color: transparent !important;
   }
 `;
