@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 import { UserModel } from '../models/UserModel';
 import { DtoUserCreate } from './AuthType';
 
@@ -6,14 +8,14 @@ import { API, setAuth, storeAuth } from 'configs/axios';
 class AuthRepo {
   URI = '/api/v1/users';
 
-  signIn = async (body: DtoUserSignInRequest) => {
-    const { data: token } = await API.post(`${this.URI}/sign-in`, body);
+  signIn = async (body: User.SignInRequestDto) => {
+    const { data: token } = (await API.post(`${this.URI}/sign-in`, body)) as AxiosResponse<string>;
 
     storeAuth(!!body.auto, token);
     setAuth(token);
-
-    return token;
   };
+
+  // ==
 
   findCurrentUser = async (): Promise<Model.User> => {
     const { data } = await API.get(`${this.URI}/me`);
@@ -26,8 +28,3 @@ class AuthRepo {
 }
 
 export const AuthRepoImpl = new AuthRepo();
-export interface DtoUserSignInRequest {
-  email: string;
-  password: string;
-  auto?: boolean; // 자동 로그인 필드
-}

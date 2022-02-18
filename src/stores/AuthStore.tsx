@@ -1,6 +1,6 @@
-import { flow, makeObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
-import { AuthRepoImpl as Repo, DtoUserSignInRequest as SignInRequest } from './repositories/AuthRepo';
+import { AuthRepoImpl as Repo } from './repositories/AuthRepo';
 
 import { restoreAuth } from 'configs/axios';
 
@@ -10,27 +10,29 @@ export class AuthStore {
   isSignIn = false;
 
   constructor(rootStore: Store.Root) {
-    makeObservable(this, {
-      me: observable,
-      isSignIn: observable,
-
-      signIn: flow.bound,
-      fetch: flow.bound,
-    });
-
     this.rootStore = rootStore;
     this.isSignIn = restoreAuth();
+
+    makeAutoObservable(
+      this,
+      {
+        rootStore: false,
+      },
+      { autoBind: true },
+    );
   }
 
-  *signIn(body: SignInRequest): Generator {
+  *signIn(body: User.SignInRequestDto): Generator {
     try {
       yield Repo.signIn(body);
-
       this.isSignIn = true;
     } catch (err) {
       this.isSignIn = false;
+      alert('아이디 혹은 비밀번호가 잘못되었습니다');
     }
   }
+
+  // ==
 
   *fetch(): Generator {
     this.me = (yield Repo.findCurrentUser()) as Model.User;

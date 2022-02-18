@@ -1,4 +1,13 @@
 declare namespace User {
+  // /api/v1/users/sign-in
+  export interface SignInRequestDto {
+    email: string;
+    password: string;
+    auto?: boolean;
+  }
+
+  // ==
+
   export interface UserUpdateDto {
     admissionYear: number;
     email: string;
