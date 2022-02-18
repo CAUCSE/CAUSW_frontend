@@ -27,6 +27,10 @@ export class SettingProfilePageUiStore {
     this.studentId = this.me.studentId as string;
   }
 
+  reset(): void {
+    this.submitDisabled = true;
+  }
+
   set(key: 'image' | 'studentId'): (value: unknown) => void {
     return (value: unknown) => {
       runInAction(() => {
@@ -37,7 +41,9 @@ export class SettingProfilePageUiStore {
     };
   }
 
-  *update(): Generator {
+  *update(evt: React.FormEvent): Generator {
+    evt.preventDefault();
+
     if (!this.me) return;
     this.submitDisabled = true;
 

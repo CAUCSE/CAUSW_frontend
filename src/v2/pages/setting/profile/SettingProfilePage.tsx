@@ -10,21 +10,18 @@ import { Button, Header, Input, LayoutHOC, NavButtonWrapper, PageWraaper } from 
 import { usePageUiStore } from '@/v2/hooks';
 
 const SettingProfilePage: React.FC = observer(() => {
-  const { fetch, me, set, update, submitDisabled } = usePageUiStore<PageUiStore.SettingProfile>();
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    update();
-  };
+  const { fetch, reset, me, set, update, submitDisabled } = usePageUiStore<PageUiStore.SettingProfile>();
 
   useEffect(() => {
     fetch();
+    return () => reset();
   }, []);
 
   return (
     <PageWraaper>
       <Header title="개인정보 관리" mini withBack={PAGE_URL.Setting} RightComponent={ContextMenu} />
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={update}>
         <div style={{ flex: '1 0 0' }}>
           <ProfileImage defaultSrc={me?.profileImage} onChange={set('image')} />
           <Input id="ipt-email" label="이메일" name="email" defaultValue={me?.email} disabled />

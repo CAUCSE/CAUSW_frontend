@@ -4,7 +4,7 @@ import { styled } from '@mui/material';
 const CustomButtonRoot = styled('button')`
   width: 100%;
   height: 45px;
-  border-radius: 30px;
+  border-radius: 10px;
   background-color: #312ed7;
   font-size: 18px;
   line-height: 21px;

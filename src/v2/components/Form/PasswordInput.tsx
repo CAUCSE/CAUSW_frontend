@@ -15,17 +15,19 @@ interface Props {
   label: string;
   helperText?: string;
   error?: boolean;
+  onChange?: (value: string) => void;
   className?: string;
   style?: React.CSSProperties;
 }
-export const PasswordInput: React.FC<Props> = ({ className, style, id, label, helperText, error }) => {
+export const PasswordInput: React.FC<Props> = ({ onChange, className, style, id, label, helperText, error }) => {
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false,
   });
 
-  const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value });
+  const handleChange = (prop: keyof State) => (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [prop]: evt.target.value });
+    if ('function' === typeof onChange) onChange(evt.target.value);
   };
 
   const handleClickShowPassword = () => {
@@ -68,7 +70,7 @@ export const PasswordInput: React.FC<Props> = ({ className, style, id, label, he
 
 const HelperText = styled.div<Pick<Props, 'error'>>`
   margin-top: 7px;
-  height: 23px;
+  min-height: 23px;
   font-size: 14px;
   line-height: 23px;
   color: ${({ error }) => (error ? '#FF7473' : '#518CFF')};
