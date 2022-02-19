@@ -1,7 +1,6 @@
 import { AxiosResponse } from 'axios';
 
 import { UserModel } from '../models/UserModel';
-import { DtoUserCreate } from './AuthType';
 
 import { API, setAuth, storeAuth } from 'configs/axios';
 
@@ -15,6 +14,20 @@ class AuthRepo {
     setAuth(token);
   };
 
+  isDuplicatedEmail = async (email: string): Promise<boolean> => {
+    const {
+      data: { result },
+    } = (await API.get(
+      `${this.URI}/${email}/is-duplicated`,
+    )) as AxiosResponse<User.IsDuplicatedEmailResponseDto>;
+
+    return result;
+  };
+
+  // signUp = async (body: User.CreateDto) => {
+  //   API.post(`${this.URI}/sign-up`, body);
+  // };
+
   // ==
 
   findCurrentUser = async (): Promise<Model.User> => {
@@ -22,9 +35,6 @@ class AuthRepo {
 
     return new UserModel(data);
   };
-
-  // ---
-  signUp = (body: DtoUserCreate) => API.post(`${this.URI}/sign-up`, body);
 }
 
 export const AuthRepoImpl = new AuthRepo();

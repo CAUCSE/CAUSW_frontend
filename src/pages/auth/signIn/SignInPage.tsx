@@ -4,7 +4,16 @@ import { observer } from 'mobx-react-lite';
 import { Controller, useForm } from 'react-hook-form';
 
 import { PasswordInput } from './components';
-import { CheckboxLabel, Form, Input, Link, LoginButton, LogoImage, PageWrapper, SubLink } from './styled';
+import {
+  CheckboxLabel,
+  Form,
+  Input,
+  Link,
+  LoginButton,
+  LogoImage,
+  PageWrapper,
+  SubLink,
+} from './styled';
 
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect } from '@/hooks';
@@ -42,7 +51,10 @@ const SignInPage: React.FC = observer(() => {
           name="auto"
           control={control}
           render={({ field }) => (
-            <CheckboxLabel label="로그인 상태 유지" control={<Checkbox {...field} size="small" />} />
+            <CheckboxLabel
+              label="로그인 상태 유지"
+              control={<Checkbox {...field} size="small" />}
+            />
           )}
         />
         <LoginButton type="submit">로그인</LoginButton>

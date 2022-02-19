@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import styled from 'styled-components';
-import { ClearA, ClearLink } from '@/components/atoms/clear';
+import { ClearA, ClearLink } from '@/components/regacy/atoms/clear';
 import { ReactComponent as UniversityIcon } from '@/assets/icons/link/university.svg';
 import { ReactComponent as LibraryIcon } from '@/assets/icons/link/library.svg';
 import { ReactComponent as CSEIcon } from '@/assets/icons/link/cse.svg';

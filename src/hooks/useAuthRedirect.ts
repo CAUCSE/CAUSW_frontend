@@ -11,7 +11,6 @@ export const useAuthRedirect = (): void => {
   } = useRootStore();
 
   useLayoutEffect(() => {
-    console.debug(isSignIn);
     if (isSignIn) replace(PAGE_URL.Home);
   }, [isSignIn]);
 };

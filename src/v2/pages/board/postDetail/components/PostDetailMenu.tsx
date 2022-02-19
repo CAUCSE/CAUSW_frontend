@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 
 
-import { MenuIcon } from '@/components/atoms/Icon';
+import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';

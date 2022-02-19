@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Nav, NavLink } from './GnbView';
 
-import * as I from '@/components/atoms/Icon';
+import * as I from '@/components/regacy/atoms/Icon';
 import { PAGE_URL } from 'configs/path';
 import { useRootStore } from 'stores/RootStore';
 

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 
-import { ClearA, ClearLink } from '@/components/atoms/clear';
+import { ClearA, ClearLink } from '@/components/regacy/atoms/clear';
 
 export const CircleLinks = memo(() => (
   <Wrapper>

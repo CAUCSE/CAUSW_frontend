@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 
-import { ClearLink } from '@/components/atoms/clear';
-import * as Post from '@/components/StyledPost';
+import { ClearLink } from '@/components/regacy/atoms/clear';
+import * as Post from '@/components/regacy/StyledPost';
 
 export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
   ({ to, model: { title, author, commentCount, formatedCreatedAt } }) => (

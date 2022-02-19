@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 
-import { MenuIcon } from '@/components/atoms/Icon';
+import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';
 
 export const ContextMenu: React.FC = observer(() => {

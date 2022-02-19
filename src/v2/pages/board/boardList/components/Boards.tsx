@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import { BoardListItem } from './BoardListItem';
 
-import { ListBox } from '@/components/ListBox';
+import { ListBox } from '@/components/regacy/ListBox';
 import { useRootStore } from '@/stores/RootStore';
 
 export const Boards: React.FC = observer(() => {

@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { createContext, memo, useContext } from 'react';
 
-import { CommentBubbleIcon } from '@/components/atoms/Icon';
+import { CommentBubbleIcon } from '@/components/regacy/atoms/Icon';
 
 export const PostWrapperCSS = css`
   display: flex;

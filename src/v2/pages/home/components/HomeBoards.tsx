@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import { HomeBoardListItem } from './HomeBoardListItem';
 
-import { ListBox } from '@/components/ListBox';
+import { ListBox } from '@/components/regacy/ListBox';
 import { useRootStore } from '@/stores/RootStore';
 import { BoradIdProvider } from '@/v2/components';
 

@@ -5,14 +5,6 @@ export enum UserState {
   BLOCKED = 'blocked',
 }
 
-export interface DtoUserCreate {
-  admissionYear: number;
-  email: string;
-  name: string;
-  password: string;
-  studentId: string;
-}
-
 export interface DtoUserSignInRequest {
   email: string;
   password: string;

@@ -1,5 +1,6 @@
 /// <reference types="react-scripts" />
 
+import type { SignUpPageUiStore } from './pages/auth/signUp/PageUiStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { BoardStore } from './stores/BoardStore';
 import type { CircleStore } from './stores/CircleStore';
@@ -40,6 +41,7 @@ declare global {
   }
 
   namespace PageUiStore {
+    type SignUp = SignUpPageUiStore;
     type CircleMain = CircleMainPageUiStore;
     type PostDetail = PostDetailPageUiStore;
     type SettingPassword = SettingPasswordPageUiStore;

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { generatePath } from 'react-router-dom';
 
-import { PencilIcon } from '@/components/atoms/Icon';
+import { PencilIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { ClearLink, RightButtonWrapper } from '@/v2/components';

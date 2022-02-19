@@ -13,6 +13,7 @@ interface Props {
   id: string;
   name: string;
   label: string;
+  placeholder?: string;
   type?: string;
   defaultValue?: string;
   disabled?: boolean;

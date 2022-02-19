@@ -1,7 +1,7 @@
 export enum PAGE_URL {
   Auth = '/auth',
   SignIn = '/auth/signin',
-  SignUp = '/singup',
+  SignUp = '/auth/singup',
 
   Home = '/home',
 

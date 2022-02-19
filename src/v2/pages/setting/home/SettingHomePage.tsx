@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Porfile } from './components';
 import { Link } from './styeld';
 
-import { Box, Title } from '@/components/ListBox';
+import { Box, Title } from '@/components/regacy/ListBox';
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 import { LayoutHOC } from '@/v2/components';

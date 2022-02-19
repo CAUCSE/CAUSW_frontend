@@ -32,6 +32,7 @@ export class AuthStore {
     }
   }
 
+
   // ==
 
   *fetch(): Generator {

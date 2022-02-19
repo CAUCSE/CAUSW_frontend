@@ -1,9 +1,22 @@
 declare namespace User {
-  // /api/v1/users/sign-in
   export interface SignInRequestDto {
     email: string;
     password: string;
     auto?: boolean;
+  }
+
+  export interface IsDuplicatedEmailResponseDto {
+    result: boolean;
+  }
+
+  export interface CreateDto {
+    email: string;
+    password: string;
+    name: string;
+    admissionYear: number;
+    // TODO: 필요 없는 파라미터
+    // profileImage?: string | null;
+    studentId: string;
   }
 
   // ==

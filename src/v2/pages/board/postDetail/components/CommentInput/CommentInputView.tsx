@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { Form, InputBox, SendButton, Textarea } from './styled';
 
-import { SendIcon } from '@/components/atoms/Icon';
+import { SendIcon } from '@/components/regacy/atoms/Icon';
 import { usePageUiStore } from '@/v2/hooks';
 
 interface Props {
