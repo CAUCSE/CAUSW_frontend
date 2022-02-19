@@ -1,16 +1,15 @@
 import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
-import { generatePath } from 'react-router-dom';
+import { generatePath, useParams } from 'react-router-dom';
 
 import { PencilIcon } from '@/components/regacy/atoms/Icon';
-import { PAGE_URL } from '@/configs/path';
-import { useRootStore } from '@/stores/RootStore';
+import { PAGE_URL, PostParams } from '@/configs/path';
 import { ClearLink, RightButtonWrapper } from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks';
 
 export const PostCreateButton: React.FC = observer(() => {
-  const {
-    post: { boardId, writable },
-  } = useRootStore();
+  const { boardId } = useParams<PostParams>();
+  const { writable } = usePageUiStore<PageUiStore.PostList>();
 
   return writable ? (
     <Wrapper to={generatePath(PAGE_URL.PostWrite, { boardId })}>

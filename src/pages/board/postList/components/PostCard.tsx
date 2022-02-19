@@ -1,18 +1,25 @@
+import styled from '@emotion/styled';
 import { memo } from 'react';
-import styled from 'styled-components';
 
-import { ClearLink } from '@/components/regacy/atoms/clear';
-import * as Post from '@/components/regacy/StyledPost';
+import {
+  ClearLink,
+  PostAuthorNameCSS,
+  PostBreak,
+  PostCommentNum,
+  PostCreatedAt,
+  PostTitleCSS,
+  PostWrapperCSS,
+} from '@/v2/components';
 
 export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
   ({ to, model: { title, author, commentCount, formatedCreatedAt } }) => (
     <Link to={to}>
       <Card>
         <Title>{title}</Title>
-        <Post.CreatedDate>{formatedCreatedAt}</Post.CreatedDate>
-        <Post.Break />
+        <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
+        <PostBreak />
         <AuthorName>{author.nameWithAdmission}</AuthorName>
-        <Post.CommentNum num={commentCount} />
+        <PostCommentNum>{commentCount}</PostCommentNum>
       </Card>
     </Link>
   ),
@@ -20,22 +27,23 @@ export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
 
 const Link = styled(ClearLink)`
   display: block;
+  margin: 0 20px;
   border-bottom: 1px solid #f5f5f5;
 `;
 
 const Card = styled.article`
-  ${Post.WrapperCSS}
+  ${PostWrapperCSS}
   padding: 1rem 0 0.75rem;
 `;
 
 const Title = styled.h3`
-  ${Post.TitleCSS}
+  ${PostTitleCSS}
   font-size: 13px;
   line-height: 15px;
 `;
 
 const AuthorName = styled.div`
-  ${Post.AuthorNameCSS}
+  ${PostAuthorNameCSS}
   font-size: 10px;
   line-height: 12px;
 `;

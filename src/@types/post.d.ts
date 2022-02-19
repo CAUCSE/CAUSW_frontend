@@ -9,6 +9,16 @@ declare namespace Post {
     };
   }
 
+  export interface FindAllResponse {
+    boardId: string;
+    boardName: string;
+    writable: boolean;
+    post: {
+      content: Model.Post[];
+      last: boolean;
+    };
+  }
+
   export interface CreateRequestDto {
     boardId: string;
     title: string;

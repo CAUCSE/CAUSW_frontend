@@ -48,7 +48,9 @@ export class PostStore {
   }
 
   *fetch(pid: string): Generator {
-    const { boardId, boardName, commentList, ...data } = (yield Repo.findById(pid)) as PostDetail.RootObject;
+    const { boardId, boardName, commentList, ...data } = (yield Repo.findById(
+      pid,
+    )) as PostDetail.RootObject;
 
     this.boardId = boardId;
     this.boardName = boardName;

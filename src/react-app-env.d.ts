@@ -4,6 +4,7 @@ import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageU
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
 import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
 import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPageUiStore';
+import type { PostListPageUiStore } from './pages/board/postList/PostListPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
 //
 import type { AuthStore } from './stores/AuthStore';
@@ -47,6 +48,7 @@ declare global {
     type Application = AdmissionPageUiStore;
     type Home = HomePageUiStore;
     type BoardList = BoardListPageUiStore;
+    type PostList = PostListPageUiStore;
     //
     //
     type CircleMain = CircleMainPageUiStore;
