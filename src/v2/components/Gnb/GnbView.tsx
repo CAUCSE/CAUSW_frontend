@@ -24,7 +24,7 @@ const LinkStyle = styled(Link)`
   flex: 1 1 0;
 
   &.active svg path {
-    fill: ${({ theme }) => theme.color.blue.main};
+    fill: #312ed7;
   }
 
   svg {
