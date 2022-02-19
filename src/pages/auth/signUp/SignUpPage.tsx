@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
-import { PageUiStoreImpl } from './PageUiStore';
+import { PageUiStoreImpl } from './SignUpPageUiStore';
 import { SubmitButton } from './styled';
 
 import {
@@ -34,15 +34,12 @@ const SignUpPage: React.FC = observer(() => {
   } = useForm();
   const password = watch('password');
   const onSubmit = async (body: User.CreateDto) => {
-    const { success, error } = (await signUp(body)) as unknown as {
-      success: boolean;
-      error?: string;
-    };
+    const { success, message } = (await signUp(body)) as unknown as StoreAPI;
 
     if (success) {
       alert('회원가입에 성공하였습니다.');
       setTimeout(() => replace(PAGE_URL.SignIn), 1000);
-    } else if (error) alert(error);
+    } else if (message) alert(message);
   };
 
   useEffect(() => {

@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { makeAutoObservable } from 'mobx';
 
 import { AuthRepoImpl as Repo } from '@/stores/repositories/AuthRepo';
@@ -24,10 +23,7 @@ export class SignUpPageUiStore {
         yield Repo.signUp(body);
         return { success: true };
       } catch (err) {
-        return {
-          success: false,
-          error: (err as AxiosError)?.response?.data?.message,
-        };
+        return err;
       }
     }
 

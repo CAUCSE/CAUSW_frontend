@@ -40,6 +40,9 @@ API.interceptors.response.use(
       removeAuth();
     }
 
-    return Promise.reject(error);
+    return Promise.reject({
+      success: false,
+      ...data,
+    });
   },
 );

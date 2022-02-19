@@ -2,8 +2,10 @@ import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { Checkbox } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { Controller, useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
 import { PasswordInput } from './components';
+import { PageUiStoreImpl } from './SignInPageUiStore';
 import {
   CheckboxLabel,
   Form,
@@ -15,22 +17,28 @@ import {
   SubLink,
 } from './styled';
 
+import { PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect } from '@/hooks';
-import { useRootStore } from '@/stores/RootStore';
-import { LayoutHOC } from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks';
 
 const SignInPage: React.FC = observer(() => {
-  const {
-    auth: { signIn },
-  } = useRootStore();
+  const { replace, push } = useHistory();
+  const { signIn } = usePageUiStore<PageUiStore.SignIn>();
   const { control, handleSubmit } = useForm();
+  const onSubmit = async (body: User.SignInRequestDto) => {
+    const { success, errorCode, message } = (await signIn(body)) as unknown as StoreAPI;
+
+    if (success) replace(PAGE_URL.Home);
+    else if (errorCode === 4011) push(PAGE_URL.APPLICATION);
+    else if (message) alert(message);
+  };
 
   useAuthRedirect();
 
   return (
     <PageWrapper>
-      <Form onSubmit={handleSubmit(signIn)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <LogoImage src="/images/logo.png" />
         <Controller
           name="email"
@@ -71,4 +79,4 @@ const SignInPage: React.FC = observer(() => {
   );
 });
 
-export default LayoutHOC(SignInPage, { Nav: null });
+export default PageStoreHOC(<SignInPage />, { store: PageUiStoreImpl });

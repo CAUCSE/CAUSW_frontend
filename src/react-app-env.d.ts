@@ -1,6 +1,7 @@
 /// <reference types="react-scripts" />
 
-import type { SignUpPageUiStore } from './pages/auth/signUp/PageUiStore';
+import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
+import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { BoardStore } from './stores/BoardStore';
 import type { CircleStore } from './stores/CircleStore';
@@ -41,7 +42,9 @@ declare global {
   }
 
   namespace PageUiStore {
+    type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;
+    //
     type CircleMain = CircleMainPageUiStore;
     type PostDetail = PostDetailPageUiStore;
     type SettingPassword = SettingPasswordPageUiStore;
@@ -62,6 +65,13 @@ declare global {
     type Comment = CommentModel;
     type ReplyComment = ReplyCommentModel;
     type HistoryComment = HistoryCommentModel;
+  }
+
+  interface StoreAPI {
+    success: boolean;
+    errorCode?: number;
+    message?: string;
+    timeStamp: string;
   }
 }
 
