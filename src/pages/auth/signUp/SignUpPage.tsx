@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { useRef } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
 import { PageUiStoreImpl } from './PageUiStore';
 import { SubmitButton } from './styled';
@@ -14,21 +15,39 @@ import {
   PageStoreHOC,
   PasswordInput,
 } from '@/components';
+import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect } from '@/hooks';
 import { passwordReg } from '@/utils';
 import { Header } from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 const SignUpPage: React.FC = observer(() => {
-  const { isDuplicatedEmail, chekedEmail, signUp } = usePageUiStore<PageUiStore.SignUp>();
+  const { replace } = useHistory();
+  const { submitDisabled, isDuplicatedEmail, chekedEmail, signUp } =
+    usePageUiStore<PageUiStore.SignUp>();
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
+    trigger,
   } = useForm();
-
   const password = watch('password');
+  const onSubmit = async (body: User.CreateDto) => {
+    const { success, error } = (await signUp(body)) as unknown as {
+      success: boolean;
+      error?: string;
+    };
+
+    if (success) {
+      alert('회원가입에 성공하였습니다.');
+      setTimeout(() => replace(PAGE_URL.SignIn), 1000);
+    } else if (error) alert(error);
+  };
+
+  useEffect(() => {
+    if (isDuplicatedEmail) trigger('email');
+  }, [isDuplicatedEmail]);
 
   useAuthRedirect();
 
@@ -53,7 +72,6 @@ const SignUpPage: React.FC = observer(() => {
                   if (chekedEmail === value) return '중복된 아이디입니다.';
                   else return true;
                 }
-
                 return true;
               },
             }}
@@ -136,7 +154,9 @@ const SignUpPage: React.FC = observer(() => {
         </BodyScreen>
       </PageBody>
       <PageFooter>
-        <SubmitButton onClick={handleSubmit(signUp)}>가입하기</SubmitButton>
+        <SubmitButton onClick={handleSubmit(onSubmit)} disabled={submitDisabled}>
+          가입하기
+        </SubmitButton>
       </PageFooter>
     </>
   );

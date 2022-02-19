@@ -22,4 +22,3 @@ export const PageFooter = styled.footer`
   height: auto;
   /* padding: 0 20px; */
 `;
-// ==

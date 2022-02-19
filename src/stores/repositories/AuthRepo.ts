@@ -24,9 +24,9 @@ class AuthRepo {
     return result;
   };
 
-  // signUp = async (body: User.CreateDto) => {
-  //   API.post(`${this.URI}/sign-up`, body);
-  // };
+  signUp = async (body: User.CreateDto) => {
+    return API.post(`${this.URI}/sign-up`, body);
+  };
 
   // ==
 
