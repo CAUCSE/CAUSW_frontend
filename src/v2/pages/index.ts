@@ -2,5 +2,5 @@
 export * from '../../pages';
 export * from './board';
 export * from './circle';
-export * from './home';
+export * from '../../pages/home';
 export * from './setting';

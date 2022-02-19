@@ -4,8 +4,6 @@ export const PageRoot = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  // TODO: Header 에서 오염됨 헤더 정리 필요
-  padding: 0 20px;
 `;
 
 export const PageBody = styled.main`
@@ -15,10 +13,10 @@ export const PageBody = styled.main`
 `;
 
 export const BodyScreen = styled.div`
-  /* padding: 0 20px; */
+  padding: 0 20px;
 `;
 
 export const PageFooter = styled.footer`
   height: auto;
-  /* padding: 0 20px; */
+  padding: 0 20px;
 `;

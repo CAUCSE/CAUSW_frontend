@@ -6,10 +6,10 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { PageUiStoreImpl } from './AdmissionPageUiStore';
 import { FileInput, Guide, InputIcon, Label, Textarea } from './styled';
 
-import { BodyScreen, PageBody, PageFooter, PageStoreHOC } from '@/components';
+import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect } from '@/hooks';
-import { Header, NavButton } from '@/v2/components';
+import { NavButton } from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 const ApplicationPage: React.FC = observer(() => {

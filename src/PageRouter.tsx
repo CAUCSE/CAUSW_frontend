@@ -1,7 +1,13 @@
-import { BrowserRouter as RootRouter, Redirect, Route, Switch as RootSwitch } from 'react-router-dom';
+import {
+  BrowserRouter as RootRouter,
+  Redirect,
+  Route,
+  Switch as RootSwitch,
+} from 'react-router-dom';
 
 import { AuthRouter } from './AuthRouter';
 import * as Switch from './pages';
+import * as Switch2 from './v2/pages';
 
 import { PAGE_URL } from '@/configs/path';
 
@@ -16,9 +22,9 @@ export const PageRouter: React.FC = () => (
 
       <AuthRouter>
         <Route path={PAGE_URL.Home} component={Switch.HomePage} />
-        <Route path={PAGE_URL.Circle} component={Switch.CirclePage} />
-        <Route path={PAGE_URL.Board} component={Switch.BoardPage} />
-        <Route path={PAGE_URL.Setting} component={Switch.SettingPage} />
+        <Route path={PAGE_URL.Circle} component={Switch2.CirclePage} />
+        <Route path={PAGE_URL.Board} component={Switch2.BoardPage} />
+        <Route path={PAGE_URL.Setting} component={Switch2.SettingPage} />
       </AuthRouter>
     </RootSwitch>
   </RootRouter>

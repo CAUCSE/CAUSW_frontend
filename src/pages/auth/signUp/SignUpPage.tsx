@@ -9,6 +9,7 @@ import { SubmitButton } from './styled';
 import {
   BodyScreen,
   ErrorMessage,
+  Header,
   Input,
   PageBody,
   PageFooter,
@@ -18,7 +19,6 @@ import {
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect } from '@/hooks';
 import { passwordReg } from '@/utils';
-import { Header } from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 const SignUpPage: React.FC = observer(() => {

@@ -17,11 +17,6 @@ export const ClearLink = styled(Link)`
   color: #3f4040;
 `;
 
-export const ClearA = styled.a.attrs({ target: 'blank' })`
-  user-select: none;
-  text-decoration: none;
-`;
-
 export const ClearUl = styled.ul`
   margin: 0;
   padding: 0;

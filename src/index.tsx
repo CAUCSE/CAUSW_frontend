@@ -2,17 +2,14 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Global } from '@emotion/react';
 import React from 'react';
 import { render } from 'react-dom';
-import { ThemeProvider } from 'styled-components';
 
-import { GlobalStyle, theme } from './styles';
-import { PageRouter } from './v2';
+import { GlobalStyle } from './global-styles';
+import { PageRouter } from './PageRouter';
 
 render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Global styles={GlobalStyle} />
-      <PageRouter />
-    </ThemeProvider>
+    <Global styles={GlobalStyle} />
+    <PageRouter />
   </React.StrictMode>,
   document.getElementById('root'),
 );

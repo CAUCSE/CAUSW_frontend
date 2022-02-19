@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { memo } from 'react';
 
-import { ClearA, ClearLink } from '@/components/regacy/atoms/clear';
+import { ClearA, ClearLink } from '@/v2/components';
 
 export const CircleLinks = memo(() => (
   <Wrapper>
@@ -9,12 +9,12 @@ export const CircleLinks = memo(() => (
     <Library />
     <CSE />
     <Portal />
-    {/* <Locker /> */}
+    <Locker />
   </Wrapper>
 ));
 
 const University: React.FC = () => (
-  <ClearA href="https://www.cau.ac.kr">
+  <ClearA href="https://www.cau.ac.kr" target="_blank">
     <Circle>
       <img src="images/icons/link/university.svg" alt="University icon link" />
     </Circle>
@@ -27,7 +27,7 @@ const University: React.FC = () => (
 );
 
 const Library: React.FC = () => (
-  <ClearA href="https://library.cau.ac.kr">
+  <ClearA href="https://library.cau.ac.kr" target="_blank">
     <Circle>
       <img src="images/icons/link/library.svg" alt="Library icon link" />
     </Circle>
@@ -40,7 +40,7 @@ const Library: React.FC = () => (
 );
 
 const CSE: React.FC = () => (
-  <ClearA href="https://cse.cau.ac.kr">
+  <ClearA href="https://cse.cau.ac.kr" target="_blank">
     <Circle>
       <img src="images/icons/link/cse.svg" alt="CSE icon link" />
     </Circle>
@@ -53,7 +53,7 @@ const CSE: React.FC = () => (
 );
 
 const Portal: React.FC = () => (
-  <ClearA href="https://mportal.cau.ac.kr">
+  <ClearA href="https://mportal.cau.ac.kr" target="_blank">
     <Circle>
       <img src="images/icons/link/portal.svg" alt="Portal icon link" />
     </Circle>
