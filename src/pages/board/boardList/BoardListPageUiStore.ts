@@ -1,18 +1,12 @@
-import { flow, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
-import { BoardRepoImpl as Repo } from './repositories/BoardRepo';
+import { BoardRepoImpl as Repo } from '@/stores/repositories/BoardRepo';
 
-export class BoardStore {
-  rootStore: Store.Root;
-  boardId = '';
+export class BoardListPageUiStore {
   boards: Map<string, Model.Board[]> = new Map();
 
-  constructor(rootStore: Store.Root) {
-    makeAutoObservable(this, {
-      fetch: flow.bound,
-    });
-
-    this.rootStore = rootStore;
+  constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
   *fetch(): Generator {
@@ -27,3 +21,5 @@ export class BoardStore {
     });
   }
 }
+
+export const PageUiStoreImpl = new BoardListPageUiStore();

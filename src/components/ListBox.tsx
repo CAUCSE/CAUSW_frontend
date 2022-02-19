@@ -5,7 +5,7 @@ import { ClearLink } from '@/v2/components';
 
 interface Props<T> {
   title: string;
-  titleTo: string;
+  titleTo?: string;
   items: T[];
   ItemComponent: React.FC<{ model: T }>;
   EmptyComponent?: React.FC;
@@ -20,10 +20,7 @@ function ListBoxComponent<T extends { id: string }>({
 }: Props<T>) {
   return (
     <Box>
-      <Title>
-        <ClearLink to={titleTo}>{title}</ClearLink>
-      </Title>
-
+      <Title>{titleTo ? <ClearLink to={titleTo}>{title}</ClearLink> : title}</Title>
       {items.length ? (
         items.map(item => <ItemComponent key={item.id} model={item} />)
       ) : (

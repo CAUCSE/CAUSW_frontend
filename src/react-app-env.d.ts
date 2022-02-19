@@ -3,10 +3,10 @@
 import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageUiStore';
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
 import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
+import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
 //
 import type { AuthStore } from './stores/AuthStore';
-import type { BoardStore } from './stores/BoardStore';
 import type { CircleStore } from './stores/CircleStore';
 import type { CommentStore } from './stores/CommentStore';
 import type { AuthorModel } from './stores/models/AuthorModel';
@@ -36,7 +36,6 @@ declare global {
     type Auth = AuthStore;
     type Ui = UiStore;
     type Circle = CircleStore;
-    type Board = BoardStore;
     type Post = PostStore;
     type Comment = CommentStore;
     type ReplyComment = ReplyCommentStore;
@@ -47,6 +46,8 @@ declare global {
     type SignUp = SignUpPageUiStore;
     type Application = AdmissionPageUiStore;
     type Home = HomePageUiStore;
+    type BoardList = BoardListPageUiStore;
+    //
     //
     type CircleMain = CircleMainPageUiStore;
     type PostDetail = PostDetailPageUiStore;
