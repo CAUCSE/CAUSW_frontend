@@ -28,6 +28,10 @@ class AuthRepo {
     return API.post(`${this.URI}/sign-up`, body);
   };
 
+  createAdmission = async (body: FormData): Promise<void> => {
+    return API.post(`${this.URI}/admissions/apply`, body);
+  };
+
   // ==
 
   findCurrentUser = async (): Promise<Model.User> => {

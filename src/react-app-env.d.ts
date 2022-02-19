@@ -1,5 +1,6 @@
 /// <reference types="react-scripts" />
 
+import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageUiStore';
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
 import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
@@ -44,6 +45,7 @@ declare global {
   namespace PageUiStore {
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;
+    type Application = AdmissionPageUiStore;
     //
     type CircleMain = CircleMainPageUiStore;
     type PostDetail = PostDetailPageUiStore;
@@ -72,6 +74,11 @@ declare global {
     errorCode?: number;
     message?: string;
     timeStamp: string;
+  }
+
+  interface ImageState {
+    file: File | null;
+    blobUrl?: string;
   }
 }
 

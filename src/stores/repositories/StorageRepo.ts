@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 import { API } from 'configs/axios';
 
 export enum IMAGE_TYPE {

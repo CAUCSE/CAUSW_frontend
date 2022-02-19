@@ -19,6 +19,12 @@ declare namespace User {
     studentId: string;
   }
 
+  export interface AdmissionCreateRequestDto {
+    email: string;
+    attachImage: File;
+    description: string;
+  }
+
   // ==
 
   export interface UserUpdateDto {

@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { ImageState } from '../SettingProfilePageUiStore';
-
 import { ClearButton, ProfileImageBox } from '@/v2/components';
 
 interface Props {

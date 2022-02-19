@@ -4,11 +4,6 @@ import { AuthRepoImpl as AuthRepo } from '@/stores/repositories/AuthRepo';
 import { IMAGE_TYPE, StorageRepoImpl as StorageRepo } from '@/stores/repositories/StorageRepo';
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
-export interface ImageState {
-  file: File | null;
-  blobUrl?: string;
-}
-
 export class SettingProfilePageUiStore {
   me?: Model.User;
   image: ImageState = {

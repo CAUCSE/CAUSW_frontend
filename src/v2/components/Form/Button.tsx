@@ -33,6 +33,11 @@ const CustomButtonRoot = styled('button')`
   }
 `;
 
+// TODO: 지워야할 대상
+export const NavButtonWrapper = styled('div')`
+  padding: 15px 0px;
+`;
+
 interface Props extends ButtonUnstyledProps {
   className?: string;
   disabled?: boolean;
@@ -43,6 +48,6 @@ export const Button: React.FC<Props> = ({ children, ...props }) => (
   </ButtonUnstyled>
 );
 
-export const NavButtonWrapper = styled('div')`
-  padding: 15px 0px;
+export const NavButton = styled(Button)`
+  margin: 20px 0;
 `;
