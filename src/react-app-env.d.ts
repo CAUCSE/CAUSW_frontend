@@ -8,6 +8,7 @@ import type { PostDetailPageUiStore } from './pages/board/postDetail/PostDetailP
 import type { PostEditorPageUiStore } from './pages/board/postEditor/PostEditorPageUiStore';
 import type { PostListPageUiStore } from './pages/board/postList/PostListPageUiStore';
 import type { CircleHomePageUiStore } from './pages/circle/home/CircleHomePageUiStore';
+import type { CircleJoinPageUiStore } from './pages/circle/join/CircleJoinPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
 //
 import type { AuthStore } from './stores/AuthStore';
@@ -44,6 +45,7 @@ declare global {
     type Application = AdmissionPageUiStore;
     type Home = HomePageUiStore;
     type CircleHome = CircleHomePageUiStore;
+    type CircleJoin = CircleJoinPageUiStore;
     type BoardList = BoardListPageUiStore;
     type PostList = PostListPageUiStore;
     type PostDetail = PostDetailPageUiStore;

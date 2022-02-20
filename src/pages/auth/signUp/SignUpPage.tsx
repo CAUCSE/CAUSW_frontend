@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
 import { PageUiStoreImpl } from './SignUpPageUiStore';
-import { SubmitButton } from './styled';
 
 import {
   BodyScreen,
@@ -19,6 +18,7 @@ import {
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect } from '@/hooks';
 import { passwordReg } from '@/utils';
+import { NavButton } from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 const SignUpPage: React.FC = observer(() => {
@@ -151,9 +151,9 @@ const SignUpPage: React.FC = observer(() => {
         </BodyScreen>
       </PageBody>
       <PageFooter>
-        <SubmitButton onClick={handleSubmit(onSubmit)} disabled={submitDisabled}>
+        <NavButton onClick={handleSubmit(onSubmit)} disabled={submitDisabled}>
           가입하기
-        </SubmitButton>
+        </NavButton>
       </PageFooter>
     </>
   );

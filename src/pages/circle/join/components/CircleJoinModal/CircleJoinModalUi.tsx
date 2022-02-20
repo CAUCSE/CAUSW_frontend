@@ -1,15 +1,11 @@
-import { action, makeAutoObservable } from 'mobx';
-import { createContext, useContext } from 'react';
+import { makeAutoObservable } from 'mobx';
 
-export class JoinStore {
+export class CircleJoinModalUi {
   visible = false;
   status: Circle.JoinStatus = 'NONE';
 
   constructor() {
-    makeAutoObservable(this, {
-      setVisible: action.bound,
-      setStatus: action.bound,
-    });
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
   setVisible(flag?: boolean): void {
@@ -33,11 +29,3 @@ export class JoinStore {
     return this.status === 'BLOCK';
   }
 }
-
-const store = new JoinStore();
-const Context = createContext(store);
-
-export const JoinStoreProvider: React.FC = ({ children }) => (
-  <Context.Provider value={store}>{children}</Context.Provider>
-);
-export const useJoinStore = (): JoinStore => useContext(Context);

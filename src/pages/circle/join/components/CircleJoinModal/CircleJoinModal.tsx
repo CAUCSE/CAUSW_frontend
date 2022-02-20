@@ -1,17 +1,22 @@
 import Modal from '@mui/material/Modal';
 import { observer } from 'mobx-react-lite';
-import styled from 'styled-components';
 
-import { useJoinStore } from './JoinStore';
+import { Box } from './styled';
 
-import { useRootStore } from '@/stores/RootStore';
-import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
+import {
+  ModalAlertMessage,
+  ModalAlertTitle,
+  ModalFooter,
+  ModalFooterButton,
+} from '@/v2/components';
+import { usePageUiStore } from '@/v2/hooks/usePageUiStore';
 
-export const JoinModal: React.FC = observer(() => {
+export const CircleJoinModal: React.FC = observer(() => {
   const {
-    circle: { circle, join },
-  } = useRootStore();
-  const { visible, setVisible, setStatus, isAwait, isBlock, isDone, isMember } = useJoinStore();
+    circle,
+    join,
+    joinModal: { visible, setVisible, setStatus, isAwait, isBlock, isDone, isMember },
+  } = usePageUiStore<PageUiStore.CircleJoin>();
 
   const handleOk = async () => {
     if (circle) {
@@ -56,9 +61,3 @@ export const JoinModal: React.FC = observer(() => {
     </Modal>
   ) : null;
 });
-
-const Box = styled(ModalBox)`
-  box-sizing: border-box;
-  width: 240px;
-  overflow: hidden;
-`;
