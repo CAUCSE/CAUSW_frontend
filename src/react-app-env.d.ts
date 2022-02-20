@@ -10,7 +10,11 @@ import type { PostListPageUiStore } from './pages/board/postList/PostListPageUiS
 import type { CircleHomePageUiStore } from './pages/circle/home/CircleHomePageUiStore';
 import type { CircleJoinPageUiStore } from './pages/circle/join/CircleJoinPageUiStore';
 import type { CircleMainPageUiStore } from './pages/circle/main/CircleMainPageUiStore';
+import type { HistoryCommentPageUiStore } from './pages/history/comment/HistoryCommentPageUiStore';
+import type { HistoryPostPageUiStore } from './pages/history/post/HistoryPostPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
+import type { SettingPasswordPageUiStore } from './pages/setting/password/SettingPasswordPageUiStore';
+import { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
 //
 import type { AuthStore } from './stores/AuthStore';
 import type { CircleStore } from './stores/CircleStore';
@@ -26,10 +30,6 @@ import type { ReplyCommentModel } from './stores/models/ReplyCommentModel';
 import type { UserModel } from './stores/models/UserModel';
 import type { RootStore } from './stores/RootStore';
 import type { UiStore } from './stores/UiStore';
-import type { HistoryCommentPageUiStore } from './pages/history/comment/HistoryCommentPageUiStore';
-import type { HistoryPostPageUiStore } from './v2/pages/setting/historyPost/HistoryPostPageUiStore';
-import type { SettingPasswordPageUiStore } from './v2/pages/setting/password/SettingPasswordPageUiStore';
-import type { SettingProfilePageUiStore } from './v2/pages/setting/profile/SettingProfilePageUiStore';
 
 declare global {
   namespace Store {
@@ -51,11 +51,10 @@ declare global {
     type PostList = PostListPageUiStore;
     type PostDetail = PostDetailPageUiStore;
     type PostEditor = PostEditorPageUiStore;
-    //
+    type SettingProfile = SettingProfilePageUiStore;
     type SettingPassword = SettingPasswordPageUiStore;
     type HistroyPost = HistoryPostPageUiStore;
     type HistroyComment = HistoryCommentPageUiStore;
-    type SettingProfile = SettingProfilePageUiStore;
   }
 
   namespace Model {

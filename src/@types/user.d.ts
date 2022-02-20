@@ -25,15 +25,20 @@ declare namespace User {
     description: string;
   }
 
-  // ==
-
-  export interface UserUpdateDto {
+  export interface UpdateDto {
     admissionYear: number;
     email: string;
     name: string;
     profileImage: string | null;
     studentId: string;
   }
+
+  export interface PasswordUpdateRequestDto {
+    originPassword: string;
+    updatedPassword: string;
+  }
+
+  // ==
 
   export interface FindPostsResponse {
     posts: Model.HistoryPost[];

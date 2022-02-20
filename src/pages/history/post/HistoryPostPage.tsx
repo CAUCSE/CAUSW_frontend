@@ -1,14 +1,13 @@
 import { observer } from 'mobx-react-lite';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { HistoryPostCard } from './components';
 import { PageUiStoreImpl } from './HistoryPostPageUiStore';
 
-import { BodyScreen, GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components';
+import { GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components';
 import { usePageUiStore } from '@/hooks';
 
 const HistoryPostPage: React.FC = observer(() => {
-  const ref = useRef<HTMLDivElement | null>(null);
   const { fetch, posts, hasMore, page } = usePageUiStore<PageUiStore.HistroyPost>();
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => hasMore && fetch(page + 1),
@@ -23,14 +22,11 @@ const HistoryPostPage: React.FC = observer(() => {
     <>
       <Header title="내가 쓴 글" mini withBack RightComponent={null} />
       <PageBody>
-        <BodyScreen ref={ref}>
-          <InfinityFrame<Model.HistoryPost>
-            bodyRef={ref}
-            loadMore={loadMore(hasMore, page)}
-            data={posts}
-            ItemComponent={(index, post) => <HistoryPostCard key={post.id} model={post} />}
-          />
-        </BodyScreen>
+        <InfinityFrame<Model.HistoryPost>
+          loadMore={loadMore(hasMore, page)}
+          data={posts}
+          ItemComponent={(index, post) => <HistoryPostCard key={post.id} model={post} />}
+        />
       </PageBody>
       <GNB />
     </>

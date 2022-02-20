@@ -16,7 +16,7 @@ export class HistoryCommentPageUiStore {
 
     this.page = page;
     this.hasMore = !last;
-    this.comments = comments;
+    this.comments = this.comments.concat(comments);
   }
 }
 

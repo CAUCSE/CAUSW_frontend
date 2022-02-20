@@ -30,12 +30,13 @@ export const HistoryPostCard: React.FC<{
 
 const Link = styled(ClearLink)`
   display: block;
-  border-bottom: 1px solid #f5f5f5;
+  padding: 0 20px;
 `;
 
 const Card = styled.article`
   ${PostWrapperCSS}
   padding: 1rem 0 0.75rem;
+  border-bottom: 1px solid #f5f5f5;
 `;
 
 const Title = styled.h3`

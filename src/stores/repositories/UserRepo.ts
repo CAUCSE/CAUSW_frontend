@@ -8,8 +8,8 @@ import { API } from 'configs/axios';
 class UserRepo {
   private URI = '/api/v1/users';
 
-  update = async (body: User.UserUpdateDto): Promise<void> => {
-    await API.put(this.URI, body);
+  update = async (body: User.UpdateDto): Promise<void> => {
+    return await API.put(this.URI, body);
   };
 
   findPosts = async (page: number): Promise<User.FindPostsResponse> => {
@@ -17,7 +17,9 @@ class UserRepo {
       data: {
         post: { content, last },
       },
-    } = (await API.get(`${this.URI}/posts?pageNum=${page}`)) as AxiosResponse<User.FindPostsResponseDto>;
+    } = (await API.get(
+      `${this.URI}/posts?pageNum=${page}`,
+    )) as AxiosResponse<User.FindPostsResponseDto>;
 
     return {
       posts: content.map(post => new HistoryPostModel(post)),
@@ -30,7 +32,9 @@ class UserRepo {
       data: {
         comment: { content, last },
       },
-    } = (await API.get(`${this.URI}/comments?pageNum=${page}`)) as AxiosResponse<User.FindCommentsResponseDto>;
+    } = (await API.get(
+      `${this.URI}/comments?pageNum=${page}`,
+    )) as AxiosResponse<User.FindCommentsResponseDto>;
 
     return {
       comments: content.map(comment => new HistoryCommentModel(comment)),

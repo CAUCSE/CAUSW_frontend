@@ -32,12 +32,14 @@ class AuthRepo {
     return API.post(`${this.URI}/admissions/apply`, body);
   };
 
-  // ==
-
   findCurrentUser = async (): Promise<Model.User> => {
     const { data } = await API.get(`${this.URI}/me`);
 
     return new UserModel(data);
+  };
+
+  updatePassword = async (body: User.PasswordUpdateRequestDto) => {
+    return API.put(`${this.URI}/password`, body);
   };
 }
 

@@ -42,8 +42,9 @@ interface InputProps {
   name: string;
   type?: string;
   label: string;
-  placeholder: string;
+  placeholder?: string;
   required?: boolean;
+  disabled?: boolean;
   control: Control;
   rules?: UseControllerProps['rules'];
 }
@@ -51,11 +52,12 @@ interface InputProps {
 export const Input: React.FC<InputProps> = ({
   name,
   type = 'text',
-  control,
-  rules,
   label,
   placeholder,
   required,
+  disabled,
+  control,
+  rules,
 }) => (
   <Controller
     name={name}
@@ -71,6 +73,7 @@ export const Input: React.FC<InputProps> = ({
           placeholder={placeholder}
           startAdornment={' '}
           required={required}
+          disabled={disabled}
           {...field}
         />
       </LineFormControl>

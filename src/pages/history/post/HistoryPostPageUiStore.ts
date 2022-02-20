@@ -16,7 +16,7 @@ export class HistoryPostPageUiStore {
 
     this.page = page;
     this.hasMore = !last;
-    this.posts = posts;
+    this.posts = this.posts.concat(posts);
   }
 }
 

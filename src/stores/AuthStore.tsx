@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 import { AuthRepoImpl as Repo } from './repositories/AuthRepo';
 
-import { restoreAuth } from 'configs/axios';
+import { removeAuth, restoreAuth } from 'configs/axios';
 
 export class AuthStore {
   rootStore: Store.Root;
@@ -24,5 +24,10 @@ export class AuthStore {
 
   *fetch(): Generator {
     this.me = (yield Repo.findCurrentUser()) as Model.User;
+  }
+
+  signOut(): void {
+    this.isSignIn = false;
+    removeAuth();
   }
 }
