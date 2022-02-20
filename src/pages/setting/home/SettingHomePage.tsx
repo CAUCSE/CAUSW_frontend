@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 import { Porfile } from './components';
 import { Link } from './styeld';
 
-import { BodyScreen, GNB, PageBody, PageStoreHOC } from '@/components';
-import { Box, Title } from '@/components/regacy/ListBox';
+import { BodyScreen, Box, GNB, PageBody, PageStoreHOC, Title } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 

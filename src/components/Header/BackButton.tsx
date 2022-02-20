@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+import { Icons } from '@/assets';
 import { ClearButton } from '@/components';
 
 export const BackButton: React.FC<{ className?: string; link?: boolean | string }> = memo(
@@ -12,7 +13,7 @@ export const BackButton: React.FC<{ className?: string; link?: boolean | string 
 
     const Icon = (
       <>
-        <img src="/images/icons/back.svg" alt="back icon" />
+        <Icons.BackIcon />
         <span className="a11y-hidden">뒤로가기</span>
       </>
     );

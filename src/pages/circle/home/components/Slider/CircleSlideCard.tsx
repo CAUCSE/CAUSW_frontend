@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { memo, useState } from 'react';
 import { generatePath, useHistory } from 'react-router';
 
-import { Icon as I } from '@/assets';
-import { ClearButton } from '@/components/regacy/atoms/clear';
+import { Icons } from '@/assets';
+import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 
 type Props = Pick<Model.Circle, 'id' | 'mainImage' | 'name' | 'description'>;
@@ -131,7 +131,7 @@ const Footer = styled.div`
   height: 40px;
 `;
 
-const Icon = styled(I.Article)`
+const Icon = styled(Icons.Article)`
   position: absolute;
   top: 9px;
   right: 5px;

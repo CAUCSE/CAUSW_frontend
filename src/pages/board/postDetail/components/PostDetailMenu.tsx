@@ -1,9 +1,9 @@
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 
 import { HeaderIconButton, Menu, MenuItem } from '@/components';
-import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
@@ -27,7 +27,7 @@ export const PostDetailMenu: React.FC = observer(() => {
   return post?.updatable || post?.deletable ? (
     <>
       <HeaderIconButton onClick={handleClick} disableRipple={true}>
-        <MenuIcon className="absolute-center" />
+        <MoreVertIcon />
       </HeaderIconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={handleEdit}>게시글 수정</MenuItem>

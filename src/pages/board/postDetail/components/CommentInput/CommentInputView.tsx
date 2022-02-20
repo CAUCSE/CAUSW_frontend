@@ -1,10 +1,10 @@
+import SendIcon from '@mui/icons-material/Send';
 import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { Form, InputBox, SendButton, Textarea } from './styled';
 
-import { SendIcon } from '@/components/regacy/atoms/Icon';
 import { usePageUiStore } from '@/hooks';
 
 interface Props {

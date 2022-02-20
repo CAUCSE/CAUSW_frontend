@@ -1,8 +1,8 @@
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 
 import { HeaderIconButton, Menu, MenuItem } from '@/components';
-import { MenuIcon } from '@/components/regacy/atoms/Icon';
 
 export const ContextMenu: React.FC = observer(() => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -14,7 +14,7 @@ export const ContextMenu: React.FC = observer(() => {
   return (
     <>
       <HeaderIconButton onClick={handleClick} disableRipple={true}>
-        <MenuIcon className="absolute-center" />
+        <MoreVertIcon />
       </HeaderIconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={handleClose}>회원 탈퇴</MenuItem>

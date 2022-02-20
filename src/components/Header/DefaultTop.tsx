@@ -1,7 +1,7 @@
-import { memo } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import React from 'react';
 
-export const DefaultTop = memo(() => <Wrapper>중앙대학교 소프트웨어학부</Wrapper>);
+export const DefaultTop: React.FC = () => <Wrapper>중앙대학교 소프트웨어학부</Wrapper>;
 
 const Wrapper = styled.div`
   font-size: 10px;

@@ -1,7 +1,7 @@
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import React, { useState } from 'react';
 
 import { HeaderIconButton, Menu, MenuItem } from '@/components';
-import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { usePageUiStore } from '@/hooks';
 
 export const CircleMainMenu: React.FC = () => {
@@ -23,7 +23,7 @@ export const CircleMainMenu: React.FC = () => {
   return (
     <>
       <HeaderIconButton onClick={handleClick} disableRipple={true}>
-        <MenuIcon className="absolute-center" />
+        <MoreVertIcon className="absolute-center" />
       </HeaderIconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={handleOpenInfoModal}>소모임 정보</MenuItem>

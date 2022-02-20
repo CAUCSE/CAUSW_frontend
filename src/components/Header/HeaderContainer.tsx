@@ -1,9 +1,11 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { memo } from 'react';
-import styled, { css } from 'styled-components';
 
 import { BackButton } from './BackButton';
-import { DefaultLogo } from './DefaultLogo';
 import { DefaultTop } from './DefaultTop';
+
+import { DefaultLogo } from '@/assets';
 
 interface Props {
   title?: string;
