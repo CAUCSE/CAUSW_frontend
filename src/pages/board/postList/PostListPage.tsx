@@ -31,7 +31,7 @@ const PostListPage: React.FC = observer(() => {
 
   return (
     <>
-      <Header title={boardName} withBack={PAGE_URL.Board} RightComponent={<PostCreateButton />} />
+      <Header title={boardName} withBack RightComponent={<PostCreateButton />} />
       <PageBody>
         <Virtuoso
           style={{ maxHeight: '100vh' }}

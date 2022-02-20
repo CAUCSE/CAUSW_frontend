@@ -8,6 +8,7 @@ import { ClearButton } from '@/v2/components';
 export const BackButton: React.FC<{ className?: string; link?: boolean | string }> = memo(
   ({ className, link = false }) => {
     const { goBack } = useHistory();
+    // TODO: 이전 페이지 state 있는 경우 해당 페이지로 이동
 
     const Icon = (
       <>

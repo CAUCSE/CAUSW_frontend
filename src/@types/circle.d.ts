@@ -1,6 +1,5 @@
 declare namespace Circle {
-  // Server
-  export interface findByIdDto {
+  export interface FindByIdDto {
     id: string;
     mainImage: string | null;
     name: string;
@@ -13,7 +12,7 @@ declare namespace Circle {
     numMember: number;
   }
 
-  export interface userApplyDto {
+  export interface UserApplyDto {
     circle: Dto;
     id: string;
     status: 'AWAIT';
@@ -31,9 +30,15 @@ declare namespace Circle {
     postWriterName: string | null;
     postWriterStudentId: string | null;
   }
-  export interface findBoardsDto {
-    boardList: Board[];
+
+  export interface FindBoardsDto {
     circle: findByIdDto;
+    boardList: Board[];
+  }
+
+  export interface FindBoards {
+    circle: Model.Circle;
+    boards: Model.CircleBoard[];
   }
 
   // Client

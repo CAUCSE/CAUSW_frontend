@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import { memo } from 'react';
 import { generatePath } from 'react-router';
 
-import { Model } from './CircleBoards';
-
 import { PAGE_URL } from '@/configs/path';
 import {
   ClearLink,
@@ -16,8 +14,8 @@ import {
   useGetBoardId,
 } from '@/v2/components';
 
-export const CircleBoardListItem: React.FC<{ model: Model }> = memo(
-  ({ model: { id: postId, title, formatedCreatedAt, writerName, numComment } }) => {
+export const CircleBoardListItem: React.FC<{ model: NonNullable<Model.CircleBoard['post']> }> =
+  memo(({ model: { id: postId, title, formatedCreatedAt, writerName, numComment } }) => {
     const boardId = useGetBoardId();
 
     return (
@@ -29,8 +27,7 @@ export const CircleBoardListItem: React.FC<{ model: Model }> = memo(
         <PostCommentNum>{numComment}</PostCommentNum>
       </Link>
     );
-  },
-);
+  });
 
 const Link = styled(ClearLink)`
   ${PostWrapperCSS}

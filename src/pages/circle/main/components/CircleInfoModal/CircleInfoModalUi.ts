@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-export class CircleInfoModalUiStore {
+export class CircleInfoModalUi {
   visible = false;
 
   constructor() {

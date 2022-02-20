@@ -12,7 +12,7 @@ export class CircleModel {
   isJoined: boolean;
   joinedAt: string | null;
 
-  constructor(props: Circle.findByIdDto) {
+  constructor(props: Circle.FindByIdDto) {
     this.id = props.id;
     this.mainImage = props.mainImage;
     this.name = props.name;
