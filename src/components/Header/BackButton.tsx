@@ -13,7 +13,7 @@ export const BackButton: React.FC<{ className?: string; link?: boolean | string 
 
     const Icon = (
       <>
-        <Icons.BackIcon />
+        <Icons.BackIcon className="absolute-center" />
         <span className="a11y-hidden">뒤로가기</span>
       </>
     );

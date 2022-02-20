@@ -16,7 +16,7 @@ export const CircleLinks = memo(() => (
 const University: React.FC = () => (
   <ClearA href="https://www.cau.ac.kr" target="_blank">
     <Circle>
-      <img src="images/icons/link/university.svg" alt="University icon link" />
+      <img src="images/university.svg" alt="University icon link" />
     </Circle>
     <Text>
       학교
@@ -29,7 +29,7 @@ const University: React.FC = () => (
 const Library: React.FC = () => (
   <ClearA href="https://library.cau.ac.kr" target="_blank">
     <Circle>
-      <img src="images/icons/link/library.svg" alt="Library icon link" />
+      <img src="images/library.svg" alt="Library icon link" />
     </Circle>
     <Text>
       중앙
@@ -42,7 +42,7 @@ const Library: React.FC = () => (
 const CSE: React.FC = () => (
   <ClearA href="https://cse.cau.ac.kr" target="_blank">
     <Circle>
-      <img src="images/icons/link/cse.svg" alt="CSE icon link" />
+      <img src="images/cse.svg" alt="CSE icon link" />
     </Circle>
     <Text>
       컴공
@@ -55,7 +55,7 @@ const CSE: React.FC = () => (
 const Portal: React.FC = () => (
   <ClearA href="https://mportal.cau.ac.kr" target="_blank">
     <Circle>
-      <img src="images/icons/link/portal.svg" alt="Portal icon link" />
+      <img src="images/portal.svg" alt="Portal icon link" />
     </Circle>
     <Text>포탈</Text>
   </ClearA>
@@ -64,7 +64,7 @@ const Portal: React.FC = () => (
 const Locker: React.FC = () => (
   <ClearLink to="#">
     <Circle>
-      <img src="images/icons/link/locker.svg" alt="Locker icon link" />
+      <img src="images/locker.svg" alt="Locker icon link" />
     </Circle>
     <Text>
       사물함

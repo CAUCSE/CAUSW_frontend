@@ -16,7 +16,7 @@ const BoardListPage: React.FC = () => {
 
   return (
     <>
-      <Header title="게시판 목록" RightComponent={UniformLogo} />
+      <Header title="게시판 목록" RightComponent={<UniformLogo />} />
       <PageBody>
         <BodyScreen>
           <Boards />
