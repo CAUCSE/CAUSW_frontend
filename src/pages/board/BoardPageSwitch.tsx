@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 
 import { BoardList } from './boardList';
+import { PostDetail } from './postDetail';
 import { PostEditor } from './postEditor';
 import { PostList } from './postList';
 
@@ -10,7 +11,7 @@ export const BoardPageSwitch: React.FC = () => (
   <Switch>
     <Route path={PAGE_URL.PostWrite} component={PostEditor} />
     <Route path={PAGE_URL.PostEdit} component={PostEditor} />
-    {/* <Route path={PAGE_URL.PostDetail} component={PostDetail} /> */}
+    <Route path={PAGE_URL.PostDetail} component={PostDetail} />
     <Route path={PAGE_URL.PostList} component={PostList} />
     <Route exact path={PAGE_URL.Board} component={BoardList} />
   </Switch>

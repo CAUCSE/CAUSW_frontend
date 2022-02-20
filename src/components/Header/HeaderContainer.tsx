@@ -8,16 +8,16 @@ import { DefaultTop } from './DefaultTop';
 interface Props {
   title?: string;
   withBack?: boolean | string;
-  TopComponent?: React.FC;
-  RightComponent?: React.FC | null;
+  TopComponent?: React.ReactNode;
+  RightComponent?: React.ReactNode | null;
   mini?: boolean;
 }
 export const HeaderContainer: React.FC<Props> = memo(
   ({
     withBack = false,
-    TopComponent = DefaultTop,
+    TopComponent = <DefaultTop />,
     title = '',
-    RightComponent = DefaultLogo,
+    RightComponent = <DefaultLogo />,
     mini = false,
   }) => (
     <Wrapper mini={mini}>
@@ -27,10 +27,10 @@ export const HeaderContainer: React.FC<Props> = memo(
         </Left>
       ) : null}
       <Center>
-        {!mini ? <TopComponent /> : null}
+        {!mini ? TopComponent : null}
         <Title mini={mini}>{title}</Title>
       </Center>
-      <Right>{RightComponent ? <RightComponent /> : null}</Right>
+      <Right>{RightComponent}</Right>
     </Wrapper>
   ),
 );

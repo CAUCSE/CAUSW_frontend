@@ -1,37 +1,43 @@
 import { makeAutoObservable } from 'mobx';
 
-import { ReplyCommentRepoImpl as Repo } from './repositories/ReplyCommentRepo';
+import { ReplyCommentRepoImpl as Repo } from '@/stores/repositories/ReplyCommentRepo';
 
-export class ReplyCommentStore {
-  rootStore: Store.Root;
+export class ReplyCommentsStore {
+  rootStore: PageUiStore.PostDetail;
   parent?: Model.Comment;
-  comments: Model.Comment[] = [];
-  hasMore = true;
+  comments: Model.ReplyComment[] = [];
   page = 0;
+  hasMore = false;
 
-  constructor(rootStore: Store.Root) {
-    this.rootStore = rootStore;
+  constructor(rootStore: PageUiStore.PostDetail) {
     makeAutoObservable(this, {}, { autoBind: true });
+    this.rootStore = rootStore;
   }
 
   reset(): void {
+    this.parent = undefined;
     this.comments = [];
-    this.hasMore = true;
     this.page = 0;
+    this.hasMore = false;
   }
 
-  *fetch(pcid: string, page = 0): Generator {
-    const { parent, comments, last } = (yield Repo.findAll(pcid, page)) as ReplyComment.FindAllResponse;
+  *fetch(parentCommentId: string, page = 0): Generator {
+    const { parent, comments, last } = (yield Repo.findAll(
+      parentCommentId,
+      page,
+    )) as ReplyComment.FindAllResponse;
 
-    this.page = page;
-    this.hasMore = !last;
+    if (page === 0) this.comments = [];
     const result = this.comments.concat(comments);
     const ids = this.comments.concat(comments).map(({ id }) => id);
-    this.comments = result.filter(({ id }, index) => !ids.includes(id, index + 1));
 
-    // 댓글 스토어의 부모에 해당하는 모델 치환
     this.parent = parent;
-    this.rootStore.comment.setComment(parent);
+    this.comments = result.filter(({ id }, index) => !ids.includes(id, index + 1));
+    this.page = page;
+    this.hasMore = !last;
+
+    // 댓글 스토어의 부모에 해당하는 모델 치환, 전체댓글로 돌아 갔을때 답글 갯수 맞추기 위함
+    this.rootStore.comments.setComment(parent);
   }
 
   *create(content: string, target?: Model.Comment | Model.ReplyComment): Generator {
@@ -45,7 +51,9 @@ export class ReplyCommentStore {
       body.tagUserName = target.author.name;
     }
 
-    const comment = (yield Repo.create(body as ReplyComment.CreateRequestDto)) as Model.ReplyComment;
+    const comment = (yield Repo.create(
+      body as ReplyComment.CreateRequestDto,
+    )) as Model.ReplyComment;
     this.comments = [...this.comments, comment];
     this.parent.setNumChildComment(num => num + 1);
 

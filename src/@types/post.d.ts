@@ -48,6 +48,6 @@ declare namespace Post {
   export interface FindByIdResponseDto extends PostDto {
     boardId: string;
     boardName: string;
-    commentList: CommentList;
+    commentList: PostComment.GetResponseDto;
   }
 }

@@ -1,25 +1,27 @@
 import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
-import { generatePath, useHistory } from 'react-router-dom';
+import { generatePath, useHistory, useParams } from 'react-router-dom';
 
-import { PAGE_URL } from '@/configs/path';
-import { useRootStore } from '@/stores/RootStore';
-import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
+import { PAGE_URL, PostParams } from '@/configs/path';
+import {
+  ModalAlertMessage,
+  ModalAlertTitle,
+  ModalBox,
+  ModalFooter,
+  ModalFooterButton,
+} from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 export const PostDeleteModal: React.FC = observer(() => {
+  const { postId, boardId } = useParams<PostParams>();
   const { replace } = useHistory();
   const {
-    post: { boardId, post, deletePost },
-  } = useRootStore();
-  const {
+    deletePost,
     postDeleteModal: { visible, close },
   } = usePageUiStore<PageUiStore.PostDetail>();
 
-  if (!boardId || !post) return null;
-
   const handleOk = async () => {
-    const success = await deletePost(post.id);
+    const success = await deletePost(postId);
 
     // TODO: alert('게시글이 삭제되었습니다.')
     if (success) replace(generatePath(PAGE_URL.PostList, { boardId }));

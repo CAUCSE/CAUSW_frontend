@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { ClearButton, ClearUl } from '@/v2/components';
 
 export const CommentsBox = styled(ClearUl)`
-  margin: 10px 0;
-  padding: 5px 0 0;
+  margin-top: 10px;
+  padding: 5px -0;
   border-top: 1px solid #f5f5f5;
 `;
 
@@ -15,5 +15,5 @@ export const BackLink = styled(ClearButton)`
 `;
 
 export const Li = styled.li`
-  padding: 5px 0 0 15px;
+  padding: 0 0 5px 15px;
 `;

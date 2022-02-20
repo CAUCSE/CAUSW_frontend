@@ -15,7 +15,9 @@ export const ReplyCommentContainer: React.FC<{ model: Model.Comment }> = observe
     commentInput,
     commentMenuModal: { open },
   } = usePageUiStore<PageUiStore.PostDetail>();
-  const state = computed(() => (commentInput.target?.id === model.id ? commentInput.state : InputState.WRITE)).get();
+  const state = computed(() =>
+    commentInput.target?.id === model.id ? commentInput.state : InputState.WRITE,
+  ).get();
 
   const handeLongPress = useCallback(model => () => open(model), [open]);
   const bind = useLongPress(handeLongPress(model), {

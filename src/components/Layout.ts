@@ -7,6 +7,7 @@ export const PageRoot = styled.div`
 `;
 
 export const PageBody = styled.main`
+  position: relative;
   flex: 1 0 0;
   overflow-x: hidden;
   overflow-y: auto;

@@ -7,19 +7,18 @@ import { CommentCardContainer } from './CommentCardContainer';
 import { CommentsBox } from './styled';
 
 import { PostParams } from '@/configs/path';
-import { useRootStore } from '@/stores/RootStore';
 import { usePageUiStore } from '@/v2/hooks';
 
 export const PostComments: React.FC = observer(() => {
   const { postId } = useParams<PostParams>();
+  const {
+    setVirtuosoRef,
+    screenRef,
+    comments: { fetch, comments, page, hasMore },
+  } = usePageUiStore<PageUiStore.PostDetail>();
+
   const virtuoso = useRef(null);
   const timer = useRef<NodeJS.Timeout>();
-  const {
-    ui: { mainRef },
-    comment: { hasMore, page, fetch, comments },
-  } = useRootStore();
-  const { setVirtuosoRef } = usePageUiStore<PageUiStore.PostDetail>();
-
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => {
       if (timer.current) clearTimeout(timer.current);
@@ -37,11 +36,13 @@ export const PostComments: React.FC = observer(() => {
       <Virtuoso
         ref={virtuoso}
         style={{ maxHeight: '100vh' }}
-        customScrollParent={mainRef?.current as HTMLElement}
+        customScrollParent={screenRef?.current as HTMLElement}
         endReached={loadMore(hasMore, page)}
         overscan={200}
         data={comments}
-        itemContent={(index, comment) => <CommentCardContainer key={comment.id} model={comment} withReplyLink />}
+        itemContent={(index, comment) => (
+          <CommentCardContainer key={comment.id} model={comment} withReplyLink />
+        )}
       />
     </CommentsBox>
   );

@@ -21,7 +21,12 @@ export const CommentMenuContainer: React.FC = observer(() => {
   } = usePageUiStore<PageUiStore.PostDetail>();
 
   const handleSetState = useCallback(
-    (isReplyComment: boolean, state: InputState, params: PostParams, target?: Model.Comment | Model.ReplyComment) =>
+    (
+        isReplyComment: boolean,
+        state: InputState,
+        params: PostParams,
+        target?: Model.Comment | Model.ReplyComment,
+      ) =>
       () => {
         if (!target) return;
 
@@ -46,12 +51,16 @@ export const CommentMenuContainer: React.FC = observer(() => {
     <Modal open={visible} onClose={close} closeAfterTransition>
       <Box>
         {!target?.isDeleted ? (
-          <ModalMenuButton onClick={handleSetState(isReplyComment, InputState.REPLY, params, target)}>
+          <ModalMenuButton
+            onClick={handleSetState(isReplyComment, InputState.REPLY, params, target)}
+          >
             답글 달기
           </ModalMenuButton>
         ) : null}
         {target?.updatable ? (
-          <ModalMenuButton onClick={handleSetState(isReplyComment, InputState.EDIT, params, target)}>
+          <ModalMenuButton
+            onClick={handleSetState(isReplyComment, InputState.EDIT, params, target)}
+          >
             댓글 수정
           </ModalMenuButton>
         ) : null}

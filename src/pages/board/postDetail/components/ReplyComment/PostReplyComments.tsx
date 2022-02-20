@@ -8,20 +8,15 @@ import { ReplyCommentContainer } from './ReplyCommentContainer';
 import { BackLink, CommentsBox } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { useRootStore } from '@/stores/RootStore';
 import { usePageUiStore } from '@/v2/hooks';
 
 export const PostReplyComments: React.FC = observer(() => {
   const { boardId, postId, commentId } = useParams<PostParams>();
   const { replace } = useHistory();
-  const timer = useRef<NodeJS.Timeout>();
-  const virtuoso = useRef(null);
-  const {
-    ui: { mainRef },
-    replyComment: { hasMore, page, parent, comments, fetch, reset },
-  } = useRootStore();
   const {
     setVirtuosoRef,
+    screenRef,
+    replyComments: { fetch, reset, parent, comments, hasMore, page },
     commentInput: { resetState },
   } = usePageUiStore<PageUiStore.PostDetail>();
 
@@ -30,6 +25,8 @@ export const PostReplyComments: React.FC = observer(() => {
     [boardId, postId],
   );
 
+  const virtuoso = useRef(null);
+  const timer = useRef<NodeJS.Timeout>();
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => {
       if (timer.current) clearTimeout(timer.current);
@@ -37,6 +34,10 @@ export const PostReplyComments: React.FC = observer(() => {
     },
     [postId],
   );
+
+  useEffect(() => {
+    setVirtuosoRef(virtuoso);
+  }, [parent]);
 
   useEffect(() => {
     fetch(commentId);
@@ -47,18 +48,14 @@ export const PostReplyComments: React.FC = observer(() => {
     };
   }, [commentId]);
 
-  useEffect(() => {
-    setVirtuosoRef(virtuoso);
-  }, [parent]);
-
   return parent ? (
     <CommentsBox>
       <BackLink onClick={handleBack}>전체 댓글</BackLink>
       <CommentCard model={parent} />
       <Virtuoso
         ref={virtuoso}
-        style={{ maxHeight: '100vh' }}
-        customScrollParent={mainRef?.current as HTMLElement}
+        style={{ maxHeight: '100vh', marginTop: '5px' }}
+        customScrollParent={screenRef?.current as HTMLElement}
         endReached={loadMore(hasMore, page)}
         overscan={200}
         data={comments}

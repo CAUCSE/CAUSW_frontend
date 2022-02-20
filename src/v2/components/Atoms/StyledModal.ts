@@ -15,6 +15,7 @@ export const ModalBox = styled.article`
   outline: none;
   width: 280px;
   overflow: hidden;
+  box-sizing: border-box;
 `;
 
 const MenuItemCSS = css`

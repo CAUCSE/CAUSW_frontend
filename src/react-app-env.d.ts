@@ -4,6 +4,7 @@ import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageU
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
 import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
 import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPageUiStore';
+import type { PostDetailPageUiStore } from './pages/board/postDetail/PostDetailPageUiStore';
 import type { PostEditorPageUiStore } from './pages/board/postEditor/PostEditorPageUiStore';
 import type { PostListPageUiStore } from './pages/board/postList/PostListPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
@@ -25,7 +26,6 @@ import type { PostStore } from './stores/PostStore';
 import type { ReplyCommentStore } from './stores/ReplyCommentStore';
 import type { RootStore } from './stores/RootStore';
 import type { UiStore } from './stores/UiStore';
-import type { PostDetailPageUiStore } from './v2/pages/board/postDetail/PageUiStore.PostDetail';
 import type { CircleMainPageUiStore } from './v2/pages/circle/main/CircleMainPageUiStore';
 import type { HistoryCommentPageUiStore } from './v2/pages/setting/historyComment/HistoryCommentPageUiStore';
 import type { HistoryPostPageUiStore } from './v2/pages/setting/historyPost/HistoryPostPageUiStore';
@@ -50,11 +50,11 @@ declare global {
     type Home = HomePageUiStore;
     type BoardList = BoardListPageUiStore;
     type PostList = PostListPageUiStore;
+    type PostDetail = PostDetailPageUiStore;
     type PostEditor = PostEditorPageUiStore;
     //
     //
     type CircleMain = CircleMainPageUiStore;
-    type PostDetail = PostDetailPageUiStore;
     type SettingPassword = SettingPasswordPageUiStore;
     type HistroyPost = HistoryPostPageUiStore;
     type HistroyComment = HistoryCommentPageUiStore;

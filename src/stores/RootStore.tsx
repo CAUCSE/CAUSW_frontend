@@ -2,9 +2,6 @@ import { createContext, useContext } from 'react';
 
 import { AuthStore } from './AuthStore';
 import { CircleStore } from './CircleStore';
-import { CommentStore } from './CommentStore';
-import { PostStore } from './PostStore';
-import { ReplyCommentStore } from './ReplyCommentStore';
 import { UiStore } from './UiStore';
 
 export class RootStore {
@@ -12,16 +9,11 @@ export class RootStore {
   ui: Store.Ui;
   circle: Store.Circle;
   post: Store.Post;
-  comment: Store.Comment;
-  replyComment: Store.ReplyComment;
 
   constructor() {
     this.auth = new AuthStore(this);
     this.ui = new UiStore(this);
     this.circle = new CircleStore(this);
-    this.post = new PostStore(this);
-    this.comment = new CommentStore(this);
-    this.replyComment = new ReplyCommentStore(this);
   }
 }
 

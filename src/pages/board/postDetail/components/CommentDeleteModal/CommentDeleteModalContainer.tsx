@@ -3,13 +3,19 @@ import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 
 import { ReplyCommentModel } from '@/stores/models/ReplyCommentModel';
-import { useRootStore } from '@/stores/RootStore';
-import { ModalAlertMessage, ModalAlertTitle, ModalBox, ModalFooter, ModalFooterButton } from '@/v2/components';
+import {
+  ModalAlertMessage,
+  ModalAlertTitle,
+  ModalBox,
+  ModalFooter,
+  ModalFooterButton,
+} from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 export const CommentDeleteModalContainer: React.FC = observer(() => {
-  const { comment, replyComment } = useRootStore();
   const {
+    comments,
+    replyComments,
     commentDeleteModal: { visible, close, target },
   } = usePageUiStore<PageUiStore.PostDetail>();
 
@@ -17,8 +23,8 @@ export const CommentDeleteModalContainer: React.FC = observer(() => {
     (target?: Model.Comment | Model.ReplyComment) => async () => {
       if (!target) return;
 
-      if (target instanceof ReplyCommentModel) await replyComment.deleteComment(target);
-      else await comment.deleteComment(target);
+      if (target instanceof ReplyCommentModel) await replyComments.deleteComment(target);
+      else await comments.deleteComment(target);
 
       close();
     },

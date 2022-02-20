@@ -2,19 +2,14 @@ import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 
-
 import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { useRootStore } from '@/stores/RootStore';
 import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';
 import { usePageUiStore } from '@/v2/hooks';
 
 export const PostDetailMenu: React.FC = observer(() => {
   const { boardId, postId } = useParams<PostParams>();
-  const {
-    post: { post },
-  } = useRootStore();
-  const { postDeleteModal } = usePageUiStore<PageUiStore.PostDetail>();
+  const { post, postDeleteModal } = usePageUiStore<PageUiStore.PostDetail>();
 
   const { push } = useHistory();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -22,7 +17,8 @@ export const PostDetailMenu: React.FC = observer(() => {
 
   const handleClose = () => setAnchorEl(null);
   const handleClick = (evt: React.MouseEvent<HTMLElement>) => setAnchorEl(evt.currentTarget);
-  const handleEdit = () => push(generatePath(PAGE_URL.PostEdit, { boardId, postId }), { prevDetail: true });
+  const handleEdit = () =>
+    push(generatePath(PAGE_URL.PostEdit, { boardId, postId }), { prevDetail: true });
   const handleDelete = () => {
     setAnchorEl(null);
     postDeleteModal.open();

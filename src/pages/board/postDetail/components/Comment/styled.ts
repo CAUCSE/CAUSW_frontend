@@ -7,12 +7,12 @@ import { ClearButton, ClearUl, PostAuthorNameCSS, PostWrapperCSS } from '@/v2/co
 
 export const CommentsBox = styled(ClearUl)`
   margin: 10px 0;
-  padding: 5px 0 0;
+  padding: 10px 0;
   border-top: 1px solid #f5f5f5;
 
   li {
     position: relative;
-    padding-top: 5px;
+    padding-bottom: 5px;
   }
 `;
 
@@ -55,7 +55,7 @@ export const Content = styled.p<{ tagUserName: string | null }>`
     css`
       &:before {
         content: '@${tagUserName}';
-        padding-right: 0.5rem;
+        padding-right: 5px;
         font-weight: bold;
       }
     `}

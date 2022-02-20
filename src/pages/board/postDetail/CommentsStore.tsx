@@ -1,20 +1,22 @@
 import { makeAutoObservable } from 'mobx';
 
-import { CommentRepoImpl as Repo } from './repositories/CommentRepo';
+import { CommentRepoImpl as Repo } from '@/stores/repositories/CommentRepo';
 
-export class CommentStore {
-  rootStore: Store.Root;
+export class CommentsStore {
+  rootStore: PageUiStore.PostDetail;
   comments: Model.Comment[] = [];
-  hasMore = true;
   page = 0;
+  hasMore = false;
 
-  constructor(rootStore: Store.Root) {
+  constructor(rootStore: PageUiStore.PostDetail) {
+    makeAutoObservable(this, {}, { autoBind: true });
     this.rootStore = rootStore;
-    makeAutoObservable(this, { rootStore: false }, { autoBind: true });
   }
 
-  setPage(page: number): void {
-    this.page = page;
+  reset(): void {
+    this.comments = [];
+    this.page = 0;
+    this.hasMore = false;
   }
 
   setComment(target: Model.Comment): void {
@@ -23,26 +25,22 @@ export class CommentStore {
     if (index !== -1) this.comments[index] = target;
   }
 
-  resetComments(comments: Model.Comment[], last: boolean): void {
-    this.comments = comments;
-    this.page = 0;
-    this.hasMore = !last;
-  }
+  *fetch(postId: string, page: number): Generator {
+    const { comments, last } = (yield Repo.findAll(postId, page)) as PostComment.FindAllResponse;
 
-  *fetch(pid: string, page: number): Generator {
-    const { comments, last } = (yield Repo.findAll(pid, page)) as PostComment.FindAllResponse;
-    this.page = page;
-    this.hasMore = !last;
-
+    if (page === 0) this.comments = [];
     const result = this.comments.concat(comments);
     const ids = this.comments.concat(comments).map(({ id }) => id);
+
     this.comments = result.filter(({ id }, index) => !ids.includes(id, index + 1));
+    this.page = page;
+    this.hasMore = !last;
   }
 
   *create(data: PostComment.CreateRequestDto): Generator {
     const comment = (yield Repo.create(data)) as Model.Comment;
-    this.comments.unshift(comment);
-    this.rootStore.post.post?.setCommentCount(num => num + 1);
+    this.comments = [comment, ...this.comments];
+    this.rootStore.post?.setCommentCount(num => num + 1);
 
     return comment;
   }
@@ -57,6 +55,6 @@ export class CommentStore {
   *deleteComment(target: Model.Comment): Generator {
     const comment = (yield Repo.delete(target.id)) as Model.Comment;
     target.refresh(comment);
-    this.rootStore.post.post?.setCommentCount(num => num - 1);
+    this.rootStore.post?.setCommentCount(num => num - 1);
   }
 }
