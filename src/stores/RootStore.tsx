@@ -8,7 +8,6 @@ export class RootStore {
   auth: Store.Auth;
   ui: Store.Ui;
   circle: Store.Circle;
-  post: Store.Post;
 
   constructor() {
     this.auth = new AuthStore(this);

@@ -1,9 +1,9 @@
+import styled from '@emotion/styled';
 import { memo } from 'react';
-import styled from 'styled-components';
 
 export const EmptyList: React.FC<{ text: string }> = memo(({ text }) => (
   <Wrapper>
-    <EmptyImage />
+    <EmptyImage src="/images/empty.png" alt="empty list image" />
     <Messsage>{text}</Messsage>
   </Wrapper>
 ));
@@ -13,7 +13,7 @@ const Wrapper = styled.article`
   text-align: center;
 `;
 
-const EmptyImage = styled.img.attrs({ src: '/images/empty.png' })`
+const EmptyImage = styled.img`
   width: 130px;
   height: 166px;
 `;

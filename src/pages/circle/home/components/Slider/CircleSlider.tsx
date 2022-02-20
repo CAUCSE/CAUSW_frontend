@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import styled from 'styled-components';
 
 import { ListComponent } from '../CircleListFrame';
 import { CircleSlideCard } from './CircleSlideCard';

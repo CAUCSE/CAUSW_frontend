@@ -7,11 +7,11 @@ import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPage
 import type { PostDetailPageUiStore } from './pages/board/postDetail/PostDetailPageUiStore';
 import type { PostEditorPageUiStore } from './pages/board/postEditor/PostEditorPageUiStore';
 import type { PostListPageUiStore } from './pages/board/postList/PostListPageUiStore';
+import type { CircleHomePageUiStore } from './pages/circle/home/CircleHomePageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
 //
 import type { AuthStore } from './stores/AuthStore';
 import type { CircleStore } from './stores/CircleStore';
-import type { CommentStore } from './stores/CommentStore';
 import type { AuthorModel } from './stores/models/AuthorModel';
 import type { BoardModel } from './stores/models/BoardModel';
 import type { CircleBoardModel } from './stores/models/CircleBoardModel';
@@ -22,8 +22,6 @@ import type { HistoryPostModel } from './stores/models/HistoryPostModel';
 import type { PostModel } from './stores/models/PostModel';
 import type { ReplyCommentModel } from './stores/models/ReplyCommentModel';
 import type { UserModel } from './stores/models/UserModel';
-import type { PostStore } from './stores/PostStore';
-import type { ReplyCommentStore } from './stores/ReplyCommentStore';
 import type { RootStore } from './stores/RootStore';
 import type { UiStore } from './stores/UiStore';
 import type { CircleMainPageUiStore } from './v2/pages/circle/main/CircleMainPageUiStore';
@@ -38,9 +36,6 @@ declare global {
     type Auth = AuthStore;
     type Ui = UiStore;
     type Circle = CircleStore;
-    type Post = PostStore;
-    type Comment = CommentStore;
-    type ReplyComment = ReplyCommentStore;
   }
 
   namespace PageUiStore {
@@ -48,6 +43,7 @@ declare global {
     type SignUp = SignUpPageUiStore;
     type Application = AdmissionPageUiStore;
     type Home = HomePageUiStore;
+    type CircleHome = CircleHomePageUiStore;
     type BoardList = BoardListPageUiStore;
     type PostList = PostListPageUiStore;
     type PostDetail = PostDetailPageUiStore;

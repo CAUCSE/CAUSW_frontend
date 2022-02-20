@@ -1,6 +1,7 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { memo, useState } from 'react';
 import { generatePath, useHistory } from 'react-router';
-import styled, { css } from 'styled-components';
 
 import { Icon as I } from '@/assets';
 import { ClearButton } from '@/components/regacy/atoms/clear';
@@ -8,41 +9,40 @@ import { PAGE_URL } from '@/configs/path';
 
 type Props = Pick<Model.Circle, 'id' | 'mainImage' | 'name' | 'description'>;
 
-export const CircleSlideCard: React.FC<Props> = memo(({ id: circleId, mainImage, name, description }) => {
-  const { push } = useHistory();
-  const [isFlipped, setFlip] = useState(false);
-  const handleClick = () => {
-    if (isFlipped) {
+export const CircleSlideCard: React.FC<Props> = memo(
+  ({ id: circleId, mainImage, name, description }) => {
+    const { push } = useHistory();
+    const [isFlipped, setFlip] = useState(false);
+    const handleClick = () => {
+      if (isFlipped) setFlip(c => !c);
+      else push(generatePath(PAGE_URL.CircleJoin, { circleId }));
+    };
+    const handleFlip = (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation();
       setFlip(c => !c);
-    } else {
-      push(generatePath(PAGE_URL.CircleJoin, { circleId }));
-    }
-  };
-  const handleFlip = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-    setFlip(c => !c);
-  };
+    };
 
-  return (
-    <Card onClick={handleClick}>
-      <Inner isFlipped={isFlipped}>
-        <Body>
-          <Cover mainImage={mainImage} />
-          <Content>
-            <ContentName>{name}</ContentName>
-            {description}
-          </Content>
-        </Body>
-        <Footer>
-          <Name className="text-ellipsis">{name}</Name>
-          <ClearButton onClick={handleFlip}>
-            <Icon active={isFlipped} />
-          </ClearButton>
-        </Footer>
-      </Inner>
-    </Card>
-  );
-});
+    return (
+      <Card onClick={handleClick}>
+        <Inner isFlipped={isFlipped}>
+          <Body>
+            <Cover mainImage={mainImage} />
+            <Content>
+              <ContentName>{name}</ContentName>
+              {description}
+            </Content>
+          </Body>
+          <Footer>
+            <Name className="text-ellipsis">{name}</Name>
+            <ClearButton onClick={handleFlip}>
+              <Icon active={isFlipped} />
+            </ClearButton>
+          </Footer>
+        </Inner>
+      </Card>
+    );
+  },
+);
 
 const Card = styled.article`
   box-sizing: border-box;
