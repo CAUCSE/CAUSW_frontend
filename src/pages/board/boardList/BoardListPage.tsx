@@ -4,7 +4,7 @@ import { PageUiStoreImpl } from './BoardListPageUiStore';
 import { Boards } from './components';
 
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC, UniformLogo } from '@/components';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const BoardListPage: React.FC = () => {
   const { fetch } = usePageUiStore<PageUiStore.BoardList>();

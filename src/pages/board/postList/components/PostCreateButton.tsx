@@ -4,8 +4,8 @@ import { generatePath, useParams } from 'react-router-dom';
 
 import { PencilIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL, PostParams } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import { ClearLink, RightButtonWrapper } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 export const PostCreateButton: React.FC = observer(() => {
   const { boardId } = useParams<PostParams>();

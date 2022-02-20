@@ -8,7 +8,7 @@ import { PageUiStoreImpl } from './PostListPageUiStore';
 
 import { GNB, Header, PageBody, PageStoreHOC } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const PostListPage: React.FC = observer(() => {
   const { boardId } = useParams<PostParams>();

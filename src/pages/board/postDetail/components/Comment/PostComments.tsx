@@ -7,7 +7,7 @@ import { CommentCardContainer } from './CommentCardContainer';
 import { CommentsBox } from './styled';
 
 import { PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 export const PostComments: React.FC = observer(() => {
   const { postId } = useParams<PostParams>();

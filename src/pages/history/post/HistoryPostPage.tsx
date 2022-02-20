@@ -5,7 +5,7 @@ import { HistoryPostCard } from './components';
 import { PageUiStoreImpl } from './HistoryPostPageUiStore';
 
 import { BodyScreen, GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const HistoryPostPage: React.FC = observer(() => {
   const ref = useRef<HTMLDivElement | null>(null);

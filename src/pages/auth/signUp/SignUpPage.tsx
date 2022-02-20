@@ -16,10 +16,9 @@ import {
   PasswordInput,
 } from '@/components';
 import { PAGE_URL } from '@/configs/path';
-import { useAuthRedirect } from '@/hooks';
+import { useAuthRedirect, usePageUiStore } from '@/hooks';
 import { passwordReg } from '@/utils';
 import { NavButton } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 const SignUpPage: React.FC = observer(() => {
   const { replace } = useHistory();

@@ -6,11 +6,12 @@ import { PageUiStoreImpl } from './SettingProfilePageUiStore';
 import { Form } from './styled';
 
 import { PAGE_URL } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import { Button, Header, Input, LayoutHOC, NavButtonWrapper, PageWraaper } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 const SettingProfilePage: React.FC = observer(() => {
-  const { fetch, reset, me, set, update, submitDisabled } = usePageUiStore<PageUiStore.SettingProfile>();
+  const { fetch, reset, me, set, update, submitDisabled } =
+    usePageUiStore<PageUiStore.SettingProfile>();
 
   useEffect(() => {
     fetch();

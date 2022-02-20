@@ -8,9 +8,8 @@ import { FileInput, Guide, InputIcon, Label, Textarea } from './styled';
 
 import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
-import { useAuthRedirect } from '@/hooks';
+import { useAuthRedirect, usePageUiStore } from '@/hooks';
 import { NavButton } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 const ApplicationPage: React.FC = observer(() => {
   const { replace } = useHistory();

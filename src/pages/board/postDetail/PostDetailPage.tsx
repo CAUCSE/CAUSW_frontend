@@ -24,7 +24,7 @@ import {
   PostCommentNum,
 } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const PostDetailPage: React.FC = observer(() => {
   const { boardId, postId } = useParams<PostParams>();

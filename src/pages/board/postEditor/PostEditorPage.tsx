@@ -8,7 +8,7 @@ import { PageUiStoreImpl } from './PostEditorPageUiStore';
 
 import { PageBody, PageStoreHOC } from '@/components';
 import { PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const PostEditorPage: React.FC = observer(() => {
   const { boardId, postId } = useParams<PostParams>();

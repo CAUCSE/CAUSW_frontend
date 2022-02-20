@@ -7,7 +7,7 @@ import { CircleBoards, CircleDeleteModal, CircleInfoModal, CircleMainMenu } from
 import { CircleImage } from './styled';
 
 import { BodyScreen, Header, PageBody, PageStoreHOC } from '@/components';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const CircleMainPage: React.FC = observer(() => {
   const { circleId } = useParams<{ circleId: string }>();

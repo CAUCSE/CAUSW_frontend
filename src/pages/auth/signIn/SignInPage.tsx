@@ -19,8 +19,7 @@ import {
 
 import { PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
-import { useAuthRedirect } from '@/hooks';
-import { usePageUiStore } from '@/v2/hooks';
+import { useAuthRedirect, usePageUiStore } from '@/hooks';
 
 const SignInPage: React.FC = observer(() => {
   const { replace, push } = useHistory();

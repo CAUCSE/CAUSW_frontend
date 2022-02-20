@@ -7,8 +7,8 @@ import { InputState } from '../CommentInput';
 import { Box } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import { ModalMenuButton } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 export const CommentMenuContainer: React.FC = observer(() => {
   const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);

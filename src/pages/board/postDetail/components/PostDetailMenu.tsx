@@ -4,8 +4,8 @@ import { generatePath, useHistory, useParams } from 'react-router-dom';
 
 import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL, PostParams } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 export const PostDetailMenu: React.FC = observer(() => {
   const { boardId, postId } = useParams<PostParams>();

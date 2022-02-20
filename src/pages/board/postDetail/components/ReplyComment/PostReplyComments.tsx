@@ -8,7 +8,7 @@ import { ReplyCommentContainer } from './ReplyCommentContainer';
 import { BackLink, CommentsBox } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 export const PostReplyComments: React.FC = observer(() => {
   const { boardId, postId, commentId } = useParams<PostParams>();

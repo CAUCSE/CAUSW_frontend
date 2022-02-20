@@ -2,8 +2,8 @@ import React, { useLayoutEffect, useRef } from 'react';
 
 import { PageRoot } from './Layout';
 
+import { PageUiProvider } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
-import { PageUiProvider } from '@/v2/hooks';
 
 export const PageStoreHOC =
   (

@@ -4,7 +4,7 @@ import { CircleLinks, HomeBoards } from './components';
 import { PageUiStoreImpl } from './HomePageUiStore';
 
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const HomePage: React.FC = memo(() => {
   const { fetch } = usePageUiStore<PageUiStore.Home>();

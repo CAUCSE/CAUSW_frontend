@@ -1,15 +1,18 @@
 import React, { useLayoutEffect, useRef } from 'react';
 
-import { PageUiProvider } from '../hooks';
 import { Body, ScreenArea } from './Atoms';
 import { MobileGnb } from './Gnb';
 
+import { PageUiProvider } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
 
 export const LayoutHOC =
   (
     PageComponent: React.FC,
-    { pageUiStore, Nav } = { pageUiStore: {}, Nav: undefined } as { pageUiStore?: unknown; Nav?: React.FC | null },
+    { pageUiStore, Nav } = { pageUiStore: {}, Nav: undefined } as {
+      pageUiStore?: unknown;
+      Nav?: React.FC | null;
+    },
   ): React.FC =>
   () => {
     const ref = useRef<HTMLDivElement | null>(null);

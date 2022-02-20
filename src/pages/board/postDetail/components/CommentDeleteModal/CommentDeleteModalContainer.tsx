@@ -2,6 +2,7 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 
+import { usePageUiStore } from '@/hooks';
 import { ReplyCommentModel } from '@/stores/models/ReplyCommentModel';
 import {
   ModalAlertMessage,
@@ -10,7 +11,6 @@ import {
   ModalFooter,
   ModalFooterButton,
 } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 export const CommentDeleteModalContainer: React.FC = observer(() => {
   const {

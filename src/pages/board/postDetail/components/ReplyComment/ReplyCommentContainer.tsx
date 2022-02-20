@@ -7,7 +7,7 @@ import { CommentCardView } from '../Comment';
 import { InputState } from '../CommentInput';
 import { Li } from './styled';
 
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 export const ReplyCommentContainer: React.FC<{ model: Model.Comment }> = observer(({ model }) => {
   const ref = useRef<HTMLLIElement>(null);

@@ -7,7 +7,7 @@ import { BackButton, Header, SubmitButton, TitleInput } from '../styled';
 
 import { Breadcrumb } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 export const TitleInputHeader: React.FC = observer(() => {
   const isEdit = !!useRouteMatch(PAGE_URL.PostEdit);

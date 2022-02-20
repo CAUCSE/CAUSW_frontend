@@ -5,11 +5,12 @@ import { PageUiStoreImpl } from './SettingPasswordPageUiStore';
 import { Form, GuideText, Input } from './styled';
 
 import { PAGE_URL } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import { Button, Header, LayoutHOC, NavButtonWrapper, PageWraaper } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 const SettingPasswordPage: React.FC = observer(() => {
-  const { submitDisabled, reset, set, error, update } = usePageUiStore<PageUiStore.SettingPassword>();
+  const { submitDisabled, reset, set, error, update } =
+    usePageUiStore<PageUiStore.SettingPassword>();
 
   useEffect(() => {
     return () => reset();

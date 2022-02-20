@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { Form, InputBox, SendButton, Textarea } from './styled';
 
 import { SendIcon } from '@/components/regacy/atoms/Icon';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 interface Props {
   onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Chip } from './styled';
 
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 export const EditChip = observer(() => {
   const {

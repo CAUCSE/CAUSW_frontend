@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useHistory } from 'react-router-dom';
 
 import { PAGE_URL } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import {
   ModalAlertMessage,
   ModalAlertTitle,
@@ -10,7 +11,6 @@ import {
   ModalFooter,
   ModalFooterButton,
 } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 export const CircleDeleteModal: React.FC = observer(() => {
   const { replace } = useHistory();

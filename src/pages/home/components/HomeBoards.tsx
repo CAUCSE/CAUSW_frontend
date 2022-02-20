@@ -5,8 +5,8 @@ import { HomeBoardListItem } from './HomeBoardListItem';
 
 import { ListBox } from '@/components';
 import { PAGE_URL } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import { BoradIdProvider } from '@/v2/components';
-import { usePageUiStore } from '@/v2/hooks';
 
 export const HomeBoards: React.FC = observer(() => {
   const { boards } = usePageUiStore<PageUiStore.Home>();

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { BoardListItem } from './BoardListItem';
 
 import { ListBox } from '@/components';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 export const Boards: React.FC = observer(() => {
   const { boards } = usePageUiStore<PageUiStore.BoardList>();

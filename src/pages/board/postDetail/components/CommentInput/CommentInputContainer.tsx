@@ -10,7 +10,7 @@ import { ReplyChip } from './ReplyChip';
 import { Nav } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 type FormBody = { content: string };
 

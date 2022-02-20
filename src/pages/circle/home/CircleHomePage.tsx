@@ -6,7 +6,7 @@ import * as Circle from './components';
 import { H2 } from './styled';
 
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const CircleHomePage: React.FC = observer(() => {
   const { fetch, circles, joinedCircles } = usePageUiStore<PageUiStore.CircleHome>();

@@ -4,7 +4,7 @@ import { HistoryCommentCard } from './components';
 import { PageUiStoreImpl } from './HistoryCommentPageUiStore';
 
 import { BodyScreen, GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components';
-import { usePageUiStore } from '@/v2/hooks';
+import { usePageUiStore } from '@/hooks';
 
 const HistoryCommentPage: React.FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);

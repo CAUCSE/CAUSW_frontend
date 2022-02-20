@@ -8,8 +8,8 @@ import { useRouteMatch } from 'react-router-dom';
 import { EditorWrapper } from '../styled';
 
 import { PAGE_URL } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 import { IMAGE_TYPE, StorageRepoImpl } from '@/stores/repositories/StorageRepo';
-import { usePageUiStore } from '@/v2/hooks';
 import ImageUploader from 'quill-image-uploader';
 
 Quill.register('modules/imageUploader', ImageUploader);
