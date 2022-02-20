@@ -15,7 +15,9 @@ class CircleRepo {
   };
 
   fetchById = async (circleId: string): Promise<CircleModel> => {
-    const { data } = (await API.get(`${this.URI}/${circleId}`)) as AxiosResponse<Circle.findByIdDto>;
+    const { data } = (await API.get(
+      `${this.URI}/${circleId}`,
+    )) as AxiosResponse<Circle.findByIdDto>;
 
     return new CircleModel(data);
   };
@@ -25,11 +27,7 @@ class CircleRepo {
       await API.get(`${this.URI}/${circleId}/applications`);
 
       return 'DONE';
-    } catch ({
-      response: {
-        data: { errorCode },
-      },
-    }) {
+    } catch ({ errorCode }) {
       // NOTE: 다루지 않은 에러들
       // 1. invalid user (JWT) & circle id : 400 (4000)
       // 5. 삭제된 소모임인 경우 : 400 (4004)
@@ -49,7 +47,9 @@ class CircleRepo {
   };
 
   findBoards = async (circleId: string): Promise<FindBoardsRes> => {
-    const { data } = (await API.get(`${this.URI}/${circleId}/boards`)) as AxiosResponse<Circle.findBoardsDto>;
+    const { data } = (await API.get(
+      `${this.URI}/${circleId}/boards`,
+    )) as AxiosResponse<Circle.findBoardsDto>;
 
     console.debug(data);
 

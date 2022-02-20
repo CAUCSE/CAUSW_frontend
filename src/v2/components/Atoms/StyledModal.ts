@@ -46,7 +46,7 @@ export const ModalAlertTitle = styled.div`
 
 export const ModalAlertMessage = styled.div<{ center?: boolean }>`
   margin: 14px 0 20px;
-  padding: 0 26px;
+  padding: 0 20px;
 
   font-size: 12px;
   line-height: 14px;
