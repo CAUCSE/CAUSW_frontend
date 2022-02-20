@@ -7,7 +7,6 @@ import {
 
 import { AuthRouter } from './AuthRouter';
 import * as Switch from './pages';
-import * as Switch2 from './v2/pages';
 
 import { PAGE_URL } from '@/configs/path';
 
@@ -24,7 +23,8 @@ export const PageRouter: React.FC = () => (
         <Route path={PAGE_URL.Home} component={Switch.HomePage} />
         <Route path={PAGE_URL.Circle} component={Switch.CirclePage} />
         <Route path={PAGE_URL.Board} component={Switch.BoardPage} />
-        <Route path={PAGE_URL.Setting} component={Switch2.SettingPage} />
+        <Route path={PAGE_URL.Setting} component={Switch.SettingPage} />
+        <Route path={PAGE_URL.History} component={Switch.HistoryPage} />
       </AuthRouter>
     </RootSwitch>
   </RootRouter>

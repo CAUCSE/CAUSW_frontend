@@ -27,6 +27,7 @@
     ]
   },
   "include": [
-    "src"
+    "src",
+    "src/pages/history/comment"
   ]
 }

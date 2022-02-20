@@ -26,7 +26,7 @@ import type { ReplyCommentModel } from './stores/models/ReplyCommentModel';
 import type { UserModel } from './stores/models/UserModel';
 import type { RootStore } from './stores/RootStore';
 import type { UiStore } from './stores/UiStore';
-import type { HistoryCommentPageUiStore } from './v2/pages/setting/historyComment/HistoryCommentPageUiStore';
+import type { HistoryCommentPageUiStore } from './pages/history/comment/HistoryCommentPageUiStore';
 import type { HistoryPostPageUiStore } from './v2/pages/setting/historyPost/HistoryPostPageUiStore';
 import type { SettingPasswordPageUiStore } from './v2/pages/setting/password/SettingPasswordPageUiStore';
 import type { SettingProfilePageUiStore } from './v2/pages/setting/profile/SettingProfilePageUiStore';

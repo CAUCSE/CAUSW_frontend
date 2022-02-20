@@ -22,8 +22,10 @@ export enum PAGE_URL {
   Setting = '/setting',
   SettingProfile = '/setting/profile',
   SettingPassword = '/setting/password',
-  SettingHistoryPost = '/setting/history/post',
-  SettingHistoryComment = '/setting/history/comment',
+
+  History = '/history',
+  HistoryPost = '/history/post',
+  HistoryComment = '/history/comment',
 
   Err404 = '/error/404',
 }
