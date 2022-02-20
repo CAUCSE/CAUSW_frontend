@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 
-import { ClearButton, ProfileImageBox } from '@/v2/components';
+import { ClearButton, ProfileImageBox } from '@/components';
 
 export const Button = styled(ClearButton)`
   position: relative;

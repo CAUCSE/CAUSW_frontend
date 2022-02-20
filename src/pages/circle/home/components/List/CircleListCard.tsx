@@ -2,11 +2,21 @@ import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { generatePath } from 'react-router-dom';
 
+import { ClearLink } from '@/components';
 import { PAGE_URL } from '@/configs/path';
-import { ClearLink } from '@/v2/components';
 
 export const CircleListCard: React.FC<{ model: Model.Circle }> = observer(
-  ({ model: { id: circleId, mainImage, name, leaderName, numMember, formatedCreatedAt, formatJoinedAt } }) => {
+  ({
+    model: {
+      id: circleId,
+      mainImage,
+      name,
+      leaderName,
+      numMember,
+      formatedCreatedAt,
+      formatJoinedAt,
+    },
+  }) => {
     return (
       <Card to={generatePath(PAGE_URL.CircleMain, { circleId })}>
         <Image src={mainImage} />

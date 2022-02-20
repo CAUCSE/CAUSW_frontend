@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ClearButton, ClearTextarea } from '@/v2/components';
+import { ClearButton, ClearTextarea } from '@/components';
 
 export const Nav = styled.nav`
   background: #fbfbfb;

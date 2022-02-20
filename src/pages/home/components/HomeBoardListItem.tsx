@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { generatePath } from 'react-router';
 
-import { PAGE_URL } from '@/configs/path';
 import {
   ClearLink,
   PostAuthorNameCSS,
@@ -12,7 +11,8 @@ import {
   PostTitleCSS,
   PostWrapperCSS,
   useGetBoardId,
-} from '@/v2/components';
+} from '@/components';
+import { PAGE_URL } from '@/configs/path';
 
 export const HomeBoardListItem: React.FC<{ model: Model.Post }> = observer(
   ({ model: { id: postId, title, formatedCreatedAt, author, commentCount } }) => {

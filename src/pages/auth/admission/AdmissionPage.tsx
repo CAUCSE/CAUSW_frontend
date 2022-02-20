@@ -6,10 +6,9 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { PageUiStoreImpl } from './AdmissionPageUiStore';
 import { FileInput, Guide, InputIcon, Label, Textarea } from './styled';
 
-import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC } from '@/components';
+import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC, NavButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect, usePageUiStore } from '@/hooks';
-import { NavButton } from '@/v2/components';
 
 const ApplicationPage: React.FC = observer(() => {
   const { replace } = useHistory();

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { memo } from 'react';
 
-import { ClearA, ClearLink } from '@/v2/components';
+import { ClearA, ClearLink } from '@/components';
 
 export const CircleLinks = memo(() => (
   <Wrapper>

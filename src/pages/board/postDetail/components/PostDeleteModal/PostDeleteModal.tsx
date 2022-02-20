@@ -2,15 +2,15 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 
-import { PAGE_URL, PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/hooks';
 import {
   ModalAlertMessage,
   ModalAlertTitle,
   ModalBox,
   ModalFooter,
   ModalFooterButton,
-} from '@/v2/components';
+} from '@/components';
+import { PAGE_URL, PostParams } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 
 export const PostDeleteModal: React.FC = observer(() => {
   const { postId, boardId } = useParams<PostParams>();

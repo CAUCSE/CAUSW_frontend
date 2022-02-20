@@ -13,12 +13,12 @@ import {
   PageFooter,
   PageStoreHOC,
   PasswordInput,
+  NavButton,
 } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
 import { passwordReg } from '@/utils';
-import { NavButton } from '@/v2/components';
 
 const SettingPasswordPage: React.FC = observer(() => {
   const { replace } = useHistory();

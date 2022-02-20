@@ -1,3 +1,4 @@
+export * from './Atoms';
 export * from './Gnb';
 export * from './Header';
 export * from './Breadcrumb';

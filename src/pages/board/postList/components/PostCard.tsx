@@ -9,7 +9,7 @@ import {
   PostCreatedAt,
   PostTitleCSS,
   PostWrapperCSS,
-} from '@/v2/components';
+} from '@/components';
 
 export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
   ({ to, model: { title, author, commentCount, formatedCreatedAt } }) => (

@@ -33,11 +33,6 @@ const CustomButtonRoot = styled('button')`
   }
 `;
 
-// TODO: 지워야할 대상
-export const NavButtonWrapper = styled('div')`
-  padding: 15px 0px;
-`;
-
 interface Props extends ButtonUnstyledProps {
   className?: string;
   disabled?: boolean;

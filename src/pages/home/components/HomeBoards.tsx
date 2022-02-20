@@ -3,10 +3,9 @@ import { generatePath } from 'react-router-dom';
 
 import { HomeBoardListItem } from './HomeBoardListItem';
 
-import { ListBox } from '@/components';
+import { BoradIdProvider, ListBox } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
-import { BoradIdProvider } from '@/v2/components';
 
 export const HomeBoards: React.FC = observer(() => {
   const { boards } = usePageUiStore<PageUiStore.Home>();

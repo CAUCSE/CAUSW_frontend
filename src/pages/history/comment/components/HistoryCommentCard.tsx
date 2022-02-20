@@ -8,7 +8,7 @@ import {
   PostCreatedAt as CreatedAt,
   PostTitleCSS,
   PostWrapperCSS,
-} from '@/v2/components';
+} from '@/components';
 
 export const HistoryCommentCard: React.FC<{ model: Model.HistoryComment }> = observer(
   ({ model: { to, content, formatedCreatedAt, circleName, boardName, postName } }) => (

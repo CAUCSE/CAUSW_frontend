@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
-import { checkboxClasses, FormControlLabel, outlinedInputClasses, TextField, typographyClasses } from '@mui/material';
+import {
+  checkboxClasses,
+  FormControlLabel,
+  outlinedInputClasses,
+  TextField,
+  typographyClasses,
+} from '@mui/material';
 
-import { Button, ClearLink } from '@/v2/components';
+import { ClearLink, Button } from '@/components';
 
 export const PageWrapper = styled.div`
   display: flex;

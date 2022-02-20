@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
+import { HeaderIconButton, Menu, MenuItem } from '@/components';
 import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { usePageUiStore } from '@/hooks';
-import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';
 
 export const CircleMainMenu: React.FC = () => {
   const { infoModal, deleteModal } = usePageUiStore<PageUiStore.CircleMain>();

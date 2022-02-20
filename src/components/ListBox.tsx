@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { memo } from 'react';
 
-import { ClearLink } from '@/v2/components';
+import { ClearLink } from '@/components';
 
 interface Props<T> {
   title: string;

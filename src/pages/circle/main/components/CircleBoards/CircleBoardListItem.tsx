@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { memo } from 'react';
 import { generatePath } from 'react-router';
 
-import { PAGE_URL } from '@/configs/path';
 import {
   ClearLink,
   PostAuthorNameCSS,
@@ -12,7 +11,8 @@ import {
   PostTitleCSS,
   PostWrapperCSS,
   useGetBoardId,
-} from '@/v2/components';
+} from '@/components';
+import { PAGE_URL } from '@/configs/path';
 
 export const CircleBoardListItem: React.FC<{ model: NonNullable<Model.CircleBoard['post']> }> =
   memo(({ model: { id: postId, title, formatedCreatedAt, writerName, numComment } }) => {

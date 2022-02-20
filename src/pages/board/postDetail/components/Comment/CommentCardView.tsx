@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { InputState } from '../CommentInput';
 import { AuthorName, CommentCard, Content, Profile } from './styled';
 
-import { PostCreatedAt, PostProfileImage } from '@/v2/components';
+import { PostCreatedAt, PostProfileImage } from '@/components';
 
 interface Props {
   state: InputState;

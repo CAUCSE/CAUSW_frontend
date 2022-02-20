@@ -6,9 +6,8 @@ import { PageUiStoreImpl } from './CircleJoinPageUiStore';
 import { CircleJoinModal, PageSkeleton } from './components';
 import { CircleImage, Desc, Hr, Name, Row } from './styled';
 
-import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC } from '@/components';
+import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC, NavButton } from '@/components';
 import { usePageUiStore } from '@/hooks';
-import { NavButton } from '@/v2/components';
 
 const CircleJoinPage: React.FC = observer(() => {
   const { circleId } = useParams<{ circleId: string }>();

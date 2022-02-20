@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import { TextareaAutosize } from '@mui/material';
 
-import { ClearButton } from '@/v2/components';
+import { ClearButton } from '@/components';
 
 export const Guide = styled.div`
   margin-top: 20px;

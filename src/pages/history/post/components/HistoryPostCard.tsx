@@ -9,7 +9,7 @@ import {
   PostCreatedAt,
   PostTitleCSS,
   PostWrapperCSS,
-} from '@/v2/components';
+} from '@/components';
 
 export const HistoryPostCard: React.FC<{
   model: Model.HistoryPost;

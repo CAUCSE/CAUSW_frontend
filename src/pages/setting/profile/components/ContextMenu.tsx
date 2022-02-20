@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 
+import { HeaderIconButton, Menu, MenuItem } from '@/components';
 import { MenuIcon } from '@/components/regacy/atoms/Icon';
-import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';
 
 export const ContextMenu: React.FC = observer(() => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

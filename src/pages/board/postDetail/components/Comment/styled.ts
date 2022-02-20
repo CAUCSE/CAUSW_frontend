@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { InputState } from '../CommentInput';
 
-import { ClearButton, ClearUl, PostAuthorNameCSS, PostWrapperCSS } from '@/v2/components';
+import { ClearButton, ClearUl, PostAuthorNameCSS, PostWrapperCSS } from '@/components';
 
 export const CommentsBox = styled(ClearUl)`
   margin: 10px 0;

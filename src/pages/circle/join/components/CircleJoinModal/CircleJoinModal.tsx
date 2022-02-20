@@ -3,13 +3,8 @@ import { observer } from 'mobx-react-lite';
 
 import { Box } from './styled';
 
+import { ModalAlertMessage, ModalAlertTitle, ModalFooter, ModalFooterButton } from '@/components';
 import { usePageUiStore } from '@/hooks/usePageUiStore';
-import {
-  ModalAlertMessage,
-  ModalAlertTitle,
-  ModalFooter,
-  ModalFooterButton,
-} from '@/v2/components';
 
 export const CircleJoinModal: React.FC = observer(() => {
   const {

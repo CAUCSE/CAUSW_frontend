@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { memo } from 'react';
 import { generatePath } from 'react-router';
 
+import { ClearLink } from '@/components';
 import { PAGE_URL } from '@/configs/path';
-import { ClearLink } from '@/v2/components';
 
 interface Props {
   boardId?: string;

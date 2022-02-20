@@ -2,14 +2,14 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 
-import { usePageUiStore } from '@/hooks';
 import {
   ModalAlertMessage,
   ModalAlertTitle,
   ModalBox,
   ModalFooter,
   ModalFooterButton,
-} from '@/v2/components';
+} from '@/components';
+import { usePageUiStore } from '@/hooks';
 
 export const CircleInfoModal: React.FC = observer(() => {
   const {

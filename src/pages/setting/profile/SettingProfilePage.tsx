@@ -5,11 +5,18 @@ import { useForm } from 'react-hook-form';
 import { ContextMenu, ProfileImage } from './components';
 import { FormBody, PageUiStoreImpl } from './SettingProfilePageUiStore';
 
-import { BodyScreen, Header, Input, PageBody, PageFooter, PageStoreHOC } from '@/components';
+import {
+  BodyScreen,
+  Header,
+  Input,
+  PageBody,
+  PageFooter,
+  PageStoreHOC,
+  NavButton,
+} from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
-import { NavButton } from '@/v2/components';
 
 const SettingProfilePage: React.FC = observer(() => {
   const {

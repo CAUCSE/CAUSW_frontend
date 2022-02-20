@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ClearLink } from '@/v2/components';
+import { ClearLink } from '@/components';
 
 export const Link = styled(ClearLink)`
   display: block;

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 
-import { PostAuthorNameCSS, PostCreatedAt, PostProfileImage, PostWrapperCSS } from '@/v2/components';
+import { PostAuthorNameCSS, PostCreatedAt, PostProfileImage, PostWrapperCSS } from '@/components';
 
 export const PostAuthor: React.FC<{ model: Model.Author; date: string }> = observer(
   ({ model: { nameWithAdmission, profileImage }, date }) => (

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { BackButton as _BackButton, ClearButton } from '@/v2/components';
+import { BackButton as _BackButton, ClearButton } from '@/components';
 
 export const Form = styled.form`
   display: flex;

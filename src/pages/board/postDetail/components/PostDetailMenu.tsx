@@ -2,10 +2,10 @@ import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 
+import { HeaderIconButton, Menu, MenuItem } from '@/components';
 import { MenuIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
-import { HeaderIconButton, Menu, MenuItem } from '@/v2/components';
 
 export const PostDetailMenu: React.FC = observer(() => {
   const { boardId, postId } = useParams<PostParams>();

@@ -6,9 +6,9 @@ import { generatePath, useHistory, useParams, useRouteMatch } from 'react-router
 import { InputState } from '../CommentInput';
 import { Box } from './styled';
 
+import { ModalMenuButton } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
-import { ModalMenuButton } from '@/v2/components';
 
 export const CommentMenuContainer: React.FC = observer(() => {
   const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);

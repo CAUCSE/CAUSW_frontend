@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { generatePath, useParams } from 'react-router-dom';
 
+import { ClearLink, RightButtonWrapper } from '@/components';
 import { PencilIcon } from '@/components/regacy/atoms/Icon';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
-import { ClearLink, RightButtonWrapper } from '@/v2/components';
 
 export const PostCreateButton: React.FC = observer(() => {
   const { boardId } = useParams<PostParams>();

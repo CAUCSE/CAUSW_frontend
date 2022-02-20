@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ClearButton, ClearUl } from '@/v2/components';
+import { ClearButton, ClearUl } from '@/components';
 
 export const CommentsBox = styled(ClearUl)`
   margin-top: 10px;
