@@ -23,18 +23,16 @@ class PostRepo {
     return new PostModel(data);
   };
 
-  findById = async (postId: string): Promise<PostDetail.RootObject> => {
-    const { data } = await API.get(`${this.URI}/${postId}`);
-
-    return data;
+  update = async (postId: string, body: Post.UpdateRequestDto): Promise<void> => {
+    return await API.put(`${this.URI}/${postId}`, body);
   };
 
-  update = async (postId: string, body: Post.UpdateRequestDto): Promise<void> => {
-    const { data } = await API.put(`${this.URI}/${postId}`, body);
+  findById = async (postId: string): Promise<Post.FindByIdResponseDto> => {
+    const { data } = (await API.get(
+      `${this.URI}/${postId}`,
+    )) as AxiosResponse<Post.FindByIdResponseDto>;
 
-    console.debug(data);
-
-    // return data;
+    return data;
   };
 
   delete = async (postId: string): Promise<void> => {

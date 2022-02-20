@@ -65,4 +65,12 @@ export const GlobalStyle = css`
   input[data-autocompleted] {
     background-color: transparent !important;
   }
+
+  .ql-editor {
+    padding: 0;
+    font-size: 14px;
+    line-height: 16px;
+    color: #3f4040;
+    overflow-y: hidden;
+  }
 `;

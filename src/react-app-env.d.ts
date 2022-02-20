@@ -4,6 +4,7 @@ import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageU
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
 import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
 import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPageUiStore';
+import type { PostEditorPageUiStore } from './pages/board/postEditor/PostEditorPageUiStore';
 import type { PostListPageUiStore } from './pages/board/postList/PostListPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
 //
@@ -49,6 +50,7 @@ declare global {
     type Home = HomePageUiStore;
     type BoardList = BoardListPageUiStore;
     type PostList = PostListPageUiStore;
+    type PostEditor = PostEditorPageUiStore;
     //
     //
     type CircleMain = CircleMainPageUiStore;

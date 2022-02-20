@@ -1,3 +1,4 @@
+export * from './Breadcrumb';
 export * from './Gnb';
 export * from './Header';
 export * from './Layout';
