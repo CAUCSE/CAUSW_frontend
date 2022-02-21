@@ -54,4 +54,5 @@ export const Textarea = styled(ClearTextarea)`
 
 export const SendButton = styled(ClearButton)`
   width: 50px;
+  color: #3f4040;
 `;
