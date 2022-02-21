@@ -32,7 +32,7 @@ export enum PAGE_URL {
   // 사물함
   Locker = '/locker',
   LockerList = '/locker',
-  FloorLockers = '/locker/:lockerId',
+  LockerLocation = '/locker/:lockerId',
 
   Err404 = '/error/404',
 }

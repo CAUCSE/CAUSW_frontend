@@ -7,7 +7,7 @@ export const Card = styled(ClearLink)`
   display: block;
   margin-bottom: 20px;
   padding: 15px 15px 5px;
-  border: 0.5px solid #f5f5f5;
+  border: 1px solid #f5f5f5;
   border-radius: 8px;
   background: #fbfbfb;
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%);

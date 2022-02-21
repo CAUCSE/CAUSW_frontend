@@ -8,8 +8,8 @@ import { PageRouter } from './PageRouter';
 
 render(
   <React.StrictMode>
-    <Global styles={GlobalStyle} />
     <PageRouter />
+    <Global styles={GlobalStyle} />
   </React.StrictMode>,
   document.getElementById('root'),
 );

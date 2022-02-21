@@ -1,16 +1,17 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
-import { LockerListCard, LockerPosition, LockerStatus } from './components';
+import { LockerListCard, LockerPosition } from './components';
 import { PageUiStoreImpl } from './LockerListPageUiStore';
 
 import { StudyLogo } from '@/assets';
-import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
+import { BodyScreen, GNB, Header, LockerStatus, PageBody, PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 const LockerListPage: React.FC = observer(() => {
-  const { fetch, lockers } = usePageUiStore<PageUiStore.LockerList>();
+  const { fetch, lockers, enableLockerCount, totalLockerCount } =
+    usePageUiStore<PageUiStore.LockerList>();
 
   useEffect(() => {
     fetch();
@@ -21,7 +22,9 @@ const LockerListPage: React.FC = observer(() => {
       <Header
         withBack={PAGE_URL.Home}
         title="사물함 관리"
-        TopComponent={<LockerStatus />}
+        TopComponent={
+          <LockerStatus enableLockerCount={enableLockerCount} totalLockerCount={totalLockerCount} />
+        }
         RightComponent={<StudyLogo />}
       />
       <PageBody>
@@ -32,7 +35,6 @@ const LockerListPage: React.FC = observer(() => {
           ))}
         </BodyScreen>
       </PageBody>
-      <GNB />
     </>
   );
 });

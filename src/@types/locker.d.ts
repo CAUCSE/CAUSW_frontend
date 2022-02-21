@@ -8,4 +8,15 @@ declare namespace Locker {
   }
 
   export type FindAllLocationResponseDto = Dto[];
+
+  export interface LocationDto {
+    id: string;
+    lockerNumber: number;
+    lockerLocationName: string;
+    updatedAt: string;
+    isActive: boolean;
+    isMine: boolean;
+  }
+
+  export type FindByLocationResponseDto = LockerLocationDto[];
 }
