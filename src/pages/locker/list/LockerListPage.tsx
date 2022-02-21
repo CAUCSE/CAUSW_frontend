@@ -5,12 +5,12 @@ import { LockerListCard, LockerPosition } from './components';
 import { PageUiStoreImpl } from './LockerListPageUiStore';
 
 import { StudyLogo } from '@/assets';
-import { BodyScreen, GNB, Header, LockerStatus, PageBody, PageStoreHOC } from '@/components';
+import { BodyScreen, Header, LockerStatus, PageBody, PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 const LockerListPage: React.FC = observer(() => {
-  const { fetch, lockers, enableLockerCount, totalLockerCount } =
+  const { fetch, myLocker, lockers, enableLockerCount, totalLockerCount } =
     usePageUiStore<PageUiStore.LockerList>();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const LockerListPage: React.FC = observer(() => {
       />
       <PageBody>
         <BodyScreen>
-          <LockerPosition />
+          <LockerPosition model={myLocker} />
           {lockers.map(item => (
             <LockerListCard key={item.id} model={item} />
           ))}

@@ -1,11 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 
-import { LockerRepoImpl as Repo, LockerRepoDummy as Dummy } from '@/stores/repositories/LockerRepo';
+import { LockerRepoImpl as Repo } from '@/stores/repositories/LockerRepo';
 import { RootStoreInstance } from '@/stores/RootStore';
 
 export class LockerListPageUiStore {
   rootStore: Store.Root;
   lockers: Model.Locker[] = [];
+  myLocker?: Model.LockerLocation;
 
   constructor(rootStore: Store.Root) {
     this.rootStore = rootStore;
@@ -13,7 +14,10 @@ export class LockerListPageUiStore {
   }
 
   *fetch(): Generator {
-    this.lockers = (yield Dummy.findAllLocation()) as Model.Locker[];
+    const { lockers, myLocker } = (yield Repo.findAllLocation()) as Locker.FindAllLocationResponse;
+
+    this.lockers = lockers;
+    this.myLocker = myLocker;
   }
 
   get enableLockerCount(): number {

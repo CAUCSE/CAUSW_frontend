@@ -6,9 +6,6 @@ declare namespace Locker {
     enableLockerCount: number;
     totalLockerCount: number;
   }
-
-  export type FindAllLocationResponseDto = Dto[];
-
   export interface LocationDto {
     id: string;
     lockerNumber: number;
@@ -16,6 +13,16 @@ declare namespace Locker {
     updatedAt: string;
     isActive: boolean;
     isMine: boolean;
+  }
+
+  export interface FindAllLocationResponseDto {
+    lockerLocations: Dto[];
+    myLocker: LocationDto;
+  }
+
+  export interface FindAllLocationResponse {
+    lockers: Model.Locker[];
+    myLocker: Model.LockerLocation;
   }
 
   export type FindByLocationResponseDto = LockerLocationDto[];
