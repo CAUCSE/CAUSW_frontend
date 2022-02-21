@@ -7,6 +7,7 @@ export const ClearButton = styled.button`
   border: none;
   background-color: transparent;
   background-repeat: no-repeat;
+  color: #3f4040;
   cursor: pointer;
   outline: none;
 
@@ -30,11 +31,13 @@ export const ClearTextarea = styled.textarea`
 export const ClearLink = styled(Link)`
   user-select: none;
   text-decoration: none;
+  color: #3f4040;
 `;
 
 export const ClearA = styled.a`
   user-select: none;
   text-decoration: none;
+  color: #3f4040;
 `;
 
 export const ClearUl = styled.ul`

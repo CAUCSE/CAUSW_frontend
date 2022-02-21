@@ -37,7 +37,7 @@ export const Box = styled.section`
   border: 0.5px solid #f5f5f5;
   border-radius: 20px;
   box-sizing: border-box;
-  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%);
   background: #fff;
   overflow: hidden;
 

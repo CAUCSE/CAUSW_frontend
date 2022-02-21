@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { memo } from 'react';
 
 import { ClearA, ClearLink } from '@/components';
+import { PAGE_URL } from '@/configs/path';
 
 export const CircleLinks = memo(() => (
   <Wrapper>
@@ -62,7 +63,7 @@ const Portal: React.FC = () => (
 );
 
 const Locker: React.FC = () => (
-  <ClearLink to="#">
+  <ClearLink to={PAGE_URL.LockerList}>
     <Circle>
       <img src="images/locker.svg" alt="Locker icon link" />
     </Circle>

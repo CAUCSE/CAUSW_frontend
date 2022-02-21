@@ -21,6 +21,7 @@ export const PageRouter: React.FC = () => (
 
       <AuthRouter>
         <Route path={PAGE_URL.Home} component={Switch.HomePage} />
+        <Route path={PAGE_URL.Locker} component={Switch.LockerPage} />
         <Route path={PAGE_URL.Circle} component={Switch.CirclePage} />
         <Route path={PAGE_URL.Board} component={Switch.BoardPage} />
         <Route path={PAGE_URL.Setting} component={Switch.SettingPage} />

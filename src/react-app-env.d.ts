@@ -13,9 +13,9 @@ import type { CircleMainPageUiStore } from './pages/circle/main/CircleMainPageUi
 import type { HistoryCommentPageUiStore } from './pages/history/comment/HistoryCommentPageUiStore';
 import type { HistoryPostPageUiStore } from './pages/history/post/HistoryPostPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
+import type { LockerListPageUiStore } from './pages/locker/list/LockerListPageUiStore';
 import type { SettingPasswordPageUiStore } from './pages/setting/password/SettingPasswordPageUiStore';
-import { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
-//
+import type { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { CircleStore } from './stores/CircleStore';
 import type { AuthorModel } from './stores/models/AuthorModel';
@@ -25,6 +25,7 @@ import type { CircleModel } from './stores/models/CircleModel';
 import type { CommentModel } from './stores/models/CommentModel';
 import type { HistoryCommentModel } from './stores/models/HistoryCommentModel';
 import type { HistoryPostModel } from './stores/models/HistoryPostModel';
+import type { LockerModel } from './stores/models/LockerModel';
 import type { PostModel } from './stores/models/PostModel';
 import type { ReplyCommentModel } from './stores/models/ReplyCommentModel';
 import type { UserModel } from './stores/models/UserModel';
@@ -44,6 +45,7 @@ declare global {
     type SignUp = SignUpPageUiStore;
     type Admission = AdmissionPageUiStore;
     type Home = HomePageUiStore;
+    type LockerList = LockerListPageUiStore;
     type CircleHome = CircleHomePageUiStore;
     type CircleJoin = CircleJoinPageUiStore;
     type CircleMain = CircleMainPageUiStore;
@@ -58,6 +60,8 @@ declare global {
   }
 
   namespace Model {
+    type Locker = LockerModel;
+    //
     type Board = BoardModel;
     type Author = AuthorModel;
     type User = UserModel;

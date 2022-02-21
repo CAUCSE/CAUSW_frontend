@@ -19,13 +19,20 @@ export enum PAGE_URL {
   PostDetail = '/boards/:boardId/posts/:postId',
   PostReplyComment = '/boards/:boardId/posts/:postId/comment/:commentId',
 
+  // 설정
   Setting = '/setting',
   SettingProfile = '/setting/profile',
   SettingPassword = '/setting/password',
 
+  // 내가 쓴 글, 댓글
   History = '/history',
   HistoryPost = '/history/post',
   HistoryComment = '/history/comment',
+
+  // 사물함
+  Locker = '/locker',
+  LockerList = '/locker',
+  FloorLockers = '/locker/:lockerId',
 
   Err404 = '/error/404',
 }
