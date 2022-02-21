@@ -48,7 +48,7 @@ const Title = styled.h3`
 const Breadcrumb = styled.div`
   ${PostAuthorNameCSS}
   font-size: 10px;
-  line-height: 12px;
+  line-height: 14px;
 
   span {
     display: inline-block;
