@@ -3,6 +3,18 @@ import styled from '@emotion/styled';
 
 import { ClearButton } from '@/components';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+export const ScrollArea = styled.div`
+  flex: 1 0 0;
+  padding: 0 20px 20px;
+  overflow-y: scroll;
+`;
+
 export const Gird = styled.div`
   display: grid;
   padding: 10px;
@@ -15,28 +27,50 @@ export const Gird = styled.div`
 `;
 
 interface CellProps {
-  isActive: boolean;
-  isMine: boolean;
-  isSeleted: boolean;
+  isActive?: boolean;
+  isMine?: boolean;
+  isSeleted?: boolean;
 }
+const boxStyle = ({ isSeleted, isMine, isActive }: CellProps) => css`
+  border-radius: 2px;
+  border: 1px solid;
+  border-color: ${isSeleted ? '#312ed7' : isMine ? '#ea4545' : isActive ? '#3f4040' : '#dadada'};
+  background-color: ${isSeleted
+    ? '#312ed7'
+    : isMine
+    ? '#ea4545'
+    : isActive
+    ? '#fbfbfb'
+    : '#dfdfdf'};
+
+  span {
+    color: ${isSeleted || isMine ? '#fff' : null};
+  }
+`;
+
 export const Cell = styled(ClearButton)<CellProps>`
   position: relative;
   padding-bottom: 100%;
-  border-radius: 2px;
-  border: 1px solid;
+  ${props => boxStyle(props)}
+`;
 
-  ${({ isSeleted, isMine, isActive }) => css`
-    border-color: ${isSeleted ? '#312ed7' : isMine ? '#ea4545' : isActive ? '#dadada' : '#3f4040'};
-    background-color: ${isSeleted
-      ? '#312ed7'
-      : isMine
-      ? '#ea4545'
-      : isActive
-      ? '#dfdfdf'
-      : '#fbfbfb'};
+export const Legend = styled.div`
+  display: flex;
+  margin: 0 0 15px;
+  padding: 0 20px;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
 
-    span {
-      color: ${isSeleted || isMine ? '#fff' : null};
-    }
-  `}
+  > div {
+    flex: 1 0 0;
+  }
+`;
+
+export const LegendBox = styled.div<CellProps>`
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  ${props => boxStyle(props)}
 `;

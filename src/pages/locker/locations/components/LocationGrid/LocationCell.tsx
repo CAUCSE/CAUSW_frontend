@@ -9,8 +9,8 @@ import { usePageUiStore } from '@/hooks';
 export const LocationCell: React.FC<{ model: Model.LockerLocation }> = observer(({ model }) => {
   const { id, lockerNumber, isActive, isMine } = model;
   const store = usePageUiStore<PageUiStore.LockerLocations>();
-  const handleClick = useCallback(() => store.setTarget(model), []);
-  const isSeleted = computed(() => store.targe?.id === model.id).get();
+  const handleClick = useCallback(() => store.setTarget(model), [model]);
+  const isSeleted = computed(() => store.target?.id === model.id).get();
 
   return (
     <Cell key={id} onClick={handleClick} isActive={isActive} isMine={isMine} isSeleted={isSeleted}>
@@ -18,3 +18,5 @@ export const LocationCell: React.FC<{ model: Model.LockerLocation }> = observer(
     </Cell>
   );
 });
+
+LocationCell.displayName = 'LocationCell';

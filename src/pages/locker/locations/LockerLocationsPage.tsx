@@ -1,29 +1,28 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { LocationGrid } from './components';
+import {
+  LocationGrid,
+  LockerApplicationModal,
+  LockerReturnModal,
+  SubmitButton,
+} from './components';
 import { PageUiStoreImpl } from './LockerLocationsPageUiStore';
 
 import { StudyLogo } from '@/assets';
-import {
-  BodyScreen,
-  Header,
-  LockerStatus,
-  NavButton,
-  PageBody,
-  PageFooter,
-  PageStoreHOC,
-} from '@/components';
-import { PAGE_URL } from '@/configs/path';
+import { Header, LockerStatus, PageBody, PageStoreHOC } from '@/components';
+import { LocationParams, PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 const LockerLocationsPage: React.FC = observer(() => {
+  const { locationId } = useParams<LocationParams>();
   const { fetch, enableLockerCount, totalLockerCount } =
     usePageUiStore<PageUiStore.LockerLocations>();
 
   useEffect(() => {
-    fetch();
-  }, []);
+    fetch(locationId);
+  }, [locationId]);
 
   return (
     <>
@@ -36,13 +35,11 @@ const LockerLocationsPage: React.FC = observer(() => {
         RightComponent={<StudyLogo />}
       />
       <PageBody>
-        <BodyScreen>
-          <LocationGrid />
-        </BodyScreen>
+        <LocationGrid />
       </PageBody>
-      <PageFooter>
-        <NavButton>신청하기</NavButton>
-      </PageFooter>
+      <SubmitButton />
+      <LockerApplicationModal />
+      <LockerReturnModal />
     </>
   );
 });

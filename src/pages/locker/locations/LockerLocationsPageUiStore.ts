@@ -1,24 +1,34 @@
 import { makeAutoObservable } from 'mobx';
 
-import { LockerRepoImpl as Repo, LockerRepoDummy as Dummy } from '@/stores/repositories/LockerRepo';
-import { RootStoreInstance } from '@/stores/RootStore';
+import { LockerApplicationModalUi, LockerReturnModalUi } from './components';
+
+import { LockerRepoImpl as Repo } from '@/stores/repositories/LockerRepo';
 
 export class LockerLocationsPageUiStore {
-  rootStore: Store.Root;
   locations: Model.LockerLocation[] = [];
-  targe?: Model.LockerLocation;
+  target?: Model.LockerLocation;
 
-  constructor(rootStore: Store.Root) {
-    this.rootStore = rootStore;
-    makeAutoObservable(this, {}, { autoBind: true });
+  applicationModal = new LockerApplicationModalUi();
+  returnModal = new LockerReturnModalUi();
+
+  constructor() {
+    makeAutoObservable(
+      this,
+      {
+        applicationModal: false,
+        returnModal: false,
+      },
+      { autoBind: true },
+    );
   }
 
-  *fetch(): Generator {
-    this.locations = (yield Dummy.findByLocation()) as Model.LockerLocation[];
+  *fetch(locationId: string): Generator {
+    this.locations = (yield Repo.findByLocation(locationId)) as Model.LockerLocation[];
   }
 
   setTarget(model: Model.LockerLocation): void {
-    if (model.isMine || !model.isActive) this.targe = model;
+    if (model.id === this.target?.id) this.target = undefined;
+    else if (model.isMine || model.isActive) this.target = model;
   }
 
   get myLocation(): Model.LockerLocation | undefined {
@@ -26,7 +36,7 @@ export class LockerLocationsPageUiStore {
   }
 
   get enableLockerCount(): number {
-    return this.locations.filter(({ isActive }) => !isActive).length;
+    return this.locations.filter(({ isActive, isMine }) => isActive && !isMine).length;
   }
 
   get totalLockerCount(): number {
@@ -34,4 +44,4 @@ export class LockerLocationsPageUiStore {
   }
 }
 
-export const PageUiStoreImpl = new LockerLocationsPageUiStore(RootStoreInstance);
+export const PageUiStoreImpl = new LockerLocationsPageUiStore();

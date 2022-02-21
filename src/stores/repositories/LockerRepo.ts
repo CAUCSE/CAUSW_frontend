@@ -7,15 +7,20 @@ import { API } from '@/configs/axios';
 class LockerRepo {
   URI = '/api/v1/lockers';
 
-  findAllLocation = async (): Promise<Model.Locker[]> => {
-    const { data } = (await API.get(
+  findAllLocation = async (): Promise<Locker.FindAllLocationResponse> => {
+    const {
+      data: { lockerLocations, myLocker },
+    } = (await API.get(
       `${this.URI}/locations`,
     )) as AxiosResponse<Locker.FindAllLocationResponseDto>;
 
-    return data.map(props => new LockerModel(props));
+    return {
+      lockers: lockerLocations.map(props => new LockerModel(props)),
+      myLocker: new LockerLocationModel(myLocker),
+    };
   };
 
-  findByLocation = async (locationId: string) => {
+  findByLocation = async (locationId: string): Promise<Model.LockerLocation[]> => {
     const { data } = (await API.get(
       `${this.URI}/locations/${locationId}`,
     )) as AxiosResponse<Locker.FindByLocationResponseDto>;
@@ -53,7 +58,8 @@ class LockerDummyRepo {
     });
   };
 
-  findByLocation = async (): Promise<Model.LockerLocation[]> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  findByLocation = async (locationId: string): Promise<Model.LockerLocation[]> => {
     return new Promise(resovle => {
       resovle([
         new LockerLocationModel({

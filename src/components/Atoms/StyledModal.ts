@@ -49,8 +49,9 @@ export const ModalAlertMessage = styled.div<{ center?: boolean }>`
   padding: 0 20px;
 
   font-size: 12px;
-  line-height: 14px;
+  line-height: 16px;
   color: #a3a1a1;
+  word-break: keep-all;
   text-align: ${({ center }) => (center ? 'center' : 'left')};
 `;
 

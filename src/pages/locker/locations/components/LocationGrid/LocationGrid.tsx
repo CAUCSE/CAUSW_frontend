@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 
 import { LocationCell } from './LocationCell';
-import { Gird } from './styled';
+import { Gird, Legend, LegendBox, ScrollArea, Wrapper } from './styled';
 
 import { usePageUiStore } from '@/hooks';
 
@@ -9,24 +9,26 @@ export const LocationGrid: React.FC = observer(() => {
   const { locations } = usePageUiStore<PageUiStore.LockerLocations>();
 
   return (
-    <div>
-      <Gird>
-        {locations.map(location => (
-          <LocationCell key={location.id} model={location} />
-        ))}
-      </Gird>
-      <div>
+    <Wrapper>
+      <Legend>
         <div>
-          <div />
+          <LegendBox isActive />
           선택 가능
         </div>
         <div>
-          <div /> 선택 불가
+          <LegendBox /> 선택 불가
         </div>
         <div>
-          <div /> 내 사물함
+          <LegendBox isMine /> 내 사물함
         </div>
-      </div>
-    </div>
+      </Legend>
+      <ScrollArea>
+        <Gird>
+          {locations.map(location => (
+            <LocationCell key={location.id} model={location} />
+          ))}
+        </Gird>
+      </ScrollArea>
+    </Wrapper>
   );
 });

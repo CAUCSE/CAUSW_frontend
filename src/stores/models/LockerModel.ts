@@ -18,6 +18,6 @@ export class LockerModel implements Locker.Dto {
   }
 
   get to(): string {
-    return generatePath(PAGE_URL.LockerLocation, { lockerId: this.id });
+    return generatePath(PAGE_URL.LockerLocation, { locationId: this.id });
   }
 }

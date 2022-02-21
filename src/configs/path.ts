@@ -32,9 +32,13 @@ export enum PAGE_URL {
   // 사물함
   Locker = '/locker',
   LockerList = '/locker',
-  LockerLocation = '/locker/:lockerId',
+  LockerLocation = '/locker/:locationId',
 
   Err404 = '/error/404',
+}
+
+export interface LocationParams {
+  locationId: string;
 }
 
 export interface PostParams {
