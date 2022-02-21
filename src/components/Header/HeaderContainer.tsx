@@ -37,27 +37,29 @@ export const HeaderContainer: React.FC<Props> = memo(
   ),
 );
 
-interface Mini {
-  mini: boolean;
-}
-
-const Wrapper = styled.header<Mini>`
+const Wrapper = styled.header<Pick<Props, 'mini'>>`
   display: flex;
   margin: ${({ mini }) => (mini ? null : '20px 0 10px')};
-  padding: 0 20px;
 `;
 
 const Left = styled.div`
-  flex-shrink: 0;
-  width: 30px;
+  position: relative;
+  width: 50px;
 `;
 
 const Center = styled.div`
-  flex-grow: 1;
+  flex: 1 0 0;
+  padding-left: 20px;
+  overflow: hidden;
+
+  ${Left} + & {
+    padding-left: 0;
+  }
 `;
 
-const Title = styled.h1<Mini>`
+const Title = styled.h1<Pick<Props, 'mini'>>`
   font-weight: bold;
+  word-break: break-all;
 
   ${({ mini }) =>
     mini
@@ -76,8 +78,7 @@ const Title = styled.h1<Mini>`
 
 const Right = styled.div`
   position: relative;
-  flex-shrink: 0;
-  width: 30px;
+  width: 50px;
 
   > img {
     margin-left: -20px;

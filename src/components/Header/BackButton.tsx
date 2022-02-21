@@ -34,10 +34,9 @@ export const BackButton: React.FC<{ className?: string; link?: boolean | string 
   },
 );
 
-const styledCss = css`
+const style = css`
   position: relative;
   display: block;
-  margin-left: -20px;
   width: 50px;
   height: 50px;
 
@@ -49,8 +48,8 @@ const styledCss = css`
   }
 `;
 const StyledLink = styled(Link)`
-  ${styledCss}
+  ${style}
 `;
 const StyledButton = styled(ClearButton)`
-  ${styledCss}
+  ${style}
 `;
