@@ -42,7 +42,7 @@ declare global {
   namespace PageUiStore {
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;
-    type Application = AdmissionPageUiStore;
+    type Admission = AdmissionPageUiStore;
     type Home = HomePageUiStore;
     type CircleHome = CircleHomePageUiStore;
     type CircleJoin = CircleJoinPageUiStore;

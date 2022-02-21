@@ -29,7 +29,7 @@ const SignInPage: React.FC = observer(() => {
     const { success, errorCode, message } = (await signIn(body)) as unknown as StoreAPI;
 
     if (success) replace(PAGE_URL.Home);
-    else if (errorCode === 4011) push(PAGE_URL.APPLICATION, { email: body.email });
+    else if (errorCode === 4011) push(PAGE_URL.Admission, { email: body.email });
     else if (message) alert(message);
   };
 

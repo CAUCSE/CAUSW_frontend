@@ -10,11 +10,11 @@ import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC, NavButton } fro
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect, usePageUiStore } from '@/hooks';
 
-const ApplicationPage: React.FC = observer(() => {
+const AdmissionPage: React.FC = observer(() => {
   const { replace } = useHistory();
   const { state } = useLocation<{ email?: string }>();
   const { setEmail, setFile, reset, blobUrl, createAdmission, submitDisabled } =
-    usePageUiStore<PageUiStore.Application>();
+    usePageUiStore<PageUiStore.Admission>();
   const ref = useRef<HTMLInputElement | null>(null);
   const { register, handleSubmit } = useForm();
   const handleClick = () => ref.current?.click();
@@ -63,4 +63,4 @@ const ApplicationPage: React.FC = observer(() => {
   );
 });
 
-export default PageStoreHOC(<ApplicationPage />, { store: PageUiStoreImpl });
+export default PageStoreHOC(<AdmissionPage />, { store: PageUiStoreImpl });
