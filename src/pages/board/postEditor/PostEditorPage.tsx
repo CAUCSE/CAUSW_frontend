@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Editor, TitleInputHeader } from './components';
 import { PageUiStoreImpl } from './PostEditorPageUiStore';
 
-import { PageBody, PageStoreHOC } from '@/components';
+import { PageStoreHOC } from '@/components';
 import { PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
@@ -23,9 +23,7 @@ const PostEditorPage: React.FC = observer(() => {
   return (
     <FormProvider {...methods}>
       <TitleInputHeader />
-      <PageBody>
-        <Editor />
-      </PageBody>
+      <Editor />
     </FormProvider>
   );
 });

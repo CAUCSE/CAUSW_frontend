@@ -39,7 +39,7 @@ export const SubmitButton = styled(ClearButton)`
   position: absolute;
   top: 15px;
   right: 0;
-  padding-right: 10px;
+  padding-right: 5px;
   width: 50px;
   height: 50px;
   font-weight: bold;
@@ -48,8 +48,7 @@ export const SubmitButton = styled(ClearButton)`
 `;
 
 export const EditorWrapper = styled.div`
-  flex: 1 0 0;
-  padding: 0 20px;
+  height: 100%;
 
   .quill {
     display: flex;
@@ -58,9 +57,7 @@ export const EditorWrapper = styled.div`
   }
 
   .ql-toolbar.ql-snow {
-    position: fixed;
-    z-index: 1;
-    padding: 0 0 8px;
+    padding: 0 20px 8px;
     width: 100%;
     border: 0;
     background: #fff;
@@ -68,8 +65,13 @@ export const EditorWrapper = styled.div`
 
   .ql-container.ql-snow {
     flex: 1 0 0;
-    padding: 32px 0 8px;
     border: 0;
+    overflow: scroll;
+  }
+
+  .ql-editor {
+    padding: 0 20px;
+    overflow-y: scroll;
   }
 
   .ql-editor &.ql-blank::before {
