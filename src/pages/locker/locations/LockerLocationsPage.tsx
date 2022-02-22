@@ -17,7 +17,7 @@ import { usePageUiStore } from '@/hooks';
 
 const LockerLocationsPage: React.FC = observer(() => {
   const { locationId } = useParams<LocationParams>();
-  const { fetch, enableLockerCount, totalLockerCount } =
+  const { fetch, locationName, enableLockerCount, totalLockerCount } =
     usePageUiStore<PageUiStore.LockerLocations>();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const LockerLocationsPage: React.FC = observer(() => {
     <>
       <Header
         withBack={PAGE_URL.LockerList}
-        title="사물함 관리"
+        title={locationName}
         TopComponent={
           <LockerStatus enableLockerCount={enableLockerCount} totalLockerCount={totalLockerCount} />
         }

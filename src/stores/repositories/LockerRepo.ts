@@ -20,12 +20,17 @@ class LockerRepo {
     };
   };
 
-  findByLocation = async (locationId: string): Promise<Model.LockerLocation[]> => {
-    const { data } = (await API.get(
+  findByLocation = async (locationId: string): Promise<Locker.FindByLocationResponse> => {
+    const {
+      data: { locationName, lockerList },
+    } = (await API.get(
       `${this.URI}/locations/${locationId}`,
     )) as AxiosResponse<Locker.FindByLocationResponseDto>;
 
-    return data.map(props => new LockerLocationModel(props));
+    return {
+      locationName,
+      lockerList: lockerList.map(props => new LockerLocationModel(props)),
+    };
   };
 
   register = async (lockerId: string): Promise<unknown> => {

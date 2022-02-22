@@ -25,5 +25,13 @@ declare namespace Locker {
     myLocker?: Model.LockerLocation;
   }
 
-  export type FindByLocationResponseDto = LockerLocationDto[];
+  export interface FindByLocationResponseDto {
+    locationName: string;
+    lockerList: LockerLocationDto[];
+  }
+
+  export interface FindByLocationResponse {
+    locationName: string;
+    lockerList: Model.LockerLocation[];
+  }
 }

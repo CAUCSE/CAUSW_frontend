@@ -5,6 +5,7 @@ import { LockerApplicationModalUi, LockerReturnModalUi } from './components';
 import { LockerRepoImpl as Repo } from '@/stores/repositories/LockerRepo';
 
 export class LockerLocationsPageUiStore {
+  locationName?: string;
   locations: Model.LockerLocation[] = [];
   target?: Model.LockerLocation;
 
@@ -23,7 +24,12 @@ export class LockerLocationsPageUiStore {
   }
 
   *fetch(locationId: string): Generator {
-    this.locations = (yield Repo.findByLocation(locationId)) as Model.LockerLocation[];
+    const { locationName, lockerList } = (yield Repo.findByLocation(
+      locationId,
+    )) as Locker.FindByLocationResponse;
+
+    this.locationName = locationName;
+    this.locations = lockerList;
   }
 
   setTarget(model: Model.LockerLocation): void {
