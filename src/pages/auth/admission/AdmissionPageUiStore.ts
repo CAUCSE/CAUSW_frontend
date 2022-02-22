@@ -3,49 +3,37 @@ import { makeAutoObservable } from 'mobx';
 import { AuthRepoImpl as Repo } from '@/stores/repositories/AuthRepo';
 
 export class AdmissionPageUiStore {
-  email?: string;
-  submitDisabled = false;
-  file: File | null = null;
-  blobUrl?: string;
+  submitDisabled = true;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
   reset(): void {
-    this.email = undefined;
     this.submitDisabled = false;
-    this.file = null;
-    if (this.blobUrl) URL.revokeObjectURL(this.blobUrl);
-    this.blobUrl = undefined;
   }
 
-  setFile(file?: File | null): void {
-    if (file) {
-      if (this.blobUrl) URL.revokeObjectURL(this.blobUrl);
-
-      this.file = file;
-      this.blobUrl = URL.createObjectURL(file);
-    }
+  setSubmitDisabled(flag: boolean): void {
+    this.submitDisabled = flag;
   }
 
-  setEmail(email?: string): void {
-    this.email = email;
-  }
+  *createAdmission(body: User.AdmissionCreateRequestDto): Generator {
+    try {
+      this.submitDisabled = true;
 
-  *createAdmission(body: Pick<User.AdmissionCreateRequestDto, 'description'>): Generator {
-    this.submitDisabled = true;
-
-    if (this.file && this.email) {
       const data = new FormData();
-      data.set('email', this.email);
-      data.set('description', body.description);
-      data.set('attachImage', this.file);
+      if (body.email) data.set('email', body.email);
+      if (body.attachImage) data.set('attachImage', body.attachImage);
+      if (body.description) data.set('description', body.description);
 
-      return yield Repo.createAdmission(data);
+      yield Repo.createAdmission(data);
+
+      return { success: true };
+    } catch (err) {
+      return err;
+    } finally {
+      this.submitDisabled = false;
     }
-
-    this.submitDisabled = false;
   }
 }
 

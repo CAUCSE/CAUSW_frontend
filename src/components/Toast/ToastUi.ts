@@ -8,7 +8,7 @@ export interface ToastMessage {
 
 export class ToastUi {
   messages: ToastMessage[] = [];
-  duration = 1000;
+  duration = 3000;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });

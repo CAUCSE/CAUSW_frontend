@@ -21,7 +21,7 @@ declare namespace User {
 
   export interface AdmissionCreateRequestDto {
     email: string;
-    attachImage: File;
+    attachImage: File | null;
     description: string;
   }
 
