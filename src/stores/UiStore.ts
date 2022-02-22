@@ -1,5 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import React from 'react';
+
+import { ToastUi } from '@/components/Toast/ToastUi';
 
 enum DISPLAY {
   MOBILE = 480,
@@ -9,20 +10,22 @@ enum DISPLAY {
 
 export class UiStore {
   rootStore: Store.Root;
+  toast: ToastUi;
 
   displayType: DISPLAY = DISPLAY.MOBILE;
-  mainRef?: React.MutableRefObject<HTMLDivElement | null>;
 
   constructor(rootStore: Store.Root) {
     makeAutoObservable(
       this,
       {
         rootStore: false,
+        toast: false,
       },
       { autoBind: true },
     );
 
     this.rootStore = rootStore;
+    this.toast = new ToastUi();
     this.initWindowMatchMedia();
   }
 
@@ -50,7 +53,16 @@ export class UiStore {
     });
   }
 
-  setMainRef(ref: React.MutableRefObject<HTMLDivElement | null>): void {
-    this.mainRef = ref;
+  alert({
+    message,
+    duration = 1000,
+    onClose,
+  }: {
+    message: string;
+    duration?: number;
+    onClose?: () => unknown;
+  }): void {
+    this.toast.duration = duration;
+    this.toast.messages.push({ key: new Date().getTime(), message, onClose });
   }
 }
