@@ -70,9 +70,13 @@ const Title = styled.h1<Pick<Props, 'mini'>>`
           text-align: center;
         `
       : css`
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
           margin: 5px 0 0;
           font-size: 24px;
           line-height: 28px;
+          max-height: 56px;
         `}
 `;
 

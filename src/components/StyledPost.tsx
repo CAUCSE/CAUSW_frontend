@@ -13,6 +13,9 @@ export const PostTitleCSS = css`
   flex: 1 1 0;
   margin: 0;
   font-weight: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const PostProfileImage = styled.div`
