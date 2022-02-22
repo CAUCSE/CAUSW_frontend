@@ -20,8 +20,12 @@ import {
 import { PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect, usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 const SignInPage: React.FC = observer(() => {
+  const {
+    ui: { alert },
+  } = useRootStore();
   const { replace, push } = useHistory();
   const { signIn } = usePageUiStore<PageUiStore.SignIn>();
   const { control, handleSubmit } = useForm();
@@ -30,7 +34,7 @@ const SignInPage: React.FC = observer(() => {
 
     if (success) replace(PAGE_URL.Home);
     else if (errorCode === 4011) push(PAGE_URL.Admission, { email: body.email });
-    else if (message) alert(message);
+    else if (message) alert({ message });
   };
 
   useAuthRedirect();
