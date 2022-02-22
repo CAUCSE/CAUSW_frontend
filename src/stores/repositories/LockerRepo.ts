@@ -16,7 +16,7 @@ class LockerRepo {
 
     return {
       lockers: lockerLocations.map(props => new LockerModel(props)),
-      myLocker: new LockerLocationModel(myLocker),
+      myLocker: myLocker ? new LockerLocationModel(myLocker) : undefined,
     };
   };
 
@@ -26,6 +26,14 @@ class LockerRepo {
     )) as AxiosResponse<Locker.FindByLocationResponseDto>;
 
     return data.map(props => new LockerLocationModel(props));
+  };
+
+  register = async (lockerId: string): Promise<unknown> => {
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+  };
+
+  return = async (lockerId: string): Promise<unknown> => {
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
 }
 

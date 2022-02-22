@@ -1,5 +1,6 @@
 import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
+import { useCallback } from 'react';
 
 import {
   ModalAlertMessage,
@@ -12,8 +13,25 @@ import { usePageUiStore } from '@/hooks';
 
 export const LockerApplicationModal: React.FC = observer(() => {
   const {
-    applicationModal: { visible, close, target },
+    setTarget,
+    applicationModal: { visible, close, target, applyLocker },
   } = usePageUiStore<PageUiStore.LockerLocations>();
+  const handleOk = useCallback(
+    (target?: Model.LockerLocation) => async () => {
+      if (!target) return;
+
+      try {
+        await applyLocker(target);
+        alert('사물함이 신청되었습니다.');
+      } catch ({ message }) {
+        alert(message);
+      } finally {
+        setTarget(target);
+        close();
+      }
+    },
+    [],
+  );
 
   return (
     <Modal open={visible} onClose={close} closeAfterTransition>
@@ -28,7 +46,7 @@ export const LockerApplicationModal: React.FC = observer(() => {
         </ModalAlertMessage>
         <ModalFooter>
           <ModalFooterButton onClick={close}>취소</ModalFooterButton>
-          <ModalFooterButton onClick={close}>확인</ModalFooterButton>
+          <ModalFooterButton onClick={handleOk(target)}>확인</ModalFooterButton>
         </ModalFooter>
       </ModalBox>
     </Modal>

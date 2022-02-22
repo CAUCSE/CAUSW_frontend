@@ -22,7 +22,7 @@ declare namespace Locker {
 
   export interface FindAllLocationResponse {
     lockers: Model.Locker[];
-    myLocker: Model.LockerLocation;
+    myLocker?: Model.LockerLocation;
   }
 
   export type FindByLocationResponseDto = LockerLocationDto[];

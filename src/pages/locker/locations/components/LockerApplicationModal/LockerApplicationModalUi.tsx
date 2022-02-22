@@ -1,5 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
+import { LockerRepoImpl as Repo } from '@/stores/repositories/LockerRepo';
+
 export class LockerApplicationModalUi {
   visible = false;
   target?: Model.LockerLocation;
@@ -15,5 +17,14 @@ export class LockerApplicationModalUi {
 
   close(): void {
     this.visible = false;
+  }
+
+  *applyLocker(target: Model.LockerLocation): Generator {
+    const rtn = yield Repo.register(target.id);
+
+    target.isMine = true;
+    target.isActive = false;
+
+    return rtn;
   }
 }
