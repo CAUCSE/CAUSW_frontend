@@ -55,7 +55,7 @@ export class UiStore {
 
   alert({
     message,
-    duration = 1000,
+    duration = 3000,
     onClose,
   }: {
     message: string;
