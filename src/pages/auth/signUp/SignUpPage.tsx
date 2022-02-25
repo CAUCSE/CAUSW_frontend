@@ -18,10 +18,14 @@ import {
 } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect, usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 import { passwordReg } from '@/utils';
 
 const SignUpPage: React.FC = observer(() => {
   const { replace } = useHistory();
+  const {
+    ui: { alert },
+  } = useRootStore();
   const { submitDisabled, isDuplicatedEmail, chekedEmail, signUp } =
     usePageUiStore<PageUiStore.SignUp>();
   const {
@@ -36,9 +40,9 @@ const SignUpPage: React.FC = observer(() => {
     const { success, message } = (await signUp(body)) as unknown as StoreAPI;
 
     if (success) {
-      alert('회원가입에 성공하였습니다.');
+      alert({ message: '회원가입에 성공하였습니다.' });
       setTimeout(() => replace(PAGE_URL.SignIn), 1000);
-    } else if (message) alert(message);
+    } else if (message) alert({ message: '회원가입에 성공하였습니다.' });
   };
 
   useEffect(() => {
