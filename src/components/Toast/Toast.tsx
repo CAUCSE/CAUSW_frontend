@@ -29,10 +29,12 @@ export const Toast: React.FC = observer(() => {
 
   const handleExited = useCallback(
     (message?: ToastMessage) => () => {
-      if (message) {
-        if ('function' === typeof message.onClose) message.onClose();
-        setMessage(undefined);
-      }
+      setTimeout(() => {
+        if (message && 'function' === typeof message.onClose) {
+          message.onClose();
+        }
+      }, duration);
+      setMessage(undefined);
     },
     [],
   );

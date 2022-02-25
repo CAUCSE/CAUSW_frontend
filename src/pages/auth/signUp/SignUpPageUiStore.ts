@@ -14,21 +14,18 @@ export class SignUpPageUiStore {
   *signUp(body: User.CreateDto): Generator {
     this.submitDisabled = true;
 
-    // 이메일 중복 검사
-    this.chekedEmail = body.email;
-    this.isDuplicatedEmail = (yield Repo.isDuplicatedEmail(body.email)) as boolean;
+    try {
+      // 이메일 중복 검사
+      this.chekedEmail = body.email;
+      this.isDuplicatedEmail = (yield Repo.isDuplicatedEmail(body.email)) as boolean;
 
-    if (this.isDuplicatedEmail === false) {
-      try {
-        yield Repo.signUp(body);
-        return { success: true };
-      } catch (err) {
-        return err;
-      }
+      yield Repo.signUp(body);
+      return { success: true };
+    } catch (error) {
+      return error;
+    } finally {
+      this.submitDisabled = false;
     }
-
-    this.submitDisabled = false;
-    return { success: false };
   }
 }
 
