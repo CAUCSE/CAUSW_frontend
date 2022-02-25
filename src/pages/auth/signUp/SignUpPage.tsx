@@ -144,7 +144,7 @@ const SignUpPage: React.FC = observer(() => {
           ) : null}
 
           <Input
-            name="stuendId"
+            name="studentId"
             type="number"
             label="학번"
             placeholder="학번을 입력하세요 (ex. 20201234)"
