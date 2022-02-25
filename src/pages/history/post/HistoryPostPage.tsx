@@ -8,7 +8,7 @@ import { GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components
 import { usePageUiStore } from '@/hooks';
 
 const HistoryPostPage: React.FC = observer(() => {
-  const { fetch, posts, hasMore, page } = usePageUiStore<PageUiStore.HistroyPost>();
+  const { fetch, reset, posts, hasMore, page } = usePageUiStore<PageUiStore.HistroyPost>();
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => hasMore && fetch(page + 1),
     [],
@@ -16,6 +16,7 @@ const HistoryPostPage: React.FC = observer(() => {
 
   useEffect(() => {
     fetch();
+    return () => reset();
   }, []);
 
   return (

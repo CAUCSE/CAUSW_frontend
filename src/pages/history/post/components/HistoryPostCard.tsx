@@ -19,7 +19,7 @@ export const HistoryPostCard: React.FC<{
       <Title>{title}</Title>
       <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
       <PostBreak />
-      <Breadcrumb>
+      <Breadcrumb className="text-ellipsis">
         {circleName ? <span>{circleName}</span> : null}
         {boardName}
       </Breadcrumb>
@@ -47,6 +47,8 @@ const Title = styled.h3`
 
 const Breadcrumb = styled.div`
   ${PostAuthorNameCSS}
+  padding-right: 1px;
+  -webkit-line-clamp: 1;
   font-size: 10px;
   line-height: 14px;
 

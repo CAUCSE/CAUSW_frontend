@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite';
 
 import {
   ClearLink,
-  PostAuthorNameCSS,
   PostBreak,
   PostCreatedAt as CreatedAt,
   PostTitleCSS,
@@ -19,7 +18,7 @@ export const HistoryCommentCard: React.FC<{ model: Model.HistoryComment }> = obs
         </Title>
         <CreatedAt>{formatedCreatedAt}</CreatedAt>
         <PostBreak />
-        <Breadcrumb>
+        <Breadcrumb className="text-ellipsis">
           {circleName ? <span>{circleName}</span> : null}
           <span>{boardName}</span>
           {postName}
@@ -47,7 +46,7 @@ const Title = styled.h3`
 `;
 
 const Breadcrumb = styled.div`
-  ${PostAuthorNameCSS}
+  -webkit-line-clamp: 1;
   font-size: 10px;
   line-height: 12px;
 
