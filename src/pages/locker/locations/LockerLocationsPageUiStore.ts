@@ -23,6 +23,11 @@ export class LockerLocationsPageUiStore {
     );
   }
 
+  reset(): void {
+    this.locationName = undefined;
+    this.locations = [];
+  }
+
   *fetch(locationId: string): Generator {
     const { locationName, lockerList } = (yield Repo.findByLocation(
       locationId,

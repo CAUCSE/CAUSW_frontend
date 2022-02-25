@@ -17,11 +17,12 @@ import { usePageUiStore } from '@/hooks';
 
 const LockerLocationsPage: React.FC = observer(() => {
   const { locationId } = useParams<LocationParams>();
-  const { fetch, locationName, enableLockerCount, totalLockerCount } =
+  const { fetch, reset, locationName, enableLockerCount, totalLockerCount } =
     usePageUiStore<PageUiStore.LockerLocations>();
 
   useEffect(() => {
     fetch(locationId);
+    return () => reset();
   }, [locationId]);
 
   return (
