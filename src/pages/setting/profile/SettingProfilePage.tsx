@@ -20,6 +20,7 @@ import { useRootStore } from '@/stores/RootStore';
 
 const SettingProfilePage: React.FC = observer(() => {
   const {
+    ui: { alert },
     auth: { me, fetch },
   } = useRootStore();
   const { reset, submitDisabled, update } = usePageUiStore<PageUiStore.SettingProfile>();
@@ -27,8 +28,8 @@ const SettingProfilePage: React.FC = observer(() => {
   const onSubmit = async (body: FormBody) => {
     const { success, message } = (await update(body)) as unknown as StoreAPI;
 
-    if (success) alert('개인정보가 변경되었습니다.');
-    else if (message) alert(message);
+    if (success) alert({ message: '개인정보가 변경되었습니다.' });
+    else if (message) alert({ message });
   };
 
   useEffect(() => {
