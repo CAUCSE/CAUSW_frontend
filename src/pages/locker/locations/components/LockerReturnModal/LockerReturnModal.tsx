@@ -10,8 +10,12 @@ import {
   ModalFooterButton,
 } from '@/components';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 export const LockerReturnModal: React.FC = observer(() => {
+  const {
+    ui: { alert },
+  } = useRootStore();
   const {
     setTarget,
     returnModal: { visible, close, target, returnLocker },
@@ -20,15 +24,12 @@ export const LockerReturnModal: React.FC = observer(() => {
     (target?: Model.LockerLocation) => async () => {
       if (!target) return;
 
-      try {
-        await returnLocker(target);
-        alert('사물함이 반납되었습니다.');
-      } catch ({ message }) {
-        alert(message);
-      } finally {
-        setTarget(target);
-        close();
-      }
+      const { success, message } = (await returnLocker(target)) as unknown as StoreAPI;
+
+      if (success) alert({ message: '사물함이 반납되었습니다.' });
+      else if (message) alert({ message });
+      setTarget(target);
+      close();
     },
     [],
   );

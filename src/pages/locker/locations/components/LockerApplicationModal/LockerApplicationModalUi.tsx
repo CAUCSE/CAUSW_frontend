@@ -20,11 +20,15 @@ export class LockerApplicationModalUi {
   }
 
   *applyLocker(target: Model.LockerLocation): Generator {
-    const rtn = yield Repo.register(target.id);
+    try {
+      yield Repo.register(target.id);
 
-    target.isMine = true;
-    target.isActive = false;
+      target.isMine = true;
+      target.isActive = false;
 
-    return rtn;
+      return { success: true } as StoreAPI;
+    } catch (error) {
+      return error;
+    }
   }
 }

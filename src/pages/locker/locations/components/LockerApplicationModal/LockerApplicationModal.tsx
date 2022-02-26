@@ -10,8 +10,12 @@ import {
   ModalFooterButton,
 } from '@/components';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 export const LockerApplicationModal: React.FC = observer(() => {
+  const {
+    ui: { alert },
+  } = useRootStore();
   const {
     setTarget,
     applicationModal: { visible, close, target, applyLocker },
@@ -19,16 +23,12 @@ export const LockerApplicationModal: React.FC = observer(() => {
   const handleOk = useCallback(
     (target?: Model.LockerLocation) => async () => {
       if (!target) return;
+      const { success, message } = (await applyLocker(target)) as unknown as StoreAPI;
 
-      try {
-        await applyLocker(target);
-        alert('사물함이 신청되었습니다.');
-      } catch ({ message }) {
-        alert(message);
-      } finally {
-        setTarget(target);
-        close();
-      }
+      if (success) alert({ message: '사물함이 신청되었습니다.' });
+      else if (message) alert({ message });
+      setTarget(target);
+      close();
     },
     [],
   );

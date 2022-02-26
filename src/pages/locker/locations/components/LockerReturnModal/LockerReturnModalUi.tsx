@@ -20,11 +20,15 @@ export class LockerReturnModalUi {
   }
 
   *returnLocker(target: Model.LockerLocation): Generator {
-    const rtn = yield Repo.return(target.id);
+    try {
+      yield Repo.return(target.id);
 
-    target.isMine = false;
-    target.isActive = true;
+      target.isMine = false;
+      target.isActive = true;
 
-    return rtn;
+      return { success: true } as StoreAPI;
+    } catch (error) {
+      return error;
+    }
   }
 }
