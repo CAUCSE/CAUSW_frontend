@@ -35,7 +35,12 @@ const SettingHomePage: React.FC = observer(() => {
             <Link to={PAGE_URL.HistoryComment}>내가 쓴 댓글</Link>
           </Box>
 
-          {!me.isStudent || !me.isProfessor ? (
+          {me.isAdmin ||
+          me.isPresident ||
+          me.isCircleLeader ||
+          me.isCouncil ||
+          me.isStudentLeader ||
+          me.isAlumniLeader ? (
             <Box>
               <Title>관리</Title>
               {me.isAdmin || me.isPresident ? (
