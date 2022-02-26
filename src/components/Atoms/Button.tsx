@@ -44,5 +44,5 @@ export const Button: React.FC<Props> = ({ children, ...props }) => (
 );
 
 export const NavButton = styled(Button)`
-  margin: 20px 0;
+  margin: 13px 0;
 `;
