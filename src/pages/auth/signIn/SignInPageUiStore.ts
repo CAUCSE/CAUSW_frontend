@@ -14,11 +14,8 @@ export class SignInPageUiStore {
   *signIn(body: User.SignInRequestDto): Generator {
     try {
       yield Repo.signIn(body);
-      this.authStore.isSignIn = true;
-
       return { success: true };
     } catch (err) {
-      this.authStore.isSignIn = false;
       return err;
     }
   }

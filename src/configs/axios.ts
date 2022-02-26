@@ -25,24 +25,33 @@ export const restoreAuth = (): boolean => {
 };
 export const removeAuth = (): void => {
   localStorage.removeItem(storageKey);
+  sessionStorage.removeItem(storageKey);
 };
 
 API.interceptors.response.use(
   response => response,
   error => {
-    const {
-      response: { data },
-    } = error;
+    if (error.response) {
+      const {
+        response: { data },
+      } = error;
 
-    if (data.errorCode === '4105') {
-      // message: "다시 로그인 해주세요."
-      location.href = PAGE_URL.SignIn;
-      removeAuth();
+      // 4012: 접근 권한이 없습니다. 다시 로그인 해주세요. 문제 반복시 관리자에게 문의해주세요.
+      // 4103: 비활성화된 사용자 입니다.
+      // 4015: 다시 로그인 해주세요.
+      if (data.errorCode === 4012 || data.errorCode === 4103 || data.errorCode === 4105) {
+        removeAuth();
+        location.href = PAGE_URL.SignIn;
+      }
+
+      return Promise.reject({
+        success: false,
+        ...data,
+      });
     }
 
     return Promise.reject({
       success: false,
-      ...data,
     });
   },
 );

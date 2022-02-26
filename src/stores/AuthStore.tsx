@@ -7,12 +7,8 @@ import { removeAuth, restoreAuth } from 'configs/axios';
 export class AuthStore {
   rootStore: Store.Root;
   me?: Model.User;
-  isSignIn = false;
 
   constructor(rootStore: Store.Root) {
-    this.rootStore = rootStore;
-    this.isSignIn = restoreAuth();
-
     makeAutoObservable(
       this,
       {
@@ -20,6 +16,8 @@ export class AuthStore {
       },
       { autoBind: true },
     );
+
+    this.rootStore = rootStore;
   }
 
   *fetch(): Generator {
@@ -27,7 +25,10 @@ export class AuthStore {
   }
 
   signOut(): void {
-    this.isSignIn = false;
     removeAuth();
+  }
+
+  get isSignIn(): boolean {
+    return restoreAuth();
   }
 }
