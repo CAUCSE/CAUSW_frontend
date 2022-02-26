@@ -41,7 +41,7 @@ API.interceptors.response.use(
       // 4015: 다시 로그인 해주세요.
       if (data.errorCode === 4012 || data.errorCode === 4103 || data.errorCode === 4105) {
         removeAuth();
-        location.href = PAGE_URL.SignIn;
+        if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       }
 
       return Promise.reject({

@@ -13,6 +13,7 @@ export class AuthStore {
       this,
       {
         rootStore: false,
+        isSignIn: false,
       },
       { autoBind: true },
     );
