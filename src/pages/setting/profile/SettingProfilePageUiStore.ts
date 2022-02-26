@@ -1,5 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
+import { LeaveModalUiStore } from './components/LeaveModal/LeaveModalUiStore';
+
 import { IMAGE_TYPE, StorageRepoImpl as StorageRepo } from '@/stores/repositories/StorageRepo';
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 import { RootStoreInstance } from '@/stores/RootStore';
@@ -11,6 +13,8 @@ export class SettingProfilePageUiStore {
   submitDisabled = false;
   file: File | null = null;
   blobUrl?: string;
+
+  leaveModal = new LeaveModalUiStore();
 
   constructor(rootStore: Store.Root) {
     this.rootStore = rootStore;

@@ -12,6 +12,10 @@ class UserRepo {
     return await API.put(this.URI, body);
   };
 
+  leave = async (): Promise<void> => {
+    return await API.delete(this.URI);
+  };
+
   findPosts = async (page: number): Promise<User.FindPostsResponse> => {
     const {
       data: {

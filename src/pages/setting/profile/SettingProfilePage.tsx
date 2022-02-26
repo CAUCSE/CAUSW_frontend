@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { ContextMenu, ProfileImage } from './components';
+import { ContextMenu, LeaveModal, ProfileImage } from './components';
 import { FormBody, PageUiStoreImpl } from './SettingProfilePageUiStore';
 
 import {
@@ -67,6 +67,8 @@ const SettingProfilePage: React.FC = observer(() => {
           개인정보 변경
         </NavButton>
       </PageFooter>
+
+      <LeaveModal />
     </>
   );
 });
