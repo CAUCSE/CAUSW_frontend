@@ -23,6 +23,12 @@ export enum PAGE_URL {
   Setting = '/setting',
   SettingProfile = '/setting/profile',
   SettingPassword = '/setting/password',
+  SettingUsers = '/setting/users',
+  SettingBoards = '/setting/boards',
+  SettingPermissionManagement = '/setting/permission/management',
+  SettingPermissionDelegation = '/setting/permission/delegation',
+  SettingCircleUsers = '/setting/circle/users',
+  SettingCircleBoards = '/setting/circle/boards',
 
   // 내가 쓴 글, 댓글
   History = '/history',

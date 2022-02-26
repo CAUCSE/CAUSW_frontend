@@ -45,21 +45,21 @@ const SettingHomePage: React.FC = observer(() => {
               <Title>관리</Title>
               {me.isAdmin || me.isPresident ? (
                 <>
-                  <Link to={PAGE_URL.Setting}>권한 관리</Link>
-                  <Link to={PAGE_URL.Setting}>유저 관리</Link>
-                  <Link to={PAGE_URL.Setting}>게시판 관리</Link>
-                  <Link to={PAGE_URL.Setting}>권한 위임</Link>
+                  <Link to={PAGE_URL.SettingPermissionManagement}>권한 관리</Link>
+                  <Link to={PAGE_URL.SettingUsers}>유저 관리</Link>
+                  <Link to={PAGE_URL.SettingBoards}>게시판 관리</Link>
+                  <Link to={PAGE_URL.SettingPermissionDelegation}>권한 위임</Link>
                 </>
               ) : null}
               {me.isCircleLeader ? (
                 <>
-                  <Link to={PAGE_URL.Setting}>소모임 회원 관리</Link>
-                  <Link to={PAGE_URL.Setting}>소모임 게시판 관리</Link>
-                  <Link to={PAGE_URL.Setting}>권한 위임</Link>
+                  <Link to={PAGE_URL.SettingCircleUsers}>소모임 회원 관리</Link>
+                  <Link to={PAGE_URL.SettingCircleBoards}>소모임 게시판 관리</Link>
+                  <Link to={PAGE_URL.SettingPermissionDelegation}>권한 위임</Link>
                 </>
               ) : null}
               {me.isCouncil || me.isStudentLeader || me.isAlumniLeader ? (
-                <Link to={PAGE_URL.Setting}>권한 위임</Link>
+                <Link to={PAGE_URL.SettingPermissionDelegation}>권한 위임</Link>
               ) : null}
             </Box>
           ) : null}

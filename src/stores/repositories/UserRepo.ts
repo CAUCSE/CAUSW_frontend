@@ -45,6 +45,10 @@ class UserRepo {
       last,
     };
   };
+
+  findAllAdmissions = async (): Promise<void> => {
+    await API.get(`${this.URI}/admissions`);
+  };
 }
 
 export const UserRepoImpl = new UserRepo();

@@ -17,6 +17,7 @@ import type { LockerListPageUiStore } from './pages/locker/list/LockerListPageUi
 import type { LockerLocationsPageUiStore } from './pages/locker/locations/LockerLocationsPageUiStore';
 import type { SettingPasswordPageUiStore } from './pages/setting/password/SettingPasswordPageUiStore';
 import type { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
+import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { CircleStore } from './stores/CircleStore';
 import type { LockerLocationModel, LockerModel } from './stores/models';
@@ -44,6 +45,7 @@ declare global {
   namespace PageUiStore {
     type LockerList = LockerListPageUiStore;
     type LockerLocations = LockerLocationsPageUiStore;
+    type SettingUsers = SettingUsersPageUiStore;
     //
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;
