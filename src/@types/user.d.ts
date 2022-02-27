@@ -1,4 +1,61 @@
 declare namespace User {
+  export interface UserDto {
+    admissionYear: number;
+    circleIdIfLeader: string;
+    circleNameIfLeader: string;
+    email: string;
+    id: string;
+    name: string;
+    profileImage: string;
+    role:
+      | 'ADMIN'
+      | 'PRESIDENT'
+      | 'COUNCIL'
+      | 'LEADER_1'
+      | 'LEADER_2'
+      | 'LEADER_3'
+      | 'LEADER_4'
+      | 'LEADER_CIRCLE'
+      | 'LEADER_ALUMNI'
+      | 'COMMON'
+      | 'PROFESSOR';
+    state: 'ACTIVE' | 'INACTIVE';
+    studentId: string;
+  }
+
+  // findByName
+  export type FindByNameResponseDto = UserDto[];
+  export type FindByNameResponse = Model.User[];
+
+  // updateRole
+  export interface UpdateRoleRequestDto {
+    role: UserDto['role'];
+    circleId?: string;
+  }
+  // TODO: 작업중
+
+  // findAllAdmissions
+  export interface FindAllAdmissionsResponseDto {
+    content: UserDto[];
+    last: boolean;
+  }
+  export interface FindAllAdmissionsResponse {
+    users: Model.User[];
+    last: boolean;
+  }
+
+  // findByState
+  export interface FindByStateResponseDto {
+    content: UserDto[];
+    last: boolean;
+  }
+  export interface FindByStateResponse {
+    users: Model.User[];
+    last: boolean;
+  }
+
+  // ---
+
   export interface SignInRequestDto {
     email: string;
     password: string;

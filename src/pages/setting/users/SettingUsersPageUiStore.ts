@@ -1,19 +1,22 @@
-import { makeAutoObservable } from 'mobx';
-
+import { ActiveUserTabUi } from './components/ActiveUserTab/ActiveUserTabUi';
+import { AdmissionAcceptModalUi } from './components/AdmissionAcceptModal/AdmissionAcceptModalUi';
+import { AdmissionRejectModalUi } from './components/AdmissionRejectModal/AdmissionRejectModalUi';
 import { AdmissionUserTabUi } from './components/AdmissionUserTab/AdmissionUserTabUi';
+import { DropModalUi } from './components/DropModal/DropModalUi';
+import { InactiveUserTabUi } from './components/InactiveUserTab/InactiveUserTabUi';
 
-export class SettingUsersPageUiStore {
-  admission = new AdmissionUserTabUi();
+import { UserInfoModalUi, WithUserInfoModalUi } from '@/components/UserInfoModal/UserInfoModalUi';
 
-  constructor() {
-    makeAutoObservable(
-      this,
-      {
-        admission: false,
-      },
-      { autoBind: true },
-    );
-  }
+export class SettingUsersPageUiStore implements WithUserInfoModalUi {
+  // Tab
+  admissionTab = new AdmissionUserTabUi();
+  activeTab = new ActiveUserTabUi();
+  inactiveTab = new InactiveUserTabUi();
+  // Modal
+  userInfoModal = new UserInfoModalUi();
+  admissionAcceptModal = new AdmissionAcceptModalUi();
+  admissionRejectModal = new AdmissionRejectModalUi();
+  dropModal = new DropModalUi();
 }
 
 export const PageUiStoreImpl = new SettingUsersPageUiStore();

@@ -26,7 +26,7 @@ export enum PAGE_URL {
   SettingUsers = '/setting/users',
   SettingBoards = '/setting/boards',
   SettingPermissionManagement = '/setting/permission/management',
-  SettingPermissionDelegation = '/setting/permission/delegation',
+  SettingRoleDelegation = '/setting/role/delegation',
   SettingCircleUsers = '/setting/circle/users',
   SettingCircleBoards = '/setting/circle/boards',
 

@@ -2,11 +2,34 @@ import { AxiosResponse } from 'axios';
 
 import { HistoryCommentModel } from '../models/HistoryCommentModel';
 import { HistoryPostModel } from '../models/HistoryPostModel';
+import { UserModel } from '../models/UserModel';
 
 import { API } from 'configs/axios';
 
 class UserRepo {
   private URI = '/api/v1/users';
+
+  findByName = async (name: string): Promise<User.FindByNameResponse> => {
+    const { data } = (await API.get(
+      `${this.URI}/name/${name}`,
+    )) as AxiosResponse<User.FindByNameResponseDto>;
+
+    return data.map(user => new UserModel(user));
+  };
+
+  updateRole = async (
+    userId: string,
+    role: User.UserDto['role'],
+    circleId?: string,
+  ): Promise<string> => {
+    const body = { role } as User.UpdateRoleRequestDto;
+
+    if (circleId) body.circleId = circleId;
+
+    return await API.put(`${this.URI}/${userId}/role`, body);
+  };
+
+  // ---
 
   update = async (body: User.UpdateDto): Promise<void> => {
     return await API.put(this.URI, body);
@@ -46,8 +69,33 @@ class UserRepo {
     };
   };
 
-  findAllAdmissions = async (): Promise<void> => {
-    await API.get(`${this.URI}/admissions`);
+  findAllAdmissions = async (page: number): Promise<User.FindAllAdmissionsResponse> => {
+    const {
+      data: { content, last },
+    } = (await API.get(
+      `${this.URI}/admissions?pageNum=${page}`,
+    )) as AxiosResponse<User.FindAllAdmissionsResponseDto>;
+
+    return {
+      users: content.map(user => new UserModel(user)),
+      last,
+    };
+  };
+
+  findByState = async (
+    state: User.UserDto['state'],
+    page: number,
+  ): Promise<User.FindByStateResponse> => {
+    const {
+      data: { content, last },
+    } = (await API.get(
+      `${this.URI}/state/${state}?pageNum=${page}`,
+    )) as AxiosResponse<User.FindByStateResponseDto>;
+
+    return {
+      users: content.map(user => new UserModel(user)),
+      last,
+    };
   };
 }
 

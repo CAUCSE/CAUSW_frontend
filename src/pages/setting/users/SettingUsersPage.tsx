@@ -1,12 +1,19 @@
 import { Tab, Tabs, useTheme } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import SwipeableViews from 'react-swipeable-views';
 
-import { ActiveUserTab, AdmissionUserTab, InactiveUserTab } from './components';
+import {
+  ActiveUserTab,
+  AdmissionAcceptModal,
+  AdmissionRejectModal,
+  AdmissionUserTab,
+  DropModal,
+  InactiveUserTab,
+} from './components';
 import { PageUiStoreImpl } from './SettingUsersPageUiStore';
+import { PageBody, SwipeableWrapper } from './styled';
 
-import { GNB, Header, PageBody, PageStoreHOC } from '@/components';
+import { GNB, Header, PageStoreHOC, UserInfoModal } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 
 const a11yProps = (index: number) => ({
@@ -35,7 +42,7 @@ const SettingUsersPage: React.FC = observer(() => {
           <Tab label="탈퇴 유저" {...a11yProps(2)} />
         </Tabs>
 
-        <SwipeableViews
+        <SwipeableWrapper
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={tabIndex}
           onChangeIndex={handleChangeIndex}
@@ -43,9 +50,14 @@ const SettingUsersPage: React.FC = observer(() => {
           <AdmissionUserTab value={tabIndex} index={0} dir={theme.direction} />
           <ActiveUserTab value={tabIndex} index={1} dir={theme.direction} />
           <InactiveUserTab value={tabIndex} index={2} dir={theme.direction} />
-        </SwipeableViews>
+        </SwipeableWrapper>
       </PageBody>
       <GNB />
+
+      <UserInfoModal />
+      <AdmissionAcceptModal />
+      <AdmissionRejectModal />
+      <DropModal />
     </>
   );
 });

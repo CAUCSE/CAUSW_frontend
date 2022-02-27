@@ -1,3 +1,4 @@
+// TODO: 레거시 코드
 export interface Content {
   id: string;
   title: string;
@@ -30,4 +31,3 @@ export interface Sort2 {
   unsorted: boolean;
   empty: boolean;
 }
-

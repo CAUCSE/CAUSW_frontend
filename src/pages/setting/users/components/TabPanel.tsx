@@ -1,5 +1,3 @@
-import { BodyScreen } from '@/components';
-
 export interface TabPanelProps {
   children?: React.ReactNode;
   dir?: string;
@@ -15,10 +13,11 @@ export const TabPanel: React.FC<TabPanelProps> = props => {
       role="tabpanel"
       hidden={value !== index}
       id={`user-tabpanel-${index}`}
+      style={{ height: '100%' }}
       aria-labelledby={`user-tab-${index}`}
       {...other}
     >
-      <BodyScreen>{value === index && children}</BodyScreen>
+      {value === index && children}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
-export class AdmissionUserTabUi {
+export class ActiveUserTabUi {
   users: Model.User[] = [];
   page = 0;
   hasMore = false;
@@ -21,7 +21,8 @@ export class AdmissionUserTabUi {
     try {
       if (page === 0) this.users = [];
 
-      const { users, last } = (yield Repo.findAllAdmissions(
+      const { users, last } = (yield Repo.findByState(
+        'ACTIVE',
         page,
       )) as User.FindAllAdmissionsResponse;
 

@@ -1,4 +1,6 @@
-const UserRoleCodes = {
+const UserRoleCodes: {
+  [key in User.UserDto['role']]: string;
+} = {
   ADMIN: '관리자',
   PRESIDENT: '학생회장',
   COUNCIL: '학생회',
@@ -12,17 +14,17 @@ const UserRoleCodes = {
   PROFESSOR: '교수',
 };
 
-export type UserRole = keyof typeof UserRoleCodes;
-
 export class UserModel {
+  id: string;
   email: string;
   name: string;
   admissionYear: number;
-  role: UserRole; // TODO: ENUM으로 변경
-  profileImage?: string | null;
+  role: User.UserDto['role']; // TODO: ENUM으로 변경
+  profileImage: string | null;
   studentId?: string;
 
-  constructor(props: UserResponseDto) {
+  constructor(props: User.UserDto) {
+    this.id = props.id;
     this.email = props.email;
     this.name = props.name;
     this.admissionYear = props.admissionYear;
@@ -37,6 +39,10 @@ export class UserModel {
 
   get nameWithAdmission(): string {
     return `${this.name} (${this.admissionYear % 100})`;
+  }
+
+  get profileImageSrc(): string {
+    return this.profileImage ?? '/images/default_profile.png';
   }
 
   get isStudent(): boolean {
@@ -64,21 +70,15 @@ export class UserModel {
   }
 
   get isStudentLeader(): boolean {
-    return this.role === 'LEADER_1' || this.role === 'LEADER_2' || this.role === 'LEADER_3' || this.role === 'LEADER_4';
+    return (
+      this.role === 'LEADER_1' ||
+      this.role === 'LEADER_2' ||
+      this.role === 'LEADER_3' ||
+      this.role === 'LEADER_4'
+    );
   }
 
   get isAlumniLeader(): boolean {
     return this.role === 'LEADER_ALUMNI';
   }
-}
-
-interface UserResponseDto {
-  id: string;
-  email: string;
-  name: string;
-  studentId: string;
-  admissionYear: number;
-  role: UserRole;
-  profileImage?: string;
-  state: string;
 }

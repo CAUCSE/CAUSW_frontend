@@ -4,6 +4,7 @@ import { SettingHomePage } from './home';
 import { SettingPasswordPage } from './password';
 import { SettingPermissionManagementPage } from './permissionManagement';
 import { SettingProfilePage } from './profile';
+import { SettingRoleDelegationPage } from './roleDelegationPage';
 import { SettingUsersPage } from './users';
 
 import { PAGE_URL } from '@/configs/path';
@@ -18,5 +19,6 @@ export const SettingPageSwitch: React.FC = () => (
       path={PAGE_URL.SettingPermissionManagement}
       component={SettingPermissionManagementPage}
     />
+    <Route path={PAGE_URL.SettingRoleDelegation} component={SettingRoleDelegationPage} />
   </Switch>
 );

@@ -2,14 +2,14 @@ import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect } from 'react';
 
 import { TabPanel, TabPanelProps } from '../TabPanel';
-import { AdmissionUserRow } from './AdmissionUserRow';
+import { InactiveUserRow } from './InactiveUserRow';
 
 import { InfinityFrame } from '@/components';
 import { usePageUiStore } from '@/hooks';
 
-export const AdmissionUserTab: React.FC<TabPanelProps> = observer(props => {
+export const InactiveUserTab: React.FC<TabPanelProps> = observer(props => {
   const {
-    admissionTab: { fetch, reset, hasMore, page, users },
+    inactiveTab: { fetch, reset, hasMore, page, users },
   } = usePageUiStore<PageUiStore.SettingUsers>();
   const loadMore = useCallback(
     (hasMore: boolean, page: number) => () => hasMore && fetch(page + 1),
@@ -26,7 +26,7 @@ export const AdmissionUserTab: React.FC<TabPanelProps> = observer(props => {
       <InfinityFrame<Model.User>
         loadMore={loadMore(hasMore, page)}
         data={users}
-        ItemComponent={(index, user) => <AdmissionUserRow key={user.id} model={user} />}
+        ItemComponent={(index, user) => <InactiveUserRow key={user.id} model={user} />}
       />
     </TabPanel>
   );
