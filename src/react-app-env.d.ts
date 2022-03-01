@@ -19,6 +19,7 @@ import type { SettingPasswordPageUiStore } from './pages/setting/password/Settin
 import type { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
 import type { SettingRoleCouncilPageUiStore } from './pages/setting/roleCouncil/SettingRoleCouncilPageUiStore';
 import type { SettingRoleDelegationPageUiStore } from './pages/setting/roleDelegation/SettingRoleDelegationPageUiStore';
+import type { SettingRoleLeaderGradePageUiStore } from './pages/setting/roleLeaderGrade/SettingRoleLeaderGradePageUiStore';
 import type { SettingRoleManagementPageUiStore } from './pages/setting/roleManagement/SettingRoleManagementPageUiStore';
 import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
@@ -52,6 +53,7 @@ declare global {
     type SettingUsers = SettingUsersPageUiStore;
     type SettingRoleDelegation = SettingRoleDelegationPageUiStore;
     type SettingRoleCouncil = SettingRoleCouncilPageUiStore;
+    type SettingRoleLeaderGrade = SettingRoleLeaderGradePageUiStore;
     //
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;

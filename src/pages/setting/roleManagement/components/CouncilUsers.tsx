@@ -8,7 +8,7 @@ import { usePageUiStore } from '@/hooks';
 
 export const CouncilUsers: React.FC = observer(() => {
   const { councilUsers, deleteRuleModal } = usePageUiStore<PageUiStore.SettingRoleManagement>();
-  const handleOpendeleteRuleModal = useCallback(
+  const handleOpenDeleteRuleModal = useCallback(
     (target: Model.User) => () => deleteRuleModal.open('councilUsers', target),
     [],
   );
@@ -20,7 +20,7 @@ export const CouncilUsers: React.FC = observer(() => {
       {councilUsers.map(user => (
         <Row key={user.id}>
           <UserName model={user} />
-          <RemoveButton onClick={handleOpendeleteRuleModal(user)} />
+          <RemoveButton onClick={handleOpenDeleteRuleModal(user)} />
         </Row>
       ))}
     </Box>

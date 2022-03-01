@@ -5,6 +5,7 @@ import { SettingPasswordPage } from './password';
 import { SettingProfilePage } from './profile';
 import { SettingRoleCouncilPage } from './roleCouncil';
 import { SettingRoleDelegationPage } from './roleDelegation';
+import { SettingRoleLeaderGradePage } from './roleLeaderGrade';
 import { SettingRoleManagementPage } from './roleManagement';
 import { SettingUsersPage } from './users';
 
@@ -19,6 +20,7 @@ export const SettingPageSwitch: React.FC = () => (
 
     <Route path={PAGE_URL.SettingRoleManagement} exact component={SettingRoleManagementPage} />
     <Route path={PAGE_URL.SettingRoleCounil} component={SettingRoleCouncilPage} />
+    <Route path={PAGE_URL.SettingRoleLeaderGrade} component={SettingRoleLeaderGradePage} />
 
     <Route path={PAGE_URL.SettingRoleDelegation} component={SettingRoleDelegationPage} />
   </Switch>

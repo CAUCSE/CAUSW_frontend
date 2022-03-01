@@ -27,7 +27,7 @@ export enum PAGE_URL {
   SettingBoards = '/setting/boards',
   SettingRoleManagement = '/setting/role',
   SettingRoleCounil = '/setting/role/counil',
-  SettingRoleGrade = '/setting/role/grade',
+  SettingRoleLeaderGrade = '/setting/role/leader-grade',
   SettingRoleCircle = '/setting/role/circle',
   SettingRoleAlumni = '/setting/role/alumni',
   SettingRoleDelegation = '/setting/role/delegation',
