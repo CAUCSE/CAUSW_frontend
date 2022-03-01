@@ -1,8 +1,8 @@
 declare namespace User {
   export interface UserDto {
     admissionYear: number;
-    circleIdIfLeader: string;
-    circleNameIfLeader: string;
+    circleIdIfLeader: string | null;
+    circleNameIfLeader: string | null;
     email: string;
     id: string;
     name: string;
