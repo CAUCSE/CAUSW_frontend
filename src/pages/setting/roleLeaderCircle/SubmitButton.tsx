@@ -22,7 +22,7 @@ export const SubmitButton: React.FC = observer(() => {
       // TODO: 뒤페이지가 권한관리면 뒤로가기, 아니면 페이지 치환
       goBack();
       alert({
-        message: `${target.nameWithAdmission} 유저가 소모임장으로 지정되었습니다.`,
+        message: `${target.nameWithAdmission} 유저가 ${state.user.circleName} 소모임장으로 지정되었습니다.`,
       });
     } else if (message) alert({ message });
   }, [target, state]);

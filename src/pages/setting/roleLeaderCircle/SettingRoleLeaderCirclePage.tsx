@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { PageUiStoreImpl } from './SettingRoleLeaderCirclePageUiStore';
-import { Role, SubTitle } from './styeld';
+import { H2, H3, Role } from './styeld';
 import { SubmitButton } from './SubmitButton';
 
 import {
@@ -60,9 +60,21 @@ const SettingRoleLeaderCirclePage: React.FC = observer(() => {
       />
       <PageBody>
         <BodyScreen>
-          <SubTitle>위임할 권한</SubTitle>
-          <Role>[ {state?.user.circleName} ] 소모임장</Role>
-          <SubTitle>피위임인 지정</SubTitle>
+          <H2>위임할 권한</H2>
+          <Role>
+            [ {state?.user.circleName} ] 소모임장
+            <H3>기존 동문회장 정보</H3>
+            이름: {state?.user.name}
+            <br />
+            {state?.user.studentId ? (
+              <>
+                학번: {state?.user.studentId}
+                <br />
+              </>
+            ) : null}
+            메일: {state?.user.email}
+          </Role>
+          <H2>피위임인 지정</H2>
           <form onSubmit={handleSubmit(onSearch)}>
             <SearchInput<FormBody>
               id="search-user-ipt"
