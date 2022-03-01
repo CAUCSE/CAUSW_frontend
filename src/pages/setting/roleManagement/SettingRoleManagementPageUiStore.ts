@@ -6,6 +6,8 @@ import { WithUserInfoModalUi } from '@/components';
 import { UserInfoModalUi } from '@/components/UserInfoModal/UserInfoModalUi';
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
+export type listKey = 'councilUsers' | 'leaderGradeUsers' | 'leaderCircleUsers';
+
 export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   councilUsers: Model.User[] = [];
   leaderGradeUsers: Model.User[] = [];
@@ -42,6 +44,10 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
     this.leaderGradeUsers = leaderGradeUsers;
     this.leaderCircleUsers = leaderCircleUsers;
     this.leaderAlumni = leaderAlumni;
+  }
+
+  remove(key: 'councilUsers' | 'leaderGradeUsers' | 'leaderCircleUsers', target: Model.User): void {
+    this[key] = this[key].filter(user => user.id !== target.id);
   }
 }
 

@@ -3,7 +3,6 @@ import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { NavButton, PageFooter } from '@/components';
-import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores';
 
@@ -17,15 +16,13 @@ export const SubmitButton: React.FC<{ role: User.UserDto['role'] }> = observer((
     if (target) {
       const { success, message } = (await update(target, role)) as unknown as StoreAPI;
 
-      if (success)
+      if (success) {
+        // TODO: 뒤페이지가 권한관리면 뒤로가기, 아니면 페이지 치환
+        goBack();
         alert({
           message: `${target.nameWithAdmission} 유저가 학생회로 추가 되었습니다.`,
-          onClose: () => {
-            // TODO
-            goBack();
-          },
         });
-      else if (message) alert({ message });
+      } else if (message) alert({ message });
     }
   }, [target]);
 

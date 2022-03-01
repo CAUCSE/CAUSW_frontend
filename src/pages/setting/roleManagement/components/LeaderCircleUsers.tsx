@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useCallback } from 'react';
 
 import { AddLink, AutorenewLink, Box, RemoveButton, Row, Title, UserName } from './styled';
 
@@ -6,7 +7,12 @@ import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 export const LeaderCircleUsers: React.FC = observer(() => {
-  const { leaderCircleUsers } = usePageUiStore<PageUiStore.SettingRoleManagement>();
+  const { leaderCircleUsers, deleteRuleModal } =
+    usePageUiStore<PageUiStore.SettingRoleManagement>();
+  const handleOpendeleteRuleModal = useCallback(
+    (target: Model.User) => () => deleteRuleModal.open('leaderCircleUsers', target),
+    [],
+  );
 
   return (
     <Box>
@@ -16,7 +22,7 @@ export const LeaderCircleUsers: React.FC = observer(() => {
         <Row key={user.id}>
           <UserName model={user} />
           <AutorenewLink to={'#'} />
-          <RemoveButton model={user} />
+          <RemoveButton onClick={handleOpendeleteRuleModal(user)} />
         </Row>
       ))}
     </Box>

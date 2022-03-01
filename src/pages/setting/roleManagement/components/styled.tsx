@@ -66,16 +66,11 @@ export const UserName: React.FC<{ model: Model.User }> = observer(({ model }) =>
   );
 });
 
-export const RemoveButton: React.FC<{ model: Model.User }> = observer(({ model, ...props }) => {
-  const { deleteRuleModal } = usePageUiStore<PageUiStore.SettingRoleManagement>();
-  const handleOpenInfoModal = useCallback(() => deleteRuleModal.open(model), [model]);
-
-  return (
-    <ClearButton onClick={handleOpenInfoModal} style={{ padding: '10px' }} {...props}>
-      <RemoveIcon fontSize="small" />
-    </ClearButton>
-  );
-});
+export const RemoveButton: React.FC<{ onClick: () => void }> = ({ ...props }) => (
+  <ClearButton style={{ padding: '10px' }} {...props}>
+    <RemoveIcon fontSize="small" />
+  </ClearButton>
+);
 
 export const AutorenewLink: React.FC<{ to: string }> = memo(({ to }) => (
   <ClearLink to={to} style={{ padding: '10px' }}>

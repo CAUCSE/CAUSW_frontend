@@ -17,18 +17,21 @@ export const DeleteRuleModal: React.FC = observer(() => {
     ui: { alert },
   } = useRootStore();
   const {
-    deleteRuleModal: { visible, target, close },
+    remove,
+    deleteRuleModal: { deleteRole, key, target, visible, close },
   } = usePageUiStore<PageUiStore.SettingRoleManagement>();
 
   const handleOk = useCallback(async () => {
-    if (!target) return;
+    if (!target || !key) return;
 
-    // const { success, message } = (await reject(target)) as unknown as StoreAPI;
+    const { success, message } = (await deleteRole(target)) as unknown as StoreAPI;
 
-    // if (success) {
-    //   remove(target);
-    //   alert({ message: `${target.nameWithAdmission} 유저의 회원가입이 거절되었습니다` });
-    // } else if (message) alert({ message });
+    if (success) {
+      remove(key, target);
+      alert({
+        message: `${target.nameWithAdmission} 유저를 ${target.roleTxt} 명단에서 제거했습니다.`,
+      });
+    } else if (message) alert({ message });
     close();
   }, [target]);
 
