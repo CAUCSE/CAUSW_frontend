@@ -5,6 +5,7 @@ import { useState } from 'react';
 import {
   ActiveUserTab,
   AdmissionAcceptModal,
+  AdmissionInfoModal,
   AdmissionRejectModal,
   AdmissionUserTab,
   DropModal,
@@ -55,6 +56,7 @@ const SettingUsersPage: React.FC = observer(() => {
       <GNB />
 
       <UserInfoModal />
+      <AdmissionInfoModal />
       <AdmissionAcceptModal />
       <AdmissionRejectModal />
       <DropModal />

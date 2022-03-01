@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx';
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
 export class AdmissionUserTabUi {
-  users: Model.User[] = [];
+  users: Model.AdmissionUser[] = [];
   page = 0;
   hasMore = false;
 
@@ -35,7 +35,7 @@ export class AdmissionUserTabUi {
     }
   }
 
-  remove(target: Model.User): void {
+  remove(target: Model.AdmissionUser): void {
     this.users = this.users.filter(user => user.id !== target.id);
   }
 }

@@ -23,7 +23,7 @@ export const AdmissionUserTab: React.FC<TabPanelProps> = observer(props => {
 
   return (
     <TabPanel {...props}>
-      <InfinityFrame<Model.User>
+      <InfinityFrame<Model.AdmissionUser>
         loadMore={loadMore(hasMore, page)}
         data={users}
         ItemComponent={(index, user) => <AdmissionUserRow key={user.id} model={user} />}

@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 
+import { AdmissionUserModel } from '../models';
 import { HistoryCommentModel } from '../models/HistoryCommentModel';
 import { HistoryPostModel } from '../models/HistoryPostModel';
 import { UserModel } from '../models/UserModel';
@@ -68,7 +69,7 @@ class UserRepo {
     )) as AxiosResponse<User.FindAllAdmissionsResponseDto>;
 
     return {
-      users: content.map(user => new UserModel(user)),
+      users: content.map(user => new AdmissionUserModel(user)),
       last,
     };
   };

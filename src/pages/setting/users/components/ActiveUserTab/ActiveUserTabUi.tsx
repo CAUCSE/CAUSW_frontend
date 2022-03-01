@@ -21,10 +21,7 @@ export class ActiveUserTabUi {
     try {
       if (page === 0) this.users = [];
 
-      const { users, last } = (yield Repo.findByState(
-        'ACTIVE',
-        page,
-      )) as User.FindAllAdmissionsResponse;
+      const { users, last } = (yield Repo.findByState('ACTIVE', page)) as User.FindByStateResponse;
 
       this.users = this.users.concat(users);
       this.page = page;

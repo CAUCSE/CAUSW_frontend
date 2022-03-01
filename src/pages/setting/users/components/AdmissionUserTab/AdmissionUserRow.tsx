@@ -7,10 +7,10 @@ import { Row, RowButton, UserName } from '../styled';
 import { ClearButton } from '@/components';
 import { usePageUiStore } from '@/hooks';
 
-export const AdmissionUserRow: React.FC<{ model: Model.User }> = memo(({ model }) => {
-  const { userInfoModal, admissionAcceptModal, admissionRejectModal } =
+export const AdmissionUserRow: React.FC<{ model: Model.AdmissionUser }> = memo(({ model }) => {
+  const { admissionInfoModal, admissionAcceptModal, admissionRejectModal } =
     usePageUiStore<PageUiStore.SettingUsers>();
-  const handleOpenInfoModal = useCallback(() => userInfoModal.open(model), [model]);
+  const handleOpenInfoModal = useCallback(() => admissionInfoModal.open(model), [model]);
   const handleOpenAcceptModal = useCallback(() => admissionAcceptModal.open(model), [model]);
   const handleOpenRejectModal = useCallback(() => admissionRejectModal.open(model), [model]);
 

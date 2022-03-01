@@ -3,7 +3,7 @@ import { flow, makeObservable } from 'mobx';
 import { ModalUi } from '@/stores';
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
-export class AdmissionAcceptModalUi extends ModalUi<Model.User> {
+export class AdmissionAcceptModalUi extends ModalUi<Model.AdmissionUser> {
   constructor() {
     super();
 
@@ -12,7 +12,7 @@ export class AdmissionAcceptModalUi extends ModalUi<Model.User> {
     });
   }
 
-  *accept(target: Model.User): Generator {
+  *accept(target: Model.AdmissionUser): Generator {
     try {
       yield Repo.acceptAdmission(target.id);
       return { success: true } as StoreAPI;

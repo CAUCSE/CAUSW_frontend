@@ -32,15 +32,24 @@ declare namespace User {
     role: UserDto['role'];
     circleId?: string;
   }
-  // TODO: 작업중
 
   // findAllAdmissions
+  export interface AdmissionUserDto {
+    admissionYear: number;
+    attachImage: string | null;
+    createdAt: string;
+    description: string;
+    id: string;
+    updatedAt: string;
+    userEmail: string;
+    userName: string;
+  }
   export interface FindAllAdmissionsResponseDto {
-    content: UserDto[];
+    content: AdmissionUserDto[];
     last: boolean;
   }
   export interface FindAllAdmissionsResponse {
-    users: Model.User[];
+    users: Model.AdmissionUser[];
     last: boolean;
   }
 

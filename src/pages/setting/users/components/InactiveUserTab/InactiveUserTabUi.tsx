@@ -24,7 +24,7 @@ export class InactiveUserTabUi {
       const { users, last } = (yield Repo.findByState(
         'INACTIVE',
         page,
-      )) as User.FindAllAdmissionsResponse;
+      )) as User.FindByStateResponse;
 
       this.users = this.users.concat(users);
       this.page = page;

@@ -21,7 +21,7 @@ import type { SettingRoleDelegationPageUiStore } from './pages/setting/roleDeleg
 import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { CircleStore } from './stores/CircleStore';
-import type { LockerLocationModel, LockerModel } from './stores/models';
+import type { AdmissionUserModel, LockerLocationModel, LockerModel } from './stores/models';
 import type { AuthorModel } from './stores/models/AuthorModel';
 import type { BoardModel } from './stores/models/BoardModel';
 import type { CircleBoardModel } from './stores/models/CircleBoardModel';
@@ -67,20 +67,21 @@ declare global {
   }
 
   namespace Model {
+    type AdmissionUser = AdmissionUserModel;
     type Locker = LockerModel;
     type LockerLocation = LockerLocationModel;
+    //
+    type Post = PostModel;
+    type HistoryPost = HistoryPostModel;
+    type Comment = CommentModel;
+    type ReplyComment = ReplyCommentModel;
+    type HistoryComment = HistoryCommentModel;
     //
     type Board = BoardModel;
     type Author = AuthorModel;
     type User = UserModel;
     type Circle = CircleModel;
     type CircleBoard = CircleBoardModel;
-
-    type Post = PostModel;
-    type HistoryPost = HistoryPostModel;
-    type Comment = CommentModel;
-    type ReplyComment = ReplyCommentModel;
-    type HistoryComment = HistoryCommentModel;
   }
 
   interface StoreAPI {
