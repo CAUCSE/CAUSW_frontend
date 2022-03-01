@@ -20,7 +20,7 @@ export const SubmitButton: React.FC<{ role: User.UserDto['role'] }> = observer((
         // TODO: 뒤페이지가 권한관리면 뒤로가기, 아니면 페이지 치환
         goBack();
         alert({
-          message: `${target.nameWithAdmission} 유저가 학생회로 추가 되었습니다.`,
+          message: `${target.nameWithAdmission} 유저가 학생회로 추가되었습니다.`,
         });
       } else if (message) alert({ message });
     }

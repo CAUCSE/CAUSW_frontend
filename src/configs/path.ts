@@ -25,10 +25,12 @@ export enum PAGE_URL {
   SettingPassword = '/setting/password',
   SettingUsers = '/setting/users',
   SettingBoards = '/setting/boards',
+
   SettingRoleManagement = '/setting/role',
   SettingRoleCounil = '/setting/role/counil',
   SettingRoleLeaderGrade = '/setting/role/leader-grade',
-  SettingRoleCircle = '/setting/role/circle',
+  SettingRoleLeaderCircle = '/setting/role/leader-circle',
+
   SettingRoleAlumni = '/setting/role/alumni',
   SettingRoleDelegation = '/setting/role/delegation',
   SettingCircleUsers = '/setting/circle/users',

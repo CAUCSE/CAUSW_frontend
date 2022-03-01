@@ -72,8 +72,10 @@ export const RemoveButton: React.FC<{ onClick: () => void }> = ({ ...props }) =>
   </ClearButton>
 );
 
-export const AutorenewLink: React.FC<{ to: string }> = memo(({ to }) => (
-  <ClearLink to={to} style={{ padding: '10px' }}>
-    <AutorenewIcon fontSize="small" />
-  </ClearLink>
-));
+export const AutorenewLink: React.FC<{ pathname: string; state: unknown }> = memo(
+  ({ pathname, state }) => (
+    <ClearLink to={{ pathname, state }} style={{ padding: '10px' }}>
+      <AutorenewIcon fontSize="small" />
+    </ClearLink>
+  ),
+);
