@@ -6,7 +6,7 @@ import {
 } from '@/components/SearchUserModal/SearchUserModalUi';
 import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 
-export class SettingRoleDelegationPageUiStore implements WithSearchUserModalUi {
+export class SettingRoleCouncilPageUiStore implements WithSearchUserModalUi {
   submitDisabled = true;
   target?: Model.User;
 
@@ -45,4 +45,4 @@ export class SettingRoleDelegationPageUiStore implements WithSearchUserModalUi {
   }
 }
 
-export const PageUiStoreImpl = new SettingRoleDelegationPageUiStore();
+export const PageUiStoreImpl = new SettingRoleCouncilPageUiStore();

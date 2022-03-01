@@ -28,7 +28,7 @@ const SettingRoleCouncilPage: React.FC = observer(() => {
   const {
     ui: { alert },
   } = useRootStore();
-  const { reset, searchUserModal } = usePageUiStore<PageUiStore.SettingRoleDelegation>();
+  const { reset, searchUserModal } = usePageUiStore<PageUiStore.SettingRoleCouncil>();
   const { handleSubmit, control, setValue } = useForm<FormBody>({
     defaultValues: {
       name: '',

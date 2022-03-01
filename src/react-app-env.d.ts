@@ -17,6 +17,7 @@ import type { LockerListPageUiStore } from './pages/locker/list/LockerListPageUi
 import type { LockerLocationsPageUiStore } from './pages/locker/locations/LockerLocationsPageUiStore';
 import type { SettingPasswordPageUiStore } from './pages/setting/password/SettingPasswordPageUiStore';
 import type { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
+import type { SettingRoleCouncilPageUiStore } from './pages/setting/roleCouncil/SettingRoleCouncilPageUiStore';
 import type { SettingRoleDelegationPageUiStore } from './pages/setting/roleDelegation/SettingRoleDelegationPageUiStore';
 import type { SettingRoleManagementPageUiStore } from './pages/setting/roleManagement/SettingRoleManagementPageUiStore';
 import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
@@ -50,6 +51,7 @@ declare global {
     type SettingRoleManagement = SettingRoleManagementPageUiStore;
     type SettingUsers = SettingUsersPageUiStore;
     type SettingRoleDelegation = SettingRoleDelegationPageUiStore;
+    type SettingRoleCouncil = SettingRoleCouncilPageUiStore;
     //
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;
