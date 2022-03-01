@@ -17,7 +17,7 @@ import type { LockerListPageUiStore } from './pages/locker/list/LockerListPageUi
 import type { LockerLocationsPageUiStore } from './pages/locker/locations/LockerLocationsPageUiStore';
 import type { SettingPasswordPageUiStore } from './pages/setting/password/SettingPasswordPageUiStore';
 import type { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
-import type { SettingRoleDelegationPageUiStore } from './pages/setting/roleDelegationPage/SettingRoleDelegationPageUiStore';
+import type { SettingRoleDelegationPageUiStore } from './pages/setting/roleDelegation/SettingRoleDelegationPageUiStore';
 import type { SettingRoleManagementPageUiStore } from './pages/setting/roleManagement/SettingRoleManagementPageUiStore';
 import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
 import type { AuthStore } from './stores/AuthStore';

@@ -4,7 +4,7 @@ import { SettingHomePage } from './home';
 import { SettingPasswordPage } from './password';
 import { SettingProfilePage } from './profile';
 import { SettingRoleCouncilPage } from './roleCouncil';
-import { SettingRoleDelegationPage } from './roleDelegationPage';
+import { SettingRoleDelegationPage } from './roleDelegation';
 import { SettingRoleManagementPage } from './roleManagement';
 import { SettingUsersPage } from './users';
 
