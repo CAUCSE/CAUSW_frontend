@@ -35,4 +35,8 @@ export class ActiveUserTabUi {
       return error;
     }
   }
+
+  remove(target: Model.User): void {
+    this.users = this.users.filter(user => user.id !== target.id);
+  }
 }

@@ -1,5 +1,6 @@
 import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
+import { useCallback } from 'react';
 
 import {
   ModalAlertMessage,
@@ -9,11 +10,27 @@ import {
   ModalFooterButton,
 } from '@/components';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 export const DropModal: React.FC = observer(() => {
   const {
-    dropModal: { visible, target, close },
+    ui: { alert },
+  } = useRootStore();
+  const {
+    activeTab: { remove },
+    dropModal: { drop, visible, target, close },
   } = usePageUiStore<PageUiStore.SettingUsers>();
+  const handleOk = useCallback(async () => {
+    if (!target) return;
+
+    const { success, message } = (await drop(target)) as unknown as StoreAPI;
+
+    if (success) {
+      remove(target);
+      alert({ message: `${target.nameWithAdmission} 유저가 추방되었습니다.` });
+    } else if (message) alert({ message });
+    close();
+  }, [target]);
 
   return (
     <Modal open={visible} closeAfterTransition>
@@ -25,7 +42,7 @@ export const DropModal: React.FC = observer(() => {
         </ModalAlertMessage>
         <ModalFooter>
           <ModalFooterButton onClick={close}>취소</ModalFooterButton>
-          <ModalFooterButton>확인</ModalFooterButton>
+          <ModalFooterButton onClick={handleOk}>확인</ModalFooterButton>
         </ModalFooter>
       </ModalBox>
     </Modal>

@@ -59,6 +59,7 @@ class UserRepo {
     };
   };
 
+  // 유저 관리 페이지
   findAllAdmissions = async (page: number): Promise<User.FindAllAdmissionsResponse> => {
     const {
       data: { content, last },
@@ -88,12 +89,16 @@ class UserRepo {
     };
   };
 
-  acceptAdmission = async (userId: string) => {
+  acceptAdmission = async (userId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/admissions/${userId}/accept`);
   };
 
-  rejectAdmission = async (userId: string) => {
+  rejectAdmission = async (userId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/admissions/${userId}/reject`);
+  };
+
+  drop = async (userId: string): Promise<unknown> => {
+    return await API.put(`${this.URI}/${userId}/drop`);
   };
 
   // ---
