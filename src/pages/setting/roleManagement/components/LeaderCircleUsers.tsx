@@ -7,10 +7,10 @@ import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 export const LeaderCircleUsers: React.FC = observer(() => {
-  const { leaderCircleUsers, deleteRuleModal } =
+  const { leaderCircleUsers, deleteCircleModal } =
     usePageUiStore<PageUiStore.SettingRoleManagement>();
   const handleOpendeleteRuleModal = useCallback(
-    (target: Model.User) => () => deleteRuleModal.open('leaderCircleUsers', target),
+    (target: Model.User) => () => deleteCircleModal.open('leaderCircleUsers', target),
     [],
   );
 

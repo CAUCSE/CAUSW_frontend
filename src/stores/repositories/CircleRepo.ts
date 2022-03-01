@@ -60,6 +60,10 @@ class CircleRepo {
   leaveUser = async (circleId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/${circleId}/users/leave`);
   };
+
+  delete = async (circleId: string): Promise<unknown> => {
+    return await API.delete(`${this.URI}/${circleId}`);
+  };
 }
 
 export const CircleRepoImpl = new CircleRepo();

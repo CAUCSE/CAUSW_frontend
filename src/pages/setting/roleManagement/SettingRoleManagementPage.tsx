@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import {
   CouncilUsers,
+  DeleteCircleModal,
   DeleteRuleModal,
   LeaderAlumni,
   LeaderCircleUsers,
@@ -37,6 +38,7 @@ const PermissionManagementPage: React.FC = observer(() => {
 
       <UserInfoModal />
       <DeleteRuleModal />
+      <DeleteCircleModal />
     </>
   );
 });

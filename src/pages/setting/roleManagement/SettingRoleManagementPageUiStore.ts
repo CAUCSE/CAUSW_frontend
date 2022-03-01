@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
+import { DeleteCircleModalUi } from './components/DeleteCircleModal/DeleteCircleModalUi';
 import { DeleteRuleModalUi } from './components/DeleteRuleModal/DeleteRuleModalUi';
 
 import { WithUserInfoModalUi } from '@/components';
@@ -17,6 +18,7 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   // Modal
   userInfoModal = new UserInfoModalUi();
   deleteRuleModal = new DeleteRuleModalUi();
+  deleteCircleModal = new DeleteCircleModalUi();
 
   constructor() {
     makeAutoObservable(
