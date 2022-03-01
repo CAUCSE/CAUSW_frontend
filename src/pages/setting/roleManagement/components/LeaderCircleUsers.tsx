@@ -21,10 +21,7 @@ export const LeaderCircleUsers: React.FC = observer(() => {
       {leaderCircleUsers.map(user => (
         <Row key={user.id}>
           <UserName model={user} />
-          <AutorenewLink
-            pathname={PAGE_URL.SettingRoleLeaderCircle}
-            state={{ role: 'LEADER_CIRCLE', circleName: user.circleName, circleId: user.circleId }}
-          />
+          <AutorenewLink pathname={PAGE_URL.SettingRoleLeaderCircle} state={{ user }} />
           <RemoveButton onClick={handleOpendeleteRuleModal(user)} />
         </Row>
       ))}

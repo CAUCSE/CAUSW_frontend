@@ -25,7 +25,7 @@ interface FormBody {
 }
 
 const SettingRoleLeaderCirclePage: React.FC = observer(() => {
-  const { state } = useLocation<{ role: string; circleId: string; circleName: string }>();
+  const { state } = useLocation<{ user: Model.User }>();
   const { replace } = useHistory();
   const {
     ui: { alert },
@@ -46,7 +46,7 @@ const SettingRoleLeaderCirclePage: React.FC = observer(() => {
   };
 
   useEffect(() => {
-    if (!state) replace(PAGE_URL.Home);
+    if (!state?.user) replace(PAGE_URL.Home);
     return () => reset();
   }, [state]);
 
@@ -61,7 +61,7 @@ const SettingRoleLeaderCirclePage: React.FC = observer(() => {
       <PageBody>
         <BodyScreen>
           <SubTitle>위임할 권한</SubTitle>
-          <Role>[ {state?.circleName} ] 소모임장</Role>
+          <Role>[ {state?.user.circleName} ] 소모임장</Role>
           <SubTitle>피위임인 지정</SubTitle>
           <form onSubmit={handleSubmit(onSearch)}>
             <SearchInput<FormBody>

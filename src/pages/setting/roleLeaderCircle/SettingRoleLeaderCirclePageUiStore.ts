@@ -32,10 +32,10 @@ export class SettingRoleLeaderCirclePageUiStore implements WithSearchUserModalUi
     this.target = target;
   }
 
-  *update(target: Model.User, role: User.UserDto['role'], circleId: string): Generator {
+  *update(target: Model.User, source: Model.User): Generator {
     try {
       this.submitDisabled = true;
-      yield Repo.updateRole(target.id, role, circleId);
+      yield Repo.updateRole(target.id, source.role, source.circleId);
       return { success: true } as StoreAPI;
     } catch (error) {
       return error;
