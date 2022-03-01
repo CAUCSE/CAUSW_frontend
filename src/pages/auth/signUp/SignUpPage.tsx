@@ -40,7 +40,8 @@ const SignUpPage: React.FC = observer(() => {
     const { success, message } = (await signUp(body)) as unknown as StoreAPI;
 
     if (success) {
-      alert({ message: '회원가입에 성공하였습니다.', onClose: () => replace(PAGE_URL.SignIn) });
+      replace(PAGE_URL.SignIn);
+      alert({ message: '회원가입에 성공하였습니다.' });
     } else if (message) alert({ message });
   };
 
