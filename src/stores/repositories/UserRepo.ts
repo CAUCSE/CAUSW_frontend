@@ -29,16 +29,6 @@ class UserRepo {
     return await API.put(`${this.URI}/${userId}/role`, body);
   };
 
-  // ---
-
-  update = async (body: User.UpdateDto): Promise<void> => {
-    return await API.put(this.URI, body);
-  };
-
-  leave = async (): Promise<void> => {
-    return await API.delete(this.URI);
-  };
-
   findPosts = async (page: number): Promise<User.FindPostsResponse> => {
     const {
       data: {
@@ -96,6 +86,23 @@ class UserRepo {
       users: content.map(user => new UserModel(user)),
       last,
     };
+  };
+
+  acceptAdmission = async (userId: string) => {
+    return await API.put(`${this.URI}/admissions/${userId}/accept`);
+  };
+
+  rejectAdmission = async (userId: string) => {
+    return await API.put(`${this.URI}/admissions/${userId}/reject`);
+  };
+
+  // ---
+  update = async (body: User.UpdateDto): Promise<void> => {
+    return await API.put(this.URI, body);
+  };
+
+  leave = async (): Promise<void> => {
+    return await API.delete(this.URI);
   };
 }
 
