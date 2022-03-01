@@ -18,6 +18,7 @@ import type { LockerLocationsPageUiStore } from './pages/locker/locations/Locker
 import type { SettingPasswordPageUiStore } from './pages/setting/password/SettingPasswordPageUiStore';
 import type { SettingProfilePageUiStore } from './pages/setting/profile/SettingProfilePageUiStore';
 import type { SettingRoleDelegationPageUiStore } from './pages/setting/roleDelegationPage/SettingRoleDelegationPageUiStore';
+import type { SettingRoleManagementPageUiStore } from './pages/setting/roleManagement/SettingRoleManagementPageUiStore';
 import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { CircleStore } from './stores/CircleStore';
@@ -46,6 +47,7 @@ declare global {
   namespace PageUiStore {
     type LockerList = LockerListPageUiStore;
     type LockerLocations = LockerLocationsPageUiStore;
+    type SettingRoleManagement = SettingRoleManagementPageUiStore;
     type SettingUsers = SettingUsersPageUiStore;
     type SettingRoleDelegation = SettingRoleDelegationPageUiStore;
     //

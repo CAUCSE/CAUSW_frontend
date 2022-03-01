@@ -2,6 +2,7 @@ import { Modal } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 
+import { WithSearchUserModalUi } from './SearchUserModalUi';
 import { Button, ModalBox, Text } from './styled';
 
 import { usePageUiStore } from '@/hooks';
@@ -10,7 +11,7 @@ export const SearchUserModal: React.FC = observer(() => {
   const {
     setTarget,
     searchUserModal: { visible, close, users },
-  } = usePageUiStore<PageUiStore.SettingRoleDelegation>();
+  } = usePageUiStore<WithSearchUserModalUi>();
 
   const handleClick = useCallback(
     (user?: Model.User) => () => {

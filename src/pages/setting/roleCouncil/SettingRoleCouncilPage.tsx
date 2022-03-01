@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { PageUiStoreImpl } from './SettingRoleDelegationPageUiStore';
+import { PageUiStoreImpl } from './SettingRoleCouncilPageUiStore';
 import { Role, SubTitle } from './styeld';
 import { SubmitButton } from './SubmitButton';
 
@@ -18,14 +18,14 @@ import {
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores';
+import { UserRoleCodes } from '@/stores/models/UserModel';
 
 interface FormBody {
   name: string;
 }
 
-const SettingRoleDelegationPage: React.FC = observer(() => {
+const SettingRoleCouncilPage: React.FC = observer(() => {
   const {
-    auth: { fetch, me },
     ui: { alert },
   } = useRootStore();
   const { reset, searchUserModal } = usePageUiStore<PageUiStore.SettingRoleDelegation>();
@@ -44,17 +44,21 @@ const SettingRoleDelegationPage: React.FC = observer(() => {
   };
 
   useEffect(() => {
-    fetch();
     return () => reset();
   }, []);
 
   return (
     <>
-      <Header mini title="권한 위임" withBack={PAGE_URL.Setting} RightComponent={null} />
+      <Header
+        mini
+        title="학생회 추가"
+        withBack={PAGE_URL.SettingRoleManagement}
+        RightComponent={null}
+      />
       <PageBody>
         <BodyScreen>
           <SubTitle>위임할 권한</SubTitle>
-          <Role>{me?.roleTxt}</Role>
+          <Role>{UserRoleCodes['COUNCIL']}</Role>
           <SubTitle>피위임인 지정</SubTitle>
           <form onSubmit={handleSubmit(onSearch)}>
             <SearchInput<FormBody>
@@ -68,13 +72,13 @@ const SettingRoleDelegationPage: React.FC = observer(() => {
           <SearchedUser />
         </BodyScreen>
       </PageBody>
-      <SubmitButton />
+      <SubmitButton role="COUNCIL" />
 
       <SearchUserModal />
     </>
   );
 });
 
-export default PageStoreHOC(<SettingRoleDelegationPage />, {
+export default PageStoreHOC(<SettingRoleCouncilPage />, {
   store: PageUiStoreImpl,
 });

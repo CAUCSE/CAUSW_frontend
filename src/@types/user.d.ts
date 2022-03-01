@@ -63,6 +63,21 @@ declare namespace User {
     last: boolean;
   }
 
+  // findPrivilegedUsers
+  export interface FindPrivilegedUsersResponseDto {
+    councilUsers: UserDto[];
+    leaderGradeUsers: UserDto[];
+    leaderCircleUsers: UserDto[];
+    leaderAlumni: UserDto | null;
+  }
+
+  export interface FindPrivilegedUsersResponse {
+    councilUsers: Model.User[];
+    leaderGradeUsers: Model.User[];
+    leaderCircleUsers: Model.User[];
+    leaderAlumni: Model.User | null;
+  }
+
   // ---
 
   export interface SignInRequestDto {

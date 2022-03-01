@@ -45,7 +45,7 @@ const SettingHomePage: React.FC = observer(() => {
               <Title>관리</Title>
               {me.isAdmin || me.isPresident ? (
                 <>
-                  <Link to={PAGE_URL.SettingPermissionManagement}>권한 관리</Link>
+                  <Link to={PAGE_URL.SettingRoleManagement}>권한 관리</Link>
                   <Link to={PAGE_URL.SettingUsers}>유저 관리</Link>
                   <Link to={PAGE_URL.SettingBoards}>게시판 관리</Link>
                   <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>

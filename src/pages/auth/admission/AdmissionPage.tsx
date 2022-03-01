@@ -40,7 +40,11 @@ const AdmissionPage: React.FC = observer(() => {
           <Label>사진 첨부</Label>
           <ImageInput />
           <Label>설명 첨부</Label>
-          <Textarea placeholder="설명을 첨부해주세요" {...methods.register('description')} />
+          <Textarea
+            placeholder="설명을 첨부해주세요"
+            {...methods.register('description')}
+            maxLength={254}
+          />
         </BodyScreen>
       </PageBody>
       <SubmitButton email={state?.email} />

@@ -10,9 +10,12 @@ import { API } from 'configs/axios';
 class UserRepo {
   private URI = '/api/v1/users';
 
-  findByName = async (name: string): Promise<User.FindByNameResponse> => {
+  findByName = async (
+    name: string,
+    state: 'ACTIVE' | 'INACTIVE' | 'DROP',
+  ): Promise<User.FindByNameResponse> => {
     const { data } = (await API.get(
-      `${this.URI}/name/${name}`,
+      `${this.URI}/name/${name}?state=${state}`,
     )) as AxiosResponse<User.FindByNameResponseDto>;
 
     return data.map(user => new UserModel(user));
@@ -57,6 +60,22 @@ class UserRepo {
     return {
       comments: content.map(comment => new HistoryCommentModel(comment)),
       last,
+    };
+  };
+
+  // 권한 관리 페이지
+  findPrivilegedUsers = async (): Promise<User.FindPrivilegedUsersResponse> => {
+    const {
+      data: { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
+    } = (await API.get(
+      `${this.URI}/privileged`,
+    )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>;
+
+    return {
+      councilUsers: councilUsers.map(user => new UserModel(user)),
+      leaderGradeUsers: leaderGradeUsers.map(user => new UserModel(user)),
+      leaderCircleUsers: leaderCircleUsers.map(user => new UserModel(user)),
+      leaderAlumni: leaderAlumni ? new UserModel(leaderAlumni) : null,
     };
   };
 

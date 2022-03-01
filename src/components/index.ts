@@ -2,6 +2,8 @@ export * from './Atoms';
 export * from './Gnb';
 export * from './Header';
 export * from './LockerStatus';
+export * from './SearchedUser';
+export * from './SearchUserModal';
 export * from './Toast';
 export * from './UserInfoModal';
 export * from './Breadcrumb';

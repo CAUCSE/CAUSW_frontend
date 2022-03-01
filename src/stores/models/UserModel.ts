@@ -1,4 +1,4 @@
-const UserRoleCodes: {
+export const UserRoleCodes: {
   [key in User.UserDto['role']]: string;
 } = {
   ADMIN: '관리자',

@@ -14,9 +14,9 @@ export class SearchUserModalUi extends ModalUi<void> {
     });
   }
 
-  *fetch(name: string): Generator {
+  *fetch(name: string, state: 'ACTIVE' | 'INACTIVE' | 'DROP' = 'ACTIVE'): Generator {
     try {
-      this.users = (yield Repo.findByName(name)) as Model.User[];
+      this.users = (yield Repo.findByName(name, state)) as Model.User[];
 
       if (this.users.length) return { success: true } as StoreAPI;
       else
@@ -29,4 +29,10 @@ export class SearchUserModalUi extends ModalUi<void> {
       return error;
     }
   }
+}
+
+export interface WithSearchUserModalUi {
+  target?: Model.User;
+  setTarget: (target: Model.User) => void;
+  searchUserModal: SearchUserModalUi;
 }

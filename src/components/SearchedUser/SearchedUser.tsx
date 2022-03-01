@@ -1,11 +1,12 @@
 import { observer } from 'mobx-react-lite';
 
+import { WithSearchUserModalUi } from '../SearchUserModal/SearchUserModalUi';
 import { Desc, Guide, Title } from './styled';
 
 import { usePageUiStore } from '@/hooks';
 
 export const SearchedUser: React.FC = observer(() => {
-  const { target } = usePageUiStore<PageUiStore.SettingRoleDelegation>();
+  const { target } = usePageUiStore<WithSearchUserModalUi>();
 
   return target ? (
     <>

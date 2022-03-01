@@ -24,7 +24,10 @@ export class AdmissionPageUiStore {
       const data = new FormData();
       if (body.email) data.set('email', body.email);
       if (body.attachImage) data.set('attachImage', body.attachImage);
-      if (body.description) data.set('description', body.description);
+      if (body.description) {
+        data.set('description', body.description.replace(/(\r\n|\n|\r)/g, '\n'));
+        console.debug(body.description.replace(/(\r\n|\n|\r)/g, '\n').length);
+      }
 
       yield Repo.createAdmission(data);
 

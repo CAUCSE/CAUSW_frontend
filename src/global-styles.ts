@@ -46,6 +46,7 @@ export const GlobalStyle = css`
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-wrap: break-word;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
 

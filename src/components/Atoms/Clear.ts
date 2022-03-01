@@ -32,6 +32,14 @@ export const ClearLink = styled(Link)`
   user-select: none;
   text-decoration: none;
   color: #3f4040;
+
+  &:focus,
+  &:active {
+    -webkit-tap-highlight-color: transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    outline: none;
+  }
 `;
 
 export const ClearA = styled.a`
