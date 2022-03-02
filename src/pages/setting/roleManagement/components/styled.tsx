@@ -53,18 +53,21 @@ const UserNameButton = styled(ClearButton)`
   -webkit-line-clamp: 1;
 `;
 
-export const UserName: React.FC<{ model: Model.User }> = observer(({ model }) => {
-  const { userInfoModal } = usePageUiStore<PageUiStore.SettingRoleManagement>();
-  const handleOpenInfoModal = useCallback(() => userInfoModal.open(model), [model]);
+export const UserName: React.FC<{ model: Model.User; withCircleName?: boolean }> = observer(
+  ({ model, withCircleName = false }) => {
+    const { userInfoModal } = usePageUiStore<PageUiStore.SettingRoleManagement>();
+    const handleOpenInfoModal = useCallback(() => userInfoModal.open(model), [model]);
 
-  return (
-    <div style={{ flex: '1 0 0', overflow: 'hidden' }}>
-      <UserNameButton className="text-ellipsis" onClick={handleOpenInfoModal}>
-        {model.nameWithAdmission}
-      </UserNameButton>
-    </div>
-  );
-});
+    return (
+      <div style={{ flex: '1 0 0', overflow: 'hidden' }}>
+        <UserNameButton className="text-ellipsis" onClick={handleOpenInfoModal}>
+          {withCircleName ? `[ ${model.circleName} ] ` : ''}
+          {model.nameWithAdmission}
+        </UserNameButton>
+      </div>
+    );
+  },
+);
 
 export const RemoveButton: React.FC<{ onClick: () => void }> = ({ ...props }) => (
   <ClearButton style={{ padding: '10px' }} {...props}>

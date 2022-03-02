@@ -20,7 +20,7 @@ export const LeaderCircleUsers: React.FC = observer(() => {
       <Title>소모임장 명단</Title>
       {leaderCircleUsers.map(user => (
         <Row key={user.id}>
-          <UserName model={user} />
+          <UserName model={user} withCircleName />
           <AutorenewLink pathname={PAGE_URL.SettingRoleLeaderCircle} state={{ user }} />
           <RemoveButton onClick={handleOpendeleteRuleModal(user)} />
         </Row>
