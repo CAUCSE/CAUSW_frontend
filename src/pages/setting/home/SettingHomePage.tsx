@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
 import { Porfile } from './components';
-import { Link } from './styeld';
+import { Link, LinkButton } from './styeld';
 
 import { BodyScreen, Box, GNB, PageBody, PageStoreHOC, Title } from '@/components';
 import { PAGE_URL } from '@/configs/path';
@@ -10,7 +10,7 @@ import { useRootStore } from '@/stores/RootStore';
 
 const SettingHomePage: React.FC = observer(() => {
   const {
-    auth: { fetch, me },
+    auth: { fetch, me, signOut },
   } = useRootStore();
 
   useEffect(() => {
@@ -27,6 +27,7 @@ const SettingHomePage: React.FC = observer(() => {
             <Title>계정</Title>
             <Link to={PAGE_URL.SettingProfile}>개인정보 관리</Link>
             <Link to={PAGE_URL.SettingPassword}>비밀번호 변경</Link>
+            <LinkButton onClick={signOut}>로그아웃</LinkButton>
           </Box>
 
           <Box>

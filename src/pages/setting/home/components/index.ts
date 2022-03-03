@@ -1,1 +1,1 @@
-export { Porfile } from './Profile';
+export * from './Profile';

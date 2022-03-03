@@ -1,8 +1,9 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { ClearLink } from '@/components';
+import { ClearButton, ClearLink } from '@/components';
 
-export const Link = styled(ClearLink)`
+const LinkCss = css`
   display: block;
   margin: 12px 0;
   font-size: 12px;
@@ -11,4 +12,12 @@ export const Link = styled(ClearLink)`
   &:last-child {
     margin-bottom: 0;
   }
+`;
+
+export const Link = styled(ClearLink)`
+  ${LinkCss}
+`;
+
+export const LinkButton = styled(ClearButton)`
+  ${LinkCss}
 `;
