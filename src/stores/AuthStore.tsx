@@ -28,7 +28,6 @@ export class AuthStore {
 
   signOut(): void {
     removeAuth();
-    location.href = PAGE_URL.SignIn;
   }
 
   get isSignIn(): boolean {

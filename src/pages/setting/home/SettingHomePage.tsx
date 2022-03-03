@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Porfile } from './components';
 import { Link, LinkButton } from './styeld';
@@ -9,9 +10,16 @@ import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 
 const SettingHomePage: React.FC = observer(() => {
+  const { replace } = useHistory();
   const {
+    ui: { alert },
     auth: { fetch, me, signOut },
   } = useRootStore();
+  const handleSignOut = () => {
+    signOut();
+    replace(PAGE_URL.SignIn);
+    alert({ message: '로그아웃 되었습니다.' });
+  };
 
   useEffect(() => {
     fetch();
@@ -27,7 +35,7 @@ const SettingHomePage: React.FC = observer(() => {
             <Title>계정</Title>
             <Link to={PAGE_URL.SettingProfile}>개인정보 관리</Link>
             <Link to={PAGE_URL.SettingPassword}>비밀번호 변경</Link>
-            <LinkButton onClick={signOut}>로그아웃</LinkButton>
+            <LinkButton onClick={handleSignOut}>로그아웃</LinkButton>
           </Box>
 
           <Box>
