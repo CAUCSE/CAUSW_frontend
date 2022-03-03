@@ -35,7 +35,8 @@
     "start": "craco start",
     "build": "craco build",
     "eject": "react-scripts eject",
-    "deploy": "craco build && firebase deploy"
+    "deploy": "craco build && firebase deploy",
+    "deploy:prod": "NODE_ENV=production craco build && firebase deploy --project=causw-prod"
   },
   "eslintConfig": {
     "extends": [
