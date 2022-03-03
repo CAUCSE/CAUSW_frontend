@@ -2,7 +2,6 @@ import { makeAutoObservable } from 'mobx';
 
 import { AuthRepoImpl as Repo } from './repositories/AuthRepo';
 
-import { PAGE_URL } from '@/configs/path';
 import { removeAuth, restoreAuth } from 'configs/axios';
 
 export class AuthStore {
