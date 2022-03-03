@@ -28,7 +28,7 @@ const SettingHomePage: React.FC = observer(() => {
   return me ? (
     <>
       <PageBody>
-        <BodyScreen>
+        <BodyScreen style={{ marginBottom: '30px' }}>
           <Porfile model={me} />
 
           <Box>
