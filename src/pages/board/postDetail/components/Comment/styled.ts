@@ -67,6 +67,6 @@ export const Content = styled.p<{ tagUserName: string | null }>`
 
 export const ReplyLink = styled(ClearButton)`
   padding-left: 5px;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 11px;
+  line-height: 13px;
 `;
