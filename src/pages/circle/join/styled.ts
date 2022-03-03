@@ -11,8 +11,8 @@ export const Name = styled.h2`
 `;
 
 export const CircleImageCSS = css`
-  width: 100%;
-  margin-bottom: 15px;
+  max-width: 100%;
+  margin: 0 auto 15px;
 `;
 export const CircleImage = styled.img`
   ${CircleImageCSS}
