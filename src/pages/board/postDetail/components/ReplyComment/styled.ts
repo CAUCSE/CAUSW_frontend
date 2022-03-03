@@ -10,8 +10,8 @@ export const CommentsBox = styled(ClearUl)`
 
 export const BackLink = styled(ClearButton)`
   padding: 5px 4px;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 11px;
+  line-height: 13px;
 `;
 
 export const Li = styled.li`
