@@ -3,17 +3,17 @@ import { useFormContext } from 'react-hook-form';
 
 import { FileInput, InputIcon } from './styled';
 
-export const ImageInput: React.FC = () => {
+export const ImageInput: React.FC<{ name: string }> = ({ name }) => {
   const { register, watch } = useFormContext();
-  const { ref, ...rest } = register('attachImage');
+  const { ref, ...rest } = register(name);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [blobUrl, setBlobUrl] = useState('');
 
   const handleClick = () => inputRef.current?.click();
 
   useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === 'attachImage') {
+    const subscription = watch((value, body) => {
+      if (body.name === name) {
         setBlobUrl(blobUrl => {
           if (blobUrl) URL.revokeObjectURL(blobUrl);
 

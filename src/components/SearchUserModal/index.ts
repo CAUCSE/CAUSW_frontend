@@ -1,1 +1,3 @@
-export { SearchUserModal } from './SearchUserModal';
+export * from './SearchUserForm';
+export * from './SearchUserModal';
+export * from './SearchedUser';

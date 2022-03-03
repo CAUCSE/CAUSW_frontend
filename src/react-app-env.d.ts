@@ -7,6 +7,7 @@ import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPage
 import type { PostDetailPageUiStore } from './pages/board/postDetail/PostDetailPageUiStore';
 import type { PostEditorPageUiStore } from './pages/board/postEditor/PostEditorPageUiStore';
 import type { PostListPageUiStore } from './pages/board/postList/PostListPageUiStore';
+import type { CircleEditorPageUiStore } from './pages/circle/editor/CircleEditorPageUiStore';
 import type { CircleHomePageUiStore } from './pages/circle/home/CircleHomePageUiStore';
 import type { CircleJoinPageUiStore } from './pages/circle/join/CircleJoinPageUiStore';
 import type { CircleMainPageUiStore } from './pages/circle/main/CircleMainPageUiStore';
@@ -58,6 +59,7 @@ declare global {
     type SettingRoleLeaderGrade = SettingRoleLeaderGradePageUiStore;
     type SettingRoleLeaderCircle = SettingRoleLeaderCirclePageUiStore;
     type SettingRoleAlumni = SettingRoleAlumniPageUiStore;
+    type CircleEditor = CircleEditorPageUiStore;
     //
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;

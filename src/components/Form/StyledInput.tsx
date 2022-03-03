@@ -9,7 +9,7 @@ import {
   styled,
 } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { Control, Controller, UseControllerProps } from 'react-hook-form';
+import { Control, Controller, FieldValues, Path, UseControllerProps } from 'react-hook-form';
 
 const LineFormControl = styled(FormControl)`
   width: 100%;
@@ -38,18 +38,18 @@ const LineFormControl = styled(FormControl)`
 
 const RequiredMark: React.FC = () => <span style={{ color: '#ff7473' }}>*</span>;
 
-interface InputProps {
-  name: string;
+interface InputProps<TFieldValues> {
+  name: Path<TFieldValues>;
   type?: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
-  control: Control;
+  control: Control<TFieldValues>;
   rules?: UseControllerProps['rules'];
 }
 
-export const Input: React.FC<InputProps> = ({
+export const Input = <TFieldValues extends FieldValues = FieldValues>({
   name,
   type = 'text',
   label,
@@ -58,7 +58,7 @@ export const Input: React.FC<InputProps> = ({
   disabled,
   control,
   rules,
-}) => (
+}: InputProps<TFieldValues>): JSX.Element => (
   <Controller
     name={name}
     control={control}
@@ -81,14 +81,14 @@ export const Input: React.FC<InputProps> = ({
   />
 );
 
-export const PasswordInput: React.FC<InputProps> = ({
+export const PasswordInput = <TFieldValues extends FieldValues = FieldValues>({
   name,
   control,
   rules,
   label,
   placeholder,
   required,
-}) => {
+}: InputProps<TFieldValues>): JSX.Element => {
   const [visible, setvisible] = useState(false);
   const handleClick = useCallback(() => setvisible(flag => !flag), []);
 

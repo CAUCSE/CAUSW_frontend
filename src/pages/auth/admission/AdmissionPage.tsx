@@ -4,10 +4,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { PageUiStoreImpl } from './AdmissionPageUiStore';
-import { ImageInput, SubmitButton } from './components';
 import { Guide, Label, Textarea } from './styled';
+import { SubmitButton } from './SubmitButton';
 
-import { BodyScreen, Header, PageBody, PageStoreHOC } from '@/components';
+import { BodyScreen, Header, ImageInput, PageBody, PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect, usePageUiStore } from '@/hooks';
 
@@ -38,7 +38,7 @@ const AdmissionPage: React.FC = observer(() => {
           </Guide>
 
           <Label>사진 첨부</Label>
-          <ImageInput />
+          <ImageInput name="attachImage" />
           <Label>설명 첨부</Label>
           <Textarea
             placeholder="설명을 첨부해주세요"

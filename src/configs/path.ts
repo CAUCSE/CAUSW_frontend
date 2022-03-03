@@ -8,13 +8,15 @@ export enum PAGE_URL {
 
   // 소모임
   Circle = '/circle',
+  CircleAdd = '/circle/add',
   CircleMain = '/circle/:circleId',
+  CircleEdit = '/circle/:circleId/edit',
   CircleJoin = '/circle/:circleId/join',
 
   // 게시글
   Board = '/boards',
   PostList = '/boards/:boardId/posts',
-  PostWrite = '/boards/:boardId/posts/write',
+  PostWrite = '/boards/:boardId/posts/add',
   PostEdit = '/boards/:boardId/posts/:postId/edit',
   PostDetail = '/boards/:boardId/posts/:postId',
   PostReplyComment = '/boards/:boardId/posts/:postId/comment/:commentId',
@@ -26,6 +28,7 @@ export enum PAGE_URL {
   SettingUsers = '/setting/users',
   SettingBoards = '/setting/boards',
 
+  // 설정 > 권한 관리
   SettingRoleManagement = '/setting/role',
   SettingRoleCounil = '/setting/role/counil',
   SettingRoleLeaderGrade = '/setting/role/leader-grade',
