@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router';
 
 import { PageUiStoreImpl } from './CircleJoinPageUiStore';
@@ -15,9 +15,9 @@ const CircleJoinPage: React.FC = observer(() => {
     fetch,
     reset,
     circle,
-    joinModal: { setVisible },
+    joinModal: { open },
   } = usePageUiStore<PageUiStore.CircleJoin>();
-  const handleButtonClick = () => setVisible(true);
+  const handleOpenJoinModal = useCallback(() => open(circle), [circle]);
 
   useEffect(() => {
     fetch(circleId);
@@ -47,7 +47,7 @@ const CircleJoinPage: React.FC = observer(() => {
         </BodyScreen>
       </PageBody>
       <PageFooter>
-        <NavButton onClick={handleButtonClick}>가입하기</NavButton>
+        <NavButton onClick={handleOpenJoinModal}>가입하기</NavButton>
       </PageFooter>
       <CircleJoinModal />
     </>

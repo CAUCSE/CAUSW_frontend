@@ -1,29 +1,39 @@
 import Modal from '@mui/material/Modal';
 import { observer } from 'mobx-react-lite';
+import { useCallback, useEffect } from 'react';
 
-import { Box } from './styled';
-
-import { ModalAlertMessage, ModalAlertTitle, ModalFooter, ModalFooterButton } from '@/components';
+import {
+  ModalAlertMessage,
+  ModalAlertTitle,
+  ModalBox,
+  ModalFooter,
+  ModalFooterButton,
+} from '@/components';
 import { usePageUiStore } from '@/hooks/usePageUiStore';
+import { useRootStore } from '@/stores';
 
 export const CircleJoinModal: React.FC = observer(() => {
   const {
+    ui: { alert },
+  } = useRootStore();
+  const {
     circle,
-    join,
-    joinModal: { visible, setVisible, setStatus, isAwait, isBlock, isDone, isMember },
+    joinModal: { target, join, reset, visible, close, isAwait, isBlock, isDone, isMember },
   } = usePageUiStore<PageUiStore.CircleJoin>();
 
-  const handleOk = async () => {
-    if (circle) {
-      const status = (await join(circle)) as unknown as Circle.JoinStatus;
-      setStatus(status);
-    }
-  };
-  const handleCancel = () => setVisible(false);
+  const handleOk = useCallback(async () => {
+    if (!target) return;
+    const { message } = (await join(target)) as unknown as StoreAPI;
+    if (message) alert({ message });
+  }, [target]);
+
+  useEffect(() => {
+    return () => reset();
+  }, []);
 
   return circle ? (
     <Modal open={visible} closeAfterTransition>
-      <Box>
+      <ModalBox>
         <ModalAlertTitle>
           {isDone
             ? '가입 신청이 완료되었습니다.'
@@ -33,7 +43,7 @@ export const CircleJoinModal: React.FC = observer(() => {
             ? '가입이 제한되었습니다.'
             : '소모임 신청'}
         </ModalAlertTitle>
-        <ModalAlertMessage>
+        <ModalAlertMessage center>
           {isDone || isAwait
             ? '소모임 동아리장이 가입을 허가해 줄 때 까지 기다려주세요.'
             : isMember
@@ -44,15 +54,15 @@ export const CircleJoinModal: React.FC = observer(() => {
         </ModalAlertMessage>
         <ModalFooter>
           {isDone || isAwait || isBlock || isMember ? (
-            <ModalFooterButton onClick={handleCancel}>확인</ModalFooterButton>
+            <ModalFooterButton onClick={close}>확인</ModalFooterButton>
           ) : (
             <>
-              <ModalFooterButton onClick={handleCancel}>취소</ModalFooterButton>
+              <ModalFooterButton onClick={close}>취소</ModalFooterButton>
               <ModalFooterButton onClick={handleOk}>확인</ModalFooterButton>
             </>
           )}
         </ModalFooter>
-      </Box>
+      </ModalBox>
     </Modal>
   ) : null;
 });

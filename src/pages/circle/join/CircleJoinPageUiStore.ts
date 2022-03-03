@@ -27,10 +27,6 @@ export class CircleJoinPageUiStore {
   *fetch(circleId: string): Generator {
     this.circle = (yield Repo.fetchById(circleId)) as Model.Circle;
   }
-
-  *join(circle: Model.Circle): Generator {
-    return yield Repo.join(circle.id);
-  }
 }
 
 export const PageUiStoreImpl = new CircleJoinPageUiStore();
