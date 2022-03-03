@@ -10,6 +10,7 @@ import { ReplyLink } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 interface Props {
   model: Model.Comment;
@@ -19,14 +20,23 @@ export const CommentCardContainer: React.FC<Props> = observer(
   ({ model, withReplyLink = false }) => {
     const params = useParams<PostParams>();
     const { replace } = useHistory();
-    const ref = useRef<HTMLLIElement>(null);
+    const {
+      ui: { alert },
+    } = useRootStore();
     const {
       commentInput: { target, state },
       commentMenuModal: { open },
     } = usePageUiStore<PageUiStore.PostDetail>();
+    const ref = useRef<HTMLLIElement>(null);
     const commentState = computed(() => (target?.id === model.id ? state : InputState.WRITE)).get();
 
-    const handeLongPress = useCallback(model => () => open(model), [open]);
+    const handeLongPress = useCallback(
+      (model: Model.Comment | Model.ReplyComment) => () => {
+        if (model.editable) open(model);
+        else alert({ message: '삭제된 댓글입니다.' });
+      },
+      [open],
+    );
     const bind = useLongPress(handeLongPress(model), {
       cancelOnMovement: true,
       captureEvent: true,

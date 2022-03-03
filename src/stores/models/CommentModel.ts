@@ -44,6 +44,7 @@ export class CommentModel {
 
       formatedDate: computed,
       linedContent: computed,
+      editable: computed,
     });
   }
 
@@ -80,5 +81,12 @@ export class CommentModel {
    */
   get linedContent(): string {
     return this.content.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+  }
+
+  /**
+   * 답글, 수정, 삭제가 가능한지 여부를 반환
+   */
+  get editable(): boolean {
+    return !this.isDeleted || this.updatable || this.deletable;
   }
 }

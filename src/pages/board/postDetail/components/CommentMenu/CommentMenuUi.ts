@@ -1,19 +1,3 @@
-import { makeAutoObservable } from 'mobx';
+import { ModalUi } from '@/stores';
 
-export class CommentMenuUi {
-  visible = false;
-  target?: Model.Comment | Model.ReplyComment;
-
-  constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
-  }
-
-  open(target: Model.Comment): void {
-    this.visible = true && (target.updatable || target.deletable);
-    if (this.visible) this.target = target;
-  }
-
-  close(): void {
-    this.visible = false;
-  }
-}
+export class CommentMenuUi extends ModalUi<Model.Comment | Model.ReplyComment> {}
