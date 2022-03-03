@@ -1,4 +1,4 @@
-import { utcToZonedTime, format } from 'date-fns-tz';
+import { format } from 'date-fns';
 import { makeObservable, observable } from 'mobx';
 
 export class CircleModel {
@@ -30,16 +30,16 @@ export class CircleModel {
   }
 
   get formatedCreatedAt(): string {
-    const zonedDate = utcToZonedTime(this.createdAt, 'Asis/Seoul');
+    const date = new Date(this.createdAt);
 
-    return format(zonedDate, 'yyyy년 MM월 dd일');
+    return format(date, 'yyyy년 MM월 dd일');
   }
 
   get formatJoinedAt(): string {
     if (this.joinedAt) {
-      const zonedDate = utcToZonedTime(this.joinedAt, 'Asis/Seoul');
+      const date = new Date(this.joinedAt);
 
-      return format(zonedDate, 'yyyy년 MM월 dd일');
+      return format(date, 'yyyy년 MM월 dd일');
     } else {
       return '';
     }

@@ -1,4 +1,4 @@
-import { utcToZonedTime, format } from 'date-fns-tz';
+import { format } from 'date-fns';
 import { action, computed, makeObservable, observable } from 'mobx';
 
 import { AuthorModel } from './AuthorModel';
@@ -18,7 +18,11 @@ export class CommentModel {
   constructor(props: PostComment.CreateResponseDto) {
     this.postId = props.postId;
     this.id = props.id;
-    this.author = new AuthorModel(props.writerAdmissionYear, props.writerName, props.writerProfileImage);
+    this.author = new AuthorModel(
+      props.writerAdmissionYear,
+      props.writerName,
+      props.writerProfileImage,
+    );
     this.content = props.content;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
@@ -66,9 +70,9 @@ export class CommentModel {
    * 수정된 날짜 문자열(수정되지 않은 대답글인 경우 생성 날짜)
    */
   get formatedDate(): string {
-    const zonedDate = utcToZonedTime(this.updatedAt, 'Asis/Seoul');
+    const date = new Date(this.createdAt);
 
-    return format(zonedDate, 'yyyy.MM.dd HH:mm');
+    return format(date, 'yyyy.MM.dd HH:mm');
   }
 
   /**

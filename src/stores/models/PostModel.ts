@@ -1,5 +1,4 @@
-import { isToday } from 'date-fns';
-import { utcToZonedTime, format } from 'date-fns-tz';
+import { isToday, format } from 'date-fns';
 import { action, makeObservable, observable } from 'mobx';
 
 import { AuthorModel } from './AuthorModel';
@@ -42,8 +41,8 @@ export class PostModel {
   }
 
   get formatedCreatedAt(): string {
-    const zonedDate = utcToZonedTime(this.createdAt, 'Asis/Seoul');
+    const date = new Date(this.createdAt);
 
-    return format(zonedDate, isToday(zonedDate) ? 'HH:mm:ss' : 'yyyy.MM.dd HH:mm');
+    return format(date, isToday(date) ? 'HH:mm:ss' : 'yyyy.MM.dd HH:mm');
   }
 }

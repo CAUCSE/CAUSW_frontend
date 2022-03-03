@@ -1,4 +1,4 @@
-import { format, utcToZonedTime } from 'date-fns-tz';
+import { format } from 'date-fns';
 
 export class CircleBoardModel {
   board: {
@@ -24,12 +24,12 @@ export class CircleBoardModel {
     };
 
     if (props.postId && props.postCreatedAt) {
-      const zonedDate = utcToZonedTime(props.postCreatedAt, 'Asis/Seoul');
+      const date = new Date(props.postCreatedAt);
 
       this.post = {
         id: props.postId,
         title: props.postTitle ?? '',
-        formatedCreatedAt: format(zonedDate, 'yyyy.MM.dd HH:mm'),
+        formatedCreatedAt: format(date, 'yyyy.MM.dd HH:mm'),
         writerName: `${props.postWriterName} (${props.postWriterStudentId?.slice(2, 4)})`,
         numComment: props.postNumComment ?? 0,
       };

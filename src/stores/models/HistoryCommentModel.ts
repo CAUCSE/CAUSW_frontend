@@ -1,5 +1,4 @@
-import { isToday } from 'date-fns';
-import { format, utcToZonedTime } from 'date-fns-tz';
+import { isToday, format } from 'date-fns';
 import { generatePath } from 'react-router-dom';
 
 import { PAGE_URL } from '@/configs/path';
@@ -46,8 +45,8 @@ export class HistoryCommentModel {
   }
 
   get formatedCreatedAt(): string {
-    const zonedDate = utcToZonedTime(this.createdAt, 'Asis/Seoul');
+    const date = new Date(this.createdAt);
 
-    return format(zonedDate, isToday(zonedDate) ? 'HH:mm:ss' : 'yyyy.MM.dd HH:mm');
+    return format(date, isToday(date) ? 'HH:mm:ss' : 'yyyy.MM.dd HH:mm');
   }
 }
