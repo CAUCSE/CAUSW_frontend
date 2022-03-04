@@ -35,8 +35,8 @@
     "start": "craco start",
     "build": "craco build",
     "eject": "react-scripts eject",
-    "deploy": "craco build && firebase deploy",
-    "deploy:prod": "NODE_ENV=production craco build && firebase deploy --project=causw-prod"
+    "deploy": "REACT_APP_ENV=development craco build && firebase deploy --project=causw-dev",
+    "deploy:prod": "REACT_APP_ENV=production craco build && firebase deploy --project=causw-prod"
   },
   "eslintConfig": {
     "extends": [
@@ -67,5 +67,5 @@
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.1"
   },
-  "proxy": "https://dev-api.causw.net"
+  "proxy": "https://causw-dev.du.r.appspot.com"
 }
