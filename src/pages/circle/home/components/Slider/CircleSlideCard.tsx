@@ -89,9 +89,8 @@ const Cover = styled.div<{ mainImage: string | null }>`
 `;
 
 const Name = styled.h3`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0 35px 0 13px;
+  -webkit-line-clamp: 1;
+  margin: 0 35px 0 13px;
   line-height: 36px;
   font-size: 12px;
   font-weight: bold;
