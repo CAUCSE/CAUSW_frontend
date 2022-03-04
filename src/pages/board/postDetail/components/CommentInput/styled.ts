@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { css, TextareaAutosize } from '@mui/material';
 
-import { ClearButton, ClearTextarea } from '@/components';
+import { ClearButton } from '@/components';
 
 export const Nav = styled.nav`
   background: #fbfbfb;
@@ -29,9 +30,18 @@ export const Chip = styled(ClearButton)<{ isReply?: boolean; isEdit?: boolean }>
   }
 `;
 
-export const Form = styled.form`
+export const Form = styled.form<{ isFocus: boolean }>`
   display: flex;
   width: 100%;
+  background: #fff;
+
+  ${({ isFocus }) =>
+    isFocus
+      ? css``
+      : css`
+          padding: 0 0 calc(constant(safe-area-inset-bottom));
+          padding: 0 0 calc(env(safe-area-inset-bottom));
+        `}
 `;
 
 export const InputBox = styled.div`
@@ -42,11 +52,16 @@ export const InputBox = styled.div`
   background: #f3f3f3;
 `;
 
-export const Textarea = styled(ClearTextarea)`
+export const Textarea = styled(TextareaAutosize)`
+  padding: 0;
   width: 100%;
-  min-height: 15px;
+  border: 0;
+  outline: none;
+  background: inherit;
+  resize: none;
   font-size: 13px;
   line-height: 15px;
+
   &::placeholder {
     color: '#BDBDBD';
   }

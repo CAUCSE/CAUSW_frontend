@@ -1,6 +1,6 @@
 import SendIcon from '@mui/icons-material/Send';
 import { observer } from 'mobx-react-lite';
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { Form, InputBox, SendButton, Textarea } from './styled';
@@ -14,11 +14,8 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { commentInput } = usePageUiStore<PageUiStore.PostDetail>();
   const { register, setFocus, setValue } = useFormContext();
-  const { ref, ...rest } = register('content', { required: true });
-  const handleResizeHeight = useCallback(({ target }: React.ChangeEvent<HTMLTextAreaElement>) => {
-    target.style.height = 'inherit';
-    target.style.height = `${Math.min(target.scrollHeight, 45)}px`;
-  }, []);
+  const { ref, ...rest } = register('content', { required: true, onBlur: () => setisFocus(false) });
+  const [isFocus, setisFocus] = useState(false);
 
   useEffect(() => {
     const { isEdit, isReply, target } = commentInput;
@@ -26,22 +23,20 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
 
     if (isEdit || isReply) setFocus('content');
     setValue('content', content);
-
-    if (textareaRef.current)
-      handleResizeHeight({ target: textareaRef.current } as React.ChangeEvent<HTMLTextAreaElement>);
   }, [commentInput.state, commentInput.target]);
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} isFocus={isFocus}>
       <InputBox>
         <Textarea
           ref={e => {
             ref(e);
             textareaRef.current = e;
           }}
-          rows={1}
+          minRows={1}
+          maxRows={3}
           placeholder="댓글 내용 입력"
-          onInput={handleResizeHeight}
+          onFocus={() => setisFocus(true)}
           {...rest}
         />
       </InputBox>
