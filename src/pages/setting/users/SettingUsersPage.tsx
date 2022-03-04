@@ -20,6 +20,7 @@ import { PAGE_URL } from '@/configs/path';
 const a11yProps = (index: number) => ({
   id: `user-tab-${index}`,
   'aria-controls': `user-tabpanel-${index}`,
+  style: { padding: '12px' },
 });
 
 const SettingUsersPage: React.FC = observer(() => {
