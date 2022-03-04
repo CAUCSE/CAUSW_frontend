@@ -24,7 +24,7 @@ export const CircleSlider: ListComponent = observer(({ items }) => {
   return (
     <StyledCarousel {...config}>
       {items.map(item => (
-        <CircleSlideCard key={item.id} {...item} />
+        <CircleSlideCard key={item.id} model={item} />
       ))}
     </StyledCarousel>
   );

@@ -7,10 +7,8 @@ import { Icons } from '@/assets';
 import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 
-type Props = Pick<Model.Circle, 'id' | 'mainImage' | 'name' | 'description'>;
-
-export const CircleSlideCard: React.FC<Props> = memo(
-  ({ id: circleId, mainImage, name, description }) => {
+export const CircleSlideCard: React.FC<{ model: Model.Circle }> = memo(
+  ({ model: { id: circleId, mainImage, name, newLineDescription } }) => {
     const { push } = useHistory();
     const [isFlipped, setFlip] = useState(false);
     const handleClick = () => {
@@ -29,7 +27,7 @@ export const CircleSlideCard: React.FC<Props> = memo(
             <Cover mainImage={mainImage} />
             <Content>
               <ContentName>{name}</ContentName>
-              {description}
+              <p dangerouslySetInnerHTML={{ __html: newLineDescription }} />
             </Content>
           </Body>
           <Footer>
@@ -113,6 +111,7 @@ const Content = styled.div`
   background-color: #f8f8f8;
   border-radius: 5px;
   transform: rotateY(180deg);
+  overflow: hidden;
 `;
 
 const ContentName = styled.div`

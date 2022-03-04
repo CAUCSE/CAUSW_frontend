@@ -39,7 +39,7 @@ const CircleJoinPage: React.FC = observer(() => {
               <Row>소모임장 : {circle.leaderName}</Row>
               <Row>생성일 : {circle.formatedCreatedAt}</Row>
               <Hr />
-              <Desc dangerouslySetInnerHTML={{ __html: circle.description }} />
+              <Desc dangerouslySetInnerHTML={{ __html: circle.newLineDescription }} />
             </>
           ) : (
             <PageSkeleton />

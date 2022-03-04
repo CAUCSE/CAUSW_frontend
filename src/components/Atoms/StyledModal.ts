@@ -37,8 +37,7 @@ export const ModalMenuButton = styled(ClearButton)`
 `;
 
 export const ModalAlertTitle = styled.div`
-  margin: 26px 0 14px;
-
+  margin: 26px 5px 14px;
   font-size: 16px;
   line-height: 19px;
   text-align: center;
@@ -47,6 +46,8 @@ export const ModalAlertTitle = styled.div`
 export const ModalAlertMessage = styled.div<{ center?: boolean }>`
   margin: 14px 0 20px;
   padding: 0 20px;
+  max-height: 50vh;
+  overflow: auto;
 
   font-size: 12px;
   line-height: 1.5;

@@ -30,7 +30,7 @@ export const CircleInfoModal: React.FC = observer(() => {
           <br />
           <p
             style={{ color: '#a3a1a1' }}
-            dangerouslySetInnerHTML={{ __html: circle?.description ?? '' }}
+            dangerouslySetInnerHTML={{ __html: circle?.newLineDescription ?? '' }}
           />
         </ModalAlertMessage>
         <ModalFooter>

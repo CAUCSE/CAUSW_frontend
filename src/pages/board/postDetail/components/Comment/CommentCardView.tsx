@@ -16,7 +16,7 @@ export const CommentCardView: React.FC<Props> = observer(
     model: {
       author: { nameWithAdmission, profileImage },
       formatedDate,
-      linedContent,
+      newLineContent,
       ...other
     },
   }) => (
@@ -29,7 +29,7 @@ export const CommentCardView: React.FC<Props> = observer(
         <PostCreatedAt>{formatedDate}</PostCreatedAt>
       </Profile>
       <Content
-        dangerouslySetInnerHTML={{ __html: linedContent }}
+        dangerouslySetInnerHTML={{ __html: newLineContent }}
         tagUserName={(other as Model.ReplyComment).tagUserName}
       />
     </CommentCard>

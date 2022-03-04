@@ -44,4 +44,11 @@ export class CircleModel {
       return '';
     }
   }
+
+  /**
+   * <br>로 개행된 내용
+   */
+  get newLineDescription(): string {
+    return this.description.replace(/(?:\r\n|\n\r|\r|\n)/g, '<br/>');
+  }
 }

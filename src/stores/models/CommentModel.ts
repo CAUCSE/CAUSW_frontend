@@ -43,7 +43,7 @@ export class CommentModel {
       refresh: action.bound,
 
       formatedDate: computed,
-      linedContent: computed,
+      newLineContent: computed,
       editable: computed,
     });
   }
@@ -79,7 +79,7 @@ export class CommentModel {
   /**
    * <br>로 개행된 내용
    */
-  get linedContent(): string {
+  get newLineContent(): string {
     return this.content.replace(/(?:\r\n|\r|\n)/g, '<br/>');
   }
 
