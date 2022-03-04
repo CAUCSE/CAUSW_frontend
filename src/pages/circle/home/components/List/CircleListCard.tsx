@@ -16,33 +16,36 @@ export const CircleListCard: React.FC<{ model: Model.Circle }> = observer(
       formatedCreatedAt,
       formatJoinedAt,
     },
-  }) => {
-    return (
-      <Card to={generatePath(PAGE_URL.CircleMain, { circleId })}>
-        <Image src={mainImage} />
-        <Info>
-          <Name>{name}</Name>
-          <Desc>
-            소모임장 : {leaderName}
-            <br />
-            회원 수 : {numMember}명
-            <br />
-            생성일 : {formatedCreatedAt}
-            <br />
-            가입일 : {formatJoinedAt}
-          </Desc>
-        </Info>
-      </Card>
-    );
-  },
+  }) => (
+    <Card to={generatePath(PAGE_URL.CircleMain, { circleId })}>
+      <Image src={mainImage} />
+      <Info>
+        <Name className="text-ellipsis-line">{name}</Name>
+        <Desc>
+          소모임장 : {leaderName}
+          <br />
+          회원 수 : {numMember}명
+          <br />
+          생성일 : {formatedCreatedAt}
+          <br />
+          가입일 : {formatJoinedAt}
+        </Desc>
+      </Info>
+    </Card>
+  ),
 );
 
 const Card = styled(ClearLink)`
   display: flex;
+  align-items: center;
   padding: 8px 10px;
   border: 1px solid #e4e4e4;
   border-radius: 5px;
   box-shadow: 1px 2px 5px rgb(0 0 0 / 15%);
+
+  & + & {
+    margin-top: 10px;
+  }
 `;
 
 const Image = styled.div<{ src: string | null }>`
@@ -54,6 +57,7 @@ const Image = styled.div<{ src: string | null }>`
 `;
 
 const Info = styled.div`
+  min-width: 0;
   flex: 1 0 0;
   padding: 0 7px 0 17px;
 `;
@@ -66,5 +70,5 @@ const Name = styled.h3`
 
 const Desc = styled.div`
   font-size: 9px;
-  line-height: 11px;
+  line-height: 1.5;
 `;

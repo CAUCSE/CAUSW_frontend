@@ -50,6 +50,12 @@ export const GlobalStyle = css`
     text-overflow: ellipsis;
   }
 
+  .text-ellipsis-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .absolute-center {
     position: absolute;
     top: 50%;

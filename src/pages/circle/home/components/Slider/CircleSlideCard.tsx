@@ -33,7 +33,7 @@ export const CircleSlideCard: React.FC<Props> = memo(
             </Content>
           </Body>
           <Footer>
-            <Name className="text-ellipsis">{name}</Name>
+            <Name className="text-ellipsis-line">{name}</Name>
             <ClearButton onClick={handleFlip}>
               <Icon active={isFlipped} />
             </ClearButton>
@@ -89,7 +89,6 @@ const Cover = styled.div<{ mainImage: string | null }>`
 `;
 
 const Name = styled.h3`
-  -webkit-line-clamp: 1;
   margin: 0 35px 0 13px;
   line-height: 36px;
   font-size: 12px;
