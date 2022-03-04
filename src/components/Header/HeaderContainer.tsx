@@ -68,6 +68,9 @@ const Title = styled.h1<Pick<Props, 'mini'>>`
           font-size: 20px;
           line-height: 23px;
           text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         `
       : css`
           display: -webkit-box;
