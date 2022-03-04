@@ -20,19 +20,19 @@ export const UserInfoModal: React.FC = observer(() => {
         </CloseButton>
         <ProfileImage src={target?.profileImageSrc} alt="profile image" />
         <Info>
-          {target?.email ? (
+          {target?.email && (
             <>
               <strong>{target?.email}</strong>
               <br />
             </>
-          ) : null}
-          {target?.nameWithAdmission ? (
+          )}
+          {target?.nameWithAdmission && (
             <>
               {target?.nameWithAdmission}
               <br />
             </>
-          ) : null}
-          {target?.roleTxt}
+          )}
+          {target?.circleName} {target?.roleTxt}
         </Info>
       </ModalBox>
     </Modal>
