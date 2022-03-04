@@ -11,12 +11,16 @@ import { Nav } from './styled';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 type FormBody = { content: string };
 
 export const CommentInputContainer: React.FC = observer(() => {
   const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
   const { postId } = useParams<PostParams>();
+  const {
+    ui: { alert },
+  } = useRootStore();
   const { virtuosoRef, commentInput, replyComments, comments } =
     usePageUiStore<PageUiStore.PostDetail>();
 
@@ -28,6 +32,11 @@ export const CommentInputContainer: React.FC = observer(() => {
         let rtn: Model.Comment | Model.ReplyComment | undefined;
         let index;
         let align: 'start' | 'center' | 'end' | undefined;
+
+        if (content.length === 0) {
+          alert({ message: '댓글 내용을 입력해주세요.' });
+          return;
+        }
 
         if (isReplyComment) {
           if (!isEdit)
