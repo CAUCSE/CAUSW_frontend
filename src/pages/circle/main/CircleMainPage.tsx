@@ -22,7 +22,7 @@ const CircleMainPage: React.FC = observer(() => {
     <>
       <Header mini title={circle?.name} withBack RightComponent={<CircleMainMenu />} />
       <PageBody>
-        <BodyScreen>
+        <BodyScreen style={{ paddingBottom: '20px' }}>
           {circle?.mainImage ? <CircleImage src={circle.mainImage} /> : null}
           <CircleBoards />
         </BodyScreen>
