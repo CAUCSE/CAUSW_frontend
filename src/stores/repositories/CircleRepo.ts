@@ -8,6 +8,16 @@ import { API } from 'configs/axios';
 class CircleRepo {
   URI = '/api/v1/circles';
 
+  create = async (body: Circle.CreateRequestDto): Promise<unknown> => {
+    return (await API.post(this.URI, body)) as AxiosResponse<unknown>;
+  };
+
+  update = async (circleId: string, body: Circle.UpdateRequestDto): Promise<unknown> => {
+    return (await API.put(`${this.URI}/${circleId}`, body)) as AxiosResponse<unknown>;
+  };
+
+  //
+
   fetch = async (): Promise<CircleModel[]> => {
     const { data } = (await API.get(this.URI)) as AxiosResponse<Circle.FindByIdDto[]>;
 

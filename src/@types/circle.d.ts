@@ -1,4 +1,14 @@
 declare namespace Circle {
+  export interface CreateRequestDto {
+    mainImage: string;
+    name: string;
+    description: string;
+    leaderId: string;
+  }
+
+  export type UpdateRequestDto = Omit<CreateRequestDto, 'leaderId'>;
+
+  //
   export interface FindByIdDto {
     id: string;
     mainImage: string | null;

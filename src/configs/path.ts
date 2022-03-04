@@ -61,3 +61,7 @@ export interface PostParams {
   postId: string;
   commentId: string;
 }
+
+export interface CircleParams {
+  circleId: string;
+}
