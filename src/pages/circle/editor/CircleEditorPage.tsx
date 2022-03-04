@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useRouteMatch } from 'react-router-dom';
+import { useParams, useRouteMatch } from 'react-router-dom';
 
 import { PageUiStoreImpl } from './CircleEditorPageUiStore';
 import { Label, Textarea } from './styled';
@@ -16,14 +16,16 @@ import {
   PageStoreHOC,
   SearchUserForm,
 } from '@/components';
-import { PAGE_URL } from '@/configs/path';
+import { CircleParams, PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 const CircleEditorPage: React.FC = observer(() => {
+  const { circleId } = useParams<CircleParams>();
   const isEdit = !!useRouteMatch(PAGE_URL.CircleEdit);
-  const { target, reset } = usePageUiStore<PageUiStore.CircleEditor>();
+  const { fetch, reset, circle, target } = usePageUiStore<PageUiStore.CircleEditor>();
   const methods = useForm({
     defaultValues: {
+      mainImage: '',
       name: '',
       description: '',
       leaderId: '',
@@ -31,17 +33,28 @@ const CircleEditorPage: React.FC = observer(() => {
   });
 
   useEffect(() => {
+    if (isEdit) fetch(circleId);
+    return () => reset();
+  }, []);
+
+  useEffect(() => {
+    if (isEdit && circle) {
+      methods.setValue('mainImage', circle.mainImage ?? '');
+      methods.setValue('name', circle.name);
+      methods.setValue('description', circle.description);
+    }
+  }, [circle]);
+
+  useEffect(() => {
     if (target) methods.setValue('leaderId', target.id);
   }, [target]);
-
-  useEffect(() => () => reset(), []);
 
   return (
     <FormProvider {...methods}>
       <Header
         mini
         title="소모임 생성"
-        withBack={PAGE_URL.SettingRoleManagement}
+        withBack={isEdit ? PAGE_URL.Setting : PAGE_URL.SettingRoleManagement}
         RightComponent={null}
       />
       <PageBody>
@@ -55,9 +68,9 @@ const CircleEditorPage: React.FC = observer(() => {
           <Label>설명</Label>
           <Textarea
             placeholder="소모임에 대한 설명을 첨부해주세요."
+            minRows={3}
+            maxRows={10}
             {...methods.register('description')}
-            maxLength={254}
-            maxRows={6}
           />
 
           {!isEdit && (

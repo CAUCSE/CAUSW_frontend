@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { generatePath, useHistory } from 'react-router-dom';
 
 import { Porfile } from './components';
 import { Link, LinkButton } from './styeld';
@@ -56,14 +56,17 @@ const SettingHomePage: React.FC = observer(() => {
                 <>
                   <Link to={PAGE_URL.SettingRoleManagement}>권한 관리</Link>
                   <Link to={PAGE_URL.SettingUsers}>유저 관리</Link>
-                  <Link to={PAGE_URL.SettingBoards}>게시판 관리</Link>
+                  {/* <Link to={PAGE_URL.SettingBoards}>게시판 관리</Link> */}
                   <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
                 </>
               ) : null}
               {me.isCircleLeader ? (
                 <>
+                  <Link to={generatePath(PAGE_URL.CircleEdit, { circleId: me.circleId as string })}>
+                    소모임 관리
+                  </Link>
                   <Link to={PAGE_URL.SettingCircleUsers}>소모임 회원 관리</Link>
-                  <Link to={PAGE_URL.SettingCircleBoards}>소모임 게시판 관리</Link>
+                  {/* <Link to={PAGE_URL.SettingCircleBoards}>소모임 게시판 관리</Link> */}
                   <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
                 </>
               ) : null}

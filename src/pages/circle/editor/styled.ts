@@ -13,6 +13,7 @@ export const Textarea = styled(TextareaAutosize)`
   width: 100%;
   border: none;
   outline: none;
+  resize: none;
 
   &::placeholder {
     font-size: inherit;

@@ -15,6 +15,7 @@ import {
 export class CircleEditorPageUiStore implements WithSearchUserModalUi {
   submitDisabled = true;
   target?: Model.User;
+  circle?: Model.Circle;
 
   searchUserModal = new SearchUserModalUi();
 
@@ -25,6 +26,7 @@ export class CircleEditorPageUiStore implements WithSearchUserModalUi {
   reset(): void {
     this.submitDisabled = true;
     this.target = undefined;
+    this.circle = undefined;
   }
 
   setTarget(target: Model.User): void {
@@ -33,6 +35,10 @@ export class CircleEditorPageUiStore implements WithSearchUserModalUi {
 
   setSubmitDisabled(flag: boolean): void {
     this.submitDisabled = flag;
+  }
+
+  *fetch(circleId: string): Generator {
+    this.circle = (yield Repo.fetchById(circleId)) as Model.Circle;
   }
 
   private async uploadImage(file: File): Promise<string> {
@@ -64,7 +70,8 @@ export class CircleEditorPageUiStore implements WithSearchUserModalUi {
         description: form.description,
       } as Circle.CreateRequestDto;
 
-      if (form.mainImage && form.mainImage.length)
+      if ('string' === typeof form.mainImage) body.mainImage = form.mainImage;
+      else if (form.mainImage instanceof FileList && form.mainImage.length)
         body.mainImage = (yield this.uploadImage(form.mainImage[0])) as string;
 
       yield Repo.update(circleId, body);

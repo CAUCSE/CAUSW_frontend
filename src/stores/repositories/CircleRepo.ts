@@ -12,6 +12,14 @@ class CircleRepo {
     return (await API.post(this.URI, body)) as AxiosResponse<unknown>;
   };
 
+  fetchById = async (circleId: string): Promise<CircleModel> => {
+    const { data } = (await API.get(
+      `${this.URI}/${circleId}`,
+    )) as AxiosResponse<Circle.FindByIdDto>;
+
+    return new CircleModel(data);
+  };
+
   update = async (circleId: string, body: Circle.UpdateRequestDto): Promise<unknown> => {
     return (await API.put(`${this.URI}/${circleId}`, body)) as AxiosResponse<unknown>;
   };
@@ -22,14 +30,6 @@ class CircleRepo {
     const { data } = (await API.get(this.URI)) as AxiosResponse<Circle.FindByIdDto[]>;
 
     return data.map(dto => new CircleModel(dto));
-  };
-
-  fetchById = async (circleId: string): Promise<CircleModel> => {
-    const { data } = (await API.get(
-      `${this.URI}/${circleId}`,
-    )) as AxiosResponse<Circle.FindByIdDto>;
-
-    return new CircleModel(data);
   };
 
   join = async (circleId: string): Promise<Circle.JoinStatus> => {

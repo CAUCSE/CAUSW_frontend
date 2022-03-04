@@ -46,9 +46,10 @@ export const SubmitButton: React.FC<{ isEdit: boolean }> = observer(({ isEdit })
   );
 
   useEffect(() => {
-    const subscription = watch(({ name, description, leaderId }) =>
-      setSubmitDisabled(!name || !description || !leaderId),
-    );
+    const subscription = watch(({ name, description, leaderId }) => {
+      if (isEdit) setSubmitDisabled(!name || !description);
+      else setSubmitDisabled(!name || !description || !leaderId);
+    });
     return () => subscription.unsubscribe();
   }, [watch]);
 

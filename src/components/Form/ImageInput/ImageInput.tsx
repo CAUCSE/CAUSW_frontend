@@ -17,7 +17,8 @@ export const ImageInput: React.FC<{ name: string }> = ({ name }) => {
         setBlobUrl(blobUrl => {
           if (blobUrl) URL.revokeObjectURL(blobUrl);
 
-          if (value[name].length) {
+          if ('string' === typeof value[name]) return value[name];
+          else if (value[name].length) {
             const file = value[name][0];
             return URL.createObjectURL(file);
           }
