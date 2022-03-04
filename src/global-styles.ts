@@ -10,20 +10,26 @@ export const GlobalStyle = css`
     color: #3f4040;
   }
 
+  html {
+    height: -webkit-fill-available;
+  }
+
   body {
-    position: absolute;
+    position: relative;
     width: 100vw;
-    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     font-family: Roboto;
     letter-spacing: -0.333px;
 
     #root {
       position: absolute;
+      top: 0;
+      right: 0;
       bottom: 0;
+      left: 0;
       display: flex;
       flex-direction: column;
-      width: 100%;
-      height: 100%;
 
       + * {
         display: flex;
