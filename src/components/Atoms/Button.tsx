@@ -1,5 +1,5 @@
 import { ButtonUnstyled, buttonUnstyledClasses, ButtonUnstyledProps } from '@mui/base';
-import { styled } from '@mui/material';
+import { CircularProgress, styled } from '@mui/material';
 
 const CustomButtonRoot = styled('button')`
   width: 100%;
@@ -39,7 +39,7 @@ interface Props extends ButtonUnstyledProps {
 }
 export const Button: React.FC<Props> = ({ children, ...props }) => (
   <ButtonUnstyled component={CustomButtonRoot} {...props}>
-    {children}
+    {props.disabled ? <CircularProgress size="1.2rem" color="inherit" /> : children}
   </ButtonUnstyled>
 );
 

@@ -27,7 +27,7 @@ const SignInPage: React.FC = observer(() => {
     ui: { alert },
   } = useRootStore();
   const { replace, push } = useHistory();
-  const { signIn } = usePageUiStore<PageUiStore.SignIn>();
+  const { signIn, submitDisabled } = usePageUiStore<PageUiStore.SignIn>();
   const { control, handleSubmit } = useForm();
   const onSubmit = async (body: User.SignInRequestDto) => {
     const { success, errorCode, message } = (await signIn(body)) as unknown as StoreAPI;
@@ -68,7 +68,9 @@ const SignInPage: React.FC = observer(() => {
             />
           )}
         />
-        <LoginButton type="submit">로그인</LoginButton>
+        <LoginButton type="submit" disabled={submitDisabled}>
+          로그인
+        </LoginButton>
       </Form>
 
       <SubLink>
