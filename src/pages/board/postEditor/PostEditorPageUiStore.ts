@@ -6,14 +6,16 @@ import { PostRepoImpl as Repo } from '@/stores/repositories/PostRepo';
 export class PostEditorPageUiStore {
   boardName?: string;
   post?: Model.Post;
+  submitDisabled = false;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
   reset(): void {
-    this.post = undefined;
     this.boardName = undefined;
+    this.post = undefined;
+    this.submitDisabled = false;
   }
 
   *fetch(boardId: string, postId: string): Generator {
@@ -34,17 +36,33 @@ export class PostEditorPageUiStore {
   }
 
   *create(body: Post.CreateRequestDto): Generator {
-    this.post = (yield Repo.create(body)) as Model.Post;
+    this.submitDisabled = true;
 
-    return this.post;
+    try {
+      this.post = (yield Repo.create(body)) as Model.Post;
+
+      return this.post;
+    } catch (error) {
+      return error;
+    } finally {
+      this.submitDisabled = false;
+    }
   }
 
   *edit(pid: string, data: Post.UpdateRequestDto): Generator {
-    if (this.post) {
-      yield Repo.update(pid, data);
+    this.submitDisabled = true;
 
-      this.post.title = data.title;
-      this.post.content = data.content;
+    try {
+      if (this.post) {
+        yield Repo.update(pid, data);
+
+        this.post.title = data.title;
+        this.post.content = data.content;
+      }
+    } catch (error) {
+      return error;
+    } finally {
+      this.submitDisabled = false;
     }
   }
 }

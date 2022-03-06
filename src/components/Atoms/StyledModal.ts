@@ -1,7 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { ClearButton, ClearLink } from './Clear';
+import { ClearButton } from './Button';
+import { ClearLink } from './Clear';
 
 export const ModalBox = styled.article`
   position: absolute;

@@ -46,3 +46,28 @@ export const Button: React.FC<Props> = ({ children, ...props }) => (
 export const NavButton = styled(Button)`
   margin: 13px 0;
 `;
+
+const ClearButtonNative = styled('button')`
+  user-select: none;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  color: #3f4040;
+  cursor: pointer;
+  outline: none;
+
+  &:focus,
+  &:active {
+    -webkit-tap-highlight-color: transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    outline: none;
+  }
+`;
+
+export const ClearButton: React.FC<Props> = ({ children, ...props }) => (
+  <ClearButtonNative {...props}>
+    {props.disabled ? <CircularProgress size="1.2rem" color="inherit" /> : children}
+  </ClearButtonNative>
+);

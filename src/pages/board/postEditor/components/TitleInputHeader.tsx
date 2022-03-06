@@ -14,7 +14,8 @@ export const TitleInputHeader: React.FC = observer(() => {
   const { boardId, postId } = useParams<PostParams>();
   const { state } = useLocation<{ prevDetail: boolean }>();
   const { replace, goBack } = useHistory();
-  const { post, boardName, edit, create } = usePageUiStore<PageUiStore.PostEditor>();
+  const { post, boardName, submitDisabled, edit, create } =
+    usePageUiStore<PageUiStore.PostEditor>();
   const { register, setValue, handleSubmit } = useFormContext();
 
   const onSubmit = useCallback(
@@ -43,7 +44,9 @@ export const TitleInputHeader: React.FC = observer(() => {
       <BackButton />
       <Breadcrumb boardId={boardId} boardName={boardName} />
       <TitleInput {...register('title')} placeholder="제목을 입력하세요" />
-      <SubmitButton onClick={handleSubmit(onSubmit)}>완료</SubmitButton>
+      <SubmitButton onClick={handleSubmit(onSubmit)} disabled={submitDisabled}>
+        완료
+      </SubmitButton>
     </Header>
   );
 });
