@@ -7,7 +7,7 @@ import { Control, Controller } from 'react-hook-form';
 import { Input } from '../styled';
 
 interface Props {
-  control: Control;
+  control: Control<User.SignInRequestDto>;
 }
 export const PasswordInput: React.FC<Props> = ({ control }) => {
   const [visible, setvisible] = useState(false);

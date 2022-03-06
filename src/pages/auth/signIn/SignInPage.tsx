@@ -28,7 +28,13 @@ const SignInPage: React.FC = observer(() => {
   } = useRootStore();
   const { replace, push } = useHistory();
   const { signIn, submitDisabled } = usePageUiStore<PageUiStore.SignIn>();
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm<User.SignInRequestDto>({
+    defaultValues: {
+      email: '',
+      password: '',
+      auto: false,
+    },
+  });
   const onSubmit = async (body: User.SignInRequestDto) => {
     const { success, errorCode, message } = (await signIn(body)) as unknown as StoreAPI;
 
