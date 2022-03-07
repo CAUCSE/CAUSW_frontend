@@ -42,7 +42,7 @@ API.interceptors.response.use(
       // 4103: 비활성화된 사용자 입니다.
       // 4015: 다시 로그인 해주세요.
 
-      if (data.errorCode === '4012' || data.errorCode === 4103 || data.errorCode === 4105) {
+      if (data.errorCode === 4012 || data.errorCode === 4103 || data.errorCode === 4105) {
         removeAuth();
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       }

@@ -12,6 +12,7 @@ export enum PAGE_URL {
   CircleMain = '/circle/:circleId',
   CircleEdit = '/circle/:circleId/edit',
   CircleJoin = '/circle/:circleId/join',
+  CircleUsers = '/circle/:circleId/users',
 
   // 게시글
   Board = '/boards',
@@ -26,7 +27,7 @@ export enum PAGE_URL {
   SettingProfile = '/setting/profile',
   SettingPassword = '/setting/password',
   SettingUsers = '/setting/users',
-  SettingBoards = '/setting/boards',
+  // SettingBoards = '/setting/boards',
 
   // 설정 > 권한 관리
   SettingRoleManagement = '/setting/role',
@@ -34,10 +35,8 @@ export enum PAGE_URL {
   SettingRoleLeaderGrade = '/setting/role/leader-grade',
   SettingRoleLeaderCircle = '/setting/role/leader-circle',
   SettingRoleAlumni = '/setting/role/alumni',
-
   SettingRoleDelegation = '/setting/role/delegation',
-  SettingCircleUsers = '/setting/circle/users',
-  SettingCircleBoards = '/setting/circle/boards',
+  // SettingCircleBoards = '/setting/circle/boards',
 
   // 내가 쓴 글, 댓글
   History = '/history',

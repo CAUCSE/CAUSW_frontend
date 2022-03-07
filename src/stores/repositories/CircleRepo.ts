@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
 
+import { CircleUserModel } from '../models';
 import { CircleBoardModel } from '../models/CircleBoardModel';
 import { CircleModel } from '../models/CircleModel';
 
@@ -22,6 +23,36 @@ class CircleRepo {
 
   update = async (circleId: string, body: Circle.UpdateRequestDto): Promise<unknown> => {
     return (await API.put(`${this.URI}/${circleId}`, body)) as AxiosResponse<unknown>;
+  };
+
+  // 소모임 회원 관리
+  getUserList = async (
+    circleId: string,
+    status: Circle.Status,
+  ): Promise<Circle.GetUserListResponse> => {
+    const { data } = (await API.get(
+      `${this.URI}/${circleId}/users?status=${status}`,
+    )) as AxiosResponse<Circle.GetUserListResponseDto>;
+
+    return data.map(user => new CircleUserModel(user));
+  };
+
+  acceptUser = async (applicationId: string): Promise<unknown> => {
+    return (await API.put(
+      `${this.URI}/applications/${applicationId}/accept`,
+    )) as AxiosResponse<unknown>;
+  };
+
+  rejectUser = async (applicationId: string): Promise<unknown> => {
+    return (await API.put(
+      `${this.URI}/applications/${applicationId}/reject`,
+    )) as AxiosResponse<unknown>;
+  };
+
+  dropUser = async (circleId: string, userId: string): Promise<unknown> => {
+    return (await API.put(
+      `${this.URI}/${circleId}/users/${userId}/drop`,
+    )) as AxiosResponse<unknown>;
   };
 
   //

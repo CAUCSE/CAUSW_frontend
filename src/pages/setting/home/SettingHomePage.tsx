@@ -65,7 +65,11 @@ const SettingHomePage: React.FC = observer(() => {
                   <Link to={generatePath(PAGE_URL.CircleEdit, { circleId: me.circleId as string })}>
                     소모임 관리
                   </Link>
-                  <Link to={PAGE_URL.SettingCircleUsers}>소모임 회원 관리</Link>
+                  <Link
+                    to={generatePath(PAGE_URL.CircleUsers, { circleId: me.circleId as string })}
+                  >
+                    소모임 회원 관리
+                  </Link>
                   {/* <Link to={PAGE_URL.SettingCircleBoards}>소모임 게시판 관리</Link> */}
                   <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
                 </>

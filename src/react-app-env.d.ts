@@ -11,6 +11,7 @@ import type { CircleEditorPageUiStore } from './pages/circle/editor/CircleEditor
 import type { CircleHomePageUiStore } from './pages/circle/home/CircleHomePageUiStore';
 import type { CircleJoinPageUiStore } from './pages/circle/join/CircleJoinPageUiStore';
 import type { CircleMainPageUiStore } from './pages/circle/main/CircleMainPageUiStore';
+import type { CircleUsersPageUiStore } from './pages/circle/users/CircleUsersPageUiStore';
 import type { HistoryCommentPageUiStore } from './pages/history/comment/HistoryCommentPageUiStore';
 import type { HistoryPostPageUiStore } from './pages/history/post/HistoryPostPageUiStore';
 import type { HomePageUiStore } from './pages/home/HomePageUiStore';
@@ -27,7 +28,12 @@ import type { SettingRoleManagementPageUiStore } from './pages/setting/roleManag
 import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
 import type { CircleStore } from './stores/CircleStore';
-import type { AdmissionUserModel, LockerLocationModel, LockerModel } from './stores/models';
+import type {
+  AdmissionUserModel,
+  CircleUserModel,
+  LockerLocationModel,
+  LockerModel,
+} from './stores/models';
 import type { AuthorModel } from './stores/models/AuthorModel';
 import type { BoardModel } from './stores/models/BoardModel';
 import type { CircleBoardModel } from './stores/models/CircleBoardModel';
@@ -52,6 +58,10 @@ declare global {
   namespace PageUiStore {
     type LockerList = LockerListPageUiStore;
     type LockerLocations = LockerLocationsPageUiStore;
+
+    type CircleEditor = CircleEditorPageUiStore;
+    type CircleUsers = CircleUsersPageUiStore;
+
     type SettingRoleManagement = SettingRoleManagementPageUiStore;
     type SettingUsers = SettingUsersPageUiStore;
     type SettingRoleDelegation = SettingRoleDelegationPageUiStore;
@@ -59,7 +69,7 @@ declare global {
     type SettingRoleLeaderGrade = SettingRoleLeaderGradePageUiStore;
     type SettingRoleLeaderCircle = SettingRoleLeaderCirclePageUiStore;
     type SettingRoleAlumni = SettingRoleAlumniPageUiStore;
-    type CircleEditor = CircleEditorPageUiStore;
+
     //
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;
@@ -82,6 +92,8 @@ declare global {
     type AdmissionUser = AdmissionUserModel;
     type Locker = LockerModel;
     type LockerLocation = LockerLocationModel;
+
+    type CircleUser = CircleUserModel;
     //
     type Post = PostModel;
     type HistoryPost = HistoryPostModel;

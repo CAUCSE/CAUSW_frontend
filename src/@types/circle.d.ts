@@ -1,4 +1,6 @@
 declare namespace Circle {
+  export type Status = 'AWAIT' | 'DROP' | 'LEAVE' | 'MEMBER' | 'REJECT';
+
   export interface CreateRequestDto {
     mainImage: string;
     name: string;
@@ -7,6 +9,15 @@ declare namespace Circle {
   }
 
   export type UpdateRequestDto = Omit<CreateRequestDto, 'leaderId'>;
+
+  export interface CircleUser {
+    id: string;
+    status: Status;
+    user: User.UserDto;
+    circle: FindByIdDto;
+  }
+  export type GetUserListResponseDto = CircleUser[];
+  export type GetUserListResponse = Model.CircleUser[];
 
   //
   export interface FindByIdDto {
