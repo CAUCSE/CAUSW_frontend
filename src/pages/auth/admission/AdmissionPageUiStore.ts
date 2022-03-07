@@ -3,24 +3,27 @@ import { makeAutoObservable } from 'mobx';
 import { AuthRepoImpl as Repo } from '@/stores/repositories/AuthRepo';
 
 export class AdmissionPageUiStore {
-  submitDisabled = true;
+  isLoading = false;
+  isDisabled = true;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
   reset(): void {
-    this.submitDisabled = false;
+    this.isLoading = false;
+    this.isDisabled = true;
   }
 
   setSubmitDisabled(flag: boolean): void {
-    this.submitDisabled = flag;
+    this.isDisabled = flag;
   }
 
   *createAdmission(body: User.AdmissionCreateRequestDto): Generator {
-    try {
-      this.submitDisabled = true;
+    this.isLoading = true;
+    this.isDisabled = true;
 
+    try {
       const data = new FormData();
       if (body.email) data.set('email', body.email);
       if (body.attachImage) data.set('attachImage', body.attachImage);
@@ -35,7 +38,7 @@ export class AdmissionPageUiStore {
     } catch (err) {
       return err;
     } finally {
-      this.submitDisabled = false;
+      this.reset();
     }
   }
 }

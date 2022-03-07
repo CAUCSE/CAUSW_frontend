@@ -35,11 +35,12 @@ const CustomButtonRoot = styled('button')`
 
 interface Props extends ButtonUnstyledProps {
   className?: string;
+  loading?: boolean;
   disabled?: boolean;
 }
 export const Button: React.FC<Props> = ({ children, ...props }) => (
   <ButtonUnstyled component={CustomButtonRoot} {...props}>
-    {props.disabled ? <CircularProgress size="1.2rem" color="inherit" /> : children}
+    {props.loading ? <CircularProgress size="1.2rem" color="inherit" /> : children}
   </ButtonUnstyled>
 );
 

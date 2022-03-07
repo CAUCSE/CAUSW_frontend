@@ -18,7 +18,7 @@ export const SubmitButton: React.FC<{ email?: string }> = observer(({ email }) =
     ui: { alert },
   } = useRootStore();
   const { replace } = useHistory();
-  const { createAdmission, submitDisabled, setSubmitDisabled } =
+  const { isLoading, isDisabled, createAdmission, setSubmitDisabled } =
     usePageUiStore<PageUiStore.Admission>();
   const { handleSubmit, watch } = useFormContext();
   const onSubmit = useCallback(
@@ -51,7 +51,7 @@ export const SubmitButton: React.FC<{ email?: string }> = observer(({ email }) =
 
   return (
     <PageFooter>
-      <NavButton onClick={handleSubmit(onSubmit(email))} disabled={submitDisabled}>
+      <NavButton onClick={handleSubmit(onSubmit(email))} loading={isLoading} disabled={isDisabled}>
         제출하기
       </NavButton>
     </PageFooter>
