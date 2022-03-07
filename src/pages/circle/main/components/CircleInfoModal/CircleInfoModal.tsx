@@ -13,24 +13,23 @@ import { usePageUiStore } from '@/hooks';
 
 export const CircleInfoModal: React.FC = observer(() => {
   const {
-    circle,
-    infoModal: { visible, close },
+    infoModal: { target, visible, close },
   } = usePageUiStore<PageUiStore.CircleMain>();
 
   return (
     <Modal open={visible} onClose={close} closeAfterTransition>
       <ModalBox>
-        <ModalAlertTitle>{circle?.name}</ModalAlertTitle>
+        <ModalAlertTitle className="text-ellipsis-line">{target?.name}</ModalAlertTitle>
         <ModalAlertMessage>
-          회원 수 : {circle?.numMember}명
+          회원 수 : {target?.numMember}명
           <br />
-          소모임장 : {circle?.leaderName}
+          소모임장 : {target?.leaderName}
           <br />
-          생성일 : {circle?.formatedCreatedAt}
+          생성일 : {target?.formatedCreatedAt}
           <br />
           <p
             style={{ color: '#a3a1a1' }}
-            dangerouslySetInnerHTML={{ __html: circle?.newLineDescription ?? '' }}
+            dangerouslySetInnerHTML={{ __html: target?.newLineDescription ?? '' }}
           />
         </ModalAlertMessage>
         <ModalFooter>

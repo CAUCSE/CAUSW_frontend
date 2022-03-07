@@ -1,17 +1,3 @@
-import { makeAutoObservable } from 'mobx';
+import { ModalUi } from '@/stores';
 
-export class CircleInfoModalUi {
-  visible = false;
-
-  constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
-  }
-
-  open(): void {
-    this.visible = true;
-  }
-
-  close(): void {
-    this.visible = false;
-  }
-}
+export class CircleInfoModalUi extends ModalUi<Model.Circle> {}

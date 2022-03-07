@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { PageUiStoreImpl } from './CircleMainPageUiStore';
-import { CircleBoards, CircleDeleteModal, CircleInfoModal, CircleMainMenu } from './components';
+import { CircleBoards, CircleLeaveModal, CircleInfoModal, CircleMainMenu } from './components';
 import { CircleImage } from './styled';
 
 import { BodyScreen, Header, PageBody, PageStoreHOC } from '@/components';
@@ -29,7 +29,7 @@ const CircleMainPage: React.FC = observer(() => {
       </PageBody>
 
       <CircleInfoModal />
-      <CircleDeleteModal />
+      <CircleLeaveModal />
     </>
   );
 });

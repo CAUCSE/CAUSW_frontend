@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { CircleDeleteModalUi, CircleInfoModalUi } from './components';
+import { CircleLeaveModalUi, CircleInfoModalUi } from './components';
 
 import { CircleRepoImpl as Repo } from '@/stores/repositories/CircleRepo';
 
@@ -10,13 +10,14 @@ export class CircleMainPageUiStore {
 
   // 모달
   infoModal: CircleInfoModalUi = new CircleInfoModalUi();
-  deleteModal: CircleDeleteModalUi = new CircleDeleteModalUi();
+  leaveModal: CircleLeaveModalUi = new CircleLeaveModalUi();
 
   constructor() {
     makeAutoObservable(
       this,
       {
         infoModal: false,
+        leaveModal: false,
       },
       { autoBind: true },
     );
@@ -32,10 +33,6 @@ export class CircleMainPageUiStore {
 
     this.circle = circle;
     this.boards = boards;
-  }
-
-  *leave(circleId: string): Generator {
-    return yield Repo.leaveUser(circleId);
   }
 }
 

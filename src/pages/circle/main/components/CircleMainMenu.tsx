@@ -5,7 +5,7 @@ import { HeaderIconButton, Menu, MenuItem } from '@/components';
 import { usePageUiStore } from '@/hooks';
 
 export const CircleMainMenu: React.FC = () => {
-  const { infoModal, deleteModal } = usePageUiStore<PageUiStore.CircleMain>();
+  const { circle, infoModal, leaveModal } = usePageUiStore<PageUiStore.CircleMain>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -13,11 +13,11 @@ export const CircleMainMenu: React.FC = () => {
   const handleClose = () => setAnchorEl(null);
   const handleOpenInfoModal = () => {
     setAnchorEl(null);
-    infoModal.open();
+    infoModal.open(circle);
   };
   const handleOpenDeleteModal = () => {
     setAnchorEl(null);
-    deleteModal.open();
+    leaveModal.open(circle);
   };
 
   return (

@@ -11,32 +11,32 @@ import {
 } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
-export const CircleDeleteModal: React.FC = observer(() => {
+export const CircleLeaveModal: React.FC = observer(() => {
   const { replace } = useHistory();
   const {
-    circle,
-    leave,
-    deleteModal: { visible, close },
+    ui: { alert },
+  } = useRootStore();
+  const {
+    leaveModal: { target, leaveCircle, visible, close },
   } = usePageUiStore<PageUiStore.CircleMain>();
   const handleOk = async () => {
-    try {
-      if (circle) {
-        await leave(circle.id);
-        alert('소모임을 탈퇴하였습니다.');
-        setTimeout(() => replace(PAGE_URL.Circle), 1000);
-      }
-    } catch ({ errorMessage }) {
-      alert(errorMessage);
-    }
+    if (!target) return;
+    const { success, message } = (await leaveCircle(target)) as unknown as StoreAPI;
+
+    if (success) {
+      alert({ message: '소모임을 탈퇴하였습니다.' });
+      replace(PAGE_URL.Circle);
+    } else if (message) alert({ message });
   };
 
   return (
     <Modal open={visible} onClose={close} closeAfterTransition>
       <ModalBox>
         <ModalAlertTitle>소모임 탈퇴</ModalAlertTitle>
-        <ModalAlertMessage>
-          {circle?.name} 소모임에서 탈퇴하시겠습니까?
+        <ModalAlertMessage center>
+          {target?.name} 소모임에서 탈퇴하시겠습니까?
           <br />
           <br />
           탈퇴 후에는 해당 소모임에 작성한 게시글 혹은 댓글을 수정 / 삭제할 수 없습니다.

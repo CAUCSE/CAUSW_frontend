@@ -1,4 +1,4 @@
 export * from './CircleBoards';
-export * from './CircleDeleteModal';
+export * from './CircleLeaveModal';
 export * from './CircleInfoModal';
 export * from './CircleMainMenu';
