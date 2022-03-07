@@ -1,6 +1,7 @@
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { Checkbox } from '@mui/material';
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ const SignInPage: React.FC = observer(() => {
     ui: { alert },
   } = useRootStore();
   const { replace, push } = useHistory();
-  const { signIn, submitDisabled } = usePageUiStore<PageUiStore.SignIn>();
+  const { reset, signIn, isDisabled, isLoading } = usePageUiStore<PageUiStore.SignIn>();
   const { control, handleSubmit } = useForm<User.SignInRequestDto>({
     defaultValues: {
       email: '',
@@ -44,6 +45,8 @@ const SignInPage: React.FC = observer(() => {
   };
 
   useAuthRedirect();
+
+  useEffect(() => () => reset(), []);
 
   return (
     <PageWrapper>
@@ -74,7 +77,7 @@ const SignInPage: React.FC = observer(() => {
             />
           )}
         />
-        <LoginButton type="submit" disabled={submitDisabled}>
+        <LoginButton type="submit" loading={isLoading} disabled={isDisabled}>
           로그인
         </LoginButton>
       </Form>

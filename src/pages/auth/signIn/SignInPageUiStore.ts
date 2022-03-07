@@ -3,14 +3,21 @@ import { makeAutoObservable } from 'mobx';
 import { AuthRepoImpl as Repo } from '@/stores/repositories/AuthRepo';
 
 export class SignInPageUiStore {
-  submitDisabled = false;
+  isLoading = false;
+  isDisabled = false;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
+  reset(): void {
+    this.isLoading = false;
+    this.isDisabled = false;
+  }
+
   *signIn(body: User.SignInRequestDto): Generator {
-    this.submitDisabled = true;
+    this.isLoading = true;
+    this.isDisabled = true;
 
     try {
       yield Repo.signIn(body);
@@ -19,7 +26,7 @@ export class SignInPageUiStore {
     } catch (err) {
       return err;
     } finally {
-      this.submitDisabled = false;
+      this.reset();
     }
   }
 }
