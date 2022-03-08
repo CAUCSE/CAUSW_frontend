@@ -1,18 +1,11 @@
 import styled from '@emotion/styled';
 
-import { ClearButton, ModalBox as _ModalBox } from '@/components';
+import { ModalBox as _ModalBox } from '@/components';
 
 export const ModalBox = styled(_ModalBox)`
   display: flex;
   flex-direction: column;
   max-height: 80vh;
-`;
-
-export const CloseButton = styled(ClearButton)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
 `;
 
 export const Inner = styled.div`

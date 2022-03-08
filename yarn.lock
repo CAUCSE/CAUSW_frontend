@@ -9789,6 +9789,11 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-simple-image-viewer@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-simple-image-viewer/-/react-simple-image-viewer-1.2.1.tgz#9e95595d0a608bc4e95637a97bedf14611ee7153"
+  integrity sha512-HMFWV94K0fY9XCECvu/1ilomJQkFxiFv3DcZNHspgZFp+aUPFR/UEtYb4oDkGVidOZtErQZHr87dTvC6Mmo79g==
+
 react-swipeable-views-core@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/react-swipeable-views-core/-/react-swipeable-views-core-0.14.0.tgz#6ac443a7cc7bc5ea022fbd549292bb5fff361cce"
