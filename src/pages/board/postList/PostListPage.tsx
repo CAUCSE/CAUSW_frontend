@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { generatePath, useParams } from 'react-router-dom';
 import { Virtuoso } from 'react-virtuoso';
 
-import { PostCard, PostCreateButton } from './components';
+import { PageSkeleton, PostCard, PostCreateButton } from './components';
 import { PageUiStoreImpl } from './PostListPageUiStore';
 
 import { EmptyList, GNB, Header, PageBody, PageStoreHOC } from '@/components';
@@ -12,7 +12,7 @@ import { usePageUiStore } from '@/hooks';
 
 const PostListPage: React.FC = observer(() => {
   const { boardId } = useParams<PostParams>();
-  const { boardName, posts, hasMore, page, fetchAll, reset } =
+  const { boardName, posts, hasMore, page, isFetched, fetchAll, reset } =
     usePageUiStore<PageUiStore.PostList>();
 
   const timer = useRef<NodeJS.Timeout>();
@@ -33,20 +33,24 @@ const PostListPage: React.FC = observer(() => {
     <>
       <Header title={boardName} withBack RightComponent={<PostCreateButton />} />
       <PageBody>
-        <Virtuoso
-          style={{ maxHeight: '100vh' }}
-          endReached={loadMore(hasMore, page)}
-          overscan={200}
-          data={posts}
-          itemContent={(index, post) => (
-            <PostCard
-              key={post.id}
-              model={post}
-              to={generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id })}
-            />
-          )}
-          emptyComponent={() => <EmptyList text="작성된 게시글이 없습니다." />}
-        />
+        {!isFetched ? (
+          <PageSkeleton />
+        ) : (
+          <Virtuoso
+            style={{ maxHeight: '100vh' }}
+            endReached={loadMore(hasMore, page)}
+            overscan={200}
+            data={posts}
+            itemContent={(index, post) => (
+              <PostCard
+                key={post.id}
+                model={post}
+                to={generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id })}
+              />
+            )}
+            components={{ EmptyPlaceholder: () => <EmptyList text="작성된 게시글이 없습니다." /> }}
+          />
+        )}
       </PageBody>
       <GNB />
     </>

@@ -1,8 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 
+import { withFetchPage } from '@/hooks';
 import { PostRepoImpl as Repo } from '@/stores/repositories/PostRepo';
 
-export class PostListPageUiStore {
+export class PostListPageUiStore implements withFetchPage {
+  isFetched = false;
   boardName = '';
   writable = false;
   posts: Model.Post[] = [];
@@ -14,6 +16,7 @@ export class PostListPageUiStore {
   }
 
   reset(): void {
+    this.isFetched = false;
     this.boardName = '';
     this.writable = false;
     this.posts = [];
@@ -27,6 +30,7 @@ export class PostListPageUiStore {
       post: { content: posts, last },
     } = (yield Repo.findAll(bid, page)) as Post.FindAllResponse;
 
+    this.isFetched = true;
     this.boardName = boardName;
     this.writable = writable;
 
