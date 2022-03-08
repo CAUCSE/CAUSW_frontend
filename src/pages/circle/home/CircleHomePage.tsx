@@ -17,20 +17,20 @@ const CircleHomePage: React.FC = observer(() => {
 
   return (
     <>
-      <Header title="학부 소모임" />
+      <Header title="학부 동아리" />
       <PageBody>
         <BodyScreen>
           {/* <Circle.SearchBar /> */}
-          <H2>전체 소모임</H2>
+          <H2>전체 동아리</H2>
           <Circle.ListFrame
             items={circles}
-            emptyText={'아직 등록된 소모임이 없어요!'}
+            emptyText={'아직 등록된 동아리가 없어요!'}
             ListComponent={Circle.Slider}
           />
-          <H2>내 소모임</H2>
+          <H2>내 동아리</H2>
           <Circle.ListFrame
             items={joinedCircles}
-            emptyText={'아직 가입한 소모임이 없어요!'}
+            emptyText={'아직 가입한 동아리가 없어요!'}
             ListComponent={Circle.List}
           />
         </BodyScreen>

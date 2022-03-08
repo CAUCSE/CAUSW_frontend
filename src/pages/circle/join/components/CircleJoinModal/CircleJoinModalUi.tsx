@@ -34,7 +34,7 @@ export class CircleJoinModalUi extends ModalUi<Model.Circle> {
     } catch (error) {
       // NOTE: 다루지 않은 에러들
       // 1. invalid user (JWT) & circle id : 400 (4000)
-      // 5. 삭제된 소모임인 경우 : 400 (4004)
+      // 5. 삭제된 동아리인 경우 : 400 (4004)
       // 7. user(JWT)의 학번이 없는 경우 : 400 (4009)
       const errorCode = (error as { errorCode?: number })?.errorCode;
 

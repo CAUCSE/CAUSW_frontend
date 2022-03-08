@@ -31,10 +31,10 @@ export const SubmitButton: React.FC<{ isEdit: boolean }> = observer(({ isEdit })
 
       if (isEdit) {
         result = (await update(circleId, body)) as unknown as StoreAPI;
-        message = `[ ${body.name}] 소모임이 수정되었습니다.`;
+        message = `[ ${body.name}] 동아리가 수정되었습니다.`;
       } else {
         result = (await create(body)) as unknown as StoreAPI;
-        message = `[ ${body.name}] 소모임이 생성되었습니다.`;
+        message = `[ ${body.name}] 동아리가 생성되었습니다.`;
       }
 
       if (result.success) {

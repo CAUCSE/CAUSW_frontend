@@ -26,7 +26,7 @@ const CircleJoinPage: React.FC = observer(() => {
 
   return (
     <>
-      <Header mini title="소모임 가입" withBack RightComponent={null} />
+      <Header mini title="동아리 가입" withBack RightComponent={null} />
       <PageBody>
         <BodyScreen>
           {circle ? (
@@ -36,7 +36,7 @@ const CircleJoinPage: React.FC = observer(() => {
                 <CircleImage src={circle.mainImage} alt="circle main image" />
               ) : null}
               <Row>회원 수 : {circle.numMember}명</Row>
-              <Row>소모임장 : {circle.leaderName}</Row>
+              <Row>동아리장 : {circle.leaderName}</Row>
               <Row>생성일 : {circle.formatedCreatedAt}</Row>
               <Hr />
               <Desc dangerouslySetInnerHTML={{ __html: circle.newLineDescription }} />

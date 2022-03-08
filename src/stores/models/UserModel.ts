@@ -8,7 +8,7 @@ export const UserRoleCodes: {
   LEADER_2: '2학년 학년대표',
   LEADER_3: '3학년 학년대표',
   LEADER_4: '4학년 학년대표',
-  LEADER_CIRCLE: '소모임장',
+  LEADER_CIRCLE: '동아리장',
   LEADER_ALUMNI: '동문회장',
   COMMON: '학생',
   PROFESSOR: '교수',
@@ -19,7 +19,7 @@ export class UserModel {
   email: string;
   name: string;
   admissionYear: number;
-  role: User.UserDto['role']; // TODO: ENUM으로 변경
+  role: User.UserDto['role'];
   profileImage: string | null;
   studentId?: string;
   circleId?: string;

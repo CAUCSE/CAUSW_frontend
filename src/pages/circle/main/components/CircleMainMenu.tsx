@@ -26,7 +26,7 @@ export const CircleMainMenu: React.FC = () => {
         <MoreVertIcon className="absolute-center" />
       </HeaderIconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleOpenInfoModal}>소모임 정보</MenuItem>
+        <MenuItem onClick={handleOpenInfoModal}>동아리 정보</MenuItem>
         <MenuItem onClick={handleOpenDeleteModal}>회원 탈퇴</MenuItem>
       </Menu>
     </>

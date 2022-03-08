@@ -53,7 +53,7 @@ const CircleEditorPage: React.FC = observer(() => {
     <FormProvider {...methods}>
       <Header
         mini
-        title="소모임 생성"
+        title="동아리 생성"
         withBack={isEdit ? PAGE_URL.Setting : PAGE_URL.SettingRoleManagement}
         RightComponent={null}
       />
@@ -67,7 +67,7 @@ const CircleEditorPage: React.FC = observer(() => {
 
           <Label>설명</Label>
           <Textarea
-            placeholder="소모임에 대한 설명을 첨부해주세요."
+            placeholder="동아리에 대한 설명을 첨부해주세요."
             minRows={3}
             maxRows={10}
             {...methods.register('description')}
@@ -75,8 +75,8 @@ const CircleEditorPage: React.FC = observer(() => {
 
           {!isEdit && (
             <>
-              <Label style={{ marginBottom: '20px' }}>소모임장 지정</Label>
-              <SearchUserForm guide="소모임장으로 지정할 유저를 검색해주세요" />
+              <Label style={{ marginBottom: '20px' }}>동아리장 지정</Label>
+              <SearchUserForm guide="동아리장으로 지정할 유저를 검색해주세요" />
             </>
           )}
         </BodyScreen>

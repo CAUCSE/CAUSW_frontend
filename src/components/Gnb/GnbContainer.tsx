@@ -9,7 +9,7 @@ export const GnbContainer: React.FC = () => (
     <NavLink to={PAGE_URL.Home} a11y="메인 페이지">
       <Icons.HomeIcon />
     </NavLink>
-    <NavLink to={PAGE_URL.Circle} a11y="소모임 페이지">
+    <NavLink to={PAGE_URL.Circle} a11y="동아리 페이지">
       <Icons.CircleIcon />
     </NavLink>
     <NavLink to={PAGE_URL.Board} a11y="게시판 페이지">

@@ -26,7 +26,7 @@ export const CircleLeaveModal: React.FC = observer(() => {
     const { success, message } = (await leaveCircle(target)) as unknown as StoreAPI;
 
     if (success) {
-      alert({ message: '소모임을 탈퇴하였습니다.' });
+      alert({ message: '동아리를 탈퇴하였습니다.' });
       replace(PAGE_URL.Circle);
     } else if (message) alert({ message });
   };
@@ -34,12 +34,12 @@ export const CircleLeaveModal: React.FC = observer(() => {
   return (
     <Modal open={visible} onClose={close} closeAfterTransition>
       <ModalBox>
-        <ModalAlertTitle>소모임 탈퇴</ModalAlertTitle>
+        <ModalAlertTitle>동아리 탈퇴</ModalAlertTitle>
         <ModalAlertMessage center>
-          {target?.name} 소모임에서 탈퇴하시겠습니까?
+          {target?.name} 동아리에서 탈퇴하시겠습니까?
           <br />
           <br />
-          탈퇴 후에는 해당 소모임에 작성한 게시글 혹은 댓글을 수정 / 삭제할 수 없습니다.
+          탈퇴 후에는 해당 동아리에 작성한 게시글 혹은 댓글을 수정 / 삭제할 수 없습니다.
         </ModalAlertMessage>
         <ModalFooter>
           <ModalFooterButton onClick={close}>취소</ModalFooterButton>

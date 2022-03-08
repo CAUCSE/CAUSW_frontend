@@ -25,7 +25,7 @@ class CircleRepo {
     return (await API.put(`${this.URI}/${circleId}`, body)) as AxiosResponse<unknown>;
   };
 
-  // 소모임 회원 관리
+  // 동아리 회원 관리
   getUserList = async (
     circleId: string,
     status: Circle.Status,

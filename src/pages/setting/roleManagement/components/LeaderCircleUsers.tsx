@@ -17,7 +17,7 @@ export const LeaderCircleUsers: React.FC = observer(() => {
   return (
     <Box>
       <AddLink to={PAGE_URL.CircleAdd} />
-      <Title>소모임장 명단</Title>
+      <Title>동아리장 명단</Title>
       {leaderCircleUsers.map(user => (
         <Row key={user.id}>
           <UserName model={user} withCircleName />

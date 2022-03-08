@@ -23,7 +23,7 @@ export const CircleInfoModal: React.FC = observer(() => {
         <ModalAlertMessage>
           회원 수 : {target?.numMember}명
           <br />
-          소모임장 : {target?.leaderName}
+          동아리장 : {target?.leaderName}
           <br />
           생성일 : {target?.formatedCreatedAt}
           <br />

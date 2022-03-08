@@ -29,7 +29,7 @@ const CircleUsersPage: React.FC = observer(() => {
 
   return (
     <>
-      <Header mini title="소모임 회원 관리" withBack={PAGE_URL.Setting} RightComponent={null} />
+      <Header mini title="동아리 회원 관리" withBack={PAGE_URL.Setting} RightComponent={null} />
       <PageBody>
         <Tabs
           value={tabIndex}

@@ -22,7 +22,7 @@ export const CircleListCard: React.FC<{ model: Model.Circle }> = observer(
       <Info>
         <Name className="text-ellipsis-line">{name}</Name>
         <Desc>
-          소모임장 : {leaderName}
+          동아리장 : {leaderName}
           <br />
           회원 수 : {numMember}명
           <br />

@@ -27,7 +27,7 @@ export const AdmissionRejectModal: React.FC = observer(() => {
 
     if (success) {
       remove(target);
-      alert({ message: `${target.nameWithAdmission} 유저의 소모임 가입이 거절되었습니다.` });
+      alert({ message: `${target.nameWithAdmission} 유저의 동아리 가입이 거절되었습니다.` });
     } else if (message) alert({ message });
     close();
   }, [target]);
@@ -35,9 +35,9 @@ export const AdmissionRejectModal: React.FC = observer(() => {
   return (
     <Modal open={visible} closeAfterTransition>
       <ModalBox>
-        <ModalAlertTitle>소모임 가입 거절</ModalAlertTitle>
+        <ModalAlertTitle>동아리 가입 거절</ModalAlertTitle>
         <ModalAlertMessage center>
-          정말로 {target?.nameWithAdmission} 유저의 소모임 가입을 거절하시겠습니까? <br />
+          정말로 {target?.nameWithAdmission} 유저의 동아리 가입을 거절하시겠습니까? <br />
           거절시 가입 신청을 복구할 수 없습니다.
         </ModalAlertMessage>
         <ModalFooter>
