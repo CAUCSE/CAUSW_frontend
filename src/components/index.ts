@@ -5,6 +5,7 @@ export * from './LockerStatus';
 export * from './SearchUserModal';
 export * from './Toast';
 export * from './UserInfoModal';
+export * from './EmptyList';
 export * from './Breadcrumb';
 export * from './InfinityFrame';
 export * from './Layout';

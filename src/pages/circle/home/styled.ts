@@ -6,3 +6,9 @@ export const H2 = styled.h2`
   line-height: 21px;
   color: #3f4040;
 `;
+
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 250px;
+`;

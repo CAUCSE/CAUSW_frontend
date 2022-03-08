@@ -12,7 +12,7 @@ const CircleHomePage: React.FC = observer(() => {
   const { fetch, circles, joinedCircles } = usePageUiStore<PageUiStore.CircleHome>();
 
   useEffect(() => {
-    fetch();
+    // fetch();
   }, []);
 
   return (

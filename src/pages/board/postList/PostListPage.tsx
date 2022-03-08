@@ -6,7 +6,7 @@ import { Virtuoso } from 'react-virtuoso';
 import { PostCard, PostCreateButton } from './components';
 import { PageUiStoreImpl } from './PostListPageUiStore';
 
-import { GNB, Header, PageBody, PageStoreHOC } from '@/components';
+import { EmptyList, GNB, Header, PageBody, PageStoreHOC } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
@@ -45,6 +45,7 @@ const PostListPage: React.FC = observer(() => {
               to={generatePath(PAGE_URL.PostDetail, { boardId, postId: post.id })}
             />
           )}
+          emptyComponent={() => <EmptyList text="작성된 게시글이 없습니다." />}
         />
       </PageBody>
       <GNB />

@@ -1,6 +1,8 @@
 import { memo } from 'react';
 
-import { EmptyList } from './EmptyList';
+import { Wrapper } from '../styled';
+
+import { EmptyList } from '@/components';
 
 interface ListProps {
   readonly items: Model.Circle[];
@@ -13,5 +15,11 @@ interface Props extends ListProps {
 }
 
 export const CircleListFrame: React.FC<Props> = memo(({ items, emptyText, ListComponent }) =>
-  items.length ? <ListComponent items={items} /> : <EmptyList text={emptyText} />,
+  items.length ? (
+    <ListComponent items={items} />
+  ) : (
+    <Wrapper>
+      <EmptyList text={emptyText} />
+    </Wrapper>
+  ),
 );

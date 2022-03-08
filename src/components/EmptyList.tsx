@@ -9,7 +9,10 @@ export const EmptyList: React.FC<{ text: string }> = memo(({ text }) => (
 ));
 
 const Wrapper = styled.article`
-  margin: 60px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
 `;
 
