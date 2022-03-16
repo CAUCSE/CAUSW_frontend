@@ -13,6 +13,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.25.0",
     "emotion-normalize": "^11.0.1",
     "mobx": "^6.3.2",
@@ -36,8 +37,8 @@
     "start": "craco start",
     "build": "craco build",
     "eject": "react-scripts eject",
-    "deploy": "REACT_APP_ENV=development craco build && firebase deploy --project=causw-dev",
-    "deploy:prod": "REACT_APP_ENV=production craco build && firebase deploy --project=causw-prod"
+    "deploy": "cross-env REACT_APP_ENV=development craco build && firebase deploy --project=causw-dev",
+    "deploy:prod": "cross-env REACT_APP_ENV=production craco build && firebase deploy --project=causw-prod"
   },
   "eslintConfig": {
     "extends": [
