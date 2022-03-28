@@ -18,15 +18,20 @@ export const LockerApplicationModal: React.FC = observer(() => {
   } = useRootStore();
   const {
     setTarget,
+    locations,
     applicationModal: { visible, close, target, applyLocker },
   } = usePageUiStore<PageUiStore.LockerLocations>();
   const handleOk = useCallback(
-    (target?: Model.LockerLocation) => async () => {
+    (target?: Model.LockerLocation, models?: Model.LockerLocation[]) => async () => {
       if (!target) return;
       const { success, message } = (await applyLocker(target)) as unknown as StoreAPI;
 
-      if (success) alert({ message: '사물함이 신청되었습니다.' });
-      else if (message) alert({ message });
+      if (success) {
+        models
+          ?.filter(({ id, isMine }) => isMine && id !== target.id)
+          .forEach(model => model.reset());
+        alert({ message: '사물함이 신청되었습니다.' });
+      } else if (message) alert({ message });
       setTarget(target);
       close();
     },
@@ -46,7 +51,7 @@ export const LockerApplicationModal: React.FC = observer(() => {
         </ModalAlertMessage>
         <ModalFooter>
           <ModalFooterButton onClick={close}>취소</ModalFooterButton>
-          <ModalFooterButton onClick={handleOk(target)}>확인</ModalFooterButton>
+          <ModalFooterButton onClick={handleOk(target, locations)}>확인</ModalFooterButton>
         </ModalFooter>
       </ModalBox>
     </Modal>
