@@ -23,8 +23,7 @@ export class LockerReturnModalUi {
     try {
       yield Repo.return(target.id);
 
-      target.isMine = false;
-      target.isActive = true;
+      target.reset();
 
       return { success: true } as StoreAPI;
     } catch (error) {

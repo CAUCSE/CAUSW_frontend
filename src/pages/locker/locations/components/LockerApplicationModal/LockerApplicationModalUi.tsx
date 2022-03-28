@@ -23,8 +23,7 @@ export class LockerApplicationModalUi {
     try {
       yield Repo.register(target.id);
 
-      target.isMine = true;
-      target.isActive = false;
+      target.makeMine();
 
       return { success: true } as StoreAPI;
     } catch (error) {

@@ -1,4 +1,4 @@
-import { makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
 export class LockerLocationModel implements Locker.LocationDto {
   id: string;
@@ -16,14 +16,22 @@ export class LockerLocationModel implements Locker.LocationDto {
     this.isActive = props.isActive;
     this.isMine = props.isMine;
 
-    makeObservable(
-      this,
-      {
-        updatedAt: observable,
-        isActive: observable,
-        isMine: observable,
-      },
-      { autoBind: true },
-    );
+    makeObservable(this, {
+      updatedAt: observable,
+      isActive: observable,
+      isMine: observable,
+      makeMine: action.bound,
+      reset: action.bound,
+    });
+  }
+
+  makeMine(): void {
+    this.isActive = false;
+    this.isMine = true;
+  }
+
+  reset(): void {
+    this.isActive = true;
+    this.isMine = false;
   }
 }
