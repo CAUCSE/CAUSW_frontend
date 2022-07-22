@@ -3,6 +3,7 @@ export const UserRoleCodes: {
 } = {
   ADMIN: '관리자',
   PRESIDENT: '학생회장',
+  VICE_PRESIDENT: '부학생회장',
   COUNCIL: '학생회',
   LEADER_1: '1학년 학년대표',
   LEADER_2: '2학년 학년대표',
@@ -70,7 +71,10 @@ export class UserModel {
   }
 
   get isCouncil(): boolean {
-    return this.role === 'COUNCIL';
+    return (
+      this.role === 'COUNCIL' || 
+      this.role === 'VICE_PRESIDENT'
+    );
   }
 
   get isStudentLeader(): boolean {

@@ -10,6 +10,7 @@ declare namespace User {
     role:
       | 'ADMIN'
       | 'PRESIDENT'
+      | 'VICE_PRESIDENT'
       | 'COUNCIL'
       | 'LEADER_1'
       | 'LEADER_2'
