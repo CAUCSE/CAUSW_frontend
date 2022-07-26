@@ -8,7 +8,7 @@ const CustomButtonRoot = styled('button')`
   background-color: #312ed7;
   font-size: 18px;
   line-height: 21px;
-  color: white;
+  color: ${(props:Props) => props.color || "white"};
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
