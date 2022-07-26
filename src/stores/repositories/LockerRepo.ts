@@ -40,6 +40,10 @@ class LockerRepo {
   return = async (lockerId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
+
+  extend = async (lockerId: string): Promise<unknown> => {
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+  };
 }
 
 class LockerDummyRepo {
@@ -80,6 +84,7 @@ class LockerDummyRepo {
           lockerNumber: 0,
           lockerLocationName: '0번',
           updatedAt: '',
+          expireAt: '',
           isActive: true,
           isMine: true,
         }),
@@ -93,6 +98,7 @@ class LockerDummyRepo {
               lockerNumber: index + 1,
               lockerLocationName: `${index + 1}번`,
               updatedAt: '',
+              expireAt: '',
               isActive: Math.random() > 0.5,
               isMine: false,
             }),

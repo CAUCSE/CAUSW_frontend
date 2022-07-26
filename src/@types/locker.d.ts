@@ -11,6 +11,7 @@ declare namespace Locker {
     lockerNumber: number;
     lockerLocationName: string;
     updatedAt: string;
+    expireAt: string;
     isActive: boolean;
     isMine: boolean;
   }
