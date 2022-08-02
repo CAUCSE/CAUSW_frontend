@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CAUSW_community.iml" filepath="$PROJECT_DIR$/.idea/modules/CAUSW_community.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CAUSW_community.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CAUSW_community.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/982708804/CAUSW_community.react-native-webview.iml" filepath="$PROJECT_DIR$/.idea/modules/982708804/CAUSW_community.react-native-webview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1891359268/react-native-gradle-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/1891359268/react-native-gradle-plugin.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,6 @@
+module Pods_CAUSW_community {
+  umbrella header "Pods-CAUSW_community-umbrella.h"
+
+  export *
+  module * { export * }
+}

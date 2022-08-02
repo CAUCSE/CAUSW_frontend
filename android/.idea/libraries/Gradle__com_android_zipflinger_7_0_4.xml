@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android:zipflinger:7.0.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android/zipflinger/7.0.4/784467cfb5c987c3fdb358c66946d8fc21f2a873/zipflinger-7.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android/zipflinger/7.0.4/6c36c0c309a1e99c9e8be44e0ca78aa565544776/zipflinger-7.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

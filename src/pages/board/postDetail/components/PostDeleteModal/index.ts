@@ -1,1 +1,0 @@
-export { PostDeleteModal } from './PostDeleteModal';

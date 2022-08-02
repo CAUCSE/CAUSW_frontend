@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools.build:gradle-api:7.0.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-api/7.0.4/da92e074b345da0557a37db65042ab9bf6068c21/gradle-api-7.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-api/7.0.4/fb7a8ed3bac799414a5304cac3db8d21a46ef8ce/gradle-api-7.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
