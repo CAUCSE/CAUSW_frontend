@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools.build:aaptcompiler:7.0.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/aaptcompiler/7.0.4/adb56bd73b0e9514373aaf42ce7c0c639492188c/aaptcompiler-7.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/aaptcompiler/7.0.4/1d0ecbe37cfacdba82ed09f05555442a46e85e06/aaptcompiler-7.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

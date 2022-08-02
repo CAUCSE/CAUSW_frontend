@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools:annotations:30.0.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/annotations/30.0.4/824f88bfaf5ebdac7eb478bd434de74429634723/annotations-30.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools/annotations/30.0.4/f66e1c5607cef51a85a91bde5184a65eb4b9d0f7/annotations-30.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

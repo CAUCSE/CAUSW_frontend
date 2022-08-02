@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.testing.platform:core-proto:0.0.8-alpha04">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.testing.platform/core-proto/0.0.8-alpha04/655f18fa3952ed1441e8d032006bee81b85ba4db/core-proto-0.0.8-alpha04.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.testing.platform/core-proto/0.0.8-alpha04/b61c348361b402900fa4eb65b7137b338576e7ec/core-proto-0.0.8-alpha04-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

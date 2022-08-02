@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools.build:manifest-merger:30.0.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/30.0.4/3da7e87c25dc7bd65622079e81b5933aa8eac31a/manifest-merger-30.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/manifest-merger/30.0.4/70bc82c3e3ed26e9341dfb634106570cd220d15e/manifest-merger-30.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
