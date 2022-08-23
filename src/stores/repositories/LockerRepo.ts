@@ -40,6 +40,10 @@ class LockerRepo {
   return = async (lockerId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
+
+  extend = async (lockerId: string): Promise<unknown> => {
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+  };
 }
 
 class LockerDummyRepo {

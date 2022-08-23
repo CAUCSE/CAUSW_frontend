@@ -6,6 +6,7 @@ import {
   LocationGrid,
   LockerApplicationModal,
   LockerReturnModal,
+  LockerExtendModal,
   SubmitButton,
 } from './components';
 import { PageUiStoreImpl } from './LockerLocationsPageUiStore';
@@ -41,6 +42,7 @@ const LockerLocationsPage: React.FC = observer(() => {
       <SubmitButton />
       <LockerApplicationModal />
       <LockerReturnModal />
+      <LockerExtendModal />
     </>
   );
 });

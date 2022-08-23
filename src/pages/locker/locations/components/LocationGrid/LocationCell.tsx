@@ -10,10 +10,10 @@ export const LocationCell: React.FC<{ model: Model.LockerLocation }> = observer(
   const { id, lockerNumber, isActive, isMine } = model;
   const store = usePageUiStore<PageUiStore.LockerLocations>();
   const handleClick = useCallback(() => store.setTarget(model), [model]);
-  const isSeleted = computed(() => store.target?.id === model.id).get();
+  const isSelected = computed(() => store.target?.id === model.id).get();
 
   return (
-    <Cell key={id} onClick={handleClick} isActive={isActive} isMine={isMine} isSeleted={isSeleted}>
+    <Cell key={id} onClick={handleClick} isActive={isActive} isMine={isMine} isSelected={isSelected}>
       <span className="absolute-center">{lockerNumber}</span>
     </Cell>
   );

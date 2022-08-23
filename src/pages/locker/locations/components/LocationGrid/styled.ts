@@ -29,13 +29,13 @@ export const Gird = styled.div`
 interface CellProps {
   isActive?: boolean;
   isMine?: boolean;
-  isSeleted?: boolean;
+  isSelected?: boolean;
 }
-const boxStyle = ({ isSeleted, isMine, isActive }: CellProps) => css`
+const boxStyle = ({ isSelected, isMine, isActive }: CellProps) => css`
   border-radius: 2px;
   border: 1px solid;
-  border-color: ${isSeleted ? '#312ed7' : isMine ? '#ea4545' : isActive ? '#3f4040' : '#dadada'};
-  background-color: ${isSeleted
+  border-color: ${isSelected ? '#312ed7' : isMine ? '#ea4545' : isActive ? '#3f4040' : '#dadada'};
+  background-color: ${isSelected
     ? '#312ed7'
     : isMine
     ? '#ea4545'
@@ -44,7 +44,7 @@ const boxStyle = ({ isSeleted, isMine, isActive }: CellProps) => css`
     : '#dfdfdf'};
 
   span {
-    color: ${isSeleted || isMine ? '#fff' : null};
+    color: ${isSelected || isMine ? '#fff' : null};
   }
 `;
 
