@@ -32,7 +32,7 @@ export const SubmitButton = observer(() => {
     <PageFooter>
       {isSelectedMine 
       // TODO : 반복 버튼 컴포넌트 만들기
-      ? <NavButton onClick={extendClick(isSelectedMine, target)} style={{
+      ? <NavButton disabled={!target} onClick={extendClick(isSelectedMine, target)} style={{
         backgroundColor : 'white', 
         color : '#312ed7', 
         border : '1px solid #312ed7', 
