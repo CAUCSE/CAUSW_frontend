@@ -1,29 +1,20 @@
-import { makeAutoObservable } from 'mobx';
+import { flow, makeObservable } from 'mobx';
 
+import { ModalUi } from '@/stores';
 import { LockerRepoImpl as Repo } from '@/stores/repositories/LockerRepo';
 
-export class LockerExtendModalUi {
-  visible = false;
-  target?: Model.LockerLocation;
-
+export class LockerExtendModalUi extends ModalUi<Model.LockerLocation> {
   constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
-  }
+    super();
 
-  open(target: Model.LockerLocation): void {
-    this.visible = true;
-    this.target = target;
-  }
-
-  close(): void {
-    this.visible = false;
+    makeObservable(this, {
+      extendLocker: flow.bound,
+    });
   }
 
   *extendLocker(target: Model.LockerLocation): Generator {
     try {
       yield Repo.extend(target.id);
-
-      target.reset();
 
       return { success: true } as StoreAPI;
     } catch (error) {
