@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Route, Switch, useParams } from 'react-router-dom';
+import ImageViewer from 'react-simple-image-viewer';
 
 import {
   CommentInput,
@@ -31,6 +32,14 @@ const PostDetailPage: React.FC = observer(() => {
   const { fetch, reset, setScreenRef, boardName, post } = usePageUiStore<PageUiStore.PostDetail>();
   const ref = useRef<HTMLDivElement | null>(null);
 
+  const [visible, setVisible] = useState(false);
+  function openImageViewer() {
+    setVisible(true);
+  }
+  function closeImageViewer() {
+    setVisible(false);
+  }
+
   useEffect(() => {
     fetch(postId);
     return () => reset();
@@ -55,6 +64,7 @@ const PostDetailPage: React.FC = observer(() => {
               <PostAuthor model={post.author} date={post.formatedCreatedAt} />
               <div className="ql-snow">
                 <PostContent
+                  onClick={openImageViewer}
                   className="ql-editor"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
@@ -67,6 +77,22 @@ const PostDetailPage: React.FC = observer(() => {
             </BodyScreen>
           </PageBody>
           <CommentInput />
+
+          {console.log(post.content)}
+
+          {visible ? (
+            <ImageViewer
+              backgroundStyle={{ zIndex: 10001 }}
+              src={[
+                `${(document.querySelector('.ql-editor p img') as HTMLImageElement | null)?.src}`,
+                // TODO : post.content에서 가져와야됨
+              ]}
+              currentIndex={0}
+              disableScroll={false}
+              closeOnClickOutside={false}
+              onClose={closeImageViewer}
+            />
+          ) : null}
         </>
       ) : (
         <>{/* TODO: 페이지 스켈레톤 */}</>
