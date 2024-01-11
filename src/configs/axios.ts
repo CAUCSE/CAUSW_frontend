@@ -3,10 +3,11 @@ import axios from 'axios';
 import { PAGE_URL } from './path';
 
 export const API = axios.create({
-  baseURL:
-    process.env.REACT_APP_ENV === 'production'
-      ? 'https://causw-prod.du.r.appspot.com'
-      : 'https://causw-dev.du.r.appspot.com',
+  baseURL: 'https://causw-dev.du.r.appspot.com',
+
+  // process.env.REACT_APP_ENV === 'production'
+  //   ? 'https://causw-prod.du.r.appspot.com'
+  //   : 'https://causw-dev.du.r.appspot.com',
 });
 
 export const setAuth = (token: string): unknown => (API.defaults.headers['Authorization'] = token);

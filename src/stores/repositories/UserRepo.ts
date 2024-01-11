@@ -5,7 +5,7 @@ import { HistoryCommentModel } from '../models/HistoryCommentModel';
 import { HistoryPostModel } from '../models/HistoryPostModel';
 import { UserModel } from '../models/UserModel';
 
-import { API } from 'configs/axios';
+import { API } from '@/configs/axios';
 
 class UserRepo {
   private URI = '/api/v1/users';

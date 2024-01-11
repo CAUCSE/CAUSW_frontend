@@ -4,7 +4,7 @@ import { CircleUserModel } from '../models';
 import { CircleBoardModel } from '../models/CircleBoardModel';
 import { CircleModel } from '../models/CircleModel';
 
-import { API } from 'configs/axios';
+import { API } from '@/configs/axios';
 
 class CircleRepo {
   URI = '/api/v1/circles';
