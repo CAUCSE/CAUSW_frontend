@@ -51,7 +51,7 @@ export const SubmitButton: React.FC<{ email?: string }> = observer(({ email }) =
 
   return (
     <PageFooter>
-      <NavButton onClick={handleSubmit(onSubmit(email))} loading={isLoading} disabled={isDisabled}>
+      <NavButton onClick={handleSubmit(onSubmit(email))} $loading={isLoading} disabled={isDisabled}>
         제출하기
       </NavButton>
     </PageFooter>

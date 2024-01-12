@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { createContext, memo, useContext } from 'react';
 
-import { CommentBubbleIcon } from '@/assets/icons';
+import CommentBubbleIcon from '@/assets/icons/comment_bubble.svg?react';
 
 export const PostWrapperCSS = css`
   display: flex;

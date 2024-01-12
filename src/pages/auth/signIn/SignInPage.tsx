@@ -77,7 +77,7 @@ const SignInPage: React.FC = observer(() => {
             />
           )}
         />
-        <LoginButton type="submit" loading={isLoading} disabled={isDisabled}>
+        <LoginButton type="submit" $loading={isLoading} disabled={isDisabled}>
           로그인
         </LoginButton>
       </Form>

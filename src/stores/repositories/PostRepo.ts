@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { PostModel } from '../models/PostModel';
 
-import { API } from 'configs/axios';
+import { API } from '@/configs/axios';
 
 class PostRepo {
   private URI = '/api/v1/posts';
