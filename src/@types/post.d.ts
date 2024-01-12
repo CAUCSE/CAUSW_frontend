@@ -5,7 +5,7 @@ declare namespace Post {
     writerName: string;
     writerAdmissionYear: number;
     writerProfileImage: string | null;
-    content?: string;
+    content: string;
     createdAt: Date;
     updatedAt: Date;
     numComment: number;
@@ -45,9 +45,10 @@ declare namespace Post {
     content: string;
   }
 
-  export interface FindByIdResponseDto extends PostDto {
+  export interface FindByIdResponseDto {
     boardId: string;
     boardName: string;
     commentList: PostComment.GetResponseDto;
+    content: Dto;
   }
 }

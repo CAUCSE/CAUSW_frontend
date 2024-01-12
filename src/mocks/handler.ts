@@ -16,7 +16,7 @@ const content: Post.Dto[] = [
     isDeleted: false,
   },
   {
-    id: 'content_id2',
+    id: '1',
     title: 'post_title2',
     writerName: 'post_writerName2',
     writerAdmissionYear: 20,
@@ -57,12 +57,39 @@ const getAllPostHandler = ({ request }: { request: Request }) => {
   });
 };
 
+const getDetailPostHandler = ({ params }: { params: { postId: string } }) => {
+  const { postId } = params;
+
+  return HttpResponse.json<Post.FindByIdResponseDto>({
+    boardId: '0',
+    boardName: '학생회 공지 게시판',
+    content: content[parseInt(postId)],
+    commentList: {
+      content: [
+        {
+          postId: postId,
+          id: '0',
+          writerAdmissionYear: 19,
+          writerName: 'writer_name',
+          writerProfileImage: 'writerProfileImage | null',
+          content: 'comment_content',
+          createdAt: '2024-01-12T15:34',
+          updatedAt: '2024-01-13T15:34',
+          numChildComment: 1,
+          updatable: false,
+          deletable: false,
+          isDeleted: false,
+        },
+      ],
+      last: false,
+    },
+  });
+};
+
 const handlers = [
-  http.get('/api/test', () => {
-    return HttpResponse.json({ id: 'abc', name: 'Gyu' });
-  }),
   http.get('/api/v1/home', getHomePageHandler),
   http.get(`/api/v1/posts`, getAllPostHandler),
+  http.get(`/api/v1/posts/:postId`, getDetailPostHandler),
 ];
 
 export default handlers;

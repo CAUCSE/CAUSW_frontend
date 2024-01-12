@@ -33,10 +33,11 @@ class PostRepo {
   };
 
   findById = async (postId: string): Promise<Post.FindByIdResponseDto> => {
-    const { data } = (await API.get(
-      `${this.URI}/${postId}`,
-    )) as AxiosResponse<Post.FindByIdResponseDto>;
+    // const { data } = (await API.get(
+    //   `${this.URI}/${postId}`,
+    // )) as AxiosResponse<Post.FindByIdResponseDto>;
 
+    const { data } = await axios.get(`${this.URI}/${postId}`); // MSW
     return data;
   };
 
