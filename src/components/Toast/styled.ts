@@ -4,6 +4,7 @@ import { Snackbar, snackbarContentClasses } from '@mui/material';
 export const ToastView = styled(Snackbar)`
   bottom: 70px;
   justify-content: center;
+  pointer-events: none;
 
   .${snackbarContentClasses.root} {
     flex-grow: initial;

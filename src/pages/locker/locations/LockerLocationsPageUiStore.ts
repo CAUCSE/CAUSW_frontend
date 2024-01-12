@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { LockerApplicationModalUi, LockerReturnModalUi } from './components';
+import { LockerApplicationModalUi, LockerReturnModalUi, LockerExtendModalUi } from './components';
 
 import { LockerRepoImpl as Repo } from '@/stores/repositories/LockerRepo';
 
@@ -11,6 +11,7 @@ export class LockerLocationsPageUiStore {
 
   applicationModal = new LockerApplicationModalUi();
   returnModal = new LockerReturnModalUi();
+  extendModal = new LockerExtendModalUi();
 
   constructor() {
     makeAutoObservable(
@@ -18,6 +19,7 @@ export class LockerLocationsPageUiStore {
       {
         applicationModal: false,
         returnModal: false,
+        extendModal: false,
       },
       { autoBind: true },
     );

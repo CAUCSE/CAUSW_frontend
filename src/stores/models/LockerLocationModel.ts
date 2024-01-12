@@ -5,6 +5,7 @@ export class LockerLocationModel implements Locker.LocationDto {
   lockerNumber: number;
   lockerLocationName: string;
   updatedAt: string;
+  expireAt: string;
   isActive: boolean;
   isMine: boolean;
 
@@ -13,11 +14,13 @@ export class LockerLocationModel implements Locker.LocationDto {
     this.lockerNumber = props.lockerNumber;
     this.lockerLocationName = props.lockerLocationName;
     this.updatedAt = props.updatedAt;
+    this.expireAt = props.expireAt;
     this.isActive = props.isActive;
     this.isMine = props.isMine;
 
     makeObservable(this, {
       updatedAt: observable,
+      expireAt: observable,
       isActive: observable,
       isMine: observable,
       makeMine: action.bound,

@@ -13,10 +13,14 @@ export class RootStore {
   }
 }
 
+type Props = {
+  children?: React.ReactNode;
+};
+
 export const RootStoreInstance = new RootStore();
 const RootStoreContext = createContext(RootStoreInstance);
 
-export const RootStoreProvider: React.FC = ({ children }) => (
+export const RootStoreProvider: React.FC<Props> = ({ children }) => (
   <RootStoreContext.Provider value={RootStoreInstance}>{children}</RootStoreContext.Provider>
 );
 export const useRootStore = (): RootStore => useContext(RootStoreContext);

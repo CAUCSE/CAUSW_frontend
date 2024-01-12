@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { UserModel } from '../models/UserModel';
 
-import { API, setAuth, storeAuth } from 'configs/axios';
+import { API, setAuth, storeAuth } from '@/configs/axios';
 
 class AuthRepo {
   URI = '/api/v1/users';

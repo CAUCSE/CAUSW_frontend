@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 import { AuthRepoImpl as Repo } from './repositories/AuthRepo';
 
-import { removeAuth, restoreAuth } from 'configs/axios';
+import { removeAuth, restoreAuth } from '@/configs/axios';
 
 export class AuthStore {
   rootStore: Store.Root;

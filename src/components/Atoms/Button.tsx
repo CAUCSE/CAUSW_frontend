@@ -8,7 +8,7 @@ const CustomButtonRoot = styled('button')`
   background-color: #312ed7;
   font-size: 18px;
   line-height: 21px;
-  color: white;
+  color: ${(props: Props) => props.color || 'white'};
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
@@ -22,7 +22,9 @@ const CustomButtonRoot = styled('button')`
   }
 
   &.${buttonUnstyledClasses.focusVisible} {
-    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    box-shadow:
+      0 4px 20px 0 rgba(61, 71, 82, 0.1),
+      0 0 0 5px rgba(0, 127, 255, 0.5);
     outline: none;
   }
 
@@ -34,13 +36,14 @@ const CustomButtonRoot = styled('button')`
 `;
 
 interface Props extends ButtonUnstyledProps {
+  children?: React.ReactNode;
   className?: string;
-  loading?: boolean;
+  $loading?: boolean;
   disabled?: boolean;
 }
 export const Button: React.FC<Props> = ({ children, ...props }) => (
   <ButtonUnstyled component={CustomButtonRoot} {...props}>
-    {props.loading ? <CircularProgress size="1.2rem" color="inherit" /> : children}
+    {props.$loading ? <CircularProgress size="1.2rem" color="inherit" /> : children}
   </ButtonUnstyled>
 );
 
