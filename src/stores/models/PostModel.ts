@@ -40,7 +40,7 @@ export class PostModel {
     else this.commentCount = param(this.commentCount);
   }
 
-  get formatedCreatedAt(): string {
+  get formattedCreatedAt(): string {
     const date = new Date(this.createdAt);
 
     return format(date, isToday(date) ? 'HH:mm:ss' : 'yyyy.MM.dd HH:mm');

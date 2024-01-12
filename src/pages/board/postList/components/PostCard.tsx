@@ -12,11 +12,11 @@ import {
 } from '@/components';
 
 export const PostCard: React.FC<{ to: string; model: Model.Post }> = memo(
-  ({ to, model: { title, author, commentCount, formatedCreatedAt } }) => (
+  ({ to, model: { title, author, commentCount, formattedCreatedAt } }) => (
     <Link to={to}>
       <Card>
         <Title>{title}</Title>
-        <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
+        <PostCreatedAt>{formattedCreatedAt}</PostCreatedAt>
         <PostBreak />
         <AuthorName>{author.nameWithAdmission}</AuthorName>
         <PostCommentNum>{commentCount}</PostCommentNum>
