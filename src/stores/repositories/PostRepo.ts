@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { PostModel } from '../models/PostModel';
 
@@ -8,13 +8,18 @@ class PostRepo {
   private URI = '/api/v1/posts';
 
   findAll = async (boardId: string, page: number): Promise<Post.FindAllResponse> => {
-    const { data } = (await API.get(
-      `${this.URI}?boardId=${boardId}&pageNum=${page}`,
-    )) as AxiosResponse<Post.FindAllResponseDto>;
+    // const { data } = (await API.get(
+    //   `${this.URI}?boardId=${boardId}&pageNum=${page}`,
+    // )) as AxiosResponse<Post.FindAllResponseDto>;
 
-    data.post.content = data.post.content.map(post => new PostModel(post));
+    const { data } = await axios.get(`${this.URI}?boardId=${boardId}&pageNum=${page}`); // MSW
 
-    return data;
+    const result = {
+      ...data,
+      post: { ...data.post, content: [...data.post.content].map(post => new PostModel(post)) },
+    };
+
+    return result;
   };
 
   create = async (body: Post.CreateRequestDto): Promise<PostModel> => {

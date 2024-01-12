@@ -19,7 +19,7 @@ declare namespace Post {
     boardName: string;
     writable: boolean;
     post: {
-      content: Content[];
+      content: Post.Dto[];
       last: boolean;
     };
   }
