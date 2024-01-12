@@ -9,9 +9,12 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['prettier', '@typescript-eslint'],
-  // parserOptions: {
-  //   parser: '@typescript-eslint/parser',
-  // },
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+  },
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'warn',
+  },
   // rules: {
   //   'import/order': [
   //     'error',
