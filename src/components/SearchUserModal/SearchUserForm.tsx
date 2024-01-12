@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 
-import { SearchInput } from '../Form';
 import { SearchedUser } from './SearchedUser';
 import { SearchUserModal } from './SearchUserModal';
 import { WithSearchUserModalUi } from './SearchUserModalUi';
+import { SearchInput } from '../Form';
 
 import { usePageUiStore } from '@/hooks';
 

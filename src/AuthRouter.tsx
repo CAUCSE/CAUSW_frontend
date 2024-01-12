@@ -4,11 +4,11 @@ import { Route, Redirect } from 'react-router-dom';
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-export const AuthRouter: React.FC<Props> = observer(({ children, ...rest }) => {
+//refactor: module type problem (solve react-router-dom problem)
+//addtion: {children: React.ReactNode;}
+export const AuthRouter: React.FC<{
+  children: React.ReactNode;
+}> = observer(({ children, ...rest }) => {
   const {
     auth: { isSignIn },
   } = useRootStore();

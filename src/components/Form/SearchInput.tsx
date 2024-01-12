@@ -4,7 +4,9 @@ import { Control, Controller, FieldValues, Path, UseControllerProps } from 'reac
 
 import { ClearButton } from '..';
 
-interface Props<TFieldValues> {
+//refactor: react-hook-form problem
+//addition: extends FieldValues>
+interface Props<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;
   control: Control<TFieldValues>;
   id: string;

@@ -1,4 +1,4 @@
-/// <reference types="vite/client" />
+/// <reference types="react-scripts" />
 
 import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageUiStore';
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';

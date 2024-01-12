@@ -4,9 +4,9 @@ import { useCallback, useRef } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 import { useLongPress } from 'use-long-press';
 
-import { InputState } from '../CommentInput';
 import { CommentCardView } from './CommentCardView';
 import { ReplyLink } from './styled';
+import { InputState } from '../CommentInput';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';

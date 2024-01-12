@@ -1,5 +1,5 @@
-import { Hr } from '../../styled';
 import { CircleImage, Title, Text } from './styled';
+import { Hr } from '../../styled';
 
 export const PageSkeleton: React.FC = () => (
   <>

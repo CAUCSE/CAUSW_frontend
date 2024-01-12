@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect } from 'react';
 
-import { TabPanel, TabPanelProps } from '../TabPanel';
 import { InactiveUserRow } from './InactiveUserRow';
+import { TabPanel, TabPanelProps } from '../TabPanel';
 
 import { InfinityFrame } from '@/components';
 import { usePageUiStore } from '@/hooks';

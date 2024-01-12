@@ -20,7 +20,10 @@ export const SubmitButton: React.FC<{ email?: string }> = observer(({ email }) =
   const { replace } = useHistory();
   const { isLoading, isDisabled, createAdmission, setSubmitDisabled } =
     usePageUiStore<PageUiStore.Admission>();
-  const { handleSubmit, watch } = useFormContext();
+  //refactor: react-hook-form problem
+  //addition: <FormBody>
+  const { handleSubmit, watch } = useFormContext<FormBody>();
+
   const onSubmit = useCallback(
     (email?: string) => async (body: FormBody) => {
       if (!email) return;
@@ -44,14 +47,16 @@ export const SubmitButton: React.FC<{ email?: string }> = observer(({ email }) =
 
   useEffect(() => {
     const subscription = watch(({ description, attachImage }) =>
-      setSubmitDisabled(!description && !attachImage.length),
+      //refactor: react-hook-form problem
+      //addition: ?
+      setSubmitDisabled(!description && !attachImage?.length),
     );
     return () => subscription.unsubscribe();
   }, [watch]);
 
   return (
     <PageFooter>
-      <NavButton onClick={handleSubmit(onSubmit(email))} $loading={isLoading} disabled={isDisabled}>
+      <NavButton onClick={handleSubmit(onSubmit(email))} loading={isLoading} disabled={isDisabled}>
         제출하기
       </NavButton>
     </PageFooter>

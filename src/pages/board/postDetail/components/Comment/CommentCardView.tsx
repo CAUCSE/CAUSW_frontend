@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 
-import { InputState } from '../CommentInput';
 import { AuthorName, CommentCard, Content, Profile } from './styled';
+import { InputState } from '../CommentInput';
 
 import { PostCreatedAt, PostProfileImage } from '@/components';
 

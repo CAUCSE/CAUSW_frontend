@@ -38,7 +38,9 @@ const LineFormControl = styled(FormControl)`
 
 const RequiredMark: React.FC = () => <span style={{ color: '#ff7473' }}>*</span>;
 
-interface InputProps<TFieldValues> {
+//refactor: react-hook-form problem
+//addition: extends FieldValues>
+interface InputProps<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;
   type?: string;
   label?: string;

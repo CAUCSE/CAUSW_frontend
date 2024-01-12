@@ -23,7 +23,7 @@ export const SubmitButton: React.FC<{ isEdit: boolean }> = observer(({ isEdit })
   const { goBack } = useHistory();
   const { create, update, submitDisabled, setSubmitDisabled } =
     usePageUiStore<PageUiStore.CircleEditor>();
-  const { handleSubmit, watch } = useFormContext();
+  const { handleSubmit, watch } = useFormContext<FormBody>();
 
   const onSubmit = useCallback(
     async (body: FormBody) => {

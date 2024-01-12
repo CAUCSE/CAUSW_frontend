@@ -26,12 +26,14 @@ const SettingPasswordPage: React.FC = observer(() => {
     auth: { signOut },
   } = useRootStore();
   const { submitDisabled, update } = usePageUiStore<PageUiStore.SettingPassword>();
+  //refactor: react-hook-form problem
+  //addition: <User.PasswordUpdateRequestDto & { updatedPasswordConfirm: string }>
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<User.PasswordUpdateRequestDto & { updatedPasswordConfirm: string }>();
   const updatedPassword = watch('updatedPassword');
   const onSubmit = async (body: User.PasswordUpdateRequestDto) => {
     const { success, message } = (await update(body)) as unknown as StoreAPI;
@@ -80,7 +82,11 @@ const SettingPasswordPage: React.FC = observer(() => {
             }}
           />
           {errors.updatedPassword ? (
-            <ErrorMessage dangerouslySetInnerHTML={{ __html: errors.updatedPassword?.message }} />
+            <ErrorMessage
+              //refactor: react-hook-form problem
+              //addition: as string
+              dangerouslySetInnerHTML={{ __html: errors.updatedPassword?.message as string }}
+            />
           ) : null}
 
           <PasswordInput

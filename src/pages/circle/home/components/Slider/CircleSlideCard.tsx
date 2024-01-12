@@ -3,9 +3,7 @@ import styled from '@emotion/styled';
 import { memo, useState } from 'react';
 import { generatePath, useHistory } from 'react-router';
 
-// import { Icons } from '@/assets';
-import { Article } from '@/assets/icons';
-
+import { Icons } from '@/assets';
 import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 
@@ -130,7 +128,7 @@ const Footer = styled.div`
   height: 40px;
 `;
 
-const Icon = styled(Article)`
+const Icon = styled(Icons.Article)`
   position: absolute;
   top: 9px;
   right: 5px;

@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { memo } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import BackIcon from '@/assets/icons/back.svg?react';
-// import { Icons } from '@/assets';
+
+import { Icons } from '@/assets';
 import { ClearButton } from '@/components';
 
 export const BackButton: React.FC<{ className?: string; link?: boolean | string }> = memo(
@@ -13,8 +13,7 @@ export const BackButton: React.FC<{ className?: string; link?: boolean | string 
 
     const Icon = (
       <>
-        {/* <Icons.BackIcon className="absolute-center" /> */}
-        <BackIcon className="absolute-center" />
+        <Icons.BackIcon className="absolute-center" />
         <span className="a11y-hidden">뒤로가기</span>
       </>
     );

@@ -28,13 +28,15 @@ const SignUpPage: React.FC = observer(() => {
   } = useRootStore();
   const { submitDisabled, isDuplicatedEmail, chekedEmail, signUp } =
     usePageUiStore<PageUiStore.SignUp>();
+  //refactor: react-hook-form problem
+  //addition: <User.CreateDto & { passwordConfirm: string }>
   const {
     control,
     handleSubmit,
     watch,
     formState: { errors },
     trigger,
-  } = useForm();
+  } = useForm<User.CreateDto & { passwordConfirm: string }>();
   const password = watch('password');
   const onSubmit = async (body: User.CreateDto) => {
     const { success, message } = (await signUp(body)) as unknown as StoreAPI;
@@ -93,7 +95,11 @@ const SignUpPage: React.FC = observer(() => {
             }}
           />
           {errors.password ? (
-            <ErrorMessage dangerouslySetInnerHTML={{ __html: errors.password?.message }} />
+            //refactor: react-hook-form problem
+            //addition: as string
+            <ErrorMessage
+              dangerouslySetInnerHTML={{ __html: errors.password?.message as string }}
+            />
           ) : null}
 
           <PasswordInput

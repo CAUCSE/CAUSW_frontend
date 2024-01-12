@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios';
 import { BoardModel } from '../models/BoardModel';
 import { PostModel } from '../models/PostModel';
 
-import { API } from '@/configs/axios';
+import { API } from 'configs/axios';
 
 class HomeRepo {
   URI = '/api/v1/home';

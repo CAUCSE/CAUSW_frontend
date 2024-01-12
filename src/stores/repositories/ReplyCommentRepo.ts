@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios';
 import { CommentModel } from '../models/CommentModel';
 import { ReplyCommentModel } from '../models/ReplyCommentModel';
 
-import { API } from '@/configs/axios';
+import { API } from 'configs/axios';
 
 class ReplyCommentRepo {
   URI = '/api/v1/child-comments';
@@ -21,10 +21,7 @@ class ReplyCommentRepo {
   };
 
   create = async (body: ReplyComment.CreateRequestDto): Promise<Model.ReplyComment> => {
-    const { data } = (await API.post(
-      this.URI,
-      body,
-    )) as AxiosResponse<ReplyComment.CreateResponseDto>;
+    const { data } = (await API.post(this.URI, body)) as AxiosResponse<ReplyComment.CreateResponseDto>;
 
     return new ReplyCommentModel(data);
   };
@@ -38,9 +35,7 @@ class ReplyCommentRepo {
   };
 
   delete = async (rcid: string): Promise<Model.ReplyComment> => {
-    const { data } = (await API.delete(
-      `${this.URI}/${rcid}`,
-    )) as AxiosResponse<ReplyComment.CreateResponseDto>;
+    const { data } = (await API.delete(`${this.URI}/${rcid}`)) as AxiosResponse<ReplyComment.CreateResponseDto>;
     return new ReplyCommentModel(data);
   };
 }

@@ -4,6 +4,7 @@ import {
   Route,
   Switch as RootSwitch,
 } from 'react-router-dom';
+
 import { AuthRouter } from './AuthRouter';
 import * as Switch from './pages';
 

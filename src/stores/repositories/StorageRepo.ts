@@ -1,4 +1,4 @@
-import { API } from '@/configs/axios';
+import { API } from 'configs/axios';
 
 export enum IMAGE_TYPE {
   USER_PROFILE = 'USER_PROFILE',

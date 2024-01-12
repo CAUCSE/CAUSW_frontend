@@ -3,9 +3,9 @@ import { useCallback, useEffect, useRef } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 import { Virtuoso } from 'react-virtuoso';
 
-import { CommentCard } from '../Comment';
 import { ReplyCommentContainer } from './ReplyCommentContainer';
 import { BackLink, CommentsBox } from './styled';
+import { CommentCard } from '../Comment';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
