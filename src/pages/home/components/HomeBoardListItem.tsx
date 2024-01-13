@@ -15,13 +15,13 @@ import {
 import { PAGE_URL } from '@/configs/path';
 
 export const HomeBoardListItem: React.FC<{ model: Model.Post }> = observer(
-  ({ model: { id: postId, title, formatedCreatedAt, author, commentCount } }) => {
+  ({ model: { id: postId, title, formattedCreatedAt, author, commentCount } }) => {
     const boardId = useGetBoardId();
 
     return (
       <Link to={generatePath(PAGE_URL.PostDetail, { boardId, postId })}>
         <Title>{title}</Title>
-        <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
+        <PostCreatedAt>{formattedCreatedAt}</PostCreatedAt>
         <PostBreak />
         <AuthorName>{author.nameWithAdmission}</AuthorName>
         <PostCommentNum>{commentCount}</PostCommentNum>

@@ -34,11 +34,11 @@ const PostDetailPage: React.FC = observer(() => {
   useEffect(() => {
     fetch(postId);
     return () => reset();
-  }, [postId]);
+  }, [postId, fetch, reset]);
 
   useEffect(() => {
     setScreenRef(ref);
-  }, [post]);
+  }, [post, setScreenRef]);
 
   return (
     <>
@@ -52,7 +52,7 @@ const PostDetailPage: React.FC = observer(() => {
           />
           <PageBody ref={ref}>
             <BodyScreen>
-              <PostAuthor model={post.author} date={post.formatedCreatedAt} />
+              <PostAuthor model={post.author} date={post.formattedCreatedAt} />
               <div className="ql-snow">
                 <PostContent
                   className="ql-editor"

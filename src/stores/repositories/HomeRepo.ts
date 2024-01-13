@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 import { BoardModel } from '../models/BoardModel';
 import { PostModel } from '../models/PostModel';
@@ -9,7 +9,8 @@ class HomeRepo {
   URI = '/api/v1/home';
 
   getHomePage = async (): Promise<Home.GetHomePageResponse> => {
-    const { data } = (await API.get(this.URI)) as AxiosResponse<Home.GetHomePageResponseDto>;
+    // const { data } = (await API.get(this.URI)) as AxiosResponse<Home.GetHomePageResponseDto>;
+    const { data } = await axios.get<Home.GetHomePageResponseDto>(this.URI); // MSW
 
     return data.map(({ board, posts: { content } }) => ({
       board: new BoardModel(board.id, board.category, board.name),

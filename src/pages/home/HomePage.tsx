@@ -11,7 +11,7 @@ const HomePage: React.FC = memo(() => {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
 
   return (
     <>

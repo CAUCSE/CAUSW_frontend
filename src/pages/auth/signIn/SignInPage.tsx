@@ -46,7 +46,9 @@ const SignInPage: React.FC = observer(() => {
 
   useAuthRedirect();
 
-  useEffect(() => () => reset(), []);
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   return (
     <PageWrapper>

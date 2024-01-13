@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { CommentModel } from '../models/CommentModel';
 
@@ -8,11 +8,15 @@ class CommentRepo {
   URI = '/api/v1/comments';
 
   findAll = async (pid: string, page: number): Promise<PostComment.FindAllResponse> => {
+    // const {
+    //   data: { content, ...other },
+    // } = (await API.get(
+    //   `${this.URI}?postId=${pid}&pageNum=${page}`,
+    // )) as AxiosResponse<PostComment.GetResponseDto>;
+
     const {
       data: { content, ...other },
-    } = (await API.get(
-      `${this.URI}?postId=${pid}&pageNum=${page}`,
-    )) as AxiosResponse<PostComment.GetResponseDto>;
+    } = await axios.get<PostComment.GetResponseDto>(`${this.URI}?postId=${pid}&pageNum=${page}`); // MSW
 
     return {
       comments: content.map(comment => new CommentModel(comment)),
