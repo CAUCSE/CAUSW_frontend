@@ -1,5 +1,9 @@
 import { http } from 'msw';
-import { getAllCircleHandler, getDetailCircleHandler } from './circleHandler';
+import {
+  getAllCircleHandler,
+  getDetailCircleBoardHandler,
+  getDetailCircleHandler,
+} from './circleHandler';
 import { getHomePageHandler } from './homeHandler';
 import { getAllPostHandler, getCommentHandler, getDetailPostHandler } from './postHandler';
 
@@ -9,7 +13,8 @@ const handlers = [
   http.get('/api/v1/posts/:postId', getDetailPostHandler),
   http.get('/api/v1/comments', getCommentHandler),
   http.get('api/v1/circles', getAllCircleHandler),
-  http.get('/api/v1/circles/0/boards', getDetailCircleHandler),
+  http.get('/api/v1/circles/0/boards', getDetailCircleBoardHandler),
+  http.get('/api/v1/circles/0', getDetailCircleHandler),
 ];
 
 export default handlers;

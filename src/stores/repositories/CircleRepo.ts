@@ -14,9 +14,11 @@ class CircleRepo {
   };
 
   fetchById = async (circleId: string): Promise<CircleModel> => {
-    const { data } = (await API.get(
-      `${this.URI}/${circleId}`,
-    )) as AxiosResponse<Circle.FindByIdDto>;
+    // const { data } = (await API.get(
+    //   `${this.URI}/${circleId}`,
+    // )) as AxiosResponse<Circle.FindByIdDto>;
+
+    const { data } = await axios.get<Circle.FindByIdDto>(`${this.URI}/${circleId}`); // MSW
 
     return new CircleModel(data);
   };
