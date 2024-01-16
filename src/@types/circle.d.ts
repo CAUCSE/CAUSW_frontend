@@ -53,7 +53,7 @@ declare namespace Circle {
   }
 
   export interface FindBoardsDto {
-    circle: findByIdDto;
+    circle: FindByIdDto;
     boardList: Board[];
   }
 
