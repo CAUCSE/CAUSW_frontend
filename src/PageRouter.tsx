@@ -5,11 +5,12 @@ import {
   Route,
   Switch as RootSwitch,
 } from 'react-router-dom';
+
 import { AuthRouter } from './AuthRouter';
+import Loading from './components/Loading';
 import * as Switch from './pages';
 
 import { PAGE_URL } from '@/configs/path';
-import Loading from './components/Loading';
 
 const HomePage = lazy(() => import('./pages/home/HomePage'));
 
