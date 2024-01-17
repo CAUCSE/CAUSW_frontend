@@ -53,7 +53,7 @@ const SignInPage: React.FC = observer(() => {
   return (
     <PageWrapper>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <LogoImage src="/images/logo.png" />
+        <LogoImage src="/images/logo.png" alt="uniform_logo" />
         <Controller
           name="email"
           control={control}

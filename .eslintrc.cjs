@@ -5,6 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:import/errors',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -15,26 +16,41 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-unused-vars': 'warn',
   },
-  // rules: {
-  //   'import/order': [
-  //     'error',
-  //     {
-  //       groups: ['builtin', 'external', ['parent', 'sibling'], 'index'],
-  //       pathGroups: [
-  //         {
-  //           pattern: 'angular',
-  //           group: 'external',
-  //           position: 'before',
-  //         },
-  //       ],
-  //       alphabetize: {
-  //         order: 'asc',
-  //         caseInsensitive: true,
-  //       },
-  //       'newlines-between': 'always',
-  //     },
-  //   ],
-  // },
+  rules: {
+    'import/order': [
+      'error',
+      {
+        groups: ['builtin', 'external', ['parent', 'sibling'], 'index'],
+        pathGroups: [
+          {
+            pattern: 'react*',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@/hooks/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@/pages/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@/components/*',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        'newlines-between': 'always',
+      },
+    ],
+  },
   settings: {
     'import/resolver': {
       typescript: {},

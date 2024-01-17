@@ -30,6 +30,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.2.0",
     "react-simple-image-viewer": "^1.2.1",
+    "react-spinners": "^0.13.8",
     "react-swipeable-views": "^0.14.0",
     "react-virtuoso": "^4.6.2",
     "use-long-press": "^3.2.0"
