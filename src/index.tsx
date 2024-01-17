@@ -1,4 +1,3 @@
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Global } from '@emotion/react';
 import React from 'react';
 import { render } from 'react-dom';

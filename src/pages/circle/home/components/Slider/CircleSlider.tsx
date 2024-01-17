@@ -1,10 +1,11 @@
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 
-import { ListComponent } from '../CircleListFrame';
 import { CircleSlideCard } from './CircleSlideCard';
+import { ListComponent } from '../CircleListFrame';
 
 export const CircleSlider: ListComponent = observer(({ items }) => {
   const [config] = useState({
