@@ -1,17 +1,22 @@
+import { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { SettingHomePage } from './home';
-import { SettingPasswordPage } from './password';
-import { SettingProfilePage } from './profile';
-import { SettingRoleAlumniPage } from './roleAlumni';
-import { SettingRoleCouncilPage } from './roleCouncil';
-import { SettingRoleDelegationPage } from './roleDelegation';
-import { SettingRoleLeaderCirclePage } from './roleLeaderCircle';
-import { SettingRoleLeaderGradePage } from './roleLeaderGrade';
-import { SettingRoleManagementPage } from './roleManagement';
-import { SettingUsersPage } from './users';
-
 import { PAGE_URL } from '@/configs/path';
+
+const SettingHomePage = lazy(() => import('./home/SettingHomePage'));
+const SettingPasswordPage = lazy(() => import('./password/SettingPasswordPage'));
+const SettingProfilePage = lazy(() => import('./profile/SettingProfilePage'));
+const SettingRoleAlumniPage = lazy(() => import('./roleAlumni/SettingRoleAlumniPage'));
+const SettingRoleCouncilPage = lazy(() => import('./roleCouncil/SettingRoleCouncilPage'));
+const SettingRoleDelegationPage = lazy(() => import('./roleDelegation/SettingRoleDelegationPage'));
+const SettingRoleLeaderCirclePage = lazy(
+  () => import('./roleLeaderCircle/SettingRoleLeaderCirclePage'),
+);
+const SettingRoleLeaderGradePage = lazy(
+  () => import('./roleLeaderGrade/SettingRoleLeaderGradePage'),
+);
+const SettingRoleManagementPage = lazy(() => import('./roleManagement/SettingRoleManagementPage'));
+const SettingUsersPage = lazy(() => import('./users/SettingUsersPage'));
 
 export const SettingPageSwitch: React.FC = () => (
   <Switch>
