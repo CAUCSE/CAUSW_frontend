@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import {
   BrowserRouter as RootRouter,
   Redirect,
@@ -8,7 +9,6 @@ import { AuthRouter } from './AuthRouter';
 import * as Switch from './pages';
 
 import { PAGE_URL } from '@/configs/path';
-import { lazy, Suspense } from 'react';
 import Loading from './components/Loading';
 
 const HomePage = lazy(() => import('./pages/home/HomePage'));

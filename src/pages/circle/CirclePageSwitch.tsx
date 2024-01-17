@@ -1,12 +1,13 @@
+import { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { CircleEditorPage } from './editor';
-import { CircleHome } from './home';
-import { CircleJoin } from './join';
-import { CircleMain } from './main';
-import { CircleUsersPage } from './users';
-
 import { PAGE_URL } from '@/configs/path';
+
+const CircleHome = lazy(() => import('./home/CircleHomePage'));
+const CircleEditorPage = lazy(() => import('./editor/CircleEditorPage'));
+const CircleUsersPage = lazy(() => import('./users/CircleUsersPage'));
+const CircleJoin = lazy(() => import('./join/CircleJoinPage'));
+const CircleMain = lazy(() => import('./main/CircleMainPage'));
 
 export const CirclePageSwitch: React.FC = () => (
   <Switch>
