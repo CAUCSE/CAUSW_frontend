@@ -6,6 +6,23 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    assetsDir: 'static',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: id => {
+          if (id.includes('@mui/base')) {
+            return `@mui/base`;
+          } else if (id.includes('@mui/material')) {
+            return `@mui/material`;
+          } else if (id.includes('@mui/icons-material')) {
+            return `@mui/icons-material`;
+          }
+        },
+      },
+    },
+  },
   plugins: [
     react({
       babel: {
