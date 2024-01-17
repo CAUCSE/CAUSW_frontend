@@ -1,4 +1,5 @@
 import { HttpResponse } from 'msw';
+
 import { commentList, contentList } from './mockData';
 
 export const getAllPostHandler = ({ request }: { request: Request }) => {

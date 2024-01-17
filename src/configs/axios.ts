@@ -3,9 +3,11 @@ import axios from 'axios';
 import { PAGE_URL } from './path';
 
 export const API = axios.create({
-  baseURL: 'https://causw-dev.du.r.appspot.com',
+  baseURL: import.meta.env.VITE_DEV_SERVER_URL,
 
-  // process.env.REACT_APP_ENV === 'production'
+  // baseURL: 'https://causw-dev.du.r.appspot.com',
+
+  //process.env.REACT_APP_ENV === 'production'
   //   ? 'https://causw-prod.du.r.appspot.com'
   //   : 'https://causw-dev.du.r.appspot.com',
 });

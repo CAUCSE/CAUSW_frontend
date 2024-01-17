@@ -15,30 +15,28 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/no-unused-vars': 'warn',
-  },
-  rules: {
     'import/order': [
       'error',
       {
         groups: ['builtin', 'external', ['parent', 'sibling'], 'index'],
         pathGroups: [
           {
-            pattern: 'react*',
+            pattern: 'react',
             group: 'external',
             position: 'before',
           },
           {
-            pattern: '@/hooks/*',
+            pattern: '@/hooks/',
             group: 'internal',
             position: 'after',
           },
           {
-            pattern: '@/pages/*',
+            pattern: '@/pages/',
             group: 'internal',
             position: 'after',
           },
           {
-            pattern: '@/components/*',
+            pattern: '@/components/',
             group: 'internal',
             position: 'after',
           },
@@ -48,6 +46,12 @@ module.exports = {
           caseInsensitive: true,
         },
         'newlines-between': 'always',
+      },
+    ],
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['^msw/.+'],
       },
     ],
   },
