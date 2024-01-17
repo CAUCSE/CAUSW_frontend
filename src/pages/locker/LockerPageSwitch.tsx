@@ -1,7 +1,8 @@
+import { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { LockerList } from './list';
-import { LockerLocations } from './locations';
+const LockerList = lazy(() => import('./list/LockerListPage'));
+const LockerLocations = lazy(() => import('./locations/LockerLocationsPage'));
 
 import { PAGE_URL } from '@/configs/path';
 
