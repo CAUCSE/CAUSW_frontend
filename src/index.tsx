@@ -7,18 +7,7 @@ import { GlobalStyle } from './global-styles';
 import { PageRouter } from './PageRouter';
 import { RootStoreProvider } from './stores/RootStore';
 
-render(
-  <React.StrictMode>
-    <Global styles={GlobalStyle} />
-    <RootStoreProvider>
-      <PageRouter />
-      <Toast />
-    </RootStoreProvider>
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
-
-/* async function enableMocking() {
+async function enableMocking() {
   if (process.env.NODE_ENV !== 'development') {
     return;
   }
@@ -38,4 +27,4 @@ enableMocking().then(() => {
     </React.StrictMode>,
     document.getElementById('root'),
   );
-}); */
+});
