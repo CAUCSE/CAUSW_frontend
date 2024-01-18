@@ -63,7 +63,7 @@ const Portal: React.FC = () => (
 );
 
 const Locker: React.FC = () => (
-  <ClearLink to={PAGE_URL.LockerList}>
+  <ClearLink to={PAGE_URL.Locker}>
     <Circle>
       <img src="images/locker.svg" alt="Locker icon link" />
     </Circle>

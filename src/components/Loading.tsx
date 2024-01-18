@@ -1,4 +1,5 @@
 import { MoonLoader } from 'react-spinners';
+
 import { LoadingWrapper } from './StyledPost';
 
 const Loading = () => {

@@ -1,4 +1,5 @@
 import { HttpResponse } from 'msw';
+
 import { contentList } from './mockData';
 
 export const getHomePageHandler = () => {

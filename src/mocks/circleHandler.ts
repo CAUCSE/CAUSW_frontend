@@ -1,4 +1,5 @@
 import { HttpResponse } from 'msw';
+
 import { boardList, circleList } from './mockData';
 
 export const getAllCircleHandler = () => {
