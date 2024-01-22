@@ -90,3 +90,25 @@ export const boardList: Circle.Board[] = [
     postWriterStudentId: 'board_postWriterStudentId',
   },
 ];
+
+export const lockerLocationsList: Locker.FindAllLocationResponseDto = {
+  lockerLocations: [
+    //problem: Swagger API와 아예 다름
+    {
+      id: 'string',
+      name: 'string',
+      description: 'string',
+      enableLockerCount: 0,
+      totalLockerCount: 0,
+    },
+  ],
+  myLocker: {
+    expireAt: 'string',
+    id: 'string',
+    isActive: true,
+    isMine: true,
+    lockerNumber: 1,
+    updatedAt: '2024-01-22T09:50:43.175Z',
+    lockerLocationName: 'string', //problem: Swagger API에 없음
+  },
+};

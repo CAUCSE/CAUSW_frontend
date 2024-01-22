@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { LockerLocationModel, LockerModel } from '../models';
 
@@ -8,11 +8,18 @@ class LockerRepo {
   URI = '/api/v1/lockers';
 
   findAllLocation = async (): Promise<Locker.FindAllLocationResponse> => {
+    /* orgin
     const {
       data: { lockerLocations, myLocker },
     } = (await API.get(
       `${this.URI}/locations`,
     )) as AxiosResponse<Locker.FindAllLocationResponseDto>;
+    */
+
+    //msw
+    const {
+      data: { lockerLocations, myLocker },
+    } = await axios.get<Locker.FindAllLocationResponseDto>(`${this.URI}/locations`);
 
     return {
       lockers: lockerLocations.map(props => new LockerModel(props)),
