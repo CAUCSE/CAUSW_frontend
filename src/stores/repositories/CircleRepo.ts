@@ -67,8 +67,9 @@ class CircleRepo {
     return data.map(dto => new CircleModel(dto));
   };
 
-  join = async (circleId: string): Promise<Circle.JoinStatus> => {
-    return await API.get(`${this.URI}/${circleId}/applications`);
+  join = async (circleId: string) => {
+    // return await API.get(`${this.URI}/${circleId}/applications`);
+    await axios.post(`${this.URI}/${circleId}/applications`);
   };
 
   findBoards = async (circleId: string): Promise<Circle.FindBoards> => {
