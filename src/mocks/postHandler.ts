@@ -9,7 +9,7 @@ export const getAllPostHandler = ({ request }: { request: Request }) => {
   return HttpResponse.json<Post.FindAllResponseDto>({
     boardId: boardId!,
     boardName: '학생회 공지 게시판',
-    writable: false,
+    writable: true,
     post: {
       content: contentList,
       last: false,
@@ -36,4 +36,25 @@ export const getCommentHandler = ({ request }: { request: Request }) => {
     content: commentList.content,
     last: false,
   });
+};
+
+export const createPostHandler = async ({ request }: { request: Request }) => {
+  const body: Post.CreateRequestDto = await request.json();
+
+  contentList.push({
+    id: '2',
+    title: body.title,
+    writerName: 'post_writerName3',
+    writerAdmissionYear: 19,
+    writerProfileImage: 'content_writerProfileImage3 | null',
+    content: body.content,
+    createdAt: new Date('2024-01-13T15:34'),
+    updatedAt: new Date(),
+    numComment: 3,
+    updatable: false,
+    deletable: false,
+    isDeleted: false,
+  });
+
+  return HttpResponse.json<Post.Dto>(contentList[2]);
 };
