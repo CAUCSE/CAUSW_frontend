@@ -78,6 +78,18 @@ export const circleList: Circle.FindByIdDto[] = [
     createdAt: '2019-01-01',
     numMember: 999,
   },
+  {
+    id: '1',
+    mainImage: '0 | null',
+    name: 'circle_name2',
+    description: 'circle_description2',
+    isJoined: false,
+    joinedAt: '2023-12-31',
+    leaderId: '123',
+    leaderName: 'circle_leaderName2',
+    createdAt: '2019-01-01',
+    numMember: 100,
+  },
 ];
 
 export const circleBoardList: Circle.Board[] = [

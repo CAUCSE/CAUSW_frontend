@@ -6,19 +6,21 @@ const getAllCircleHandler = () => {
   return HttpResponse.json<Circle.FindByIdDto[]>(circleList);
 };
 
-const getDetailCircleBoardHandler = () => {
+const getDetailCircleBoardHandler = ({ params }: { params: { circleId: string } }) => {
+  const { circleId } = params;
   return HttpResponse.json<Circle.FindBoardsDto>({
-    circle: circleList[0],
+    circle: circleList[parseInt(circleId)],
     boardList: circleBoardList,
   });
 };
 
-const getDetailCircleHandler = () => {
-  return HttpResponse.json<Circle.FindByIdDto>(circleList[0]);
+const getDetailCircleHandler = ({ params }: { params: { circleId: string } }) => {
+  const { circleId } = params;
+  return HttpResponse.json<Circle.FindByIdDto>(circleList[parseInt(circleId)]);
 };
 
 export const circleHandler = [
-  http.get('api/v1/circles', getAllCircleHandler),
-  http.get('/api/v1/circles/0/boards', getDetailCircleBoardHandler),
-  http.get('/api/v1/circles/0', getDetailCircleHandler),
+  http.get('/api/v1/circles', getAllCircleHandler),
+  http.get('/api/v1/circles/:circleId/boards', getDetailCircleBoardHandler),
+  http.get('/api/v1/circles/:circleId', getDetailCircleHandler),
 ];
