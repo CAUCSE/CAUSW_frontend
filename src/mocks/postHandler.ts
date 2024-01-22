@@ -1,8 +1,8 @@
-import { HttpResponse } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 import { commentList, contentList } from './mockData';
 
-export const getAllPostHandler = ({ request }: { request: Request }) => {
+const getAllPostHandler = ({ request }: { request: Request }) => {
   const url = new URL(request.url);
   const boardId = url.searchParams.get('boardId');
   // const page = url.searchParams.get('pageNum');
@@ -17,7 +17,7 @@ export const getAllPostHandler = ({ request }: { request: Request }) => {
   });
 };
 
-export const getDetailPostHandler = ({ params }: { params: { postId: string } }) => {
+const getDetailPostHandler = ({ params }: { params: { postId: string } }) => {
   const { postId } = params;
 
   return HttpResponse.json<Post.FindByIdResponseDto>({
@@ -28,7 +28,7 @@ export const getDetailPostHandler = ({ params }: { params: { postId: string } })
   });
 };
 
-export const getCommentHandler = ({ request }: { request: Request }) => {
+const getCommentHandler = ({ request }: { request: Request }) => {
   const url = new URL(request.url);
   const postId = url.searchParams.get('postId');
   const pageNum = url.searchParams.get('pageNum');
@@ -38,7 +38,7 @@ export const getCommentHandler = ({ request }: { request: Request }) => {
   });
 };
 
-export const createPostHandler = async ({ request }: { request: Request }) => {
+const createPostHandler = async ({ request }: { request: Request }) => {
   const body: Post.CreateRequestDto = await request.json();
 
   contentList.push({
@@ -59,7 +59,7 @@ export const createPostHandler = async ({ request }: { request: Request }) => {
   return HttpResponse.json<Post.Dto>(contentList[2]);
 };
 
-export const editPostHandler = async ({
+const editPostHandler = async ({
   request,
   params,
 }: {
@@ -74,3 +74,11 @@ export const editPostHandler = async ({
 
   return HttpResponse.json({});
 };
+
+export const postHandler = [
+  http.get('/api/v1/posts', getAllPostHandler),
+  http.post('/api/v1/posts', createPostHandler),
+  http.get('/api/v1/posts/:postId', getDetailPostHandler),
+  http.put('/api/v1/posts/:postId', editPostHandler),
+  http.get('/api/v1/comments', getCommentHandler),
+];

@@ -1,8 +1,8 @@
-import { HttpResponse } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 import { contentList } from './mockData';
 
-export const getHomePageHandler = () => {
+const getHomePageHandler = () => {
   return HttpResponse.json<Home.GetHomePageResponseDto>([
     {
       board: { id: '0', category: 'board_category', name: '학생회 공지게시판' },
@@ -12,3 +12,5 @@ export const getHomePageHandler = () => {
     },
   ]);
 };
+
+export const homeHandler = [http.get('/api/v1/home', getHomePageHandler)];

@@ -1,18 +1,24 @@
-import { HttpResponse } from 'msw';
+import { http, HttpResponse } from 'msw';
 
 import { boardList, circleList } from './mockData';
 
-export const getAllCircleHandler = () => {
+const getAllCircleHandler = () => {
   return HttpResponse.json<Circle.FindByIdDto[]>(circleList);
 };
 
-export const getDetailCircleBoardHandler = () => {
+const getDetailCircleBoardHandler = () => {
   return HttpResponse.json<Circle.FindBoardsDto>({
     circle: circleList[0],
     boardList: boardList,
   });
 };
 
-export const getDetailCircleHandler = () => {
+const getDetailCircleHandler = () => {
   return HttpResponse.json<Circle.FindByIdDto>(circleList[0]);
 };
+
+export const circleHandler = [
+  http.get('api/v1/circles', getAllCircleHandler),
+  http.get('/api/v1/circles/0/boards', getDetailCircleBoardHandler),
+  http.get('/api/v1/circles/0', getDetailCircleHandler),
+];
