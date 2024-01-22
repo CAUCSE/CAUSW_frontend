@@ -91,12 +91,12 @@ export const boardList: Circle.Board[] = [
   },
 ];
 
-export const lockerLocationsList: Locker.FindAllLocationResponseDto = {
+export const lockerAllLocationsList: Locker.FindAllLocationResponseDto = {
   lockerLocations: [
     //problem: Swagger API와 아예 다름
     {
-      id: 'string',
-      name: 'string',
+      id: '3',
+      name: '3층 사물함',
       description: 'string',
       enableLockerCount: 0,
       totalLockerCount: 0,
@@ -111,4 +111,46 @@ export const lockerLocationsList: Locker.FindAllLocationResponseDto = {
     updatedAt: '2024-01-22T09:50:43.175Z',
     lockerLocationName: 'string', //problem: Swagger API에 없음
   },
+};
+
+export const lockerLocationsList: Locker.FindByLocationResponseDto = {
+  locationName: '3층 사물함',
+  lockerList: [
+    {
+      id: '1',
+      lockerNumber: 'number',
+      lockerLocationName: 'string',
+      updatedAt: 'string',
+      expireAt: 'string',
+      isActive: true,
+      isMine: true,
+    },
+    {
+      id: '2',
+      lockerNumber: 'number',
+      lockerLocationName: 'string',
+      updatedAt: 'string',
+      expireAt: 'string',
+      isActive: false,
+      isMine: true,
+    },
+    {
+      id: '3',
+      lockerNumber: 'number',
+      lockerLocationName: 'string',
+      updatedAt: 'string',
+      expireAt: 'string',
+      isActive: true,
+      isMine: false,
+    },
+    {
+      id: '4',
+      lockerNumber: 'number',
+      lockerLocationName: 'string',
+      updatedAt: 'string',
+      expireAt: 'string',
+      isActive: false,
+      isMine: false,
+    },
+  ],
 };
