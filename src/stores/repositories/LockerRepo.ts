@@ -28,11 +28,13 @@ class LockerRepo {
   };
 
   findByLocation = async (locationId: string): Promise<Locker.FindByLocationResponse> => {
-    /* const {
+    /* orgin
+    const {
       data: { locationName, lockerList },
     } = (await API.get(
       `${this.URI}/locations/${locationId}`,
-    )) as AxiosResponse<Locker.FindByLocationResponseDto>; */
+    )) as AxiosResponse<Locker.FindByLocationResponseDto>; 
+    */
 
     //msw
     const {
@@ -46,15 +48,27 @@ class LockerRepo {
   };
 
   register = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+    //orgin
+    //return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+
+    //msw
+    return axios.put(`${this.URI}/${lockerId}`, { action: 'register' });
   };
 
   return = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
+    //orgin
+    //return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
+
+    //msw
+    return axios.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
 
   extend = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+    //orgin
+    //return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+
+    //msw
+    return axios.put(`${this.URI}/${lockerId}`, { action: 'extend' });
   };
 }
 

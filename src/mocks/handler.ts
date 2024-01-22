@@ -6,7 +6,7 @@ import {
   getDetailCircleHandler,
 } from './circleHandler';
 import { getHomePageHandler } from './homeHandler';
-import { getAllLocationHandler, getLocationHandler } from './lockerHandler';
+import { getAllLocationHandler, getLocationHandler, putLocker } from './lockerHandler';
 import { getAllPostHandler, getCommentHandler, getDetailPostHandler } from './postHandler';
 
 const handlers = [
@@ -14,11 +14,16 @@ const handlers = [
   http.get('/api/v1/posts', getAllPostHandler),
   http.get('/api/v1/posts/:postId', getDetailPostHandler),
   http.get('/api/v1/comments', getCommentHandler),
+
+  //circle
   http.get('api/v1/circles', getAllCircleHandler),
   http.get('/api/v1/circles/0/boards', getDetailCircleBoardHandler),
   http.get('/api/v1/circles/0', getDetailCircleHandler),
+
+  //locker
   http.get('/api/v1/lockers/locations', getAllLocationHandler),
   http.get('/api/v1/lockers/locations/3', getLocationHandler),
+  http.put('/api/v1/lockers/1', putLocker),
 ];
 
 export default handlers;
