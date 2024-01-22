@@ -58,3 +58,19 @@ export const createPostHandler = async ({ request }: { request: Request }) => {
 
   return HttpResponse.json<Post.Dto>(contentList[2]);
 };
+
+export const editPostHandler = async ({
+  request,
+  params,
+}: {
+  request: Request;
+  params: { [key: string]: unknown };
+}) => {
+  const body: Post.UpdateRequestDto = await request.json();
+  const { postId } = params;
+  const editPost = contentList.find(content => content.id === postId)!;
+  editPost.title = body.title;
+  editPost.content = body.content;
+
+  return HttpResponse.json({});
+};

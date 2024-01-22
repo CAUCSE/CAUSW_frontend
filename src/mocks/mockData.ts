@@ -9,7 +9,7 @@ export const contentList: Post.Dto[] = [
     createdAt: new Date('2024-01-11T15:34'),
     updatedAt: new Date(),
     numComment: 0,
-    updatable: false,
+    updatable: true,
     deletable: false,
     isDeleted: false,
   },

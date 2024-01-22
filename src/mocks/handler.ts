@@ -8,6 +8,7 @@ import {
 import { getHomePageHandler } from './homeHandler';
 import {
   createPostHandler,
+  editPostHandler,
   getAllPostHandler,
   getCommentHandler,
   getDetailPostHandler,
@@ -18,6 +19,7 @@ const handlers = [
   http.get('/api/v1/posts', getAllPostHandler),
   http.post('/api/v1/posts', createPostHandler),
   http.get('/api/v1/posts/:postId', getDetailPostHandler),
+  http.put('/api/v1/posts/:postId', editPostHandler),
   http.get('/api/v1/comments', getCommentHandler),
   http.get('api/v1/circles', getAllCircleHandler),
   http.get('/api/v1/circles/0/boards', getDetailCircleBoardHandler),
