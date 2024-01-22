@@ -10,7 +10,7 @@ export const getLocationHandler: ResponseResolver = () => {
   return HttpResponse.json<Locker.FindByLocationResponseDto>(lockerLocationsList);
 };
 
-export const putLocker: ResponseResolver = async ({ request }) => {
+export const putLockerHandler: ResponseResolver = async ({ request }) => {
   const req = await request.json();
   console.log(req);
 

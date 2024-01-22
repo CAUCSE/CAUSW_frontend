@@ -97,20 +97,20 @@ export const lockerAllLocationsList: Locker.FindAllLocationResponseDto = {
     //problem: Swagger API와 아예 다름
     {
       id: '3',
-      name: '3층 사물함',
-      description: 'string',
+      name: 'name',
+      description: 'description',
       enableLockerCount: 0,
       totalLockerCount: 0,
     },
   ],
   myLocker: {
-    expireAt: 'string',
-    id: 'string',
+    expireAt: 'expireAt',
+    id: 'id',
     isActive: true,
     isMine: true,
     lockerNumber: 1,
     updatedAt: '2024-01-22T09:50:43.175Z',
-    lockerLocationName: 'string', //problem: Swagger API에 없음
+    lockerLocationName: 'lockerLocationName', //problem: Swagger API에 없음
   },
 };
 
@@ -119,16 +119,16 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
   lockerList: [
     {
       id: '1',
-      lockerNumber: 'number',
-      lockerLocationName: 'string',
-      updatedAt: 'string',
-      expireAt: 'string',
+      lockerNumber: '1',
+      lockerLocationName: 'lockerLocationName',
+      updatedAt: '2024-01-22T17:41:50.213Z',
+      expireAt: '2024-01-22T17:41:50.213Z',
       isActive: true,
       isMine: true,
     },
     {
       id: '2',
-      lockerNumber: 'number',
+      lockerNumber: '2',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -137,7 +137,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
     },
     {
       id: '3',
-      lockerNumber: 'number',
+      lockerNumber: '3',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -146,7 +146,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
     },
     {
       id: '4',
-      lockerNumber: 'number',
+      lockerNumber: '4',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -174,6 +174,24 @@ export const historyCommentList: User.FindCommentsResponseDto = {
         updatedAt: '2024-01-22T17:41:50.213Z',
       },
     ],
-    last: true,
+    last: true, //problem: false하면 반복 생성됨.
+  },
+};
+
+export const historyPostList: User.FindPostsResponseDto = {
+  post: {
+    content: [
+      {
+        boardId: '1',
+        title: 'title',
+        circleName: 'circleName',
+        boardName: 'boardName',
+        numComment: 0,
+        id: '1',
+        createdAt: '2024-01-22T17:41:50.213Z',
+        updatedAt: '2024-01-22T17:41:50.213Z',
+      },
+    ],
+    last: true, //problem: false하면 반복 생성됨.
   },
 };

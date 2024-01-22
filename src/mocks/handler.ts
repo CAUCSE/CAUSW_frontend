@@ -5,9 +5,9 @@ import {
   getDetailCircleBoardHandler,
   getDetailCircleHandler,
 } from './circleHandler';
-import { getHistoryComment } from './historyHandler';
+import { getHistoryCommentHandler, getHistoryPostHandler } from './historyHandler';
 import { getHomePageHandler } from './homeHandler';
-import { getAllLocationHandler, getLocationHandler, putLocker } from './lockerHandler';
+import { getAllLocationHandler, getLocationHandler, putLockerHandler } from './lockerHandler';
 import { getAllPostHandler, getCommentHandler, getDetailPostHandler } from './postHandler';
 
 const handlers = [
@@ -24,10 +24,11 @@ const handlers = [
   //locker
   http.get('/api/v1/lockers/locations', getAllLocationHandler),
   http.get('/api/v1/lockers/locations/3', getLocationHandler),
-  http.put('/api/v1/lockers/1', putLocker),
+  http.put('/api/v1/lockers/1', putLockerHandler),
 
   //history
-  http.get('/api/v1/users/comments?pageNum=0`', getHistoryComment),
+  http.get('/api/v1/users/comments?pageNum=0', getHistoryCommentHandler),
+  http.get('/api/v1/users/posts?pageNum=0', getHistoryPostHandler),
 ];
 
 export default handlers;
