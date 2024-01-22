@@ -12,7 +12,9 @@ class PostRepo {
     //   `${this.URI}?boardId=${boardId}&pageNum=${page}`,
     // )) as AxiosResponse<Post.FindAllResponseDto>;
 
-    const { data } = await axios.get(`${this.URI}?boardId=${boardId}&pageNum=${page}`); // MSW
+    const { data } = await axios.get<Post.FindAllResponseDto>(
+      `${this.URI}?boardId=${boardId}&pageNum=${page}`,
+    ); // MSW
 
     const result = {
       ...data,
@@ -23,7 +25,9 @@ class PostRepo {
   };
 
   create = async (body: Post.CreateRequestDto): Promise<PostModel> => {
-    const { data } = await API.post(this.URI, body);
+    // const { data } = await API.post(this.URI, body);
+
+    const { data } = await axios.post<Post.Dto>(this.URI, body); // MSW
 
     return new PostModel(data);
   };
@@ -38,6 +42,7 @@ class PostRepo {
     // )) as AxiosResponse<Post.FindByIdResponseDto>;
 
     const { data } = await axios.get(`${this.URI}/${postId}`); // MSW
+
     return data;
   };
 
