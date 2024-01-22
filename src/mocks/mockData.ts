@@ -91,6 +91,7 @@ export const boardList: Circle.Board[] = [
   },
 ];
 
+//locker
 export const lockerAllLocationsList: Locker.FindAllLocationResponseDto = {
   lockerLocations: [
     //problem: Swagger API와 아예 다름
@@ -153,4 +154,26 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
       isMine: false,
     },
   ],
+};
+
+//history
+export const historyCommentList: User.FindCommentsResponseDto = {
+  comment: {
+    content: [
+      {
+        boardId: '1',
+        postId: '1',
+        parentCommentId: null,
+        circleName: 'circleName',
+        boardName: 'boardName',
+        postName: 'postName',
+        id: '1',
+        content: 'content',
+        tagUserName: 'tagUserName',
+        createdAt: '2024-01-22T17:41:50.213Z',
+        updatedAt: '2024-01-22T17:41:50.213Z',
+      },
+    ],
+    last: true,
+  },
 };

@@ -5,6 +5,7 @@ import {
   getDetailCircleBoardHandler,
   getDetailCircleHandler,
 } from './circleHandler';
+import { getHistoryComment } from './historyHandler';
 import { getHomePageHandler } from './homeHandler';
 import { getAllLocationHandler, getLocationHandler, putLocker } from './lockerHandler';
 import { getAllPostHandler, getCommentHandler, getDetailPostHandler } from './postHandler';
@@ -24,6 +25,9 @@ const handlers = [
   http.get('/api/v1/lockers/locations', getAllLocationHandler),
   http.get('/api/v1/lockers/locations/3', getLocationHandler),
   http.put('/api/v1/lockers/1', putLocker),
+
+  //history
+  http.get('/api/v1/users/comments?pageNum=0`', getHistoryComment),
 ];
 
 export default handlers;
