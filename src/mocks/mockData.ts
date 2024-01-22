@@ -1,3 +1,5 @@
+import { BoardDto } from '@/stores/repositories/BoardRepo';
+
 export const contentList: Post.Dto[] = [
   {
     id: '0',
@@ -78,7 +80,7 @@ export const circleList: Circle.FindByIdDto[] = [
   },
 ];
 
-export const boardList: Circle.Board[] = [
+export const circleBoardList: Circle.Board[] = [
   {
     id: '0',
     name: 'board_name',
@@ -89,4 +91,11 @@ export const boardList: Circle.Board[] = [
     postWriterName: 'board_postWriterName',
     postWriterStudentId: 'board_postWriterStudentId',
   },
+];
+
+export const boardList: BoardDto[] = [
+  { id: '0', category: '공지게시판', name: '학생회 공지게시판' },
+  { id: '1', category: '공지게시판', name: '1학년 공지게시판' },
+  { id: '2', category: '자유게시판', name: '질문게시판' },
+  { id: '3', category: '자유게시판', name: '코딩게시판' },
 ];

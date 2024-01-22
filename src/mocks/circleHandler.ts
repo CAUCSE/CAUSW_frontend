@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-import { boardList, circleList } from './mockData';
+import { circleBoardList, circleList } from './mockData';
 
 const getAllCircleHandler = () => {
   return HttpResponse.json<Circle.FindByIdDto[]>(circleList);
@@ -9,7 +9,7 @@ const getAllCircleHandler = () => {
 const getDetailCircleBoardHandler = () => {
   return HttpResponse.json<Circle.FindBoardsDto>({
     circle: circleList[0],
-    boardList: boardList,
+    boardList: circleBoardList,
   });
 };
 
