@@ -8,18 +8,14 @@ class LockerRepo {
   URI = '/api/v1/lockers';
 
   findAllLocation = async (): Promise<Locker.FindAllLocationResponse> => {
-    /* orgin
     const {
       data: { lockerLocations, myLocker },
-    } = (await API.get(
-      `${this.URI}/locations`,
-    )) as AxiosResponse<Locker.FindAllLocationResponseDto>;
-    */
-
-    //msw
-    const {
-      data: { lockerLocations, myLocker },
-    } = await axios.get<Locker.FindAllLocationResponseDto>(`${this.URI}/locations`);
+    } =
+      process.env.NODE_ENV !== 'development'
+        ? ((await API.get(
+            `${this.URI}/locations`,
+          )) as AxiosResponse<Locker.FindAllLocationResponseDto>) //orgin
+        : await axios.get<Locker.FindAllLocationResponseDto>(`${this.URI}/locations`); //mocking
 
     return {
       lockers: lockerLocations.map(props => new LockerModel(props)),
@@ -28,18 +24,14 @@ class LockerRepo {
   };
 
   findByLocation = async (locationId: string): Promise<Locker.FindByLocationResponse> => {
-    /* orgin
     const {
       data: { locationName, lockerList },
-    } = (await API.get(
-      `${this.URI}/locations/${locationId}`,
-    )) as AxiosResponse<Locker.FindByLocationResponseDto>; 
-    */
-
-    //msw
-    const {
-      data: { locationName, lockerList },
-    } = await axios.get<Locker.FindByLocationResponseDto>(`${this.URI}/locations/${locationId}`);
+    } =
+      process.env.NODE_ENV !== 'development'
+        ? ((await API.get(
+            `${this.URI}/locations/${locationId}`,
+          )) as AxiosResponse<Locker.FindByLocationResponseDto>) //orgin
+        : await axios.get<Locker.FindByLocationResponseDto>(`${this.URI}/locations/${locationId}`); //mocking
 
     return {
       locationName,
@@ -51,7 +43,7 @@ class LockerRepo {
     //orgin
     //return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
 
-    //msw
+    //mocking
     return axios.put(`${this.URI}/${lockerId}`, { action: 'register' });
   };
 
@@ -59,7 +51,7 @@ class LockerRepo {
     //orgin
     //return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
 
-    //msw
+    //mocking
     return axios.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
 
@@ -67,7 +59,7 @@ class LockerRepo {
     //orgin
     //return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
 
-    //msw
+    //mocking
     return axios.put(`${this.URI}/${lockerId}`, { action: 'extend' });
   };
 }
