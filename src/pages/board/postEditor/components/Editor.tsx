@@ -1,5 +1,6 @@
 import 'react-quill/dist/quill.snow.css';
 import { observer } from 'mobx-react-lite';
+import ImageUploader from 'quill-image-uploader';
 import { useMemo, useCallback, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import ReactQuill, { Quill } from 'react-quill';
@@ -10,7 +11,6 @@ import { EditorWrapper } from '../styled';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 import { IMAGE_TYPE, StorageRepoImpl } from '@/stores/repositories/StorageRepo';
-import ImageUploader from 'quill-image-uploader';
 
 Quill.register('modules/imageUploader', ImageUploader);
 

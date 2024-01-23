@@ -1,3 +1,5 @@
+import { BoardDto } from '@/stores/repositories/BoardRepo';
+
 export const contentList: Post.Dto[] = [
   {
     id: '0',
@@ -9,7 +11,7 @@ export const contentList: Post.Dto[] = [
     createdAt: new Date('2024-01-11T15:34'),
     updatedAt: new Date(),
     numComment: 0,
-    updatable: false,
+    updatable: true,
     deletable: false,
     isDeleted: false,
   },
@@ -76,9 +78,21 @@ export const circleList: Circle.FindByIdDto[] = [
     createdAt: '2019-01-01',
     numMember: 999,
   },
+  {
+    id: '1',
+    mainImage: '0 | null',
+    name: 'circle_name2',
+    description: 'circle_description2',
+    isJoined: false,
+    joinedAt: '2023-12-31',
+    leaderId: '123',
+    leaderName: 'circle_leaderName2',
+    createdAt: '2019-01-01',
+    numMember: 100,
+  },
 ];
 
-export const boardList: Circle.Board[] = [
+export const circleBoardList: Circle.Board[] = [
   {
     id: '0',
     name: 'board_name',
@@ -89,6 +103,13 @@ export const boardList: Circle.Board[] = [
     postWriterName: 'board_postWriterName',
     postWriterStudentId: 'board_postWriterStudentId',
   },
+];
+
+export const boardList: BoardDto[] = [
+  { id: '0', category: '공지게시판', name: '학생회 공지게시판' },
+  { id: '1', category: '공지게시판', name: '1학년 공지게시판' },
+  { id: '2', category: '자유게시판', name: '질문게시판' },
+  { id: '3', category: '자유게시판', name: '코딩게시판' },
 ];
 
 //locker

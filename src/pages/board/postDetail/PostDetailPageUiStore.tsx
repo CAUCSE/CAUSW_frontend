@@ -59,12 +59,12 @@ export class PostDetailPageUiStore {
   }
 
   *fetch(postId: string): Generator {
-    const { boardName, commentList, ...props } = (yield Repo.findById(
+    const { boardName, commentList, content } = (yield Repo.findById(
       postId,
     )) as Post.FindByIdResponseDto;
 
     this.boardName = boardName;
-    this.post = new PostModel(props.content as Post.Dto);
+    this.post = new PostModel(content);
 
     this.comments.comments = commentList.content.map(comment => new CommentModel(comment));
     this.comments.page = 0;

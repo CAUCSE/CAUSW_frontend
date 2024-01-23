@@ -25,19 +25,23 @@ class CommentRepo {
   };
 
   create = async (body: PostComment.CreateRequestDto): Promise<Model.Comment> => {
-    const { data } = (await API.post(
-      this.URI,
-      body,
-    )) as AxiosResponse<PostComment.CreateResponseDto>;
+    // const { data } = (await API.post(
+    //   this.URI,
+    //   body,
+    // )) as AxiosResponse<PostComment.CreateResponseDto>;
+
+    const { data } = await axios.post<PostComment.CreateResponseDto>(this.URI, body); // MSW
 
     return new CommentModel(data);
   };
 
   update = async (cid: string, content: string) => {
-    const { data } = (await API.put(`${this.URI}/${cid}`, {
+    // const { data } = (await API.put(`${this.URI}/${cid}`, {
+    //   content,
+    // })) as AxiosResponse<PostComment.CreateResponseDto>;
+    const { data } = await axios.put<PostComment.CreateResponseDto>(`${this.URI}/${cid}`, {
       content,
-    })) as AxiosResponse<PostComment.CreateResponseDto>;
-
+    }); // MSW
     return new CommentModel(data);
   };
 
