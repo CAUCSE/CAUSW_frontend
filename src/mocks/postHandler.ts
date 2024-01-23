@@ -28,16 +28,6 @@ const getDetailPostHandler = ({ params }: { params: { postId: string } }) => {
   });
 };
 
-const getCommentHandler = ({ request }: { request: Request }) => {
-  const url = new URL(request.url);
-  const postId = url.searchParams.get('postId');
-  const pageNum = url.searchParams.get('pageNum');
-  return HttpResponse.json<PostComment.GetResponseDto>({
-    content: commentList.content,
-    last: false,
-  });
-};
-
 const createPostHandler = async ({ request }: { request: Request }) => {
   const body: Post.CreateRequestDto = await request.json();
 
@@ -80,5 +70,4 @@ export const postHandler = [
   http.post('/api/v1/posts', createPostHandler),
   http.get('/api/v1/posts/:postId', getDetailPostHandler),
   http.put('/api/v1/posts/:postId', editPostHandler),
-  http.get('/api/v1/comments', getCommentHandler),
 ];
