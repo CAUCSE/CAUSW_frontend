@@ -45,9 +45,7 @@ const editCommentHandler = async ({
   const editComment = commentList.content.find(content => content.id === commentId)!;
   editComment.content = body.content;
 
-  return new Response(null, {
-    status: 200,
-  });
+  return HttpResponse.json<PostComment.CreateResponseDto>(editComment);
 };
 
 const deleteCommentHandler = () => {};
