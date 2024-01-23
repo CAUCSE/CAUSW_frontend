@@ -25,10 +25,12 @@ class CommentRepo {
   };
 
   create = async (body: PostComment.CreateRequestDto): Promise<Model.Comment> => {
-    const { data } = (await API.post(
-      this.URI,
-      body,
-    )) as AxiosResponse<PostComment.CreateResponseDto>;
+    // const { data } = (await API.post(
+    //   this.URI,
+    //   body,
+    // )) as AxiosResponse<PostComment.CreateResponseDto>;
+
+    const { data } = await axios.post<PostComment.CreateResponseDto>(this.URI, body);
 
     return new CommentModel(data);
   };
