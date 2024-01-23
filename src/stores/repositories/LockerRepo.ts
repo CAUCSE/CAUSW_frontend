@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { LockerLocationModel, LockerModel } from '../models';
 
@@ -8,11 +8,17 @@ class LockerRepo {
   URI = '/api/v1/lockers';
 
   findAllLocation = async (): Promise<Locker.FindAllLocationResponse> => {
+    /* orgin
     const {
       data: { lockerLocations, myLocker },
     } = (await API.get(
       `${this.URI}/locations`,
-    )) as AxiosResponse<Locker.FindAllLocationResponseDto>;
+    )) as AxiosResponse<Locker.FindAllLocationResponseDto>; */
+
+    //mocking
+    const {
+      data: { lockerLocations, myLocker },
+    } = await axios.get<Locker.FindAllLocationResponseDto>(`${this.URI}/locations`);
 
     return {
       lockers: lockerLocations.map(props => new LockerModel(props)),
@@ -21,11 +27,17 @@ class LockerRepo {
   };
 
   findByLocation = async (locationId: string): Promise<Locker.FindByLocationResponse> => {
+    /* orgin
     const {
       data: { locationName, lockerList },
     } = (await API.get(
       `${this.URI}/locations/${locationId}`,
-    )) as AxiosResponse<Locker.FindByLocationResponseDto>;
+    )) as AxiosResponse<Locker.FindByLocationResponseDto>; */
+
+    //mocking
+    const {
+      data: { locationName, lockerList },
+    } = await axios.get<Locker.FindByLocationResponseDto>(`${this.URI}/locations/${locationId}`);
 
     return {
       locationName,
@@ -34,15 +46,27 @@ class LockerRepo {
   };
 
   register = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+    //orgin
+    //return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+
+    //mocking
+    return axios.put(`${this.URI}/${lockerId}`, { action: 'register' });
   };
 
   return = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
+    //orgin
+    //return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
+
+    //mocking
+    return axios.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
 
   extend = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+    //orgin
+    //return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+
+    //mocking
+    return axios.put(`${this.URI}/${lockerId}`, { action: 'extend' });
   };
 }
 
