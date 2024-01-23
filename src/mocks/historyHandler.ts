@@ -1,11 +1,16 @@
-import { HttpResponse, ResponseResolver } from 'msw';
+import { HttpResponse, ResponseResolver, http } from 'msw';
 
 import { historyCommentList, historyPostList } from './mockData';
 
-export const getHistoryCommentHandler: ResponseResolver = () => {
+const getHistoryCommentHandler: ResponseResolver = () => {
   return HttpResponse.json<User.FindCommentsResponseDto>(historyCommentList);
 };
 
-export const getHistoryPostHandler: ResponseResolver = () => {
+const getHistoryPostHandler: ResponseResolver = () => {
   return HttpResponse.json<User.FindPostsResponseDto>(historyPostList);
 };
+
+export const historyHandler = [
+  http.get('/api/v1/users/comments?pageNum=0', getHistoryCommentHandler),
+  http.get('/api/v1/users/posts?pageNum=0', getHistoryPostHandler),
+];
