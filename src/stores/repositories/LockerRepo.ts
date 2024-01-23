@@ -8,14 +8,17 @@ class LockerRepo {
   URI = '/api/v1/lockers';
 
   findAllLocation = async (): Promise<Locker.FindAllLocationResponse> => {
+    /* orgin
     const {
       data: { lockerLocations, myLocker },
-    } =
-      process.env.NODE_ENV !== 'development'
-        ? ((await API.get(
-            `${this.URI}/locations`,
-          )) as AxiosResponse<Locker.FindAllLocationResponseDto>) //orgin
-        : await axios.get<Locker.FindAllLocationResponseDto>(`${this.URI}/locations`); //mocking
+    } = (await API.get(
+      `${this.URI}/locations`,
+    )) as AxiosResponse<Locker.FindAllLocationResponseDto>; */
+
+    //mocking
+    const {
+      data: { lockerLocations, myLocker },
+    } = await axios.get<Locker.FindAllLocationResponseDto>(`${this.URI}/locations`);
 
     return {
       lockers: lockerLocations.map(props => new LockerModel(props)),
@@ -24,14 +27,17 @@ class LockerRepo {
   };
 
   findByLocation = async (locationId: string): Promise<Locker.FindByLocationResponse> => {
+    /* orgin
     const {
       data: { locationName, lockerList },
-    } =
-      process.env.NODE_ENV !== 'development'
-        ? ((await API.get(
-            `${this.URI}/locations/${locationId}`,
-          )) as AxiosResponse<Locker.FindByLocationResponseDto>) //orgin
-        : await axios.get<Locker.FindByLocationResponseDto>(`${this.URI}/locations/${locationId}`); //mocking
+    } = (await API.get(
+      `${this.URI}/locations/${locationId}`,
+    )) as AxiosResponse<Locker.FindByLocationResponseDto>; */
+
+    //mocking
+    const {
+      data: { locationName, lockerList },
+    } = await axios.get<Locker.FindByLocationResponseDto>(`${this.URI}/locations/${locationId}`);
 
     return {
       locationName,
