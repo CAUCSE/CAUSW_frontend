@@ -53,7 +53,7 @@ export const CommentCardContainer: React.FC<Props> = observer(
     );
 
     return (
-      <li ref={ref} {...bind}>
+      <li ref={ref} {...bind()}>
         <CommentCardView state={commentState} model={model} />
         {withReplyLink && model.numChildComment ? (
           <ReplyLink onClick={handleGoReply(params, model)}>
