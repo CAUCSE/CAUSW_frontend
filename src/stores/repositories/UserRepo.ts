@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { AdmissionUserModel } from '../models';
 import { HistoryCommentModel } from '../models/HistoryCommentModel';
@@ -34,13 +34,22 @@ class UserRepo {
   };
 
   findPosts = async (page: number): Promise<User.FindPostsResponse> => {
+    /* orgin
     const {
       data: {
         post: { content, last },
       },
     } = (await API.get(
       `${this.URI}/posts?pageNum=${page}`,
-    )) as AxiosResponse<User.FindPostsResponseDto>;
+    )) as AxiosResponse<User.FindPostsResponseDto>; 
+    */
+
+    //mocking
+    const {
+      data: {
+        post: { content, last },
+      },
+    } = await axios.get<User.FindPostsResponseDto>(`${this.URI}/posts?pageNum=${page}`);
 
     return {
       posts: content.map(post => new HistoryPostModel(post)),
@@ -49,13 +58,22 @@ class UserRepo {
   };
 
   findComments = async (page: number): Promise<User.FindCommentsResponse> => {
+    /* orgin
     const {
       data: {
         comment: { content, last },
       },
     } = (await API.get(
       `${this.URI}/comments?pageNum=${page}`,
-    )) as AxiosResponse<User.FindCommentsResponseDto>;
+    )) as AxiosResponse<User.FindCommentsResponseDto>; 
+    */
+
+    //mocking
+    const {
+      data: {
+        comment: { content, last },
+      },
+    } = await axios.get<User.FindCommentsResponseDto>(`${this.URI}/comments?pageNum=${page}`);
 
     return {
       comments: content.map(comment => new HistoryCommentModel(comment)),
