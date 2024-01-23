@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-import { commentList, contentList } from './mockData';
+import { commentList, contentList } from '../mockData';
 
 const getAllPostHandler = ({ request }: { request: Request }) => {
   const url = new URL(request.url);

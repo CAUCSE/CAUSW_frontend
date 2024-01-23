@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-import { boardList, contentList } from './mockData';
+import { boardList, contentList } from '../mockData';
 
 const getHomePageHandler = () => {
   return HttpResponse.json<Home.GetHomePageResponseDto>([
