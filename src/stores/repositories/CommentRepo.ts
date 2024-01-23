@@ -30,16 +30,18 @@ class CommentRepo {
     //   body,
     // )) as AxiosResponse<PostComment.CreateResponseDto>;
 
-    const { data } = await axios.post<PostComment.CreateResponseDto>(this.URI, body);
+    const { data } = await axios.post<PostComment.CreateResponseDto>(this.URI, body); // MSW
 
     return new CommentModel(data);
   };
 
   update = async (cid: string, content: string) => {
-    const { data } = (await API.put(`${this.URI}/${cid}`, {
+    // const { data } = (await API.put(`${this.URI}/${cid}`, {
+    //   content,
+    // })) as AxiosResponse<PostComment.CreateResponseDto>;
+    const { data } = await axios.put<PostComment.CreateResponseDto>(`${this.URI}/${cid}`, {
       content,
-    })) as AxiosResponse<PostComment.CreateResponseDto>;
-
+    }); // MSW
     return new CommentModel(data);
   };
 

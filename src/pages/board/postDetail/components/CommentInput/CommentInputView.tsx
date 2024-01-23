@@ -29,7 +29,7 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
     <Form onSubmit={onSubmit} isFocus={isFocus}>
       <InputBox>
         <Textarea
-          ref={e => {
+          ref={(e: HTMLTextAreaElement | null) => {
             ref(e);
             textareaRef.current = e;
           }}

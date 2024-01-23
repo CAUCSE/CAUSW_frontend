@@ -33,13 +33,28 @@ const createCommentHandler = async ({ request }: { request: Request }) => {
   return HttpResponse.json<PostComment.CreateResponseDto>(newComment);
 };
 
-const editCommentHandler = () => {};
+const editCommentHandler = async ({
+  request,
+  params,
+}: {
+  request: Request;
+  params: { [key: string]: unknown };
+}) => {
+  const body: PostComment.CreateRequestDto = await request.json();
+  const { commentId } = params;
+  const editComment = commentList.content.find(content => content.id === commentId)!;
+  editComment.content = body.content;
+
+  return new Response(null, {
+    status: 200,
+  });
+};
 
 const deleteCommentHandler = () => {};
 
 export const commentHandler = [
   http.get('/api/v1/comments', getCommentHandler),
   http.post('/api/v1/comments', createCommentHandler),
-  // http.put('/api/v1/comments/:id', editCommentHandler),
+  http.put('/api/v1/comments/:commentId', editCommentHandler),
   // http.delete('/api/v1/comments/:id', deleteCommentHandler),
 ];
