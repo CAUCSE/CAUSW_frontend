@@ -7,7 +7,6 @@ export const GlobalStyle = css`
   * {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     box-sizing: border-box;
-    color: #3f4040;
   }
 
   html {
@@ -71,7 +70,9 @@ export const GlobalStyle = css`
 
   input:-webkit-autofill,
   input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
+    transition:
+      background-color 600000s 0s,
+      color 600000s 0s;
   }
   input[data-autocompleted] {
     background-color: transparent !important;

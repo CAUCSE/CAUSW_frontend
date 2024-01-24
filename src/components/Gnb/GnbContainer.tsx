@@ -2,9 +2,11 @@ import { Nav, NavLink } from './GnbView';
 
 import { PAGE_URL } from '@/configs/path';
 import HomeIcon from '@/assets/icons/nav_home.svg?react';
-import CircleIcon from '@/assets/icons/nav_circle.svg?react';
 import BoardIcon from '@/assets/icons/nav_board.svg?react';
 import SettingIcon from '@/assets/icons/nav_setting.svg?react';
+
+import CircleIcon from '@mui/icons-material/Diversity3';
+import { grey } from '@mui/material/colors';
 
 export const GnbContainer: React.FC = () => (
   <Nav>
@@ -13,7 +15,7 @@ export const GnbContainer: React.FC = () => (
       <HomeIcon />
     </NavLink>
     <NavLink to={PAGE_URL.Circle} a11y="동아리 페이지">
-      <CircleIcon />
+      <CircleIcon fontSize="large" sx={{ color: grey[300] }} />
     </NavLink>
     <NavLink to={PAGE_URL.Board} a11y="게시판 페이지">
       <BoardIcon />
