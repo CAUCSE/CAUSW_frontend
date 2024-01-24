@@ -1,6 +1,5 @@
 import { HttpResponse, ResponseResolver, http } from 'msw';
-
-import { historyCommentList, historyPostList } from '../mockData';
+import { historyCommentList, historyPostList } from './data/history';
 
 const getHistoryCommentHandler: ResponseResolver = () => {
   return HttpResponse.json<User.FindCommentsResponseDto>(historyCommentList);

@@ -14,6 +14,12 @@ declare namespace PostComment {
     content: string;
   }
 
+  export interface CreateResponseDto extends Comment.CreateResponseDto {
+    numChildComment: number;
+  }
+}
+
+declare namespace Comment {
   export interface CreateResponseDto {
     postId: string;
     id: string;
@@ -23,7 +29,6 @@ declare namespace PostComment {
     content: string;
     createdAt: string;
     updatedAt: string;
-    numChildComment: number;
     updatable: boolean;
     deletable: boolean;
     isDeleted: boolean;
