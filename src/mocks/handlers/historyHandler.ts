@@ -1,4 +1,5 @@
 import { HttpResponse, ResponseResolver, http } from 'msw';
+
 import { historyCommentList, historyPostList } from './data/history';
 
 const getHistoryCommentHandler: ResponseResolver = () => {

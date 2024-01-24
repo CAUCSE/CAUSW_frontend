@@ -1,4 +1,5 @@
 import { HttpResponse, ResponseResolver, http } from 'msw';
+
 import { lockerAllLocationsList, lockerLocationsList } from './data/locker';
 
 const getAllLocationHandler: ResponseResolver = () => {

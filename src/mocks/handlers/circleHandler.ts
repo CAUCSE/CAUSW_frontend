@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw';
+
 import { circleBoardList, circleList } from './data/circle';
 
 const getAllCircleHandler = () => {
