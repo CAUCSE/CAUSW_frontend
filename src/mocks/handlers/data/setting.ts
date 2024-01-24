@@ -54,3 +54,59 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
     },
   ],
 };
+
+export const stateUsersList: User.FindByStateResponseDto = {
+  content: [
+    {
+      admissionYear: 0,
+      circleIdIfLeader: 'string',
+      circleNameIfLeader: 'string',
+      email: 'string',
+      id: 'string',
+      name: 'stateUsers1',
+      profileImage: 'string',
+      role: 'ADMIN',
+      state: 'ACTIVE',
+      studentId: 'string',
+    },
+    {
+      admissionYear: 0,
+      circleIdIfLeader: 'string',
+      circleNameIfLeader: 'string',
+      email: 'string',
+      id: 'string',
+      name: 'stateUsers2',
+      profileImage: 'string',
+      role: 'ADMIN',
+      state: 'ACTIVE',
+      studentId: 'string',
+    },
+  ],
+  last: true,
+};
+
+export const admissionsUsersList: User.FindAllAdmissionsResponseDto = {
+  content: [
+    {
+      admissionYear: 0,
+      attachImage: 'string',
+      createdAt: '2024-01-24T11:57:57.645Z',
+      description: 'string',
+      id: 'string',
+      updatedAt: '2024-01-24T11:57:57.645Z',
+      userEmail: 'string',
+      userName: 'admissionsUser1',
+    },
+    {
+      admissionYear: 0,
+      attachImage: 'string',
+      createdAt: '2024-01-24T11:57:57.645Z',
+      description: 'string',
+      id: 'string',
+      updatedAt: '2024-01-24T11:57:57.645Z',
+      userEmail: 'string',
+      userName: 'admissionsUser2',
+    },
+  ],
+  last: true,
+};

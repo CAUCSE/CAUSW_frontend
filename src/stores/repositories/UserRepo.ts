@@ -128,11 +128,16 @@ class UserRepo {
     state: User.UserDto['state'],
     page: number,
   ): Promise<User.FindByStateResponse> => {
+    /*origin 
     const {
       data: { content, last },
     } = (await API.get(
       `${this.URI}/state/${state}?pageNum=${page}`,
-    )) as AxiosResponse<User.FindByStateResponseDto>;
+    )) as AxiosResponse<User.FindByStateResponseDto>; */
+
+    const {
+      data: { content, last },
+    } = await axios.get<User.FindByStateResponseDto>(`${this.URI}/state/${state}?pageNum=${page}`);
 
     return {
       users: content.map(user => new UserModel(user)),
