@@ -3,7 +3,7 @@ export const lockerAllLocationsList: Locker.FindAllLocationResponseDto = {
     //problem: Swagger API와 아예 다름
     {
       id: '3',
-      name: 'name',
+      name: 'locker_location',
       description: 'description',
       enableLockerCount: 0,
       totalLockerCount: 0,
@@ -21,11 +21,11 @@ export const lockerAllLocationsList: Locker.FindAllLocationResponseDto = {
 };
 
 export const lockerLocationsList: Locker.FindByLocationResponseDto = {
-  locationName: '3층 사물함',
+  locationName: 'locker_location',
   lockerList: [
     {
       id: '1',
-      lockerNumber: '1',
+      lockerNumber: '1_locker',
       lockerLocationName: 'lockerLocationName',
       updatedAt: '2024-01-22T17:41:50.213Z',
       expireAt: '2024-01-22T17:41:50.213Z',
@@ -34,16 +34,16 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
     },
     {
       id: '2',
-      lockerNumber: '2',
+      lockerNumber: '2_locker',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
       isActive: false,
-      isMine: true,
+      isMine: false,
     },
     {
       id: '3',
-      lockerNumber: '3',
+      lockerNumber: '3_locker',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -52,7 +52,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
     },
     {
       id: '4',
-      lockerNumber: '4',
+      lockerNumber: '4_locker',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',

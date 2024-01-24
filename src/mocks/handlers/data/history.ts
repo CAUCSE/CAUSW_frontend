@@ -9,7 +9,7 @@ export const historyCommentList: User.FindCommentsResponseDto = {
         boardName: 'boardName',
         postName: 'postName',
         id: '1',
-        content: 'content',
+        content: 'comment_content',
         tagUserName: 'tagUserName',
         createdAt: '2024-01-22T17:41:50.213Z',
         updatedAt: '2024-01-22T17:41:50.213Z',
