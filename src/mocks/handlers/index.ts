@@ -5,6 +5,7 @@ import { historyHandler } from './historyHandler';
 import { homeHandler } from './homeHandler';
 import { lockerHandler } from './lockerHandler';
 import { postHandler } from './postHandler';
+import { settingHandler } from './settingHandler';
 
 const handlers = [
   ...homeHandler,
@@ -14,6 +15,7 @@ const handlers = [
   ...boardHandler,
   ...lockerHandler,
   ...historyHandler,
+  ...settingHandler,
 ];
 
 export default handlers;
