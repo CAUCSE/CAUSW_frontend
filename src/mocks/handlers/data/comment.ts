@@ -1,0 +1,33 @@
+export const commentList: PostComment.GetResponseDto = {
+  last: false,
+  content: [
+    {
+      postId: '0',
+      id: '0',
+      writerAdmissionYear: 19,
+      writerName: 'writer_name',
+      writerProfileImage: 'writerProfileImage | null',
+      content: 'comment_content',
+      createdAt: '2024-01-12T15:34',
+      updatedAt: '2024-01-13T15:34',
+      numChildComment: 1,
+      updatable: false,
+      deletable: false,
+      isDeleted: false,
+    },
+    {
+      postId: '0',
+      id: '1',
+      writerAdmissionYear: 19,
+      writerName: 'writer_name',
+      writerProfileImage: 'writerProfileImage | null',
+      content: 'comment_content',
+      createdAt: '2024-01-12T15:34',
+      updatedAt: '2024-01-13T15:34',
+      numChildComment: 1,
+      updatable: false,
+      deletable: false,
+      isDeleted: false,
+    },
+  ],
+};

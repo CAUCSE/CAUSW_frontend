@@ -1,6 +1,7 @@
 import { http, HttpResponse, ResponseResolver } from 'msw';
+import { commentList } from './data/comment';
 
-import { commentList } from '../mockData';
+import { replyCommentList } from './data/replyComment';
 
 const getCommentHandler = ({ request }: { request: Request }) => {
   const url = new URL(request.url);
@@ -50,9 +51,23 @@ const editCommentHandler = async ({
 
 const deleteCommentHandler = () => {};
 
+const getReplyCommentHandler = ({ request }: { request: Request }) => {
+  const url = new URL(request.url);
+  const parentCommentId = url.searchParams.get('parentCommentId')!;
+  // const pageNum = url.searchParams.get('pageNum');
+  return HttpResponse.json<ReplyComment.GetResponseDto>({
+    childComments: {
+      content: replyCommentList,
+      last: false,
+    },
+    parentComment: commentList.content[parseInt(parentCommentId)],
+  });
+};
+
 export const commentHandler = [
   http.get('/api/v1/comments', getCommentHandler),
   http.post('/api/v1/comments', createCommentHandler),
   http.put('/api/v1/comments/:commentId', editCommentHandler),
   // http.delete('/api/v1/comments/:id', deleteCommentHandler),
+  http.get('/api/v1/child-comments', getReplyCommentHandler),
 ];
