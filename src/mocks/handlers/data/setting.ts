@@ -55,10 +55,36 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
   ],
 };
 
-export const stateUsersList: User.FindByStateResponseDto = {
+export const admissionsUsersList: User.FindAllAdmissionsResponseDto = {
   content: [
     {
-      admissionYear: 0,
+      admissionYear: 21,
+      attachImage: 'string',
+      createdAt: '2024-01-24T11:57:57.645Z',
+      description: 'string',
+      id: 'string',
+      updatedAt: '2024-01-24T11:57:57.645Z',
+      userEmail: 'string',
+      userName: 'admissionsUser1',
+    },
+    {
+      admissionYear: 21,
+      attachImage: 'string',
+      createdAt: '2024-01-24T11:57:57.645Z',
+      description: 'string',
+      id: 'string',
+      updatedAt: '2024-01-24T11:57:57.645Z',
+      userEmail: 'string',
+      userName: 'admissionsUser2',
+    },
+  ],
+  last: true,
+};
+
+export const activeUsersList: User.FindByStateResponseDto = {
+  content: [
+    {
+      admissionYear: 20,
       circleIdIfLeader: 'string',
       circleNameIfLeader: 'string',
       email: 'string',
@@ -70,7 +96,7 @@ export const stateUsersList: User.FindByStateResponseDto = {
       studentId: 'string',
     },
     {
-      admissionYear: 0,
+      admissionYear: 20,
       circleIdIfLeader: 'string',
       circleNameIfLeader: 'string',
       email: 'string',
@@ -85,27 +111,31 @@ export const stateUsersList: User.FindByStateResponseDto = {
   last: true,
 };
 
-export const admissionsUsersList: User.FindAllAdmissionsResponseDto = {
+export const inactiveUsersList: User.FindByStateResponseDto = {
   content: [
     {
-      admissionYear: 0,
-      attachImage: 'string',
-      createdAt: '2024-01-24T11:57:57.645Z',
-      description: 'string',
+      admissionYear: 20,
+      circleIdIfLeader: 'string',
+      circleNameIfLeader: 'string',
+      email: 'string',
       id: 'string',
-      updatedAt: '2024-01-24T11:57:57.645Z',
-      userEmail: 'string',
-      userName: 'admissionsUser1',
+      name: 'stateUsers3',
+      profileImage: 'string',
+      role: 'ADMIN',
+      state: 'INACTIVE',
+      studentId: 'string',
     },
     {
-      admissionYear: 0,
-      attachImage: 'string',
-      createdAt: '2024-01-24T11:57:57.645Z',
-      description: 'string',
+      admissionYear: 20,
+      circleIdIfLeader: 'string',
+      circleNameIfLeader: 'string',
+      email: 'string',
       id: 'string',
-      updatedAt: '2024-01-24T11:57:57.645Z',
-      userEmail: 'string',
-      userName: 'admissionsUser2',
+      name: 'stateUsers4',
+      profileImage: 'string',
+      role: 'ADMIN',
+      state: 'INACTIVE',
+      studentId: 'string',
     },
   ],
   last: true,
