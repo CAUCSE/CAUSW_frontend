@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { CommentModel } from '../models/CommentModel';
 import { ReplyCommentModel } from '../models/ReplyCommentModel';
@@ -9,10 +9,14 @@ class ReplyCommentRepo {
   URI = '/api/v1/child-comments';
 
   findAll = async (pcid: string, pageNum: number): Promise<ReplyComment.FindAllResponse> => {
-    const { data } = (await API.get(
-      `${this.URI}?parentCommentId=${pcid}&pageNum=${pageNum}`,
-    )) as AxiosResponse<ReplyComment.GetResponseDto>;
+    // const { data } = (await API.get(
+    //   `${this.URI}?parentCommentId=${pcid}&pageNum=${pageNum}`,
+    // )) as AxiosResponse<ReplyComment.GetResponseDto>;
 
+    const { data } = await axios.get<ReplyComment.GetResponseDto>(
+      `${this.URI}?parentCommentId=${pcid}&pageNum=${pageNum}`,
+    );
+    console.log(data.childComments);
     return {
       parent: new CommentModel(data.parentComment),
       comments: data.childComments.content.map(comment => new ReplyCommentModel(comment)),

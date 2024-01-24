@@ -9,23 +9,10 @@ class BoardRepo {
 
   fetch = async (): Promise<Model.Board[]> => {
     // const { data } = await API.get(this.URI);
-    const { data } = await axios.get<BoardDto[]>(this.URI); // MSW
+    const { data } = await axios.get<Board.ResponseDto[]>(this.URI); // MSW
 
-    return data.map(({ id, category, name }: BoardDto) => new BoardModel(id, category, name));
+    return data.map(({ id, category, name }) => new BoardModel(id, category, name));
   };
 }
 
 export const BoardRepoImpl = new BoardRepo();
-
-export interface BoardDto {
-  id: string;
-  category: string;
-  name: string;
-
-  // XXX: 사용 안함
-  writable?: boolean;
-  isDeleted?: boolean;
-  circleId?: string;
-  circleName?: string;
-  createRoleList?: string[];
-}
