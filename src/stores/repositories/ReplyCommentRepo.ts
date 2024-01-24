@@ -16,7 +16,7 @@ class ReplyCommentRepo {
     const { data } = await axios.get<ReplyComment.GetResponseDto>(
       `${this.URI}?parentCommentId=${pcid}&pageNum=${pageNum}`,
     );
-    console.log(data.childComments);
+
     return {
       parent: new CommentModel(data.parentComment),
       comments: data.childComments.content.map(comment => new ReplyCommentModel(comment)),
