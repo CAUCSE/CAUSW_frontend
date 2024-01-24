@@ -1,4 +1,4 @@
-import { http, HttpResponse, ResponseResolver } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { commentList } from './data/comment';
 
 import { replyCommentList } from './data/replyComment';
@@ -6,10 +6,9 @@ import { replyCommentList } from './data/replyComment';
 const getCommentHandler = ({ request }: { request: Request }) => {
   const url = new URL(request.url);
   const postId = url.searchParams.get('postId');
-  const pageNum = url.searchParams.get('pageNum');
-
+  // const pageNum = url.searchParams.get('pageNum');
   return HttpResponse.json<PostComment.GetResponseDto>({
-    content: commentList.content,
+    content: commentList.content.filter(data => data.postId === postId),
     last: false,
   });
 };

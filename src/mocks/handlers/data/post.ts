@@ -24,7 +24,7 @@ export const contentList: Post.Dto[] = [
     updatedAt: new Date(),
     numComment: 2,
     updatable: false,
-    deletable: false,
+    deletable: true,
     isDeleted: false,
   },
 ];
