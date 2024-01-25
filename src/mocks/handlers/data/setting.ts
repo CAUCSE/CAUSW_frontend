@@ -140,3 +140,63 @@ export const inactiveUsersList: User.FindByStateResponseDto = {
   ],
   last: true,
 };
+
+//circle leader setting
+export const circleUsersList: Circle.GetUserListResponseDto = [
+  {
+    circle: {
+      createdAt: '2024-01-25T12:55:20.818Z',
+      description: 'string',
+      id: 'string',
+      isJoined: true,
+      joinedAt: 'string',
+      leaderId: 'string',
+      leaderName: 'string',
+      mainImage: 'string',
+      name: 'string',
+      numMember: 0,
+    },
+    id: 'string',
+    status: 'AWAIT',
+    user: {
+      admissionYear: 2020,
+      circleIdIfLeader: 'uuid 형식의 String 값입니다.',
+      circleNameIfLeader: '개발 동아리',
+      email: 'yebin@cau.ac.kr',
+      id: 'uuid 형식의 String 값입니다.',
+      name: '이예빈',
+      profileImage: '/images/default_profile.png',
+      role: 'COMMON',
+      state: 'ACTIVE',
+      studentId: '20209999',
+    },
+  },
+  {
+    circle: {
+      createdAt: '2024-01-25T12:55:20.818Z',
+      description: 'string',
+      id: 'string',
+      isJoined: true,
+      joinedAt: 'string',
+      leaderId: 'string',
+      leaderName: 'string',
+      mainImage: 'string',
+      name: 'string',
+      numMember: 0,
+    },
+    id: 'string',
+    status: 'AWAIT',
+    user: {
+      admissionYear: 2020,
+      circleIdIfLeader: 'uuid 형식의 String 값입니다.',
+      circleNameIfLeader: '개발 동아리',
+      email: 'yebin@cau.ac.kr',
+      id: 'uuid 형식의 String 값입니다.',
+      name: '강민규',
+      profileImage: '/images/default_profile.png',
+      role: 'COMMON',
+      state: 'ACTIVE',
+      studentId: '20209999',
+    },
+  },
+];
