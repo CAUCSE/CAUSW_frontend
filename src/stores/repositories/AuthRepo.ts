@@ -35,6 +35,11 @@ class AuthRepo {
   findCurrentUser = async (): Promise<Model.User> => {
     const { data } = await API.get(`${this.URI}/me`);
 
+    //이하 동아리 설정 활성화를 위한 조치
+    data.circleIdIfLeader = '3';
+    data.circleNameIfLeader = 'circle_name3';
+    //이상 동아리 설정 활성화를 위한 조치
+
     return new UserModel(data);
   };
 

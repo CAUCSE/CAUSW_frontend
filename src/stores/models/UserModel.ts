@@ -71,10 +71,7 @@ export class UserModel {
   }
 
   get isCouncil(): boolean {
-    return (
-      this.role === 'COUNCIL' || 
-      this.role === 'VICE_PRESIDENT'
-    );
+    return this.role === 'COUNCIL' || this.role === 'VICE_PRESIDENT';
   }
 
   get isStudentLeader(): boolean {
