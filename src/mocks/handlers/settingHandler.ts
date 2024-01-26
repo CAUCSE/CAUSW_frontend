@@ -34,7 +34,7 @@ export const settingHandler = [
   http.get('/api/v1/users/admissions?pageNum=0', getadmissionsUsersListHandler),
   http.get('/api/v1/users/state/ACTIVE?pageNum=0', getActiveUsersListHandler),
   http.get('/api/v1/users/state/INACTIVE?pageNum=0', getInactiveUsersListHandler),
-  http.get('/api/v1/circles/3/users?status=AWAIT', getCircleUserListHandler),
-  http.get('/api/v1/circles/3/users?status=MEMBER', getCircleUserListHandler),
-  http.get('/api/v1/circles/3/users?status=LEAVE', getCircleUserListHandler),
+  http.get('/api/v1/circles/:circleId/users?status=AWAIT', getCircleUserListHandler),
+  http.get('/api/v1/circles/:circleId/users?status=MEMBER', getCircleUserListHandler),
+  http.get('/api/v1/circles/:circleId/users?status=LEAVE', getCircleUserListHandler),
 ];
