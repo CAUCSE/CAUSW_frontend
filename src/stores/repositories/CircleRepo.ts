@@ -32,9 +32,15 @@ class CircleRepo {
     circleId: string,
     status: Circle.Status,
   ): Promise<Circle.GetUserListResponse> => {
+    /* origin
     const { data } = (await API.get(
       `${this.URI}/${circleId}/users?status=${status}`,
-    )) as AxiosResponse<Circle.GetUserListResponseDto>;
+    )) as AxiosResponse<Circle.GetUserListResponseDto>; */
+
+    //mocking
+    const { data } = await axios.get<Circle.GetUserListResponseDto>(
+      `${this.URI}/${circleId}/users?status=${status}`,
+    );
 
     return data.map(user => new CircleUserModel(user));
   };

@@ -34,7 +34,7 @@ class UserRepo {
   };
 
   findPosts = async (page: number): Promise<User.FindPostsResponse> => {
-    /* orgin
+    /* origin
     const {
       data: {
         post: { content, last },
@@ -58,7 +58,7 @@ class UserRepo {
   };
 
   findComments = async (page: number): Promise<User.FindCommentsResponse> => {
-    /* orgin
+    /* origin
     const {
       data: {
         comment: { content, last },
@@ -83,11 +83,16 @@ class UserRepo {
 
   // 권한 관리 페이지
   findPrivilegedUsers = async (): Promise<User.FindPrivilegedUsersResponse> => {
+    /* origin
     const {
       data: { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
     } = (await API.get(
       `${this.URI}/privileged`,
-    )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>;
+    )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>; */
+
+    const {
+      data: { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
+    } = await axios.get<User.FindPrivilegedUsersResponseDto>(`${this.URI}/privileged`);
 
     return {
       councilUsers: councilUsers.map(user => new UserModel(user)),
@@ -99,11 +104,19 @@ class UserRepo {
 
   // 유저 관리 페이지
   findAllAdmissions = async (page: number): Promise<User.FindAllAdmissionsResponse> => {
+    /* origin 
     const {
       data: { content, last },
     } = (await API.get(
       `${this.URI}/admissions?pageNum=${page}`,
-    )) as AxiosResponse<User.FindAllAdmissionsResponseDto>;
+    )) as AxiosResponse<User.FindAllAdmissionsResponseDto>; */
+
+    //mocking
+    const {
+      data: { content, last },
+    } = await axios.get<User.FindAllAdmissionsResponseDto>(
+      `${this.URI}/admissions?pageNum=${page}`,
+    );
 
     return {
       users: content.map(user => new AdmissionUserModel(user)),
@@ -115,11 +128,16 @@ class UserRepo {
     state: User.UserDto['state'],
     page: number,
   ): Promise<User.FindByStateResponse> => {
+    /*origin 
     const {
       data: { content, last },
     } = (await API.get(
       `${this.URI}/state/${state}?pageNum=${page}`,
-    )) as AxiosResponse<User.FindByStateResponseDto>;
+    )) as AxiosResponse<User.FindByStateResponseDto>; */
+
+    const {
+      data: { content, last },
+    } = await axios.get<User.FindByStateResponseDto>(`${this.URI}/state/${state}?pageNum=${page}`);
 
     return {
       users: content.map(user => new UserModel(user)),

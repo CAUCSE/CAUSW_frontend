@@ -8,7 +8,7 @@ class LockerRepo {
   URI = '/api/v1/lockers';
 
   findAllLocation = async (): Promise<Locker.FindAllLocationResponse> => {
-    /* orgin
+    /* origin
     const {
       data: { lockerLocations, myLocker },
     } = (await API.get(
@@ -27,7 +27,7 @@ class LockerRepo {
   };
 
   findByLocation = async (locationId: string): Promise<Locker.FindByLocationResponse> => {
-    /* orgin
+    /* origin
     const {
       data: { locationName, lockerList },
     } = (await API.get(
@@ -46,7 +46,7 @@ class LockerRepo {
   };
 
   register = async (lockerId: string): Promise<unknown> => {
-    //orgin
+    //origin
     //return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
 
     //mocking
@@ -54,7 +54,7 @@ class LockerRepo {
   };
 
   return = async (lockerId: string): Promise<unknown> => {
-    //orgin
+    //origin
     //return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
 
     //mocking
@@ -62,7 +62,7 @@ class LockerRepo {
   };
 
   extend = async (lockerId: string): Promise<unknown> => {
-    //orgin
+    //origin
     //return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
 
     //mocking
