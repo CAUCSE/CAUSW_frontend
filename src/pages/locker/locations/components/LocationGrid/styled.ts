@@ -53,6 +53,7 @@ const boxStyle = ({ isSelected, isMine, isActive }: CellProps) => css`
 export const Cell = styled(ClearButton)<CellProps>`
   position: relative;
   padding-bottom: 100%;
+
   ${props => boxStyle(props)}
 `;
 
@@ -72,7 +73,7 @@ export const Legend = styled.div`
 export const LegendBox = styled.div<CellProps>`
   display: inline-block;
   margin-right: 5px;
-  width: 10px;
+  width: 20px;
   height: 10px;
   ${props => boxStyle(props)}
 `;
