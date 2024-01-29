@@ -18,7 +18,7 @@ export const ScrollArea = styled.div`
 export const Gird = styled.div`
   display: grid;
   padding: 10px;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   border: 1px solid #fbfbfb;
   border-radius: 3px;
@@ -37,9 +37,9 @@ const boxStyle = ({ isSelected, isMine, isActive }: CellProps) => css`
   box-shadow: ${isSelected
     ? '0 4px 4px 0 rgb(0 0 0 / 0%)'
     : isMine
-      ? '0 4px 4px 0 rgb(0 0 0 / 50%)'
+      ? '0 4px 4px 0 rgb(0 0 0 / 70%)'
       : isActive
-        ? '0 4px 4px 0 rgb(0 0 0 / 30%)'
+        ? '0 4px 4px 0 rgb(0 0 0 / 50%)'
         : '0 4px 4px 0 rgb(0 0 0 / 0%)'};
 
   background-color: ${isMine ? '#312ed7' : isActive ? '#fbfbfb' : '#dfdfdf'};
