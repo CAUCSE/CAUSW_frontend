@@ -24,7 +24,19 @@ export const historyPostList: User.FindPostsResponseDto = {
     content: [
       {
         boardId: '1',
-        title: 'title',
+        title:
+          'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
+        circleName: 'circleName',
+        boardName: 'boardName',
+        numComment: 0,
+        id: '1',
+        createdAt: '2024-01-22T17:41:50.213Z',
+        updatedAt: '2024-01-22T17:41:50.213Z',
+      },
+      {
+        boardId: '1',
+        title:
+          'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
         circleName: 'circleName',
         boardName: 'boardName',
         numComment: 0,
