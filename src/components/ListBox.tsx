@@ -47,9 +47,17 @@ export const Box = styled.section`
 `;
 
 export const Title = styled.h2`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 16px;
+`;
+
+export const TitleContent = styled.span`
+  margin-left: 5px;
 `;
 
 const DefaultEmptyComponent: React.FC = () => (
