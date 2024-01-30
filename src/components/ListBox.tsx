@@ -47,16 +47,24 @@ export const Box = styled.section`
 `;
 
 export const Title = styled.h2`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 16px;
 `;
 
-const DefaultEmptyComponent: React.FC = () => (
+export const TitleContent = styled.span`
+  margin-left: 5px;
+`;
+
+export const DefaultEmptyComponent: React.FC<{ comment?: string }> = ({ comment }) => (
   <EmptyComponentWrapper>
     <img src="/images/empty.png" alt="Empty list logo" />
     <br />
-    작성된 게시글이 없습니다
+    {comment ? comment : '작성된 게시글이 없습니다'}
   </EmptyComponentWrapper>
 );
 

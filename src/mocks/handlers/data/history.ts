@@ -1,7 +1,7 @@
 export const historyCommentList: User.FindCommentsResponseDto = {
   comment: {
     content: [
-      {
+      /* {
         boardId: '1',
         postId: '1',
         parentCommentId: null,
@@ -13,7 +13,7 @@ export const historyCommentList: User.FindCommentsResponseDto = {
         tagUserName: 'tagUserName',
         createdAt: '2024-01-22T17:41:50.213Z',
         updatedAt: '2024-01-22T17:41:50.213Z',
-      },
+      }, */
     ],
     last: true, //problem: false하면 반복 생성됨.
   },
@@ -22,9 +22,10 @@ export const historyCommentList: User.FindCommentsResponseDto = {
 export const historyPostList: User.FindPostsResponseDto = {
   post: {
     content: [
-      {
+      /* {
         boardId: '1',
-        title: 'title',
+        title:
+          'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
         circleName: 'circleName',
         boardName: 'boardName',
         numComment: 0,
@@ -32,6 +33,17 @@ export const historyPostList: User.FindPostsResponseDto = {
         createdAt: '2024-01-22T17:41:50.213Z',
         updatedAt: '2024-01-22T17:41:50.213Z',
       },
+      {
+        boardId: '1',
+        title:
+          'titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle',
+        circleName: 'circleName',
+        boardName: 'boardName',
+        numComment: 0,
+        id: '1',
+        createdAt: '2024-01-22T17:41:50.213Z',
+        updatedAt: '2024-01-22T17:41:50.213Z',
+      }, */
     ],
     last: true, //problem: false하면 반복 생성됨.
   },

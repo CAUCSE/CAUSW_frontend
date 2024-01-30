@@ -18,7 +18,7 @@ export const ScrollArea = styled.div`
 export const Gird = styled.div`
   display: grid;
   padding: 10px;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   border: 1px solid #fbfbfb;
   border-radius: 3px;
@@ -34,23 +34,24 @@ interface CellProps {
 const boxStyle = ({ isSelected, isMine, isActive }: CellProps) => css`
   border-radius: 2px;
   border: 1px solid;
-  border-color: ${isSelected ? '#312ed7' : isMine ? '#ea4545' : isActive ? '#3f4040' : '#dadada'};
-  background-color: ${isSelected
-    ? '#312ed7'
-    : isMine
-    ? '#ea4545'
-    : isActive
-    ? '#fbfbfb'
-    : '#dfdfdf'};
+  box-shadow: ${isMine && isSelected
+    ? '0 5px 5px 0 rgb(0 0 0 / 70%)'
+    : isActive && isSelected
+      ? '0 5px 5px 0 rgb(0 0 0 / 50%)'
+      : '0 5px 5px 0 rgb(0 0 0 / 0%)'};
+
+  background-color: ${isMine ? '#312ed7' : isActive ? '#fbfbfb' : '#dfdfdf'};
+  border-color: ${isMine ? '#312ed7' : isActive ? 'gray' : '#dfdfdf'};
 
   span {
-    color: ${isSelected || isMine ? '#fff' : null};
+    color: ${isMine ? '#fff' : null};
   }
 `;
 
 export const Cell = styled(ClearButton)<CellProps>`
   position: relative;
   padding-bottom: 100%;
+
   ${props => boxStyle(props)}
 `;
 
@@ -70,7 +71,7 @@ export const Legend = styled.div`
 export const LegendBox = styled.div<CellProps>`
   display: inline-block;
   margin-right: 5px;
-  width: 10px;
+  width: 20px;
   height: 10px;
   ${props => boxStyle(props)}
 `;

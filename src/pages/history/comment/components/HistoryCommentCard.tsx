@@ -36,7 +36,7 @@ const Link = styled(ClearLink)`
 const Card = styled.article`
   ${PostWrapperCSS}
   padding: 1rem 0 0.75rem;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid #d2d2d2;
 `;
 
 const Title = styled.h3`

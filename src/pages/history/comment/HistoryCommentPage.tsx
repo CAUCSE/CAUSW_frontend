@@ -5,6 +5,7 @@ import { HistoryCommentCard } from './components';
 import { PageUiStoreImpl } from './HistoryCommentPageUiStore';
 
 import { GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components';
+import { DefaultEmptyComponent } from '@/components/ListBox';
 import { usePageUiStore } from '@/hooks';
 
 const HistoryCommentPage: React.FC = observer(() => {
@@ -23,6 +24,7 @@ const HistoryCommentPage: React.FC = observer(() => {
     <>
       <Header title="내가 쓴 댓글" mini withBack RightComponent={null} />
       <PageBody>
+        {comments.length === 0 ? <DefaultEmptyComponent comment="작성한 댓글이 없습니다" /> : null}
         <InfinityFrame<Model.HistoryComment>
           loadMore={loadMore(hasMore, page)}
           data={comments}

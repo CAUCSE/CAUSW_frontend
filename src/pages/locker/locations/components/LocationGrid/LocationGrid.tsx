@@ -12,11 +12,11 @@ export const LocationGrid: React.FC = observer(() => {
     <Wrapper>
       <Legend>
         <div>
-          <LegendBox isActive />
-          선택 가능
+          <LegendBox /> 선택 불가
         </div>
         <div>
-          <LegendBox /> 선택 불가
+          <LegendBox isActive />
+          선택 가능
         </div>
         <div>
           <LegendBox isMine /> 내 사물함
