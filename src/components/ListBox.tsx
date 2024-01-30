@@ -60,11 +60,11 @@ export const TitleContent = styled.span`
   margin-left: 5px;
 `;
 
-const DefaultEmptyComponent: React.FC = () => (
+export const DefaultEmptyComponent: React.FC<{ comment?: string }> = ({ comment }) => (
   <EmptyComponentWrapper>
     <img src="/images/empty.png" alt="Empty list logo" />
     <br />
-    작성된 게시글이 없습니다
+    {comment ? comment : '작성된 게시글이 없습니다'}
   </EmptyComponentWrapper>
 );
 

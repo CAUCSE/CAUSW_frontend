@@ -66,7 +66,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
       updatedAt: '2024-01-22T17:41:50.213Z',
       expireAt: '2024-01-22T17:41:50.213Z',
       isActive: true,
-      isMine: true,
+      isMine: false,
     },
     {
       id: '2',
