@@ -34,13 +34,11 @@ interface CellProps {
 const boxStyle = ({ isSelected, isMine, isActive }: CellProps) => css`
   border-radius: 2px;
   border: 1px solid;
-  box-shadow: ${isSelected
-    ? '0 4px 4px 0 rgb(0 0 0 / 0%)'
-    : isMine
-      ? '0 4px 4px 0 rgb(0 0 0 / 70%)'
-      : isActive
-        ? '0 4px 4px 0 rgb(0 0 0 / 50%)'
-        : '0 4px 4px 0 rgb(0 0 0 / 0%)'};
+  box-shadow: ${isMine && isSelected
+    ? '0 5px 5px 0 rgb(0 0 0 / 70%)'
+    : isActive && isSelected
+      ? '0 5px 5px 0 rgb(0 0 0 / 50%)'
+      : '0 5px 5px 0 rgb(0 0 0 / 0%)'};
 
   background-color: ${isMine ? '#312ed7' : isActive ? '#fbfbfb' : '#dfdfdf'};
   border-color: ${isMine ? '#312ed7' : isActive ? 'gray' : '#dfdfdf'};

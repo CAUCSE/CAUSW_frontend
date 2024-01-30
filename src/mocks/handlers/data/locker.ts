@@ -25,7 +25,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
   lockerList: [
     {
       id: '1',
-      lockerNumber: '1_locker',
+      lockerNumber: '101',
       lockerLocationName: 'lockerLocationName',
       updatedAt: '2024-01-22T17:41:50.213Z',
       expireAt: '2024-01-22T17:41:50.213Z',
@@ -34,7 +34,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
     },
     {
       id: '2',
-      lockerNumber: '2_locker',
+      lockerNumber: '102',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -43,7 +43,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
     },
     {
       id: '3',
-      lockerNumber: '3_locker',
+      lockerNumber: '103',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -52,7 +52,7 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
     },
     {
       id: '4',
-      lockerNumber: '4_locker',
+      lockerNumber: '104',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -60,8 +60,8 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
       isMine: false,
     },
     {
-      id: '1',
-      lockerNumber: '1_locker',
+      id: '5',
+      lockerNumber: '105',
       lockerLocationName: 'lockerLocationName',
       updatedAt: '2024-01-22T17:41:50.213Z',
       expireAt: '2024-01-22T17:41:50.213Z',
@@ -69,8 +69,8 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
       isMine: false,
     },
     {
-      id: '2',
-      lockerNumber: '2_locker',
+      id: '6',
+      lockerNumber: '106',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -78,8 +78,8 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
       isMine: false,
     },
     {
-      id: '3',
-      lockerNumber: '3_locker',
+      id: '7',
+      lockerNumber: '107',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
@@ -87,8 +87,8 @@ export const lockerLocationsList: Locker.FindByLocationResponseDto = {
       isMine: false,
     },
     {
-      id: '4',
-      lockerNumber: '4_locker',
+      id: '8',
+      lockerNumber: '108',
       lockerLocationName: 'string',
       updatedAt: 'string',
       expireAt: 'string',
