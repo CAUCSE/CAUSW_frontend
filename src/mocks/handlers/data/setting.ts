@@ -38,6 +38,18 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
       state: 'ACTIVE',
       studentId: 'string',
     },
+    {
+      admissionYear: 0,
+      circleIdIfLeader: ['string2'],
+      circleNameIfLeader: ['circle_name2'],
+      email: 'email@email.com',
+      id: 'string',
+      name: 'leaderCircleUsers_name',
+      profileImage: 'string',
+      role: 'ADMIN',
+      state: 'ACTIVE',
+      studentId: 'string',
+    },
   ],
   leaderGradeUsers: [
     {
