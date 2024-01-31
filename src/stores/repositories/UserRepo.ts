@@ -25,7 +25,8 @@ class UserRepo {
     userId: string,
     role: User.UserDto['role'],
     circleId?: string,
-  ): Promise<string> => {
+  ): Promise<unknown> => {
+    //UserDto type 확정시 변경 예정
     const body = { role } as User.UpdateRoleRequestDto;
 
     if (circleId) body.circleId = circleId;
@@ -162,7 +163,8 @@ class UserRepo {
     return await API.put(this.URI, body);
   };
 
-  leave = async (): Promise<void> => {
+  leave = async (): Promise<unknown> => {
+    //UserDto type 확정시 변경 예정
     return await API.delete(this.URI);
   };
 }
