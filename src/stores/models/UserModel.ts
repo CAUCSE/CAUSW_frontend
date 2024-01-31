@@ -23,8 +23,8 @@ export class UserModel {
   role: User.UserDto['role'];
   profileImage: string | null;
   studentId?: string;
-  circleId?: string;
-  circleName?: string;
+  circleId?: string[];
+  circleName?: string[];
 
   constructor(props: User.UserDto) {
     this.id = props.id;
@@ -34,8 +34,8 @@ export class UserModel {
     this.role = props.role;
     this.profileImage = props.profileImage ?? '/images/default_profile.png';
     this.studentId = props.studentId;
-    this.circleId = props.circleIdIfLeader ?? '';
-    this.circleName = props.circleNameIfLeader ?? '';
+    this.circleId = props.circleIdIfLeader ?? [];
+    this.circleName = props.circleNameIfLeader ?? [];
   }
 
   get roleTxt(): string {
