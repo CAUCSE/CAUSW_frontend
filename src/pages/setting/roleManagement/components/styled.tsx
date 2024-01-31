@@ -61,7 +61,7 @@ export const UserName: React.FC<{ model: Model.User; withCircleName?: boolean }>
     return (
       <div style={{ flex: '1 0 0', overflow: 'hidden' }}>
         <UserNameButton className="text-ellipsis" onClick={handleOpenInfoModal}>
-          {withCircleName ? `[ ${model.circleName} ] ` : ''}
+          {withCircleName && model.circleNames ? `[ ${model.circleNames[0]} ] ` : ''}
           {model.nameWithAdmission}
         </UserNameButton>
       </div>

@@ -22,14 +22,14 @@ export const DeleteCircleModal: React.FC = observer(() => {
   } = usePageUiStore<PageUiStore.SettingRoleManagement>();
 
   const handleOk = useCallback(async () => {
-    if (!target?.circleId || !key) return;
+    if (!target?.circleIds || !target?.circleNames || !key) return;
 
-    const { success, message } = (await deleteCircle(target.circleId)) as unknown as StoreAPI;
+    const { success, message } = (await deleteCircle(target.circleIds[0])) as unknown as StoreAPI;
 
     if (success) {
       remove(key, target);
       alert({
-        message: `${target.circleName} 동아리가 삭제되었습니다.`,
+        message: `${target.circleNames[0]} 동아리가 삭제되었습니다.`,
       });
     } else if (message) alert({ message });
     close();
@@ -39,10 +39,10 @@ export const DeleteCircleModal: React.FC = observer(() => {
     <Modal open={visible} closeAfterTransition>
       <ModalBox>
         <ModalAlertTitle>
-          <strong>{target?.circleName}</strong> 동아리 삭제
+          <strong>{target?.circleNames![0]}</strong> 동아리 삭제
         </ModalAlertTitle>
         <ModalAlertMessage center>
-          정말로 <strong>{target?.circleName}</strong> 동아리를 삭제하시겠습니까? <br />
+          정말로 <strong>{target?.circleNames![0]}</strong> 동아리를 삭제하시겠습니까? <br />
           삭제된 데이터는 복구되지 않습니다.
         </ModalAlertMessage>
         <ModalFooter>
