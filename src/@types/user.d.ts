@@ -96,8 +96,7 @@ declare namespace User {
     password: string;
     name: string;
     admissionYear: number;
-    // TODO: 필요 없는 파라미터
-    // profileImage?: string | null;
+    profileImage?: string | null;
     studentId: string;
   }
 
