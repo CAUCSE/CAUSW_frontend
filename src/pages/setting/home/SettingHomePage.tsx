@@ -72,30 +72,44 @@ const SettingHomePage: React.FC = observer(() => {
                   <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
                 </>
               ) : null}
-              {/*이하 동아리 설정 활성화를 위한 조치*/}
-              <Link to={generatePath(PAGE_URL.CircleEdit, { circleId: me.circleId as string })}>
-                동아리 관리
-              </Link>
-              <Link to={generatePath(PAGE_URL.CircleUsers, { circleId: me.circleId as string })}>
-                동아리 회원 관리
-              </Link>
-              {/* <Link to={PAGE_URL.SettingCircleBoards}>동아리 게시판 관리</Link> */}
-              <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
-              {/*이상 동아리 설정 활성화를 위한 조치*/}
-              {me.isCircleLeader ? (
-                <>
-                  <Link to={generatePath(PAGE_URL.CircleEdit, { circleId: me.circleId as string })}>
-                    동아리 관리
-                  </Link>
-                  <Link
-                    to={generatePath(PAGE_URL.CircleUsers, { circleId: me.circleId as string })}
-                  >
-                    동아리 회원 관리
-                  </Link>
-                  {/* <Link to={PAGE_URL.SettingCircleBoards}>동아리 게시판 관리</Link> */}
-                  <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
-                </>
-              ) : null}
+              {
+                /*이하 동아리 설정 활성화를 위한 조치*/
+                me.circleIds!.map((circleId, index) => (
+                  <>
+                    <Link to={generatePath(PAGE_URL.CircleEdit, { circleId: circleId as string })}>
+                      {me.circleNames![index]} 동아리 관리
+                    </Link>
+                    <Link to={generatePath(PAGE_URL.CircleUsers, { circleId: circleId as string })}>
+                      {me.circleNames![index]} 동아리 회원 관리
+                    </Link>
+                    {/* <Link to={PAGE_URL.SettingCircleBoards}>동아리 게시판 관리</Link> */}
+                    <Link to={PAGE_URL.SettingRoleDelegation}>
+                      {me.circleNames![index]} 권한 위임
+                    </Link>
+                  </>
+                ))
+                /*이상 동아리 설정 활성화를 위한 조치*/
+              }
+              {me.isCircleLeader
+                ? me.circleIds!.map((circleId, index) => (
+                    <>
+                      <Link
+                        to={generatePath(PAGE_URL.CircleEdit, { circleId: circleId as string })}
+                      >
+                        {me.circleNames![index]} 동아리 관리
+                      </Link>
+                      <Link
+                        to={generatePath(PAGE_URL.CircleUsers, { circleId: circleId as string })}
+                      >
+                        {me.circleNames![index]} 동아리 회원 관리
+                      </Link>
+                      {/* <Link to={PAGE_URL.SettingCircleBoards}>동아리 게시판 관리</Link> */}
+                      <Link to={PAGE_URL.SettingRoleDelegation}>
+                        {me.circleNames![index]} 권한 위임
+                      </Link>
+                    </>
+                  ))
+                : null}
               {me.isCouncil || me.isStudentLeader || me.isAlumniLeader ? (
                 <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
               ) : null}
