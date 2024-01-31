@@ -2,8 +2,8 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
   councilUsers: [
     {
       admissionYear: 0,
-      circleIdIfLeader: 'string',
-      circleNameIfLeader: 'circle_name',
+      circleIdIfLeader: ['string'],
+      circleNameIfLeader: ['circle_name'],
       email: 'email@email.com',
       id: 'string',
       name: 'councilUsers_name',
@@ -28,8 +28,8 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
   leaderCircleUsers: [
     {
       admissionYear: 0,
-      circleIdIfLeader: 'string',
-      circleNameIfLeader: 'circle_name',
+      circleIdIfLeader: ['string'],
+      circleNameIfLeader: ['circle_name'],
       email: 'email@email.com',
       id: 'string',
       name: 'leaderCircleUsers_name',
@@ -42,8 +42,8 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
   leaderGradeUsers: [
     {
       admissionYear: 0,
-      circleIdIfLeader: 'string',
-      circleNameIfLeader: 'circle_name',
+      circleIdIfLeader: ['string'],
+      circleNameIfLeader: ['circle_name'],
       email: 'email@email.com',
       id: 'string',
       name: 'leaderGradeUsers_name',
@@ -85,8 +85,8 @@ export const activeUsersList: User.FindByStateResponseDto = {
   content: [
     {
       admissionYear: 19,
-      circleIdIfLeader: 'string',
-      circleNameIfLeader: 'circle_name',
+      circleIdIfLeader: ['string'],
+      circleNameIfLeader: ['circle_name'],
       email: 'email@email.com',
       id: 'string',
       name: 'activeUsers1_name',
@@ -115,8 +115,8 @@ export const inactiveUsersList: User.FindByStateResponseDto = {
   content: [
     {
       admissionYear: 17,
-      circleIdIfLeader: 'string',
-      circleNameIfLeader: 'circle_name',
+      circleIdIfLeader: ['string'],
+      circleNameIfLeader: ['circle_name'],
       email: 'email@email.com',
       id: 'string',
       name: 'inactiveUsers1_name',
@@ -160,8 +160,8 @@ export const circleUsersList: Circle.GetUserListResponseDto = [
     status: 'AWAIT',
     user: {
       admissionYear: 2020,
-      circleIdIfLeader: '3',
-      circleNameIfLeader: '개발 동아리',
+      circleIdIfLeader: ['3'],
+      circleNameIfLeader: ['개발 동아리'],
       email: 'yebin@cau.ac.kr',
       id: 'user_id_1',
       name: '이예빈',
