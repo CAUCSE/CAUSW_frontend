@@ -62,7 +62,7 @@ const SettingRoleLeaderCirclePage: React.FC = observer(() => {
         <BodyScreen>
           <H2>위임할 권한</H2>
           <Role>
-            [ {state?.user.circleName} ] 동아리장
+            [ {state?.user.circleNames![0]} ] 동아리장
             <H3>기존 동아리장 정보</H3>
             이름: {state?.user.name}
             <br />
