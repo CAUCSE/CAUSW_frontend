@@ -25,7 +25,7 @@ interface FormBody {
 }
 
 const SettingRoleLeaderCirclePage: React.FC = observer(() => {
-  const { state } = useLocation<{ user: Model.User }>();
+  const { state } = useLocation<{ user: Model.User; circleIndex: number }>();
   const { replace } = useHistory();
   const {
     ui: { alert },
@@ -62,7 +62,7 @@ const SettingRoleLeaderCirclePage: React.FC = observer(() => {
         <BodyScreen>
           <H2>위임할 권한</H2>
           <Role>
-            [ {state?.user.circleNames![0]} ] 동아리장
+            [ {state.user.circleNames ? state.user.circleNames[state.circleIndex] : ''} ] 동아리장
             <H3>기존 동아리장 정보</H3>
             이름: {state?.user.name}
             <br />
