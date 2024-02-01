@@ -28,8 +28,8 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
   leaderCircleUsers: [
     {
       admissionYear: 0,
-      circleIdIfLeader: ['string'],
-      circleNameIfLeader: ['circle_name'],
+      circleIdIfLeader: ['string', 'string3'],
+      circleNameIfLeader: ['circle_name', 'circle_name3'],
       email: 'email@email.com',
       id: 'string',
       name: 'leaderCircleUsers_name',
@@ -43,8 +43,8 @@ export const privilegedUsersList: User.FindPrivilegedUsersResponseDto = {
       circleIdIfLeader: ['string2'],
       circleNameIfLeader: ['circle_name2'],
       email: 'email@email.com',
-      id: 'string',
-      name: 'leaderCircleUsers_name',
+      id: 'string2',
+      name: 'leaderCircleUsers2_name',
       profileImage: 'string',
       role: 'ADMIN',
       state: 'ACTIVE',
