@@ -25,4 +25,30 @@ declare namespace Board {
     circleName: string;
     isDeleted: boolean;
   }
+
+  export interface CreateResponseDto {
+    id: string;
+    name: string;
+    category: string;
+    circleId: string;
+    createRoleList: User.Role[];
+    description: string;
+  }
+
+  export interface CreateRequestDto {
+    category: string;
+    circleId: string;
+    createRoleList: User.Role[];
+    description: string;
+    name: string;
+  }
+
+  // TODO: 게시판 관리 구현 시 서버와 조정 필요
+  export interface UpdateRequestDto {
+    category: string;
+    circleId: string;
+    createRoleList: User.Role[];
+    description: string;
+    name: string;
+  }
 }
