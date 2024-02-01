@@ -53,15 +53,15 @@ const UserNameButton = styled(ClearButton)`
   -webkit-line-clamp: 1;
 `;
 
-export const UserName: React.FC<{ model: Model.User; withCircleName?: boolean }> = observer(
-  ({ model, withCircleName = false }) => {
+export const UserName: React.FC<{ model: Model.User; withCircleName?: string }> = observer(
+  ({ model, withCircleName = undefined }) => {
     const { userInfoModal } = usePageUiStore<PageUiStore.SettingRoleManagement>();
     const handleOpenInfoModal = useCallback(() => userInfoModal.open(model), [model]);
 
     return (
       <div style={{ flex: '1 0 0', overflow: 'hidden' }}>
         <UserNameButton className="text-ellipsis" onClick={handleOpenInfoModal}>
-          {withCircleName ? `[ ${model.circleName} ] ` : ''}
+          {withCircleName && model.circleNames ? `[ ${withCircleName} ] ` : ''}
           {model.nameWithAdmission}
         </UserNameButton>
       </div>
