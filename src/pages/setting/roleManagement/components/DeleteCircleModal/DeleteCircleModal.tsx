@@ -36,7 +36,7 @@ export const DeleteCircleModal: React.FC = observer(() => {
       });
     } else if (message) alert({ message });
     close();
-  }, [target]);
+  }, [target, circleIndex]);
 
   return (
     <Modal open={visible} closeAfterTransition>

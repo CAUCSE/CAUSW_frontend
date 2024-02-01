@@ -10,8 +10,9 @@ export const LeaderCircleUsers: React.FC = observer(() => {
   const { leaderCircleUsers, deleteCircleModal } =
     usePageUiStore<PageUiStore.SettingRoleManagement>();
   const handleOpendeleteRuleModal = useCallback(
-    (target: Model.User, circleIndex: number) => () =>
-      deleteCircleModal.open('leaderCircleUsers', target, circleIndex),
+    (target: Model.User, circleIndex: number) => () => {
+      deleteCircleModal.open('leaderCircleUsers', target, circleIndex);
+    },
     [],
   );
 
@@ -31,7 +32,7 @@ export const LeaderCircleUsers: React.FC = observer(() => {
                 pathname={PAGE_URL.SettingRoleLeaderCircle}
                 state={{ user, circleIndex: index }}
               />
-              <RemoveButton onClick={() => handleOpendeleteRuleModal(user, index)} />
+              <RemoveButton onClick={handleOpendeleteRuleModal(user, index)} />
             </Row>
           )),
       )}
