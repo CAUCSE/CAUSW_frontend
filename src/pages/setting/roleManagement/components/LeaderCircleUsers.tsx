@@ -18,13 +18,16 @@ export const LeaderCircleUsers: React.FC = observer(() => {
     <Box>
       <AddLink to={PAGE_URL.CircleAdd} />
       <Title>동아리장 명단</Title>
-      {leaderCircleUsers.map(user => (
-        <Row key={user.circleIds![0]}>
-          <UserName model={user} withCircleName />
-          <AutorenewLink pathname={PAGE_URL.SettingRoleLeaderCircle} state={{ user }} />
-          <RemoveButton onClick={handleOpendeleteRuleModal(user)} />
-        </Row>
-      ))}
+      {leaderCircleUsers.map(
+        user =>
+          user.circleIds?.map((circleId, index) => (
+            <Row key={circleId}>
+              <UserName model={user} withCircleName />
+              <AutorenewLink pathname={PAGE_URL.SettingRoleLeaderCircle} state={{ user, index }} />
+              <RemoveButton onClick={handleOpendeleteRuleModal(user)} />
+            </Row>
+          )),
+      )}
     </Box>
   );
 });
