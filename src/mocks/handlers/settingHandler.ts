@@ -6,7 +6,7 @@ import {
   inactiveUsersList,
   admissionsUsersList,
   circleUsersList,
-} from './data/setting';
+} from '../data/setting';
 
 const getPrivilegedUsersListHandler: ResponseResolver = () => {
   return HttpResponse.json<User.FindPrivilegedUsersResponseDto>(privilegedUsersList);

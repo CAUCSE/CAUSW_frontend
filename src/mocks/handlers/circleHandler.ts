@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 
-import { circleBoardList, circleList } from './data/circle';
+import { circleBoardList, circleList } from '../data/circle';
 
 const getAllCircleHandler = () => {
   return HttpResponse.json<Circle.FindByIdDto[]>(circleList);
