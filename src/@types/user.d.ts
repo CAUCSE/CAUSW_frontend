@@ -7,19 +7,7 @@ declare namespace User {
     id: string;
     name: string;
     profileImage: string;
-    role:
-      | 'ADMIN'
-      | 'PRESIDENT'
-      | 'VICE_PRESIDENT'
-      | 'COUNCIL'
-      | 'LEADER_1'
-      | 'LEADER_2'
-      | 'LEADER_3'
-      | 'LEADER_4'
-      | 'LEADER_CIRCLE'
-      | 'LEADER_ALUMNI'
-      | 'COMMON'
-      | 'PROFESSOR';
+    role: Role;
     state: 'ACTIVE' | 'INACTIVE';
     studentId: string;
   }
@@ -145,4 +133,18 @@ declare namespace User {
       last: boolean;
     };
   }
+
+  export type Role =
+    | 'ADMIN'
+    | 'PRESIDENT'
+    | 'VICE_PRESIDENT'
+    | 'COUNCIL'
+    | 'LEADER_1'
+    | 'LEADER_2'
+    | 'LEADER_3'
+    | 'LEADER_4'
+    | 'LEADER_CIRCLE'
+    | 'LEADER_ALUMNI'
+    | 'COMMON'
+    | 'PROFESSOR';
 }
