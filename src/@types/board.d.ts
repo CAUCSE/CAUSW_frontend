@@ -1,4 +1,12 @@
 declare namespace Board {
+  export interface Dto {
+    name: string;
+    description: string;
+    createRoleList: User.Role[];
+    category: string;
+    circleId: string;
+  }
+
   export interface Item {
     key: string;
     name: string;
@@ -14,41 +22,17 @@ declare namespace Board {
     board: Board[];
   }
 
-  export interface ResponseDto {
+  export interface ResponseDto extends Dto {
     id: string;
-    name: string;
-    category: string;
-    createRoleList: User.Role[];
-    description: string;
     writable: boolean;
-    circleId: string;
-    circleName: string;
     isDeleted: boolean;
+    circleName: string;
   }
 
-  export interface CreateResponseDto {
-    id: string;
-    name: string;
-    category: string;
-    circleId: string;
-    createRoleList: User.Role[];
-    description: string;
-  }
+  interface RequestDto extends Dto {}
 
-  export interface CreateRequestDto {
-    category: string;
-    circleId: string;
-    createRoleList: User.Role[];
-    description: string;
-    name: string;
-  }
+  export interface CreateRequestDto extends RequestDto {}
 
   // TODO: 게시판 관리 구현 시 서버와 조정 필요
-  export interface UpdateRequestDto {
-    category: string;
-    circleId: string;
-    createRoleList: User.Role[];
-    description: string;
-    name: string;
-  }
+  export interface UpdateRequestDto extends RequestDto {}
 }

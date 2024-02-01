@@ -14,7 +14,7 @@ class BoardRepo {
   };
 
   create = async (body: Board.CreateRequestDto): Promise<BoardModel> => {
-    const { data } = await API.post<Board.CreateResponseDto>(this.URI, body);
+    const { data } = await API.post<Board.ResponseDto>(this.URI, body);
     const { id, category, name } = data;
     return new BoardModel(id, category, name);
   };
