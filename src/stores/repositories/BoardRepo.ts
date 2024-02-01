@@ -7,7 +7,10 @@ class BoardRepo {
 
   fetch = async (): Promise<Model.Board[]> => {
     const { data } = await API.get<Board.ResponseDto[]>(this.URI);
-    return data.map(({ id, category, name }) => new BoardModel(id, category, name));
+
+    return data
+      .filter(content => content.isDeleted === false)
+      .map(({ id, category, name }) => new BoardModel(id, category, name));
   };
 }
 

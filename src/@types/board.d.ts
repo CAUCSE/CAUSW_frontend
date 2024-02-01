@@ -18,10 +18,11 @@ declare namespace Board {
     id: string;
     name: string;
     category: string;
-    createRoleList: User.Role[]; // user role key 값 제한 필요
+    createRoleList: User.Role[];
     description: string;
     writable: boolean;
     circleId: string;
     circleName: string;
+    isDeleted: boolean;
   }
 }
