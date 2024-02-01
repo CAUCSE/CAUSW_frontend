@@ -1,8 +1,8 @@
 declare namespace User {
   export interface UserDto {
     admissionYear: number;
-    circleIdIfLeader: string | null;
-    circleNameIfLeader: string | null;
+    circleIdIfLeader: string[] | null;
+    circleNameIfLeader: string[] | null;
     email: string;
     id: string;
     name: string;
@@ -11,6 +11,20 @@ declare namespace User {
     state: 'ACTIVE' | 'INACTIVE';
     studentId: string;
   }
+
+  export type Role =
+    | 'ADMIN'
+    | 'PRESIDENT'
+    | 'VICE_PRESIDENT'
+    | 'COUNCIL'
+    | 'LEADER_1'
+    | 'LEADER_2'
+    | 'LEADER_3'
+    | 'LEADER_4'
+    | 'LEADER_CIRCLE'
+    | 'LEADER_ALUMNI'
+    | 'COMMON'
+    | 'PROFESSOR';
 
   // findByName
   export type FindByNameResponseDto = UserDto[];
@@ -84,8 +98,7 @@ declare namespace User {
     password: string;
     name: string;
     admissionYear: number;
-    // TODO: 필요 없는 파라미터
-    // profileImage?: string | null;
+    profileImage?: string | null;
     studentId: string;
   }
 

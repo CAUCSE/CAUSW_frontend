@@ -37,6 +37,7 @@ const SignUpPage: React.FC = observer(() => {
   } = useForm();
   const password = watch('password');
   const onSubmit = async (body: User.CreateDto) => {
+    body.profileImage = null;
     const { success, message } = (await signUp(body)) as unknown as StoreAPI;
 
     if (success) {
