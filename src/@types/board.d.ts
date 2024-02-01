@@ -16,14 +16,12 @@ declare namespace Board {
 
   export interface ResponseDto {
     id: string;
-    category: string;
     name: string;
-
-    // TODO: 타입 일치 필요
-    writable?: boolean;
-    isDeleted?: boolean;
-    circleId?: string;
-    circleName?: string;
-    createRoleList?: string[];
+    category: string;
+    createRoleList: User.Role[]; // user role key 값 제한 필요
+    description: string;
+    writable: boolean;
+    circleId: string;
+    circleName: string;
   }
 }
