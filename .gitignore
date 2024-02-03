@@ -43,3 +43,7 @@ dist-ssr
 .env.test.local
 .env.production.local
 .firebase
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
