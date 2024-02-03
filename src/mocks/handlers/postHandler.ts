@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
-import { commentList } from './data/comment';
-import { contentList } from './data/post';
+import { commentList } from '../data/comment';
+import { contentList } from '../data/post';
 
 const getAllPostHandler = ({ request }: { request: Request }) => {
   const url = new URL(request.url);

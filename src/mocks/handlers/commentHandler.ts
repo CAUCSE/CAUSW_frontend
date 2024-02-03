@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
-import { commentList } from './data/comment';
-import { replyCommentList } from './data/replyComment';
+import { commentList } from '../data/comment';
+import { replyCommentList } from '../data/replyComment';
 
 const getCommentHandler = ({ request }: { request: Request }) => {
   const url = new URL(request.url);

@@ -1,6 +1,6 @@
 import { HttpResponse, ResponseResolver, http } from 'msw';
 
-import { lockerAllLocationsList, lockerLocationsList } from './data/locker';
+import { lockerAllLocationsList, lockerLocationsList } from '../data/locker';
 
 const getAllLocationHandler: ResponseResolver = () => {
   return HttpResponse.json<Locker.FindAllLocationResponseDto>(lockerAllLocationsList);
