@@ -9,4 +9,10 @@ test('sign-in', async ({ page }) => {
   await page.getByPlaceholder('비밀번호').fill(ADMIN.PW);
 
   await page.click('#root > div > div > form > button');
+
+  expect(page.url() === 'http://localhost:3000/home');
+
+  await page.click('#root > div > nav > a.css-1coshah-LinkStyle.e1w6r2gj0.active');
+
+  expect(page.url() === 'http://localhost:3000/setting');
 });
