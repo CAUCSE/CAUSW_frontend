@@ -1,5 +1,7 @@
 import { test } from '@playwright/test';
 
-import { settingTester } from './tester/settingTester';
+import { settingRouterTester } from './tester/settingTester';
+import { signinTester } from './tester/signinTester';
 
-test('setting', settingTester);
+test.beforeEach(signinTester);
+test('setting', settingRouterTester);

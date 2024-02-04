@@ -50,4 +50,3 @@ dist-ssr
 
 # test
 account.ts
-/playwright/.auth
