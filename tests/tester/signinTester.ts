@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 
-import { ADMIN } from './account';
+import { ADMIN } from '../account';
 
-test('sign-in', async ({ page }) => {
+export const signinTester = async ({ page }) => {
   await page.goto('http://localhost:3000/');
 
   await page.getByPlaceholder('아이디').fill(ADMIN.ID);
@@ -15,4 +15,4 @@ test('sign-in', async ({ page }) => {
   await page.click('#root > div > nav > a.css-1coshah-LinkStyle.e1w6r2gj0.active');
 
   expect(page.url() === 'http://localhost:3000/setting');
-});
+};
