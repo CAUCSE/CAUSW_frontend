@@ -13,6 +13,7 @@ export const replyCommentList: ReplyComment.CreateResponseDto[] = [
     isDeleted: false,
     refChildComment: 'refChildComment',
     tagUserName: 'tagUserName',
+    numChildComment: 1,
   },
   {
     postId: '0',
@@ -28,6 +29,7 @@ export const replyCommentList: ReplyComment.CreateResponseDto[] = [
     isDeleted: false,
     refChildComment: 'refChildComment2',
     tagUserName: 'tagUserName2',
+    numChildComment: 2,
   },
   {
     postId: '0',
@@ -43,6 +45,7 @@ export const replyCommentList: ReplyComment.CreateResponseDto[] = [
     isDeleted: false,
     refChildComment: 'refChildComment3',
     tagUserName: 'tagUserName3',
+    numChildComment: 1,
   },
   {
     postId: '1',
@@ -58,6 +61,7 @@ export const replyCommentList: ReplyComment.CreateResponseDto[] = [
     isDeleted: false,
     refChildComment: 'refChildComment',
     tagUserName: 'tagUserName',
+    numChildComment: 1,
   },
   {
     postId: '1',
@@ -73,6 +77,7 @@ export const replyCommentList: ReplyComment.CreateResponseDto[] = [
     isDeleted: false,
     refChildComment: 'refChildComment2',
     tagUserName: 'tagUserName2',
+    numChildComment: 1,
   },
   {
     postId: '1',
@@ -88,5 +93,6 @@ export const replyCommentList: ReplyComment.CreateResponseDto[] = [
     isDeleted: false,
     refChildComment: 'refChildComment3',
     tagUserName: 'tagUserName3',
+    numChildComment: 1,
   },
 ];

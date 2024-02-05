@@ -18,7 +18,7 @@ const PostEditorPage: React.FC = observer(() => {
   useEffect(() => {
     fetch(boardId, postId);
     return () => reset();
-  }, []);
+  }, [fetch, boardId, postId, reset]);
 
   return (
     <FormProvider {...methods}>

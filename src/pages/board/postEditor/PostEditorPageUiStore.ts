@@ -25,10 +25,7 @@ export class PostEditorPageUiStore {
 
       this.boardName = boardName;
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { boardId, boardName, commentList, content } = (yield Repo.findById(
-        postId,
-      )) as Post.FindByIdResponseDto;
+      const { boardName, content } = (yield Repo.findById(postId)) as Post.FindByIdResponseDto;
 
       this.boardName = boardName;
       this.post = new PostModel(content);

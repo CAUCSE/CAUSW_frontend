@@ -14,8 +14,8 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { commentInput } = usePageUiStore<PageUiStore.PostDetail>();
   const { register, setFocus, setValue } = useFormContext();
-  const { ref, ...rest } = register('content', { onBlur: () => setisFocus(false) });
-  const [isFocus, setisFocus] = useState(false);
+  const { ref, ...rest } = register('content', { onBlur: () => setIsFocus(false) });
+  const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
     const { isEdit, isReply, target } = commentInput;
@@ -36,7 +36,7 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
           minRows={1}
           maxRows={3}
           placeholder="댓글 내용 입력"
-          onFocus={() => setisFocus(true)}
+          onFocus={() => setIsFocus(true)}
           {...rest}
         />
       </InputBox>
