@@ -42,7 +42,7 @@ export class CommentModel {
       setNumChildComment: action.bound,
       refresh: action.bound,
 
-      formatedDate: computed,
+      formattedDate: computed,
       newLineContent: computed,
       editable: computed,
     });
@@ -70,7 +70,7 @@ export class CommentModel {
   /**
    * 수정된 날짜 문자열(수정되지 않은 대답글인 경우 생성 날짜)
    */
-  get formatedDate(): string {
+  get formattedDate(): string {
     const date = new Date(this.createdAt);
 
     return format(date, 'yyyy.MM.dd HH:mm');

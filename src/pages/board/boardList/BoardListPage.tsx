@@ -12,7 +12,7 @@ const BoardListPage: React.FC = () => {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
 
   return (
     <>

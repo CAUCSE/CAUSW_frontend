@@ -3,8 +3,8 @@ import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 import { generatePath, useHistory, useParams, useRouteMatch } from 'react-router-dom';
 
-import { InputState } from '../CommentInput';
 import { Box } from './styled';
+import { InputState } from '../CommentInput';
 
 import { ModalMenuButton } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
@@ -22,11 +22,11 @@ export const CommentMenuContainer: React.FC = observer(() => {
 
   const handleSetState = useCallback(
     (
-        isReplyComment: boolean,
-        state: InputState,
-        params: PostParams,
-        target?: Model.Comment | Model.ReplyComment,
-      ) =>
+      isReplyComment: boolean,
+      state: InputState,
+      params: PostParams,
+      target?: Model.Comment | Model.ReplyComment,
+    ) =>
       () => {
         if (!target) return;
 

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 
-import { InputState } from '../CommentInput';
 import { AuthorName, CommentCard, Content, Profile } from './styled';
+import { InputState } from '../CommentInput';
 
 import { PostCreatedAt, PostProfileImage } from '@/components';
 
@@ -15,7 +15,7 @@ export const CommentCardView: React.FC<Props> = observer(
     state,
     model: {
       author: { nameWithAdmission, profileImage },
-      formatedDate,
+      formattedDate,
       newLineContent,
       ...other
     },
@@ -26,7 +26,7 @@ export const CommentCardView: React.FC<Props> = observer(
           <img src={profileImage} alt="author profile image" />
         </PostProfileImage>
         <AuthorName>{nameWithAdmission}</AuthorName>
-        <PostCreatedAt>{formatedDate}</PostCreatedAt>
+        <PostCreatedAt>{formattedDate}</PostCreatedAt>
       </Profile>
       <Content
         dangerouslySetInnerHTML={{ __html: newLineContent }}
