@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 
+import { CommentModel } from '../models/CommentModel';
+
 import { API } from '@/configs/axios';
-import { PostCommentModel } from '../models/PostCommentModel';
 
 class CommentRepo {
   URI = '/api/v1/comments';
@@ -18,7 +19,7 @@ class CommentRepo {
     } = await axios.get<PostComment.GetResponseDto>(`${this.URI}?postId=${pid}&pageNum=${page}`); // MSW
 
     return {
-      comments: content.map(comment => new PostCommentModel(comment)),
+      comments: content.map(comment => new CommentModel(comment)),
       ...other,
     };
   };
@@ -31,7 +32,7 @@ class CommentRepo {
 
     const { data } = await axios.post<PostComment.CreateResponseDto>(this.URI, body); // MSW
 
-    return new PostCommentModel(data);
+    return new CommentModel(data);
   };
 
   update = async (cid: string, content: string) => {
@@ -41,7 +42,7 @@ class CommentRepo {
     const { data } = await axios.put<PostComment.CreateResponseDto>(`${this.URI}/${cid}`, {
       content,
     }); // MSW
-    return new PostCommentModel(data);
+    return new CommentModel(data);
   };
 
   delete = async (cid: string) => {
@@ -49,7 +50,7 @@ class CommentRepo {
       `${this.URI}/${cid}`,
     )) as AxiosResponse<PostComment.CreateResponseDto>;
 
-    return new PostCommentModel(data);
+    return new CommentModel(data);
   };
 }
 

@@ -21,7 +21,7 @@ declare namespace ReplyComment {
     tagUserName?: string;
   }
 
-  export interface CreateResponseDto extends Comment.CreateResponseDto {
+  export interface CreateResponseDto extends PostComment.CreateResponseDto {
     refChildComment: string | null;
     tagUserName: string | null;
   }
