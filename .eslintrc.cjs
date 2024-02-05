@@ -8,7 +8,7 @@ module.exports = {
     "plugin:prettier/recommended",
     'plugin:import/errors',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'static'],
   parser: '@typescript-eslint/parser',
   plugins: ['prettier', '@typescript-eslint'],
   parserOptions: {
