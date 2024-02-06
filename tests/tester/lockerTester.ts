@@ -28,5 +28,16 @@ export const lockerRouterTester = () => {
       await expect(page.getByText('연장하기')).toBeVisible();
       await expect(page.getByText('반환하기')).toBeVisible();
     }
+
+    //수정 필요
+    /* const activeLockerName = lockerList.find(locker => locker.isActive === true)?.lockerNumber;
+    const activeLocker = activeLockerName ? page.getByText(activeLockerName) : undefined;
+    if (activeLocker) {
+      await expect(activeLocker).toBeVisible();
+      await activeLocker.click();
+      await page.waitForTimeout(2000);
+      await page.getByText('신청하기').click();
+      await expect(page.getByText('사물함 신청')).toBeVisible();
+    } */
   });
 };
