@@ -30,6 +30,6 @@
     }
   },
 
-  "include": ["src", "playwright.config.ts"],
+  "include": ["src", "playwright.config.ts", "tests"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

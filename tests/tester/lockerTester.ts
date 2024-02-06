@@ -21,8 +21,8 @@ export const lockerRouterTester = () => {
     const lockerList = lockerLocationsList.lockerList;
 
     const mineLockerName = lockerList.find(locker => locker.isMine === true)?.lockerNumber;
-    if (mineLockerName) {
-      const mineLocker = page.getByText(mineLockerName);
+    const mineLocker = mineLockerName ? page.getByText(mineLockerName) : undefined;
+    if (mineLocker) {
       await expect(mineLocker).toBeVisible();
       await mineLocker.click();
       await expect(page.getByText('연장하기')).toBeVisible();
