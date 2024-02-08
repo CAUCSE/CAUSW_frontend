@@ -44,6 +44,7 @@ declare namespace Post {
   export interface UpdateRequestDto {
     title: string;
     content: string;
+    attachmentList: IAttachment[];
   }
 
   interface IAttachment {
@@ -74,7 +75,7 @@ declare namespace Post {
 
   type DeleteResponseKind = 'SUCCESS' | 'ERROR';
 
-  export interface DeleteResponseDto {
+  export interface DeleteResponse {
     kind: DeleteResponseKind;
     success: boolean;
     errorCode?: number;

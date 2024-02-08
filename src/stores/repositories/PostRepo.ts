@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import { PostModel } from '../models/PostModel';
 
 import { API } from '@/configs/axios';
@@ -38,6 +36,11 @@ class PostRepo {
 
   delete = async (postId: string): Promise<void> => {
     await API.delete(`${this.URI}/${postId}`);
+  };
+
+  // TODO: 게시판 관리 화면 구현 시 추가 검증 필요
+  restore = async (postId: string): Promise<void> => {
+    await API.put(`${this.URI}/${postId}/restore`);
   };
 }
 

@@ -25,7 +25,7 @@ export const PostDeleteModal: React.FC = observer(() => {
   } = usePageUiStore<PageUiStore.PostDetail>();
 
   const handleOk = async () => {
-    const res = (await deletePost(postId)) as unknown as Post.DeleteResponseDto;
+    const res = (await deletePost(postId)) as unknown as Post.DeleteResponse;
     if (res.kind === 'SUCCESS') {
       alert({ message: '게시글이 삭제되었습니다.' });
       replace(generatePath(PAGE_URL.PostList, { boardId }));
