@@ -38,6 +38,19 @@ class PostRepo {
     await API.delete(`${this.URI}/${postId}`);
   };
 
+  search = async (bid: string, keyword: string, page: number): Promise<Post.FindAllResponse> => {
+    const { data } = await API.get(
+      `${this.URI}/search?boardId=${bid}&keyword=${keyword}&option=title&pageNum=${page}`,
+    );
+
+    const result = {
+      ...data,
+      post: { ...data.post, content: [...data.post.content].map(post => new PostModel(post)) },
+    };
+
+    return result;
+  };
+
   // TODO: 게시판 관리 화면 구현 시 추가 검증 필요
   restore = async (postId: string): Promise<void> => {
     await API.put(`${this.URI}/${postId}/restore`);
