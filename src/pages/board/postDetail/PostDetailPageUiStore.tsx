@@ -71,10 +71,10 @@ export class PostDetailPageUiStore {
     this.comments.hasMore = !commentList.last;
   }
 
-  *deletePost(pid: string): Generator {
+  *deletePost(postId: string): Generator {
     try {
-      yield Repo.delete(pid);
-      return { sucess: true };
+      yield Repo.delete(postId);
+      return { kind: 'SUCCESS', success: true };
     } catch (error) {
       return error;
     }

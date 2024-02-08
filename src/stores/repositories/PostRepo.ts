@@ -27,8 +27,7 @@ class PostRepo {
   };
 
   update = async (postId: string, body: Post.UpdateRequestDto): Promise<void> => {
-    // return await API.put(`${this.URI}/${postId}`, body);
-    await axios.put(`${this.URI}/${postId}`, body); // MSW
+    await API.put(`${this.URI}/${postId}`, body);
   };
 
   findById = async (postId: string): Promise<Post.FindByIdResponseDto> => {

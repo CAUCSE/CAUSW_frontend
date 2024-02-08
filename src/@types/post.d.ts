@@ -71,4 +71,14 @@ declare namespace Post {
     deletable: boolean;
     isDeleted: boolean;
   }
+
+  type DeleteResponseKind = 'SUCCESS' | 'ERROR';
+
+  export interface DeleteResponseDto {
+    kind: DeleteResponseKind;
+    success: boolean;
+    errorCode?: number;
+    message?: string;
+    timeStamp?: Date;
+  }
 }
