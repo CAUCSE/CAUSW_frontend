@@ -12,7 +12,12 @@ class PostRepo {
 
     const result = {
       ...data,
-      post: { ...data.post, content: [...data.post.content].map(post => new PostModel(post)) },
+      post: {
+        ...data.post,
+        content: data.post.content
+          .filter(data => data.isDeleted === false)
+          .map(post => new PostModel(post)),
+      },
     };
 
     return result;
