@@ -12,6 +12,7 @@ declare namespace Post {
     updatable: boolean;
     deletable: boolean;
     isDeleted: boolean;
+    attachmentList: IAttachment[];
   }
 
   export interface FindAllResponseDto {
@@ -45,10 +46,29 @@ declare namespace Post {
     content: string;
   }
 
+  interface IAttachment {
+    downloadFilePath: string;
+    originalFileName: string;
+  }
+
   export interface FindByIdResponseDto {
-    boardId: string;
+    // boardId: string;
     boardName: string;
     commentList: PostComment.GetResponseDto;
-    content: Dto;
+    attachmentList: IAttachment[];
+
+    // content: Dto;
+    id: string;
+    title: string;
+    writerName: string;
+    writerAdmissionYear: number;
+    writerProfileImage: string | null;
+    content: string;
+    createdAt: Date;
+    updatedAt: Date;
+    numComment: number;
+    updatable: boolean;
+    deletable: boolean;
+    isDeleted: boolean;
   }
 }

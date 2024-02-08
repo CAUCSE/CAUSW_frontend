@@ -13,6 +13,7 @@ export class PostModel {
   commentCount: number;
   updatable: boolean;
   deletable: boolean;
+  attachmentList: Post.IAttachment[];
 
   constructor(props: Post.Dto) {
     makeObservable(this, {
@@ -33,6 +34,7 @@ export class PostModel {
     this.commentCount = props.numComment;
     this.updatable = props.updatable ?? false;
     this.deletable = props.deletable ?? false;
+    this.attachmentList = props.attachmentList;
   }
 
   setCommentCount(param: (num: number) => number | number): void {

@@ -59,7 +59,7 @@ export class PostDetailPageUiStore {
   }
 
   *fetch(postId: string): Generator {
-    const { boardName, commentList, content } = (yield Repo.findById(
+    const { boardName, commentList, ...content } = (yield Repo.findById(
       postId,
     )) as Post.FindByIdResponseDto;
 

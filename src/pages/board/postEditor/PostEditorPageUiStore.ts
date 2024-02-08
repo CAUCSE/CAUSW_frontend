@@ -25,7 +25,9 @@ export class PostEditorPageUiStore {
 
       this.boardName = boardName;
     } else {
-      const { boardName, content } = (yield Repo.findById(postId)) as Post.FindByIdResponseDto;
+      const { boardName, commentList, ...content } = (yield Repo.findById(
+        postId,
+      )) as Post.FindByIdResponseDto;
 
       this.boardName = boardName;
       this.post = new PostModel(content);
