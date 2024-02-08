@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-interface useFormProps {
+interface useInputsProps {
   initialValue: {
     searchPostInput: string;
   };
 }
 
-const useInputs = ({ initialValue }: useFormProps) => {
+const useInputs = ({ initialValue }: useInputsProps) => {
   const [values, setValues] = useState(initialValue);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
