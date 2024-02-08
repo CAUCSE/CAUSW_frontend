@@ -44,13 +44,18 @@ class PostRepo {
   };
 
   search = async (bid: string, keyword: string, page: number): Promise<Post.FindAllResponse> => {
-    const { data } = await API.get(
+    const { data } = await API.get<Post.FindAllResponseDto>(
       `${this.URI}/search?boardId=${bid}&keyword=${keyword}&option=title&pageNum=${page}`,
     );
 
     const result = {
       ...data,
-      post: { ...data.post, content: [...data.post.content].map(post => new PostModel(post)) },
+      post: {
+        ...data.post,
+        content: data.post.content
+          .filter(data => data.isDeleted === false)
+          .map(post => new PostModel(post)),
+      },
     };
 
     return result;
