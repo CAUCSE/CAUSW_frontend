@@ -1,5 +1,3 @@
-import axios, { AxiosResponse } from 'axios';
-
 import { CircleUserModel } from '../models';
 import { CircleBoardModel } from '../models/CircleBoardModel';
 import { CircleModel } from '../models/CircleModel';
@@ -47,13 +45,13 @@ class CircleRepo {
   };
 
   // 동아리 정보 수정
-  update = async (circleId: string, body: Circle.UpdateRequestDto): Promise<unknown> => {
-    return (await API.put(`${this.URI}/${circleId}`, body)) as AxiosResponse<unknown>;
+  update = async (circleId: string, body: Circle.UpdateRequestDto) => {
+    await API.put(`${this.URI}/${circleId}`, body);
   };
 
   // 동아리 삭제
-  delete = async (circleId: string): Promise<unknown> => {
-    return await API.delete(`${this.URI}/${circleId}`);
+  delete = async (circleId: string) => {
+    await API.delete(`${this.URI}/${circleId}`);
   };
 
   // 동아리 회원 관리
@@ -69,24 +67,18 @@ class CircleRepo {
   };
 
   // 동아리 가입 승인
-  acceptUser = async (applicationId: string): Promise<unknown> => {
-    return (await API.put(
-      `${this.URI}/applications/${applicationId}/accept`,
-    )) as AxiosResponse<unknown>;
+  acceptUser = async (applicationId: string) => {
+    await API.put(`${this.URI}/applications/${applicationId}/accept`);
   };
 
   // 동아리 가입 거절
-  rejectUser = async (applicationId: string): Promise<unknown> => {
-    return (await API.put(
-      `${this.URI}/applications/${applicationId}/reject`,
-    )) as AxiosResponse<unknown>;
+  rejectUser = async (applicationId: string) => {
+    await API.put(`${this.URI}/applications/${applicationId}/reject`);
   };
 
   // 동아리원 추방
-  dropUser = async (circleId: string, userId: string): Promise<unknown> => {
-    return (await API.put(
-      `${this.URI}/${circleId}/users/${userId}/drop`,
-    )) as AxiosResponse<unknown>;
+  dropUser = async (circleId: string, userId: string) => {
+    await API.put(`${this.URI}/${circleId}/users/${userId}/drop`);
   };
 }
 
