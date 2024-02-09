@@ -14,7 +14,7 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { commentInput } = usePageUiStore<PageUiStore.PostDetail>();
   const { register, setFocus, setValue } = useFormContext();
-  const { ref, ...rest } = register('content', { onBlur: () => setIsFocus(false) });
+  const { ref, ...rest } = register('content');
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
