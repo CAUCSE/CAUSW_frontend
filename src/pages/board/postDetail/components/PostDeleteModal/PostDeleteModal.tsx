@@ -11,8 +11,12 @@ import {
 } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 export const PostDeleteModal: React.FC = observer(() => {
+  const {
+    ui: { alert },
+  } = useRootStore();
   const { postId, boardId } = useParams<PostParams>();
   const { replace } = useHistory();
   const {
@@ -21,11 +25,14 @@ export const PostDeleteModal: React.FC = observer(() => {
   } = usePageUiStore<PageUiStore.PostDetail>();
 
   const handleOk = async () => {
-    const success = await deletePost(postId);
+    const res = (await deletePost(postId)) as unknown as Post.DeleteResponse;
+    if (res.kind === 'SUCCESS') {
+      alert({ message: '게시글이 삭제되었습니다.' });
+      replace(generatePath(PAGE_URL.PostList, { boardId }));
+    } else if (res.message) {
+      alert({ message: res.message });
+    }
 
-    // TODO: alert('게시글이 삭제되었습니다.')
-    if (success) replace(generatePath(PAGE_URL.PostList, { boardId }));
-    // else // TODO: alert('에러가 발생했습니다.')
     close();
   };
   const handleCancel = () => close();

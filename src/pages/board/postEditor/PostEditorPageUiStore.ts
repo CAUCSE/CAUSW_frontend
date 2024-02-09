@@ -20,12 +20,15 @@ export class PostEditorPageUiStore {
 
   *fetch(boardId: string, postId: string): Generator {
     if (!postId) {
+      // 게시글 생성
       // TODO: 게시글 이름만 필요한데 게시글 목록 조회함
       const { boardName } = (yield Repo.findAll(boardId, 0)) as Post.FindAllResponseDto;
-
       this.boardName = boardName;
     } else {
-      const { boardName, content } = (yield Repo.findById(postId)) as Post.FindByIdResponseDto;
+      // 게시글 수정
+      const { boardName, commentList, ...content } = (yield Repo.findById(
+        postId,
+      )) as Post.FindByIdResponseDto;
 
       this.boardName = boardName;
       this.post = new PostModel(content);

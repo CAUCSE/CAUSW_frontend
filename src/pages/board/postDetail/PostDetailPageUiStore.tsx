@@ -59,7 +59,7 @@ export class PostDetailPageUiStore {
   }
 
   *fetch(postId: string): Generator {
-    const { boardName, commentList, content } = (yield Repo.findById(
+    const { boardName, commentList, ...content } = (yield Repo.findById(
       postId,
     )) as Post.FindByIdResponseDto;
 
@@ -71,10 +71,10 @@ export class PostDetailPageUiStore {
     this.comments.hasMore = !commentList.last;
   }
 
-  *deletePost(pid: string): Generator {
+  *deletePost(postId: string): Generator {
     try {
-      yield Repo.delete(pid);
-      return { sucess: true };
+      yield Repo.delete(postId);
+      return { kind: 'SUCCESS', success: true };
     } catch (error) {
       return error;
     }

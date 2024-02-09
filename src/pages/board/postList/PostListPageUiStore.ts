@@ -38,6 +38,22 @@ export class PostListPageUiStore implements withFetchPage {
     this.hasMore = !last;
     this.posts = this.posts.concat(posts);
   }
+
+  *search(bid: string, keyword: string, page = 0): Generator {
+    const {
+      boardName,
+      writable,
+      post: { content: posts, last },
+    } = (yield Repo.search(bid, keyword, page)) as Post.FindAllResponse;
+
+    this.isFetched = true;
+    this.boardName = boardName;
+    this.writable = writable;
+
+    this.page = page;
+    this.hasMore = !last;
+    this.posts = posts;
+  }
 }
 
 export const PageUiStoreImpl = new PostListPageUiStore();
