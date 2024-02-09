@@ -9,18 +9,25 @@ import { API } from '@/configs/axios';
 class CircleRepo {
   URI = '/api/v1/circles';
 
-  create = async (body: Circle.CreateRequestDto): Promise<unknown> => {
-    return (await API.post(this.URI, body)) as AxiosResponse<unknown>;
+  // 동아리 전체 조회
+  fetch = async (): Promise<CircleModel[]> => {
+    const { data } = await API.get<Circle.FindByIdDto[]>(this.URI);
+    return data.map(dto => new CircleModel(dto));
   };
 
+  // 동아리 상세보기
   fetchById = async (circleId: string): Promise<CircleModel> => {
-    // const { data } = (await API.get(
-    //   `${this.URI}/${circleId}`,
-    // )) as AxiosResponse<Circle.FindByIdDto>;
-
-    const { data } = await axios.get<Circle.FindByIdDto>(`${this.URI}/${circleId}`); // MSW
-
+    const { data } = await API.get<Circle.FindByIdDto>(`${this.URI}/${circleId}`);
     return new CircleModel(data);
+  };
+
+  // 동아리 지원
+  join = async (circleId: string): Promise<Circle.CircleUser> => {
+    return await API.get(`${this.URI}/${circleId}/applications`);
+  };
+
+  create = async (body: Circle.CreateRequestDto): Promise<unknown> => {
+    return (await API.post(this.URI, body)) as AxiosResponse<unknown>;
   };
 
   update = async (circleId: string, body: Circle.UpdateRequestDto): Promise<unknown> => {
@@ -61,21 +68,6 @@ class CircleRepo {
     return (await API.put(
       `${this.URI}/${circleId}/users/${userId}/drop`,
     )) as AxiosResponse<unknown>;
-  };
-
-  //
-
-  fetch = async (): Promise<CircleModel[]> => {
-    // const { data } = (await API.get(this.URI)) as AxiosResponse<Circle.FindByIdDto[]>;
-
-    const { data } = await axios.get<Circle.FindByIdDto[]>(this.URI);
-
-    return data.map(dto => new CircleModel(dto));
-  };
-
-  join = async (circleId: string) => {
-    // return await API.get(`${this.URI}/${circleId}/applications`);
-    await axios.post(`${this.URI}/${circleId}/applications`);
   };
 
   findBoards = async (circleId: string): Promise<Circle.FindBoards> => {
