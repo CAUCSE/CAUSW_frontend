@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { ListComponent } from '../CircleListFrame';
 import { CircleListCard } from './CircleListCard';
+import { ListComponent } from '../CircleListFrame';
 
 export const CircleList: ListComponent = ({ items }) => (
   <Wrapper>

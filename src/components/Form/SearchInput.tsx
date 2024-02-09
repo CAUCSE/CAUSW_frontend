@@ -28,6 +28,7 @@ export const SearchInput = <TFieldValues extends FieldValues = FieldValues>({
         <Input
           id={id}
           placeholder={placeholder}
+          autoComplete="off"
           endAdornment={
             <ClearButton type="submit">
               <SearchIcon fontSize="small" />

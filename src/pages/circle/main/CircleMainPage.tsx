@@ -16,7 +16,7 @@ const CircleMainPage: React.FC = observer(() => {
   useEffect(() => {
     fetch(circleId);
     return () => reset();
-  }, [circleId]);
+  }, [fetch, circleId, reset]);
 
   return (
     <>
