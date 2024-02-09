@@ -23,7 +23,7 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
 
     if (isEdit || isReply) setFocus('content');
     setValue('content', content);
-  }, [commentInput.state, commentInput.target]);
+  }, [commentInput, setFocus, setValue]);
 
   return (
     <Form onSubmit={onSubmit} isFocus={isFocus}>
