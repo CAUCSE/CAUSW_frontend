@@ -37,7 +37,7 @@ declare namespace Circle {
     name: string;
     postId: string | null;
     postTitle: string | null;
-    postCreatedAt: string | null;
+    postCreatedAt: Date | null;
     postNumComment: number | null;
     postWriterName: string | null;
     postWriterStudentId: string | null;
