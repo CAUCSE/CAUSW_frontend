@@ -42,7 +42,8 @@ export const SubmitButton: React.FC<{ isEdit: boolean }> = observer(({ isEdit })
         goBack();
       } else if (result.message) alert({ message: result.message });
     },
-    [isEdit, circleId],
+
+    [alert, circleId, create, goBack, isEdit, update],
   );
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export const SubmitButton: React.FC<{ isEdit: boolean }> = observer(({ isEdit })
       else setSubmitDisabled(!name || !description || !leaderId);
     });
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [isEdit, watch, setSubmitDisabled]);
 
   return (
     <PageFooter>

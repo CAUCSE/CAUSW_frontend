@@ -1,17 +1,21 @@
 import { useForm } from 'react-hook-form';
 
-import { SearchInput } from '../Form';
 import { SearchedUser } from './SearchedUser';
 import { SearchUserModal } from './SearchUserModal';
 import { WithSearchUserModalUi } from './SearchUserModalUi';
+import { SearchInput } from '../Form';
 
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 interface FormBody {
   name: string;
 }
 
 export const SearchUserForm: React.FC<{ guide?: string }> = ({ guide }) => {
+  const {
+    ui: { alert },
+  } = useRootStore();
   const { searchUserModal } = usePageUiStore<WithSearchUserModalUi>();
   const { handleSubmit, control, setValue } = useForm<FormBody>({
     defaultValues: {
@@ -21,7 +25,6 @@ export const SearchUserForm: React.FC<{ guide?: string }> = ({ guide }) => {
 
   const onSearch = async (body: FormBody) => {
     const { success, message } = (await searchUserModal.fetch(body.name)) as unknown as StoreAPI;
-
     if (success) searchUserModal.open();
     else if (message) alert({ message });
     setValue('name', '');

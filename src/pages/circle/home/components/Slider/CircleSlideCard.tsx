@@ -5,7 +5,6 @@ import { generatePath, useHistory } from 'react-router';
 
 // import { Icons } from '@/assets';
 import { Article } from '@/assets/icons';
-
 import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 

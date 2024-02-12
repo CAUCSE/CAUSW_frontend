@@ -10,13 +10,8 @@ import { API } from '@/configs/axios';
 class UserRepo {
   private URI = '/api/v1/users';
 
-  findByName = async (
-    name: string,
-    state: 'ACTIVE' | 'INACTIVE' | 'DROP',
-  ): Promise<User.FindByNameResponse> => {
-    const { data } = (await API.get(
-      `${this.URI}/name/${name}?state=${state}`,
-    )) as AxiosResponse<User.FindByNameResponseDto>;
+  findByName = async (name: string): Promise<User.FindByNameResponse> => {
+    const { data } = await API.get<User.FindByNameResponseDto>(`${this.URI}/name/${name}`);
 
     return data.map(user => new UserModel(user));
   };

@@ -29,7 +29,7 @@ export class CircleMainPageUiStore {
   }
 
   *fetch(circleId: string): Generator {
-    const { circle, boards } = (yield Repo.findBoards(circleId)) as Circle.FindBoards;
+    const { circle, boards } = (yield Repo.findCircleBoards(circleId)) as Circle.FindBoards;
 
     this.circle = circle;
     this.boards = boards;

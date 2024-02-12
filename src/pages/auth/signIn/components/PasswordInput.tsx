@@ -2,7 +2,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useCallback, useEffect, useState } from 'react';
-import { Control, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
+import type { Control } from 'react-hook-form';
 
 import { Input } from '../styled';
 

@@ -35,7 +35,7 @@ const CircleEditorPage: React.FC = observer(() => {
   useEffect(() => {
     if (isEdit) fetch(circleId);
     return () => reset();
-  }, []);
+  }, [isEdit, circleId, fetch, reset]);
 
   useEffect(() => {
     if (isEdit && circle) {
@@ -43,11 +43,11 @@ const CircleEditorPage: React.FC = observer(() => {
       methods.setValue('name', circle.name);
       methods.setValue('description', circle.description);
     }
-  }, [circle]);
+  }, [circle, isEdit, methods]);
 
   useEffect(() => {
     if (target) methods.setValue('leaderId', target.id);
-  }, [target]);
+  }, [target, methods]);
 
   return (
     <FormProvider {...methods}>

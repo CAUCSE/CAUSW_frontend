@@ -19,26 +19,17 @@ declare namespace Circle {
   export type GetUserListResponseDto = CircleUser[];
   export type GetUserListResponse = Model.CircleUser[];
 
-  //
   export interface FindByIdDto {
     id: string;
-    mainImage: string | null;
     name: string;
     description: string;
-    isJoined: boolean;
-    joinedAt: string | null;
+    mainImage: string | null;
     leaderId: string;
     leaderName: string;
-    createdAt: string;
     numMember: number;
-  }
-
-  export interface UserApplyDto {
-    circle: Dto;
-    id: string;
-    status: 'AWAIT';
-    userId: string;
-    userName: string;
+    createdAt: Date;
+    isJoined: boolean;
+    joinedAt: Date | null;
   }
 
   export interface Board {
@@ -46,7 +37,7 @@ declare namespace Circle {
     name: string;
     postId: string | null;
     postTitle: string | null;
-    postCreatedAt: string | null;
+    postCreatedAt: Date | null;
     postNumComment: number | null;
     postWriterName: string | null;
     postWriterStudentId: string | null;

@@ -15,13 +15,13 @@ import {
 import { PAGE_URL } from '@/configs/path';
 
 export const CircleBoardListItem: React.FC<{ model: NonNullable<Model.CircleBoard['post']> }> =
-  memo(({ model: { id: postId, title, formatedCreatedAt, writerName, numComment } }) => {
+  memo(({ model: { id: postId, title, formattedCreatedAt, writerName, numComment } }) => {
     const boardId = useGetBoardId();
 
     return (
       <Link to={generatePath(PAGE_URL.PostDetail, { boardId, postId })}>
         <Title>{title}</Title>
-        <PostCreatedAt>{formatedCreatedAt}</PostCreatedAt>
+        <PostCreatedAt>{formattedCreatedAt}</PostCreatedAt>
         <PostBreak />
         <AuthorName>{writerName}</AuthorName>
         <PostCommentNum>{numComment}</PostCommentNum>

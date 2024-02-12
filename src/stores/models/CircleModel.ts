@@ -6,11 +6,11 @@ export class CircleModel {
   mainImage: string | null;
   name: string;
   description: string;
-  createdAt: string;
+  createdAt: Date;
   leaderName: string;
   numMember: number;
   isJoined: boolean;
-  joinedAt: string | null;
+  joinedAt: Date | null;
 
   constructor(props: Circle.FindByIdDto) {
     this.id = props.id;

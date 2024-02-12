@@ -14,17 +14,18 @@ export class SearchUserModalUi extends ModalUi<void> {
     });
   }
 
-  *fetch(name: string, state: 'ACTIVE' | 'INACTIVE' | 'DROP' = 'ACTIVE'): Generator {
+  *fetch(name: string): Generator {
     try {
-      this.users = (yield Repo.findByName(name, state)) as Model.User[];
-
-      if (this.users.length) return { success: true } as StoreAPI;
-      else
+      this.users = (yield Repo.findByName(name)) as Model.User[];
+      if (this.users.length > 0) {
+        return { success: true } as StoreAPI;
+      } else {
         return {
           success: false,
           errorCode: 'local',
           message: '해당 사용자를 찾을 수 없습니다.',
         } as StoreAPI;
+      }
     } catch (error) {
       return error;
     }
