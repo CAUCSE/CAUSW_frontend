@@ -1,14 +1,15 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+
 import BackIcon from '@/assets/icons/back.svg?react';
 // import { Icons } from '@/assets';
 import { ClearButton } from '@/components';
 
 export const BackButton: React.FC<{ className?: string; link?: boolean | string }> = memo(
   ({ className, link = false }) => {
-    const { goBack } = useHistory();
+    const { goBack, length } = useHistory();
     // TODO: 이전 페이지 state 있는 경우 해당 페이지로 이동
 
     const Icon = (
@@ -19,7 +20,13 @@ export const BackButton: React.FC<{ className?: string; link?: boolean | string 
       </>
     );
 
-    if (typeof link === 'string' && link !== '') {
+    if (length <= 2) {
+      return (
+        <StyledLink className={className} to={'/home'}>
+          {Icon}
+        </StyledLink>
+      );
+    } else if (typeof link === 'string' && link !== '') {
       return (
         <StyledLink className={className} to={link}>
           {Icon}

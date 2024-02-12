@@ -10,7 +10,7 @@ class AuthRepo {
   signIn = async (body: User.SignInRequestDto) => {
     const { data: token } = (await API.post(`${this.URI}/sign-in`, body)) as AxiosResponse<string>;
 
-    storeAuth(!!body.auto, token);
+    storeAuth(true, token);
     setAuth(token);
   };
 
