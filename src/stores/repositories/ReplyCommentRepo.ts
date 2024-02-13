@@ -1,5 +1,3 @@
-import axios, { AxiosResponse } from 'axios';
-
 import { CommentModel } from '../models/CommentModel';
 import { ReplyCommentModel } from '../models/ReplyCommentModel';
 
@@ -9,11 +7,7 @@ class ReplyCommentRepo {
   URI = '/api/v1/child-comments';
 
   findAll = async (pcid: string, pageNum: number): Promise<ReplyComment.FindAllResponse> => {
-    // const { data } = (await API.get(
-    //   `${this.URI}?parentCommentId=${pcid}&pageNum=${pageNum}`,
-    // )) as AxiosResponse<ReplyComment.GetResponseDto>;
-
-    const { data } = await axios.get<ReplyComment.GetResponseDto>(
+    const { data } = await API.get<ReplyComment.GetResponseDto>(
       `${this.URI}?parentCommentId=${pcid}&pageNum=${pageNum}`,
     );
 
@@ -25,26 +19,22 @@ class ReplyCommentRepo {
   };
 
   create = async (body: ReplyComment.CreateRequestDto): Promise<Model.ReplyComment> => {
-    const { data } = (await API.post(
-      this.URI,
-      body,
-    )) as AxiosResponse<ReplyComment.CreateResponseDto>;
+    const { data } = await API.post<ReplyComment.CreateResponseDto>(this.URI, body);
 
     return new ReplyCommentModel(data);
   };
 
   update = async (rcid: string, content: string): Promise<Model.ReplyComment> => {
-    const { data } = (await API.put(`${this.URI}/${rcid}`, {
+    const { data } = await API.put<ReplyComment.CreateResponseDto>(`${this.URI}/${rcid}`, {
       content,
-    })) as AxiosResponse<ReplyComment.CreateResponseDto>;
+    });
 
     return new ReplyCommentModel(data);
   };
 
   delete = async (rcid: string): Promise<Model.ReplyComment> => {
-    const { data } = (await API.delete(
-      `${this.URI}/${rcid}`,
-    )) as AxiosResponse<ReplyComment.CreateResponseDto>;
+    const { data } = await API.delete<ReplyComment.CreateResponseDto>(`${this.URI}/${rcid}`);
+
     return new ReplyCommentModel(data);
   };
 }
