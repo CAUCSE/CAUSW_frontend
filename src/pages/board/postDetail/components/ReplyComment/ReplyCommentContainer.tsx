@@ -27,7 +27,7 @@ export const ReplyCommentContainer: React.FC<{ model: Model.Comment }> = observe
   });
 
   return (
-    <Li ref={ref} {...bind}>
+    <Li ref={ref} {...bind()}>
       <CommentCardView state={state} model={model} />
     </Li>
   );
