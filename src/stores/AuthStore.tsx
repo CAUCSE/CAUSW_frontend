@@ -25,6 +25,17 @@ export class AuthStore {
     this.me = (yield Repo.findCurrentUser()) as Model.User;
   }
 
+  *checkToken(): Generator {
+    try {
+      this.me = (yield Repo.findCurrentUser()) as Model.User;
+      console.log(this.me);
+      return { success: true };
+    } catch (err) {
+      removeAuth();
+      return err;
+    }
+  }
+
   signOut(): void {
     removeAuth();
   }
