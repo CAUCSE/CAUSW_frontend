@@ -29,7 +29,7 @@ export const AuthRouter: React.FC<Props> = observer(({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        tokenAvailable.current && isSignIn ? (
+        tokenAvailable.current ? (
           children
         ) : (
           <Redirect
