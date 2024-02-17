@@ -63,15 +63,28 @@ export class UserModel {
   }
 
   get isPresident(): boolean {
-    return this.role === 'PRESIDENT';
+    return this.role === 'PRESIDENT' || this.role === 'PRESIDENT_N_LEADER_CIRCLE';
   }
 
   get isCircleLeader(): boolean {
-    return this.role === 'LEADER_CIRCLE';
+    return (
+      this.role === 'LEADER_CIRCLE' ||
+      this.role === 'PRESIDENT_N_LEADER_CIRCLE' ||
+      this.role === 'VICE_PRESIDENT_N_LEADER_CIRCLE' ||
+      this.role === 'COUNCIL_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_1_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_2_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_3_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_4_N_LEADER_CIRCLE'
+    );
   }
 
   get isCouncil(): boolean {
-    return this.role === 'COUNCIL' || this.role === 'VICE_PRESIDENT';
+    return (
+      this.role === 'COUNCIL' ||
+      this.role === 'VICE_PRESIDENT' ||
+      this.role === 'COUNCIL_N_LEADER_CIRCLE'
+    );
   }
 
   get isStudentLeader(): boolean {
@@ -79,7 +92,11 @@ export class UserModel {
       this.role === 'LEADER_1' ||
       this.role === 'LEADER_2' ||
       this.role === 'LEADER_3' ||
-      this.role === 'LEADER_4'
+      this.role === 'LEADER_4' ||
+      this.role === 'LEADER_1_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_2_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_3_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_4_N_LEADER_CIRCLE'
     );
   }
 
