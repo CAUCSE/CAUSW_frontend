@@ -13,6 +13,13 @@ export const UserRoleCodes: {
   LEADER_ALUMNI: '동문회장',
   COMMON: '학생',
   PROFESSOR: '교수',
+  PRESIDENT_N_LEADER_CIRCLE: '학생회장 / 동아리장',
+  VICE_PRESIDENT_N_LEADER_CIRCLE: '부학생회장 / 동아리장',
+  COUNCIL_N_LEADER_CIRCLE: '학생회 / 동아리장',
+  LEADER_1_N_LEADER_CIRCLE: '1학년 학년대표 / 동아리장',
+  LEADER_2_N_LEADER_CIRCLE: '2학년 학년대표 / 동아리장',
+  LEADER_3_N_LEADER_CIRCLE: '3학년 학년대표 / 동아리장',
+  LEADER_4_N_LEADER_CIRCLE: '4학년 학년대표 / 동아리장',
 };
 
 export class UserModel {
