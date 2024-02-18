@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { useHistory, Route, Redirect } from 'react-router-dom';
+import { useHistory, useLocation, Route, Redirect } from 'react-router-dom';
 
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
@@ -11,9 +11,10 @@ type Props = {
 
 export const AuthRouter: React.FC<Props> = observer(({ children, ...rest }) => {
   const {
-    auth: { isSignIn, checkToken },
+    auth: { checkToken },
   } = useRootStore();
   const history = useHistory();
+  const location = useLocation();
 
   const isTokenAvailable = async () => {
     const { success } = (await checkToken()) as unknown as StoreAPI;
@@ -25,24 +26,8 @@ export const AuthRouter: React.FC<Props> = observer(({ children, ...rest }) => {
   };
 
   useEffect(() => {
-    if (isSignIn) isTokenAvailable();
+    isTokenAvailable();
   }, []);
 
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        isSignIn ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: PAGE_URL.SignIn,
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
+  return <Route {...rest} render={() => children} />;
 });

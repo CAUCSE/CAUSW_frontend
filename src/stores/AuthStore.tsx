@@ -26,6 +26,9 @@ export class AuthStore {
   }
 
   *checkToken(): Generator {
+    //Token 존재 확인
+    if (!restoreAuth()) return { success: false };
+    //Token 유효성 확인
     try {
       this.me = (yield Repo.findCurrentUser()) as Model.User;
       return { success: true };
