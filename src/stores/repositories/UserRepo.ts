@@ -30,22 +30,20 @@ class UserRepo {
   };
 
   findPosts = async (page: number): Promise<User.FindPostsResponse> => {
-    /* origin
     const {
       data: {
         post: { content, last },
       },
     } = (await API.get(
       `${this.URI}/posts?pageNum=${page}`,
-    )) as AxiosResponse<User.FindPostsResponseDto>; 
-    */
+    )) as AxiosResponse<User.FindPostsResponseDto>;
 
     //mocking
-    const {
+    /* const {
       data: {
         post: { content, last },
       },
-    } = await axios.get<User.FindPostsResponseDto>(`${this.URI}/posts?pageNum=${page}`);
+    } = await axios.get<User.FindPostsResponseDto>(`${this.URI}/posts?pageNum=${page}`); */
 
     return {
       posts: content.map(post => new HistoryPostModel(post)),
@@ -54,22 +52,20 @@ class UserRepo {
   };
 
   findComments = async (page: number): Promise<User.FindCommentsResponse> => {
-    /* origin
     const {
       data: {
         comment: { content, last },
       },
     } = (await API.get(
       `${this.URI}/comments?pageNum=${page}`,
-    )) as AxiosResponse<User.FindCommentsResponseDto>; 
-    */
+    )) as AxiosResponse<User.FindCommentsResponseDto>;
 
     //mocking
-    const {
+    /* const {
       data: {
         comment: { content, last },
       },
-    } = await axios.get<User.FindCommentsResponseDto>(`${this.URI}/comments?pageNum=${page}`);
+    } = await axios.get<User.FindCommentsResponseDto>(`${this.URI}/comments?pageNum=${page}`); */
 
     return {
       comments: content.map(comment => new HistoryCommentModel(comment)),
@@ -79,16 +75,16 @@ class UserRepo {
 
   // 권한 관리 페이지
   findPrivilegedUsers = async (): Promise<User.FindPrivilegedUsersResponse> => {
-    /* origin
     const {
       data: { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
     } = (await API.get(
       `${this.URI}/privileged`,
-    )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>; */
+    )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>;
 
+    /* mocking
     const {
       data: { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
-    } = await axios.get<User.FindPrivilegedUsersResponseDto>(`${this.URI}/privileged`);
+    } = await axios.get<User.FindPrivilegedUsersResponseDto>(`${this.URI}/privileged`); */
 
     return {
       councilUsers: councilUsers.map(user => new UserModel(user)),
@@ -100,19 +96,18 @@ class UserRepo {
 
   // 유저 관리 페이지
   findAllAdmissions = async (page: number): Promise<User.FindAllAdmissionsResponse> => {
-    /* origin 
     const {
       data: { content, last },
     } = (await API.get(
       `${this.URI}/admissions?pageNum=${page}`,
-    )) as AxiosResponse<User.FindAllAdmissionsResponseDto>; */
+    )) as AxiosResponse<User.FindAllAdmissionsResponseDto>;
 
     //mocking
-    const {
+    /* const {
       data: { content, last },
     } = await axios.get<User.FindAllAdmissionsResponseDto>(
       `${this.URI}/admissions?pageNum=${page}`,
-    );
+    ); */
 
     return {
       users: content.map(user => new AdmissionUserModel(user)),
@@ -124,16 +119,16 @@ class UserRepo {
     state: User.UserDto['state'],
     page: number,
   ): Promise<User.FindByStateResponse> => {
-    /*origin 
     const {
       data: { content, last },
     } = (await API.get(
       `${this.URI}/state/${state}?pageNum=${page}`,
-    )) as AxiosResponse<User.FindByStateResponseDto>; */
+    )) as AxiosResponse<User.FindByStateResponseDto>;
 
-    const {
+    //mocking
+    /* const {
       data: { content, last },
-    } = await axios.get<User.FindByStateResponseDto>(`${this.URI}/state/${state}?pageNum=${page}`);
+    } = await axios.get<User.FindByStateResponseDto>(`${this.URI}/state/${state}?pageNum=${page}`); */
 
     return {
       users: content.map(user => new UserModel(user)),
