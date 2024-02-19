@@ -8,19 +8,24 @@ declare namespace HistoryData {
     numComment: number;
     createdAt: string;
     updatedAt: string;
+    //#71 추가
+    circleId: string;
   }
 
   export interface Comment {
     boardId: string;
     postId: string;
-    parentCommentId: string | null;
+    //parentCommentId: string | null;
     circleName: string | null;
     boardName: string;
     postName: string;
     id: string;
     content: string;
-    tagUserName: string | null;
+    //tagUserName: string | null;
     createdAt: string;
     updatedAt: string;
+    //#71 추가
+    isDeleted: boolean;
+    circleId: string;
   }
 }
