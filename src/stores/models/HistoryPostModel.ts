@@ -12,6 +12,8 @@ export class HistoryPostModel {
   numComment: number;
   createdAt: string;
   updatedAt: string;
+  //#71 추가
+  circleId: string;
 
   constructor(props: HistoryData.Post) {
     this.circleName = props.circleName ?? '';
@@ -22,6 +24,8 @@ export class HistoryPostModel {
     this.numComment = props.numComment;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
+    //#71 추가
+    this.circleId = props.circleId;
   }
 
   get to(): string {

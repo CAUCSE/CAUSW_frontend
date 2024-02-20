@@ -13,6 +13,13 @@ export const UserRoleCodes: {
   LEADER_ALUMNI: '동문회장',
   COMMON: '학생',
   PROFESSOR: '교수',
+  PRESIDENT_N_LEADER_CIRCLE: '학생회장 / 동아리장',
+  VICE_PRESIDENT_N_LEADER_CIRCLE: '부학생회장 / 동아리장',
+  COUNCIL_N_LEADER_CIRCLE: '학생회 / 동아리장',
+  LEADER_1_N_LEADER_CIRCLE: '1학년 학년대표 / 동아리장',
+  LEADER_2_N_LEADER_CIRCLE: '2학년 학년대표 / 동아리장',
+  LEADER_3_N_LEADER_CIRCLE: '3학년 학년대표 / 동아리장',
+  LEADER_4_N_LEADER_CIRCLE: '4학년 학년대표 / 동아리장',
 };
 
 export class UserModel {
@@ -63,15 +70,28 @@ export class UserModel {
   }
 
   get isPresident(): boolean {
-    return this.role === 'PRESIDENT';
+    return this.role === 'PRESIDENT' || this.role === 'PRESIDENT_N_LEADER_CIRCLE';
   }
 
   get isCircleLeader(): boolean {
-    return this.role === 'LEADER_CIRCLE';
+    return (
+      this.role === 'LEADER_CIRCLE' ||
+      this.role === 'PRESIDENT_N_LEADER_CIRCLE' ||
+      this.role === 'VICE_PRESIDENT_N_LEADER_CIRCLE' ||
+      this.role === 'COUNCIL_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_1_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_2_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_3_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_4_N_LEADER_CIRCLE'
+    );
   }
 
   get isCouncil(): boolean {
-    return this.role === 'COUNCIL' || this.role === 'VICE_PRESIDENT';
+    return (
+      this.role === 'COUNCIL' ||
+      this.role === 'VICE_PRESIDENT' ||
+      this.role === 'COUNCIL_N_LEADER_CIRCLE'
+    );
   }
 
   get isStudentLeader(): boolean {
@@ -79,7 +99,11 @@ export class UserModel {
       this.role === 'LEADER_1' ||
       this.role === 'LEADER_2' ||
       this.role === 'LEADER_3' ||
-      this.role === 'LEADER_4'
+      this.role === 'LEADER_4' ||
+      this.role === 'LEADER_1_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_2_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_3_N_LEADER_CIRCLE' ||
+      this.role === 'LEADER_4_N_LEADER_CIRCLE'
     );
   }
 

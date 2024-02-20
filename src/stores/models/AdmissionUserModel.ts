@@ -7,6 +7,7 @@ export class AdmissionUserModel {
   description: string;
   createdAt: Date;
   updatedAt: Date;
+  userState: User.UserDto['state'];
 
   constructor(props: User.AdmissionUserDto) {
     this.id = props.id;
@@ -17,6 +18,7 @@ export class AdmissionUserModel {
     this.description = props.description;
     this.createdAt = new Date(props.createdAt);
     this.updatedAt = new Date(props.updatedAt);
+    this.userState = props.userState;
   }
 
   get nameWithAdmission(): string {

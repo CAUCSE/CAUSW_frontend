@@ -28,18 +28,12 @@ class AuthRepo {
     return API.post(`${this.URI}/sign-up`, body);
   };
 
-  createAdmission = async (body: FormData): Promise<void> => {
+  createAdmission = async (body: FormData): Promise<unknown> => {
     return API.post(`${this.URI}/admissions/apply`, body);
   };
 
   findCurrentUser = async (): Promise<Model.User> => {
     const { data } = await API.get(`${this.URI}/me`);
-
-    //이하 동아리 설정 활성화를 위한 조치
-    data.circleIdIfLeader = ['3', '4'];
-    data.circleNameIfLeader = ['circle_name3', 'circle_name4'];
-    //이상 동아리 설정 활성화를 위한 조치
-
     return new UserModel(data);
   };
 
