@@ -86,7 +86,12 @@ const SettingHomePage: React.FC = observer(() => {
                         {me.circleNames![index]} 동아리 회원 관리
                       </Link>
                       {/* <Link to={PAGE_URL.SettingCircleBoards}>동아리 게시판 관리</Link> */}
-                      <Link to={PAGE_URL.SettingRoleDelegation}>
+                      <Link
+                        to={{
+                          pathname: PAGE_URL.SettingRoleLeaderCircle,
+                          state: { user: me, circleIndex: index },
+                        }}
+                      >
                         {me.circleNames![index]} 권한 위임
                       </Link>
                     </div>
