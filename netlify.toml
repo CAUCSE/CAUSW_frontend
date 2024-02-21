@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://caucsedongne.site:8080"
+  to = "http://13.209.181.162:8080"
   status = 200
 
 [[redirects]]
