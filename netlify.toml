@@ -1,4 +1,9 @@
 [[redirects]]
   from = "/api/*"
-  to = process.env.VITE_MAIN_SERVER_URL
+  to = "https://caucsedongne.site:8080"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
