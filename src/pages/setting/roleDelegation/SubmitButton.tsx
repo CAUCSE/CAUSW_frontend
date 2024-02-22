@@ -17,7 +17,6 @@ export const SubmitButton: React.FC = observer(() => {
   const handleSubmit = useCallback(async () => {
     if (me && target) {
       const role = me.role.split('_N_');
-      console.log(role);
       const { success, message } = (await update(
         target,
         role[0] as User.UserDto['role'],
