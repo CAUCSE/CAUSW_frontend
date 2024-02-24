@@ -9,25 +9,39 @@ export const API = axios.create({
       : import.meta.env.VITE_DEV_SERVER_URL,
 });
 
+//Auth
 export const setAuth = (token: string): unknown => (API.defaults.headers['Authorization'] = token);
 export const resetAuth = (): unknown => delete API.defaults.headers['Authorization'];
 
-const storageKey = 'CAUCSE_JWT';
+const storageAuthKey = 'CAUCSE_JWT_AUTH';
 
 export const storeAuth = (isStored: boolean, token: string): void => {
-  if (isStored) localStorage.setItem(storageKey, token);
-  else sessionStorage.setItem(storageKey, token);
+  if (isStored) localStorage.setItem(storageAuthKey, token);
+  else sessionStorage.setItem(storageAuthKey, token);
 };
 export const restoreAuth = (): boolean => {
-  const token = localStorage.getItem(storageKey) ?? sessionStorage.getItem(storageKey);
+  const token = localStorage.getItem(storageAuthKey) ?? sessionStorage.getItem(storageAuthKey);
 
   if (token) setAuth(token);
 
   return !!token;
 };
 export const removeAuth = (): void => {
-  localStorage.removeItem(storageKey);
-  sessionStorage.removeItem(storageKey);
+  localStorage.removeItem(storageAuthKey);
+  sessionStorage.removeItem(storageAuthKey);
+};
+
+//Refresh
+const storageRefreshKey = 'CAUCSE_JWT_REFRESH';
+
+export const storeRefresh = (token: string): void => {
+  localStorage.setItem(storageRefreshKey, token);
+};
+export const removeRefresh = (): void => {
+  localStorage.removeItem(storageRefreshKey);
+};
+export const getRefresh = (): string | null => {
+  return localStorage.getItem(storageRefreshKey);
 };
 
 API.interceptors.response.use(
