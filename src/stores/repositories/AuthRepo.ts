@@ -2,16 +2,20 @@ import { AxiosResponse } from 'axios';
 
 import { UserModel } from '../models/UserModel';
 
-import { API, setAuth, storeAuth } from '@/configs/axios';
+import { API, setAuth, storeAuth, storeRefresh } from '@/configs/axios';
 
 class AuthRepo {
   URI = '/api/v1/users';
 
   signIn = async (body: User.SignInRequestDto) => {
-    const { data: token } = (await API.post(`${this.URI}/sign-in`, body)) as AxiosResponse<string>;
+    const { data } = (await API.post(`${this.URI}/sign-in`, body)) as AxiosResponse<{
+      accessToken: string;
+      refreshToken: string;
+    }>;
 
-    storeAuth(true, token);
-    setAuth(token);
+    storeAuth(true, data.accessToken);
+    setAuth(data.accessToken);
+    storeRefresh(data.refreshToken);
   };
 
   isDuplicatedEmail = async (email: string): Promise<boolean> => {
