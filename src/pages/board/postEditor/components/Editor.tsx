@@ -1,5 +1,6 @@
 import 'react-quill/dist/quill.snow.css';
 import { observer } from 'mobx-react-lite';
+import ImageUploader from 'quill-image-uploader';
 import { useMemo, useCallback, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import ReactQuill, { Quill } from 'react-quill';
@@ -10,7 +11,6 @@ import { EditorWrapper } from '../styled';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 import { IMAGE_TYPE, StorageRepoImpl } from '@/stores/repositories/StorageRepo';
-import ImageUploader from 'quill-image-uploader';
 
 Quill.register('modules/imageUploader', ImageUploader);
 
@@ -18,11 +18,11 @@ export const Editor: React.FC = observer(() => {
   const isEdit = !!useRouteMatch(PAGE_URL.PostEdit);
   const { post } = usePageUiStore<PageUiStore.PostEditor>();
   const { setValue: set } = useFormContext();
-  const [value, setvalue] = useState('');
+  const [value, setValue] = useState('');
   const handleChange = useCallback(
     data => {
       set('content', data);
-      setvalue(data);
+      setValue(data);
     },
     [set],
   );
@@ -57,7 +57,7 @@ export const Editor: React.FC = observer(() => {
   useEffect(() => {
     if (isEdit && post) handleChange(post.content);
     return () => handleChange('');
-  }, [isEdit, post]);
+  }, [isEdit, post, handleChange]);
 
   return (
     <EditorWrapper>

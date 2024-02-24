@@ -13,7 +13,7 @@ const CircleHomePage: React.FC = observer(() => {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
 
   return (
     <>

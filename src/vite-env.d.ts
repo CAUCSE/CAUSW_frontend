@@ -27,7 +27,6 @@ import type { SettingRoleLeaderGradePageUiStore } from './pages/setting/roleLead
 import type { SettingRoleManagementPageUiStore } from './pages/setting/roleManagement/SettingRoleManagementPageUiStore';
 import type { SettingUsersPageUiStore } from './pages/setting/users/SettingUsersPageUiStore';
 import type { AuthStore } from './stores/AuthStore';
-import type { CircleStore } from './stores/CircleStore';
 import type {
   AdmissionUserModel,
   CircleUserModel,
@@ -52,7 +51,6 @@ declare global {
     type Root = RootStore;
     type Auth = AuthStore;
     type Ui = UiStore;
-    type Circle = CircleStore;
   }
 
   namespace PageUiStore {

@@ -1,10 +1,11 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { FormControl, Input } from '@mui/material';
-import { Control, Controller, FieldValues, Path, UseControllerProps } from 'react-hook-form';
+import type { Control, FieldValues, Path, UseControllerProps } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 import { ClearButton } from '..';
 
-interface Props<TFieldValues> {
+interface Props<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;
   control: Control<TFieldValues>;
   id: string;
@@ -28,6 +29,7 @@ export const SearchInput = <TFieldValues extends FieldValues = FieldValues>({
         <Input
           id={id}
           placeholder={placeholder}
+          autoComplete="off"
           endAdornment={
             <ClearButton type="submit">
               <SearchIcon fontSize="small" />

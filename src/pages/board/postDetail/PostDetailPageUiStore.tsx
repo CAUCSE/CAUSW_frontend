@@ -59,23 +59,22 @@ export class PostDetailPageUiStore {
   }
 
   *fetch(postId: string): Generator {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { boardId, boardName, commentList, ...props } = (yield Repo.findById(
+    const { boardName, commentList, ...content } = (yield Repo.findById(
       postId,
     )) as Post.FindByIdResponseDto;
 
     this.boardName = boardName;
-    this.post = new PostModel(props as Post.Dto);
+    this.post = new PostModel(content);
 
     this.comments.comments = commentList.content.map(comment => new CommentModel(comment));
     this.comments.page = 0;
     this.comments.hasMore = !commentList.last;
   }
 
-  *deletePost(pid: string): Generator {
+  *deletePost(postId: string): Generator {
     try {
-      yield Repo.delete(pid);
-      return { sucess: true };
+      yield Repo.delete(postId);
+      return { kind: 'SUCCESS', success: true };
     } catch (error) {
       return error;
     }

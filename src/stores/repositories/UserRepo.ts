@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { AdmissionUserModel } from '../models';
 import { HistoryCommentModel } from '../models/HistoryCommentModel';
@@ -10,13 +10,8 @@ import { API } from '@/configs/axios';
 class UserRepo {
   private URI = '/api/v1/users';
 
-  findByName = async (
-    name: string,
-    state: 'ACTIVE' | 'INACTIVE' | 'DROP',
-  ): Promise<User.FindByNameResponse> => {
-    const { data } = (await API.get(
-      `${this.URI}/name/${name}?state=${state}`,
-    )) as AxiosResponse<User.FindByNameResponseDto>;
+  findByName = async (name: string): Promise<User.FindByNameResponse> => {
+    const { data } = await API.get<User.FindByNameResponseDto>(`${this.URI}/name/${name}`);
 
     return data.map(user => new UserModel(user));
   };
@@ -25,7 +20,8 @@ class UserRepo {
     userId: string,
     role: User.UserDto['role'],
     circleId?: string,
-  ): Promise<string> => {
+  ): Promise<unknown> => {
+    //UserDto type 확정시 변경 예정
     const body = { role } as User.UpdateRoleRequestDto;
 
     if (circleId) body.circleId = circleId;
@@ -42,6 +38,13 @@ class UserRepo {
       `${this.URI}/posts?pageNum=${page}`,
     )) as AxiosResponse<User.FindPostsResponseDto>;
 
+    //mocking
+    /* const {
+      data: {
+        post: { content, last },
+      },
+    } = await axios.get<User.FindPostsResponseDto>(`${this.URI}/posts?pageNum=${page}`); */
+
     return {
       posts: content.map(post => new HistoryPostModel(post)),
       last,
@@ -57,6 +60,13 @@ class UserRepo {
       `${this.URI}/comments?pageNum=${page}`,
     )) as AxiosResponse<User.FindCommentsResponseDto>;
 
+    //mocking
+    /* const {
+      data: {
+        comment: { content, last },
+      },
+    } = await axios.get<User.FindCommentsResponseDto>(`${this.URI}/comments?pageNum=${page}`); */
+
     return {
       comments: content.map(comment => new HistoryCommentModel(comment)),
       last,
@@ -70,6 +80,11 @@ class UserRepo {
     } = (await API.get(
       `${this.URI}/privileged`,
     )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>;
+
+    /* mocking
+    const {
+      data: { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
+    } = await axios.get<User.FindPrivilegedUsersResponseDto>(`${this.URI}/privileged`); */
 
     return {
       councilUsers: councilUsers.map(user => new UserModel(user)),
@@ -87,6 +102,13 @@ class UserRepo {
       `${this.URI}/admissions?pageNum=${page}`,
     )) as AxiosResponse<User.FindAllAdmissionsResponseDto>;
 
+    //mocking
+    /* const {
+      data: { content, last },
+    } = await axios.get<User.FindAllAdmissionsResponseDto>(
+      `${this.URI}/admissions?pageNum=${page}`,
+    ); */
+
     return {
       users: content.map(user => new AdmissionUserModel(user)),
       last,
@@ -102,6 +124,11 @@ class UserRepo {
     } = (await API.get(
       `${this.URI}/state/${state}?pageNum=${page}`,
     )) as AxiosResponse<User.FindByStateResponseDto>;
+
+    //mocking
+    /* const {
+      data: { content, last },
+    } = await axios.get<User.FindByStateResponseDto>(`${this.URI}/state/${state}?pageNum=${page}`); */
 
     return {
       users: content.map(user => new UserModel(user)),
@@ -126,7 +153,8 @@ class UserRepo {
     return await API.put(this.URI, body);
   };
 
-  leave = async (): Promise<void> => {
+  leave = async (): Promise<unknown> => {
+    //UserDto type 확정시 변경 예정
     return await API.delete(this.URI);
   };
 }

@@ -5,6 +5,7 @@ import { HistoryPostCard } from './components';
 import { PageUiStoreImpl } from './HistoryPostPageUiStore';
 
 import { GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components';
+import { DefaultEmptyComponent } from '@/components/ListBox';
 import { usePageUiStore } from '@/hooks';
 
 const HistoryPostPage: React.FC = observer(() => {
@@ -23,6 +24,7 @@ const HistoryPostPage: React.FC = observer(() => {
     <>
       <Header title="내가 쓴 글" mini withBack RightComponent={null} />
       <PageBody>
+        {posts.length === 0 ? <DefaultEmptyComponent comment="작성한 글이 없습니다" /> : null}
         <InfinityFrame<Model.HistoryPost>
           loadMore={loadMore(hasMore, page)}
           data={posts}

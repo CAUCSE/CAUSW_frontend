@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { LockerLocationModel, LockerModel } from '../models';
 
@@ -14,6 +14,11 @@ class LockerRepo {
       `${this.URI}/locations`,
     )) as AxiosResponse<Locker.FindAllLocationResponseDto>;
 
+    //mocking
+    /* const {
+      data: { lockerLocations, myLocker },
+    } = await axios.get<Locker.FindAllLocationResponseDto>(`${this.URI}/locations`); */
+
     return {
       lockers: lockerLocations.map(props => new LockerModel(props)),
       myLocker: myLocker ? new LockerLocationModel(myLocker) : undefined,
@@ -27,6 +32,11 @@ class LockerRepo {
       `${this.URI}/locations/${locationId}`,
     )) as AxiosResponse<Locker.FindByLocationResponseDto>;
 
+    //mocking
+    /* const {
+      data: { locationName, lockerList },
+    } = await axios.get<Locker.FindByLocationResponseDto>(`${this.URI}/locations/${locationId}`); */
+
     return {
       locationName,
       lockerList: lockerList.map(props => new LockerLocationModel(props)),
@@ -35,14 +45,23 @@ class LockerRepo {
 
   register = async (lockerId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+
+    //mocking
+    //return axios.put(`${this.URI}/${lockerId}`, { action: 'register' });
   };
 
   return = async (lockerId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
+
+    //mocking
+    //return axios.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
 
   extend = async (lockerId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+
+    //mocking
+    //return axios.put(`${this.URI}/${lockerId}`, { action: 'extend' });
   };
 }
 

@@ -3,9 +3,9 @@ import { observer } from 'mobx-react-lite';
 import { useCallback, useRef } from 'react';
 import { useLongPress } from 'use-long-press';
 
+import { Li } from './styled';
 import { CommentCardView } from '../Comment';
 import { InputState } from '../CommentInput';
-import { Li } from './styled';
 
 import { usePageUiStore } from '@/hooks';
 

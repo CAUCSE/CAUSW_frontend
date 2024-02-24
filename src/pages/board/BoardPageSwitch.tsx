@@ -1,11 +1,12 @@
+import { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { BoardList } from './boardList';
-import { PostDetail } from './postDetail';
-import { PostEditor } from './postEditor';
-import { PostList } from './postList';
-
 import { PAGE_URL } from '@/configs/path';
+
+const PostEditor = lazy(() => import('./postEditor/PostEditorPage'));
+const PostDetail = lazy(() => import('./postDetail/PostDetailPage'));
+const PostList = lazy(() => import('./postList/PostListPage'));
+const BoardList = lazy(() => import('./boardList/BoardListPage'));
 
 export const BoardPageSwitch: React.FC = () => (
   <Switch>

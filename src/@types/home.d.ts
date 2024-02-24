@@ -6,7 +6,7 @@ declare namespace Home {
       name: string;
     };
     posts: {
-      content: Content[];
+      content: Post.Dto[];
     };
   }[];
 

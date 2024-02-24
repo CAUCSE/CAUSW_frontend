@@ -4,9 +4,9 @@ import { useCallback, useRef } from 'react';
 import { generatePath, useHistory, useParams } from 'react-router-dom';
 import { useLongPress } from 'use-long-press';
 
-import { InputState } from '../CommentInput';
 import { CommentCardView } from './CommentCardView';
 import { ReplyLink } from './styled';
+import { InputState } from '../CommentInput';
 
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
@@ -30,14 +30,14 @@ export const CommentCardContainer: React.FC<Props> = observer(
     const ref = useRef<HTMLLIElement>(null);
     const commentState = computed(() => (target?.id === model.id ? state : InputState.WRITE)).get();
 
-    const handeLongPress = useCallback(
+    const handleLongPress = useCallback(
       (model: Model.Comment | Model.ReplyComment) => () => {
         if (model.editable) open(model);
         else alert({ message: '삭제된 댓글입니다.' });
       },
       [open],
     );
-    const bind = useLongPress(handeLongPress(model), {
+    const bind = useLongPress(handleLongPress(model), {
       cancelOnMovement: true,
       captureEvent: true,
       onFinish: ev => ev?.preventDefault(),
@@ -53,7 +53,7 @@ export const CommentCardContainer: React.FC<Props> = observer(
     );
 
     return (
-      <li ref={ref} {...bind}>
+      <li ref={ref} {...bind()}>
         <CommentCardView state={commentState} model={model} />
         {withReplyLink && model.numChildComment ? (
           <ReplyLink onClick={handleGoReply(params, model)}>

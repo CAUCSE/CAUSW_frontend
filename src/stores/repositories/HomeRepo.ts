@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { BoardModel } from '../models/BoardModel';
 import { PostModel } from '../models/PostModel';
@@ -10,6 +10,7 @@ class HomeRepo {
 
   getHomePage = async (): Promise<Home.GetHomePageResponse> => {
     const { data } = (await API.get(this.URI)) as AxiosResponse<Home.GetHomePageResponseDto>;
+    // const { data } = await axios.get<Home.GetHomePageResponseDto>(this.URI);
 
     return data.map(({ board, posts: { content } }) => ({
       board: new BoardModel(board.id, board.category, board.name),

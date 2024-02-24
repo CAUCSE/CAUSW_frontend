@@ -4,6 +4,14 @@ import { createContext, memo, useContext } from 'react';
 
 import CommentBubbleIcon from '@/assets/icons/comment_bubble.svg?react';
 
+export const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const PostWrapperCSS = css`
   display: flex;
   flex-wrap: wrap;

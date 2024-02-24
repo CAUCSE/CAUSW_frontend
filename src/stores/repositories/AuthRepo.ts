@@ -10,7 +10,7 @@ class AuthRepo {
   signIn = async (body: User.SignInRequestDto) => {
     const { data: token } = (await API.post(`${this.URI}/sign-in`, body)) as AxiosResponse<string>;
 
-    storeAuth(!!body.auto, token);
+    storeAuth(true, token);
     setAuth(token);
   };
 
@@ -28,13 +28,12 @@ class AuthRepo {
     return API.post(`${this.URI}/sign-up`, body);
   };
 
-  createAdmission = async (body: FormData): Promise<void> => {
+  createAdmission = async (body: FormData): Promise<unknown> => {
     return API.post(`${this.URI}/admissions/apply`, body);
   };
 
   findCurrentUser = async (): Promise<Model.User> => {
     const { data } = await API.get(`${this.URI}/me`);
-
     return new UserModel(data);
   };
 

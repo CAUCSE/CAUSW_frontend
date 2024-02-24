@@ -1,10 +1,10 @@
 declare namespace ReplyComment {
   export interface GetResponseDto {
     childComments: {
-      content: CreateReponseDto[];
+      content: CreateResponseDto[];
       last: boolean;
     };
-    parentComment: Comment.CreateReponseDto;
+    parentComment: PostComment.CreateResponseDto;
   }
 
   export interface FindAllResponse {
@@ -18,7 +18,7 @@ declare namespace ReplyComment {
     content: string;
     // 답글의 답글인 경우
     refChildComment?: string;
-    tagUserName?: strin;
+    tagUserName?: string;
   }
 
   export interface CreateResponseDto extends PostComment.CreateResponseDto {

@@ -3,7 +3,7 @@ import { Checkbox } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { PasswordInput } from './components';
 import { PageUiStoreImpl } from './SignInPageUiStore';
@@ -29,29 +29,31 @@ const SignInPage: React.FC = observer(() => {
   } = useRootStore();
   const { replace, push } = useHistory();
   const { reset, signIn, isDisabled, isLoading } = usePageUiStore<PageUiStore.SignIn>();
+  const { state } = useLocation<{ from: Location }>();
   const { control, handleSubmit } = useForm<User.SignInRequestDto>({
     defaultValues: {
       email: '',
       password: '',
-      auto: false,
     },
   });
   const onSubmit = async (body: User.SignInRequestDto) => {
     const { success, errorCode, message } = (await signIn(body)) as unknown as StoreAPI;
 
-    if (success) replace(PAGE_URL.Home);
+    if (success) replace(state.from.pathname === '' ? PAGE_URL.Home : state.from.pathname);
     else if (errorCode === 4011) push(PAGE_URL.Admission, { email: body.email });
     else if (message) alert({ message });
   };
 
   useAuthRedirect();
 
-  useEffect(() => () => reset(), []);
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   return (
     <PageWrapper>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <LogoImage src="/images/logo.png" />
+        <LogoImage src="/images/logo.png" alt="uniform_logo" />
         <Controller
           name="email"
           control={control}
@@ -67,16 +69,6 @@ const SignInPage: React.FC = observer(() => {
           )}
         />
         <PasswordInput control={control} />
-        <Controller
-          name="auto"
-          control={control}
-          render={({ field }) => (
-            <CheckboxLabel
-              label="로그인 상태 유지"
-              control={<Checkbox {...field} size="small" />}
-            />
-          )}
-        />
         <LoginButton type="submit" $loading={isLoading} disabled={isDisabled}>
           로그인
         </LoginButton>

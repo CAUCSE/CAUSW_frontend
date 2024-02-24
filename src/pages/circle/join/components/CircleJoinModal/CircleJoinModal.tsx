@@ -20,40 +20,36 @@ export const CircleJoinModal: React.FC = observer(() => {
     circle,
     joinModal: { target, join, reset, visible, close, isAwait, isBlock, isDone, isMember },
   } = usePageUiStore<PageUiStore.CircleJoin>();
+  const isNewUser = !(isDone || isAwait || isBlock || isMember);
 
   const handleOk = useCallback(async () => {
     if (!target) return;
     const { message } = (await join(target)) as unknown as StoreAPI;
     if (message) alert({ message });
-  }, [target]);
+  }, [target, join, alert]);
 
   useEffect(() => {
     return () => reset();
-  }, []);
+  }, [reset]);
 
   return circle ? (
     <Modal open={visible} closeAfterTransition>
       <ModalBox>
         <ModalAlertTitle>
-          {isDone
-            ? '가입 신청이 완료되었습니다.'
-            : isAwait
-            ? '이미 신청한 동아리입니다.'
-            : isBlock
-            ? '가입이 제한되었습니다.'
-            : '동아리 신청'}
+          {isDone && '가입 신청이 완료되었습니다.'}
+          {isMember && '이미 가입한 동아리입니다.'}
+          {isAwait && '이미 신청한 동아리입니다.'}
+          {isBlock && '가입이 제한되었습니다.'}
+          {isNewUser && '동아리 신청'}
         </ModalAlertTitle>
         <ModalAlertMessage center>
-          {isDone || isAwait
-            ? '동아리 동아리장이 가입을 허가해 줄 때 까지 기다려주세요.'
-            : isMember
-            ? '이미 가입한 동아리 사용자 입니다.'
-            : isBlock
-            ? '동아리장 혹은 관리자에게 문의해주세요.'
-            : `${circle.name} 동아리에 가입하시겠습니까?`}
+          {(isDone || isAwait) && '동아리 동아리장이 가입을 허가해 줄 때까지 기다려주세요.'}
+          {isMember && '이미 가입한 동아리 사용자 입니다.'}
+          {isBlock && '동아리장 혹은 관리자에게 문의해주세요.'}
+          {isNewUser && `${circle.name} 동아리에 가입하시겠습니까?`}
         </ModalAlertMessage>
         <ModalFooter>
-          {isDone || isAwait || isBlock || isMember ? (
+          {!isNewUser ? (
             <ModalFooterButton onClick={close}>확인</ModalFooterButton>
           ) : (
             <>

@@ -6,40 +6,51 @@ import { PAGE_URL } from '@/configs/path';
 export class HistoryCommentModel {
   boardId: string;
   postId: string;
-  parentCommentId: string | null;
+
   circleName: string | null;
   boardName: string;
   postName: string;
   id: string;
   content: string;
-  tagUserName: string | null;
+
   createdAt: string;
   updatedAt: string;
+
+  //#71 추가
+  isDeleted: boolean;
+  circleId: string;
+
+  //tagUserName: string | null;
+  //parentCommentId: string | null;
 
   constructor(props: HistoryData.Comment) {
     this.boardId = props.boardId;
     this.postId = props.postId;
-    this.parentCommentId = props.parentCommentId;
     this.circleName = props.circleName;
     this.boardName = props.boardName;
     this.postName = props.postName;
     this.id = props.id;
     this.content = props.content;
-    this.tagUserName = props.tagUserName;
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
+    //#71 추가
+    this.isDeleted = props.isDeleted;
+    this.circleId = props.circleId;
   }
 
   get to(): string {
-    let url, params;
+    const url = PAGE_URL.PostDetail;
+    const params = { boardId: this.boardId, postId: this.postId };
 
+    //#71 수정
+    /*     let url, params;
     if (this.parentCommentId) {
       url = PAGE_URL.PostReplyComment;
       params = { boardId: this.boardId, postId: this.postId };
     } else {
       url = PAGE_URL.PostDetail;
       params = { boardId: this.boardId, postId: this.postId, commtId: this.parentCommentId };
-    }
+    } */
 
     return generatePath(url, params);
   }

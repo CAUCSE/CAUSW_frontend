@@ -1,7 +1,8 @@
+import { lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { HistoryCommentPage } from './comment';
-import { HistoryPostPage } from './post';
+const HistoryCommentPage = lazy(() => import('./comment/HistoryCommentPage'));
+const HistoryPostPage = lazy(() => import('./post/HistoryPostPage'));
 
 import { PAGE_URL } from '@/configs/path';
 

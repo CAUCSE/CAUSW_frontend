@@ -29,7 +29,7 @@ const LockerLocationsPage: React.FC = observer(() => {
   return (
     <>
       <Header
-        withBack={PAGE_URL.LockerList}
+        withBack={PAGE_URL.Locker}
         title={locationName}
         TopComponent={
           <LockerStatus enableLockerCount={enableLockerCount} totalLockerCount={totalLockerCount} />

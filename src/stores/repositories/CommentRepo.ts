@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { CommentModel } from '../models/CommentModel';
 
@@ -14,6 +14,11 @@ class CommentRepo {
       `${this.URI}?postId=${pid}&pageNum=${page}`,
     )) as AxiosResponse<PostComment.GetResponseDto>;
 
+    /* mocking
+    const {
+      data: { content, ...other },
+    } = await axios.get<PostComment.GetResponseDto>(`${this.URI}?postId=${pid}&pageNum=${page}`); */
+
     return {
       comments: content.map(comment => new CommentModel(comment)),
       ...other,
@@ -26,6 +31,9 @@ class CommentRepo {
       body,
     )) as AxiosResponse<PostComment.CreateResponseDto>;
 
+    // mocking
+    // const { data } = await axios.post<PostComment.CreateResponseDto>(this.URI, body);
+
     return new CommentModel(data);
   };
 
@@ -34,6 +42,10 @@ class CommentRepo {
       content,
     })) as AxiosResponse<PostComment.CreateResponseDto>;
 
+    /* mocking
+    const { data } = await axios.put<PostComment.CreateResponseDto>(`${this.URI}/${cid}`, {
+      content,
+    }); */
     return new CommentModel(data);
   };
 

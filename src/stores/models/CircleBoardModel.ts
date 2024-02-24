@@ -12,7 +12,7 @@ export class CircleBoardModel {
   post?: {
     id: string;
     title: string;
-    formatedCreatedAt: string;
+    formattedCreatedAt: string;
     writerName: string;
     numComment: number;
   };
@@ -29,7 +29,7 @@ export class CircleBoardModel {
       this.post = {
         id: props.postId,
         title: props.postTitle ?? '',
-        formatedCreatedAt: format(date, 'yyyy.MM.dd HH:mm'),
+        formattedCreatedAt: format(date, 'yyyy.MM.dd HH:mm'),
         writerName: `${props.postWriterName} (${props.postWriterStudentId?.slice(2, 4)})`,
         numComment: props.postNumComment ?? 0,
       };

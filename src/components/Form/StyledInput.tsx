@@ -9,7 +9,8 @@ import {
   styled,
 } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { Control, Controller, FieldValues, Path, UseControllerProps } from 'react-hook-form';
+import type { Control, FieldValues, Path, UseControllerProps } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 const LineFormControl = styled(FormControl)`
   width: 100%;
@@ -38,7 +39,7 @@ const LineFormControl = styled(FormControl)`
 
 const RequiredMark: React.FC = () => <span style={{ color: '#ff7473' }}>*</span>;
 
-interface InputProps<TFieldValues> {
+interface InputProps<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;
   type?: string;
   label?: string;

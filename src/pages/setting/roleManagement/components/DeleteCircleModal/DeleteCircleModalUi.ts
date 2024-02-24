@@ -8,15 +8,17 @@ export class DeleteCircleModalUi {
   visible = false;
   key?: listKey;
   target?: Model.User;
+  circleIndex?: number;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  open(key: listKey, target: Model.User): void {
+  open(key: listKey, target: Model.User, circleIndex: number): void {
     this.visible = true;
     this.key = key;
     this.target = target;
+    this.circleIndex = circleIndex;
   }
 
   close(): void {
