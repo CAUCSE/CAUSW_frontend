@@ -181,6 +181,11 @@ declare namespace User {
     updatedPassword: string;
   }
 
+  export interface UpdateAccessTokenRequestDto {
+    accessToken: string | null;
+    refreshToken: string;
+  }
+
   // ==
 
   export interface FindPostsResponse {

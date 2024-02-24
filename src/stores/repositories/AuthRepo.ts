@@ -2,20 +2,22 @@ import { AxiosResponse } from 'axios';
 
 import { UserModel } from '../models/UserModel';
 
-import { API, setAuth, storeAuth, storeRefresh } from '@/configs/axios';
+import { API, setAuth, storeAuth, storeRefresh, removeAuth, removeRefresh } from '@/configs/axios';
 
 class AuthRepo {
   URI = '/api/v1/users';
 
   signIn = async (body: User.SignInRequestDto) => {
-    const { data } = (await API.post(`${this.URI}/sign-in`, body)) as AxiosResponse<{
+    const {
+      data: { accessToken, refreshToken },
+    } = (await API.post(`${this.URI}/sign-in`, body)) as AxiosResponse<{
       accessToken: string;
       refreshToken: string;
     }>;
 
-    storeAuth(true, data.accessToken);
-    setAuth(data.accessToken);
-    storeRefresh(data.refreshToken);
+    storeAuth(true, accessToken);
+    setAuth(accessToken);
+    storeRefresh(refreshToken);
   };
 
   isDuplicatedEmail = async (email: string): Promise<boolean> => {
@@ -43,6 +45,22 @@ class AuthRepo {
 
   updatePassword = async (body: User.PasswordUpdateRequestDto) => {
     return API.put(`${this.URI}/password`, body);
+  };
+
+  updateAccessToken = async (body: User.UpdateAccessTokenRequestDto) => {
+    const {
+      data: { accessToken, refreshToken },
+    } = (await API.post(`${this.URI}/token/updatePutmapping`, body)) as AxiosResponse<{
+      accessToken: string;
+      refreshToken: string;
+    }>;
+
+    removeAuth();
+    removeRefresh();
+
+    storeAuth(true, accessToken);
+    setAuth(accessToken);
+    storeRefresh(refreshToken);
   };
 }
 
