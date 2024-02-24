@@ -4,8 +4,8 @@ import { PAGE_URL } from './path';
 
 export const API = axios.create({
   baseURL:
-    process.env.NODE_ENV !== 'development'
-      ? import.meta.env.VITE_MAIN_SERVER_URL
+    process.env.NODE_ENV === 'production'
+      ? import.meta.env.VITE_PROD_SERVER_URL
       : import.meta.env.VITE_DEV_SERVER_URL,
 });
 
