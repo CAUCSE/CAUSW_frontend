@@ -59,6 +59,7 @@ API.interceptors.response.use(
 
       if (data.errorCode === 4012 || data.errorCode === 4103 || data.errorCode === 4105) {
         removeAuth();
+        removeRefresh();
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       }
 
@@ -72,10 +73,16 @@ API.interceptors.response.use(
               return API.request(configs);
             })
             .catch(error => {
+              removeAuth();
+              removeRefresh();
               data = error.response.data;
               if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
             });
-        } else if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
+        } else if (location.pathname !== PAGE_URL.SignIn) {
+          removeAuth();
+          removeRefresh();
+          location.href = PAGE_URL.SignIn;
+        }
       }
 
       return Promise.reject({
