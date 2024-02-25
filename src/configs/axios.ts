@@ -66,7 +66,6 @@ API.interceptors.response.use(
       if (data.errorCode === 4019) {
         if (localStorage.getItem(storageRefreshKey)) {
           Repo.updateAccessToken({
-            accessToken: localStorage.getItem(storageAuthKey),
             refreshToken: localStorage.getItem(storageRefreshKey)!,
           })
             .then(() => {

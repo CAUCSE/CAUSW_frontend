@@ -182,7 +182,6 @@ declare namespace User {
   }
 
   export interface UpdateAccessTokenRequestDto {
-    accessToken: string | null;
     refreshToken: string;
   }
 

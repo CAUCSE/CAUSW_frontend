@@ -50,7 +50,7 @@ class AuthRepo {
   updateAccessToken = async (body: User.UpdateAccessTokenRequestDto) => {
     const {
       data: { accessToken, refreshToken },
-    } = (await API.post(`${this.URI}/token/updatePutmapping`, body)) as AxiosResponse<{
+    } = (await API.put(`${this.URI}/token/update`, body)) as AxiosResponse<{
       accessToken: string;
       refreshToken: string;
     }>;
