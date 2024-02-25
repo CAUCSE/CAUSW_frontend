@@ -1,15 +1,36 @@
 import { http, ResponseResolver, HttpResponse } from 'msw';
 
-const getAccessTokenHandler: ResponseResolver = () => {
-  return HttpResponse.json<User.UpdateAccessTokenRequestDto>({
-    accessToken: 'string',
-    refreshToken: 'string',
+const postSignInHandler: ResponseResolver = () => {
+  return HttpResponse.json<{
+    accessToken: string;
+    refreshToken: string;
+  }>({
+    accessToken: 'accessToken',
+    refreshToken: 'refreshToken',
   });
 };
 
-export const AusthHandler = [
-  http.get('/api/v1/users/token/updatePutmapping', getAccessTokenHandler),
-  http.get('/api/v1/users/me', (req, res, context) =>
-    res(context.status(200), context.json({ data: 'some-random-fake-data' })),
+const putAccessTokenHandler: ResponseResolver = () => {
+  return HttpResponse.json<{
+    accessToken: string;
+    refreshToken: string;
+  }>({
+    accessToken: 'accessToken2',
+    refreshToken: 'refreshToken2',
+  });
+};
+
+const accessTokenErrorHandler: ResponseResolver = () => {
+  return new HttpResponse(null, {
+    status: 401,
+  });
+};
+
+export const authHandler = [
+  http.post(import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/sign-in', postSignInHandler),
+  http.put(
+    import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/token/update',
+    putAccessTokenHandler,
   ),
+  http.get(import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/me', accessTokenErrorHandler),
 ];

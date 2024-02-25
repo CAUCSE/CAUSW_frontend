@@ -62,7 +62,7 @@ API.interceptors.response.use(
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       }
 
-      // 4019?? : UnAuthorizedException , 만료된 access 토큰입니다.
+      // 4019로 가정 : UnAuthorizedException , 만료된 access 토큰입니다.
       if (data.errorCode === 4019) {
         if (localStorage.getItem(storageRefreshKey)) {
           Repo.updateAccessToken({
@@ -75,9 +75,7 @@ API.interceptors.response.use(
               data = error.response.data;
               if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
             });
-        }
-
-        if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
+        } else if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       }
 
       return Promise.reject({
