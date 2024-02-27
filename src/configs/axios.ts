@@ -12,26 +12,9 @@ export const API = axios.create({
 });
 
 //Auth
-export const setAuth = (token: string): unknown => (API.defaults.headers['Authorization'] = token);
-export const resetAuth = (): unknown => delete API.defaults.headers['Authorization'];
-
-const storageAuthKey = 'CAUCSE_JWT_AUTH';
-
-export const storeAuth = (isStored: boolean, token: string): void => {
-  if (isStored) localStorage.setItem(storageAuthKey, token);
-  else sessionStorage.setItem(storageAuthKey, token);
-};
-export const restoreAuth = (): boolean => {
-  const token = localStorage.getItem(storageAuthKey) ?? sessionStorage.getItem(storageAuthKey);
-
-  if (token) setAuth(token);
-
-  return !!token;
-};
-export const removeAuth = (): void => {
-  localStorage.removeItem(storageAuthKey);
-  sessionStorage.removeItem(storageAuthKey);
-};
+export const setAccess = (token: string): unknown =>
+  (API.defaults.headers['Authorization'] = token);
+export const resetAccess = (): unknown => delete API.defaults.headers['Authorization'];
 
 //Refresh
 const storageRefreshKey = 'CAUCSE_JWT_REFRESH';
@@ -63,13 +46,11 @@ API.interceptors.response.use(
               return API.request(config);
             })
             .catch(error => {
-              removeAuth();
               removeRefresh();
               data = error.response.data;
               if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
             });
         } else if (location.pathname !== PAGE_URL.SignIn) {
-          removeAuth();
           removeRefresh();
           location.href = PAGE_URL.SignIn;
         }

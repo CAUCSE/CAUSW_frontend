@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { UserModel } from '../models/UserModel';
 
-import { API, setAuth, storeAuth, storeRefresh, removeAuth, removeRefresh } from '@/configs/axios';
+import { API, setAccess, storeRefresh, removeAuth, removeRefresh } from '@/configs/axios';
 
 class AuthRepo {
   URI = '/api/v1/users';
@@ -15,8 +15,7 @@ class AuthRepo {
       refreshToken: string;
     }>;
 
-    storeAuth(true, accessToken);
-    setAuth(accessToken);
+    setAccess(accessToken);
     storeRefresh(refreshToken);
   };
 
@@ -55,11 +54,9 @@ class AuthRepo {
       refreshToken: string;
     }>;
 
-    removeAuth();
     removeRefresh();
 
-    storeAuth(true, accessToken);
-    setAuth(accessToken);
+    setAccess(accessToken);
     storeRefresh(refreshToken);
   };
 }
