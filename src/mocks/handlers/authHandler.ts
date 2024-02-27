@@ -27,10 +27,10 @@ const accessTokenErrorHandler: ResponseResolver = () => {
 };
 
 export const authHandler = [
-  http.post(import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/sign-in', postSignInHandler),
+  // http.post(import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/sign-in', postSignInHandler),
   http.put(
     import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/token/update',
     putAccessTokenHandler,
   ),
-  http.get(import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/me', accessTokenErrorHandler),
+  // http.get(import.meta.env.VITE_DEV_SERVER_URL + '/api/v1/users/me', accessTokenErrorHandler),
 ];

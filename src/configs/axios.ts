@@ -50,7 +50,7 @@ API.interceptors.response.use(
   response => response,
   error => {
     if (error.response) {
-      const { response, configs } = error;
+      const { response, config } = error;
       let data = response.data;
 
       // 4105로 가정
@@ -60,7 +60,7 @@ API.interceptors.response.use(
             refreshToken: localStorage.getItem(storageRefreshKey)!,
           })
             .then(() => {
-              return API.request(configs);
+              return API.request(config);
             })
             .catch(error => {
               removeAuth();
