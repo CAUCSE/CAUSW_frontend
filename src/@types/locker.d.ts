@@ -2,14 +2,14 @@ declare namespace Locker {
   export interface Dto {
     id: string;
     name: string;
-    description: string;
+    //description: string;
     enableLockerCount: number;
     totalLockerCount: number;
   }
   export interface LocationDto {
     id: string;
     lockerNumber: number;
-    lockerLocationName: string;
+    //lockerLocationName: string;
     updatedAt: string;
     expireAt: string;
     isActive: boolean;

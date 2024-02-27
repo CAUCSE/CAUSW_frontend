@@ -13,7 +13,13 @@ export const LocationCell: React.FC<{ model: Model.LockerLocation }> = observer(
   const isSelected = computed(() => store.target?.id === model.id).get();
 
   return (
-    <Cell key={id} onClick={handleClick} isActive={isActive} isMine={isMine} isSelected={isSelected}>
+    <Cell
+      key={id}
+      onClick={handleClick}
+      isActive={isActive}
+      isMine={isMine}
+      isSelected={isSelected}
+    >
       <span className="absolute-center">{lockerNumber}</span>
     </Cell>
   );
