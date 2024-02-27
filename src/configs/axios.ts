@@ -53,18 +53,8 @@ API.interceptors.response.use(
       const { response, configs } = error;
       let data = response.data;
 
-      // 4012: 접근 권한이 없습니다. 다시 로그인 해주세요. 문제 반복시 관리자에게 문의해주세요.
-      // 4103: 비활성화된 사용자 입니다.
-      // 4015: 다시 로그인 해주세요.
-
-      if (data.errorCode === 4012 || data.errorCode === 4103 || data.errorCode === 4105) {
-        removeAuth();
-        removeRefresh();
-        if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
-      }
-
-      // 4019로 가정 : UnAuthorizedException , 만료된 access 토큰입니다.
-      if (data.errorCode === 4019) {
+      // 4105로 가정
+      if (data.errorCode === '4105') {
         if (localStorage.getItem(storageRefreshKey)) {
           Repo.updateAccessToken({
             refreshToken: localStorage.getItem(storageRefreshKey)!,
