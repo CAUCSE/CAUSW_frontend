@@ -29,15 +29,16 @@ declare namespace Locker {
   export interface FindByLocationResponseDto {
     locationName: string;
     lockerList: LockerLocationDto[];
-    /* 
-    LockerLocationDto may be: id: string;
+  }
+
+  interface LockerLocationDto {
+    id: string;
     lockerNumber: number;
-    lockerLocationName: string;
+    //lockerLocationName: string;
     updatedAt: string;
     expireAt: string;
     isActive: boolean;
-    isMine: boolean; 
-    */
+    isMine: boolean;
   }
 
   export interface FindByLocationResponse {

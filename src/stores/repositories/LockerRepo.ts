@@ -44,21 +44,21 @@ class LockerRepo {
   };
 
   register = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'register', message: '' });
 
     //mocking
     //return axios.put(`${this.URI}/${lockerId}`, { action: 'register' });
   };
 
   return = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'return', message: '' });
 
     //mocking
     //return axios.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
 
   extend = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend', message: '' });
 
     //mocking
     //return axios.put(`${this.URI}/${lockerId}`, { action: 'extend' });
