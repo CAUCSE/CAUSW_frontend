@@ -5,14 +5,14 @@ import { PAGE_URL } from '@/configs/path';
 export class LockerModel implements Locker.Dto {
   id: string;
   name: string;
-  description: string;
+  //description: string;
   enableLockerCount: number;
   totalLockerCount: number;
 
   constructor(props: Locker.Dto) {
     this.id = props.id;
     this.name = props.name;
-    this.description = props.description;
+    //this.description = props.description;
     this.enableLockerCount = props.enableLockerCount;
     this.totalLockerCount = props.totalLockerCount;
   }

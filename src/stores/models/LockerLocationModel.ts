@@ -3,7 +3,7 @@ import { action, makeObservable, observable } from 'mobx';
 export class LockerLocationModel implements Locker.LocationDto {
   id: string;
   lockerNumber: number;
-  lockerLocationName: string;
+  //lockerLocationName: string;
   updatedAt: string;
   expireAt: string;
   isActive: boolean;
@@ -12,7 +12,7 @@ export class LockerLocationModel implements Locker.LocationDto {
   constructor(props: Locker.LocationDto) {
     this.id = props.id;
     this.lockerNumber = props.lockerNumber;
-    this.lockerLocationName = props.lockerLocationName;
+    //this.lockerLocationName = props.lockerLocationName;
     this.updatedAt = props.updatedAt;
     this.expireAt = props.expireAt;
     this.isActive = props.isActive;

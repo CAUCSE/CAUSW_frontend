@@ -6,9 +6,8 @@ export const LockerPosition: React.FC<{ model?: Model.LockerLocation }> = observ
   model ? (
     <Box>
       <Title>보유중인 사물함</Title>
-      {model.lockerLocationName} {model.lockerNumber}번 <br></br>
+      {model.lockerNumber} 번 <br></br>
       마감기한 : {model.expireAt}
     </Box>
   ) : null,
-
 );

@@ -18,8 +18,7 @@ render(
   document.getElementById('root'),
 );
 
-/* mocking
-async function enableMocking() {
+/* async function enableMocking() {
   if (process.env.NODE_ENV !== 'development') {
     return;
   }
@@ -39,5 +38,4 @@ enableMocking().then(() => {
     </React.StrictMode>,
     document.getElementById('root'),
   );
-}); 
-*/
+}); */

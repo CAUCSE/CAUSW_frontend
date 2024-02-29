@@ -1,3 +1,4 @@
+import { authHandler } from './authHandler';
 import { boardHandler } from './boardHandler';
 import { circleHandler } from './circleHandler';
 import { commentHandler } from './commentHandler';
@@ -16,6 +17,7 @@ const handlers = [
   ...lockerHandler,
   ...historyHandler,
   ...settingHandler,
+  ...authHandler,
 ];
 
 export default handlers;
