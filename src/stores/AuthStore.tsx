@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 import { AuthRepoImpl as Repo } from './repositories/AuthRepo';
 
-import { removeAuth, restoreAuth } from '@/configs/axios';
+import { getRefresh, removeRefresh } from '@/configs/axios';
 
 export class AuthStore {
   rootStore: Store.Root;
@@ -26,23 +26,19 @@ export class AuthStore {
   }
 
   *checkToken(): Generator {
-    //Token 존재 확인
-    if (!restoreAuth()) return { success: false };
-    //Token 유효성 확인
     try {
       this.me = (yield Repo.findCurrentUser()) as Model.User;
       return { success: true };
     } catch (err) {
-      removeAuth();
       return err;
     }
   }
 
   signOut(): void {
-    removeAuth();
+    removeRefresh();
   }
 
   get isSignIn(): boolean {
-    return restoreAuth();
+    return getRefresh() ? true : false;
   }
 }

@@ -4,7 +4,7 @@ export const lockerAllLocationsList: Locker.FindAllLocationResponseDto = {
     {
       id: '3',
       name: 'locker_location',
-      description: 'description',
+      //description: 'description',
       enableLockerCount: 0,
       totalLockerCount: 0,
     },
@@ -16,7 +16,7 @@ export const lockerAllLocationsList: Locker.FindAllLocationResponseDto = {
     isMine: true,
     lockerNumber: 1,
     updatedAt: '2024-01-22T09:50:43.175Z',
-    lockerLocationName: 'lockerLocationName', //problem: Swagger API에 없음
+    //lockerLocationName: 'lockerLocationName', //problem: Swagger API에 없음
   },
 };
 

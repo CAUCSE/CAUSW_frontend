@@ -16,7 +16,11 @@ export const SubmitButton: React.FC = observer(() => {
   const { update, target, submitDisabled } = usePageUiStore<PageUiStore.SettingRoleDelegation>();
   const handleSubmit = useCallback(async () => {
     if (me && target) {
-      const { success, message } = (await update(target, me.role)) as unknown as StoreAPI;
+      const role = me.role.split('_N_');
+      const { success, message } = (await update(
+        target,
+        role[0] as User.UserDto['role'],
+      )) as unknown as StoreAPI;
 
       if (success)
         alert({

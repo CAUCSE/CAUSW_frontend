@@ -44,21 +44,21 @@ class LockerRepo {
   };
 
   register = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'register' });
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'register', message: '' });
 
     //mocking
     //return axios.put(`${this.URI}/${lockerId}`, { action: 'register' });
   };
 
   return = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'return' });
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'return', message: '' });
 
     //mocking
     //return axios.put(`${this.URI}/${lockerId}`, { action: 'return' });
   };
 
   extend = async (lockerId: string): Promise<unknown> => {
-    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend' });
+    return await API.put(`${this.URI}/${lockerId}`, { action: 'extend', message: '' });
 
     //mocking
     //return axios.put(`${this.URI}/${lockerId}`, { action: 'extend' });
@@ -72,21 +72,21 @@ class LockerDummyRepo {
         new LockerModel({
           id: '1',
           name: '3층 사물함',
-          description: '208관 3층 312호 앞',
+          //description: '208관 3층 312호 앞',
           enableLockerCount: 80,
           totalLockerCount: 100,
         }),
         new LockerModel({
           id: '2',
           name: '4층 사물함',
-          description: '208관 4층 407호 앞',
+          //description: '208관 4층 407호 앞',
           enableLockerCount: 160,
           totalLockerCount: 160,
         }),
         new LockerModel({
           id: '3',
           name: '5층 사물함',
-          description: '208관 5층 515호 앞',
+          //description: '208관 5층 515호 앞',
           enableLockerCount: 80,
           totalLockerCount: 160,
         }),
@@ -101,7 +101,7 @@ class LockerDummyRepo {
         new LockerLocationModel({
           id: 'test',
           lockerNumber: 0,
-          lockerLocationName: '0번',
+          //lockerLocationName: '0번',
           updatedAt: '',
           expireAt: '',
           isActive: true,
@@ -115,7 +115,7 @@ class LockerDummyRepo {
             new LockerLocationModel({
               id: `test-${index + 1}`,
               lockerNumber: index + 1,
-              lockerLocationName: `${index + 1}번`,
+              //lockerLocationName: `${index + 1}번`,
               updatedAt: '',
               expireAt: '',
               isActive: Math.random() > 0.5,

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { PAGE_URL } from './path';
 
@@ -9,42 +9,52 @@ export const API = axios.create({
       : import.meta.env.VITE_DEV_SERVER_URL,
 });
 
-export const setAuth = (token: string): unknown => (API.defaults.headers['Authorization'] = token);
-export const resetAuth = (): unknown => delete API.defaults.headers['Authorization'];
+//Auth
+export const setAccess = (token: string): unknown =>
+  (API.defaults.headers['Authorization'] = token);
+export const resetAccess = (): unknown => delete API.defaults.headers['Authorization'];
 
-const storageKey = 'CAUCSE_JWT';
+//Refresh
+const storageRefreshKey = 'CAUCSE_JWT_REFRESH';
 
-export const storeAuth = (isStored: boolean, token: string): void => {
-  if (isStored) localStorage.setItem(storageKey, token);
-  else sessionStorage.setItem(storageKey, token);
+export const storeRefresh = (token: string): void => {
+  localStorage.setItem(storageRefreshKey, token);
 };
-export const restoreAuth = (): boolean => {
-  const token = localStorage.getItem(storageKey) ?? sessionStorage.getItem(storageKey);
-
-  if (token) setAuth(token);
-
-  return !!token;
+export const removeRefresh = (): void => {
+  localStorage.removeItem(storageRefreshKey);
 };
-export const removeAuth = (): void => {
-  localStorage.removeItem(storageKey);
-  sessionStorage.removeItem(storageKey);
+export const getRefresh = (): string | null => {
+  return localStorage.getItem(storageRefreshKey);
 };
 
 API.interceptors.response.use(
   response => response,
-  error => {
+  async error => {
     if (error.response) {
       const {
         response: { data },
+        config,
       } = error;
 
-      // 4012: 접근 권한이 없습니다. 다시 로그인 해주세요. 문제 반복시 관리자에게 문의해주세요.
-      // 4103: 비활성화된 사용자 입니다.
-      // 4015: 다시 로그인 해주세요.
-
-      if (data.errorCode === 4012 || data.errorCode === 4103 || data.errorCode === 4105) {
-        removeAuth();
+      if (!localStorage.getItem(storageRefreshKey) || config.url === '/api/v1/users/token/update') {
+        removeRefresh();
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
+      } else if (data.errorCode === '4105') {
+        const {
+          data: { accessToken, refreshToken },
+        } = (await API.put(`/api/v1/users/token/update`, {
+          refreshToken: getRefresh(),
+        })) as AxiosResponse<{
+          accessToken: string;
+          refreshToken: string;
+        }>;
+
+        setAccess(accessToken);
+        removeRefresh();
+        storeRefresh(refreshToken);
+
+        config.headers['Authorization'] = accessToken;
+        return API.request(config);
       }
 
       return Promise.reject({
