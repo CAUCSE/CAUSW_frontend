@@ -1,8 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { PAGE_URL } from './path';
-
-import { AuthRepoImpl as Repo } from '@/stores/repositories/AuthRepo';
 
 export const API = axios.create({
   baseURL:
@@ -31,29 +29,32 @@ export const getRefresh = (): string | null => {
 
 API.interceptors.response.use(
   response => response,
-  error => {
+  async error => {
     if (error.response) {
-      const { response, config } = error;
-      let data = response.data;
+      const {
+        response: { data },
+        config,
+      } = error;
 
-      // 4105로 가정
-      if (data.errorCode === '4105') {
-        if (localStorage.getItem(storageRefreshKey)) {
-          Repo.updateAccessToken({
-            refreshToken: localStorage.getItem(storageRefreshKey)!,
-          })
-            .then(() => {
-              return API.request(config);
-            })
-            .catch(error => {
-              removeRefresh();
-              data = error.response.data;
-              if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
-            });
-        } else if (location.pathname !== PAGE_URL.SignIn) {
-          removeRefresh();
-          location.href = PAGE_URL.SignIn;
-        }
+      if (!localStorage.getItem(storageRefreshKey) || config.url === '/api/v1/users/token/update') {
+        removeRefresh();
+        if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
+      } else if (data.errorCode === '4105') {
+        const {
+          data: { accessToken, refreshToken },
+        } = (await API.put(`/api/v1/users/token/update`, {
+          refreshToken: getRefresh(),
+        })) as AxiosResponse<{
+          accessToken: string;
+          refreshToken: string;
+        }>;
+
+        setAccess(accessToken);
+        removeRefresh();
+        storeRefresh(refreshToken);
+
+        config.headers['Authorization'] = accessToken;
+        return API.request(config);
       }
 
       return Promise.reject({

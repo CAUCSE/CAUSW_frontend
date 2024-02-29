@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { UserModel } from '../models/UserModel';
 
-import { API, setAccess, storeRefresh, removeAuth, removeRefresh } from '@/configs/axios';
+import { API, setAccess, storeRefresh, removeRefresh } from '@/configs/axios';
 
 class AuthRepo {
   URI = '/api/v1/users';
@@ -44,20 +44,6 @@ class AuthRepo {
 
   updatePassword = async (body: User.PasswordUpdateRequestDto) => {
     return API.put(`${this.URI}/password`, body);
-  };
-
-  updateAccessToken = async (body: User.UpdateAccessTokenRequestDto) => {
-    const {
-      data: { accessToken, refreshToken },
-    } = (await API.put(`${this.URI}/token/update`, body)) as AxiosResponse<{
-      accessToken: string;
-      refreshToken: string;
-    }>;
-
-    removeRefresh();
-
-    setAccess(accessToken);
-    storeRefresh(refreshToken);
   };
 }
 
