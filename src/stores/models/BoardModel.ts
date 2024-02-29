@@ -12,11 +12,27 @@ export class BoardModel {
   id: string;
   category: string;
   name: string;
+  description: string;
+  isDeleted: string;
+  writable: boolean;
+  createRoleList: User.Role[];
 
-  constructor(id: string, category: string, name: string) {
+  constructor(
+    id: string,
+    category: string,
+    name: string,
+    description: string,
+    isDeleted: string,
+    writable: boolean,
+    createRoleList: User.Role[],
+  ) {
     this.id = id;
     this.name = name;
     this.category = category;
+    this.description = description;
+    this.isDeleted = isDeleted;
+    this.writable = writable;
+    this.createRoleList = createRoleList;
   }
 
   get BoardLink(): string {

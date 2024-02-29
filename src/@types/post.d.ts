@@ -5,14 +5,14 @@ declare namespace Post {
     writerName: string;
     writerAdmissionYear: number;
     writerProfileImage: string | null;
-    content: string;
+    //content: string;
     createdAt: Date;
     updatedAt: Date;
     numComment: number;
-    updatable: boolean;
-    deletable: boolean;
+    //updatable: boolean;
+    //deletable: boolean;
     isDeleted: boolean;
-    attachmentList: IAttachment[];
+    //attachmentList: IAttachment[];
   }
 
   export interface FindAllResponseDto {

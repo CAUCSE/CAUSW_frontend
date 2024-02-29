@@ -7,13 +7,14 @@ export class PostModel {
   id: string;
   title: string;
   author: Model.Author;
-  content: string;
+  //content: string;
   createdAt: Date;
   updatedAt: Date;
   commentCount: number;
-  updatable: boolean;
-  deletable: boolean;
-  attachmentList: Post.IAttachment[];
+  //updatable: boolean;
+  //deletable: boolean;
+  isDeleted: boolean;
+  //attachmentList: Post.IAttachment[];
 
   constructor(props: Post.Dto) {
     makeObservable(this, {
@@ -28,13 +29,14 @@ export class PostModel {
       props.writerName,
       props.writerProfileImage,
     );
-    this.content = props.content ?? '';
+    //this.content = props.content ?? '';
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
     this.commentCount = props.numComment;
-    this.updatable = props.updatable ?? false;
-    this.deletable = props.deletable ?? false;
-    this.attachmentList = props.attachmentList;
+    //this.updatable = props.updatable ?? false;
+    //this.deletable = props.deletable ?? false;
+    this.isDeleted = props.isDeleted;
+    //this.attachmentList = props.attachmentList;
   }
 
   setCommentCount(param: (num: number) => number | number): void {

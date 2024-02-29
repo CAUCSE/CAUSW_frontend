@@ -4,6 +4,10 @@ declare namespace Home {
       id: string;
       category: string;
       name: string;
+      description: string;
+      isDeleted: string;
+      writable: boolean;
+      createRoleList: User.Role[];
     };
     posts: {
       content: Post.Dto[];
