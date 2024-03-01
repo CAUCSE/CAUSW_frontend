@@ -10,6 +10,7 @@ import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 export type listKey = 'councilUsers' | 'leaderGradeUsers' | 'leaderCircleUsers';
 
 export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
+  presidentUsers: Model.User | null = null;
   councilUsers: Model.User[] = [];
   leaderGradeUsers: Model.User[] = [];
   leaderCircleUsers: Model.User[] = [];
@@ -32,6 +33,7 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   }
 
   reset(): void {
+    this.presidentUsers = null;
     this.councilUsers = [];
     this.leaderGradeUsers = [];
     this.leaderCircleUsers = [];
@@ -39,9 +41,10 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   }
 
   *fetch(): Generator {
-    const { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers } =
+    const { presidentUsers, councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers } =
       (yield Repo.findPrivilegedUsers()) as unknown as User.FindPrivilegedUsersResponse;
 
+    this.presidentUsers = presidentUsers;
     this.councilUsers = councilUsers;
     this.leaderGradeUsers = leaderGradeUsers;
     this.leaderCircleUsers = leaderCircleUsers;
