@@ -96,19 +96,19 @@ class UserRepo {
   };
 
   // 유저 관리 페이지
-  findAllAdmissions = async (page: number): Promise<User.FindAllAdmissionsResponse> => {
+  findAllAdmissions = async (
+    name: string | null,
+    page: number,
+  ): Promise<User.FindAllAdmissionsResponse> => {
     const {
       data: { content, last },
-    } = (await API.get(
-      `${this.URI}/admissions?pageNum=${page}`,
-    )) as AxiosResponse<User.FindAllAdmissionsResponseDto>;
-
-    //mocking
-    /* const {
-      data: { content, last },
-    } = await axios.get<User.FindAllAdmissionsResponseDto>(
-      `${this.URI}/admissions?pageNum=${page}`,
-    ); */
+    } = name
+      ? ((await API.get(
+          `${this.URI}/admissions?name=${name}&pageNum=${page}`,
+        )) as AxiosResponse<User.FindAllAdmissionsResponseDto>)
+      : ((await API.get(
+          `${this.URI}/admissions?pageNum=${page}`,
+        )) as AxiosResponse<User.FindAllAdmissionsResponseDto>);
 
     return {
       users: content.map(user => new AdmissionUserModel(user)),
@@ -118,18 +118,18 @@ class UserRepo {
 
   findByState = async (
     state: User.UserDto['state'],
+    name: string | null,
     page: number,
   ): Promise<User.FindByStateResponse> => {
     const {
       data: { content, last },
-    } = (await API.get(
-      `${this.URI}/state/${state}?pageNum=${page}`,
-    )) as AxiosResponse<User.FindByStateResponseDto>;
-
-    //mocking
-    /* const {
-      data: { content, last },
-    } = await axios.get<User.FindByStateResponseDto>(`${this.URI}/state/${state}?pageNum=${page}`); */
+    } = name
+      ? ((await API.get(
+          `${this.URI}/state/${state}?name=${name}&pageNum=${page}`,
+        )) as AxiosResponse<User.FindByStateResponseDto>)
+      : ((await API.get(
+          `${this.URI}/state/${state}?pageNum=${page}`,
+        )) as AxiosResponse<User.FindByStateResponseDto>);
 
     return {
       users: content.map(user => new UserModel(user)),

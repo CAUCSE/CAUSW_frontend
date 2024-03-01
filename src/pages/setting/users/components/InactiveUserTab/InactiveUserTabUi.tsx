@@ -17,12 +17,13 @@ export class InactiveUserTabUi {
     this.hasMore = false;
   }
 
-  *fetch(page = 0): Generator {
+  *fetch(name: string | null = null, page = 0): Generator {
     try {
       if (page === 0) this.users = [];
 
       const { users, last } = (yield Repo.findByState(
         'INACTIVE',
+        name,
         page,
       )) as User.FindByStateResponse;
 

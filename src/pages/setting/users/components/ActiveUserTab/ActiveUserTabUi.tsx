@@ -17,11 +17,15 @@ export class ActiveUserTabUi {
     this.hasMore = false;
   }
 
-  *fetch(page = 0): Generator {
+  *fetch(name: string | null = null, page = 0): Generator {
     try {
       if (page === 0) this.users = [];
 
-      const { users, last } = (yield Repo.findByState('ACTIVE', page)) as User.FindByStateResponse;
+      const { users, last } = (yield Repo.findByState(
+        'ACTIVE',
+        name,
+        page,
+      )) as User.FindByStateResponse;
 
       this.users = this.users.concat(users);
       this.page = page;
