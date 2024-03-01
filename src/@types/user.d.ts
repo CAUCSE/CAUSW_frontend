@@ -148,7 +148,7 @@ declare namespace User {
   export interface SignInRequestDto {
     email: string;
     password: string;
-    //auto?: boolean;
+    auto?: boolean;
   }
 
   export interface IsDuplicatedEmailResponseDto {
