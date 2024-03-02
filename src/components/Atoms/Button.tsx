@@ -41,6 +41,7 @@ interface ButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   color?: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
 export const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
