@@ -10,7 +10,7 @@ export class BoardListPageUiStore {
   }
 
   // 생성한 게시판의 카테고리가 이미 있으면 그 카테고리 안에 넣고, 없으면 새로 생성
-  *fetch(): Generator {
+  *fetchBoards(): Generator {
     const boards = (yield Repo.fetch()) as Model.Board[];
     this.boards = new Map();
 
