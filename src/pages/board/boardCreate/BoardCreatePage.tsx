@@ -30,6 +30,7 @@ const BoardCreatePage: React.FC = observer(() => {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm({
     defaultValues: {
       name: undefined,
@@ -38,6 +39,10 @@ const BoardCreatePage: React.FC = observer(() => {
       circleName: '전체',
     },
   });
+
+  const handleSelectChange = (name: string, selectedValue: string) => {
+    setValue(name as 'category' | 'circleName', selectedValue);
+  };
 
   if (
     (errors.name && errors.name.type === 'required') ||
@@ -62,7 +67,19 @@ const BoardCreatePage: React.FC = observer(() => {
     if (me?.isCircleLeader && data.circleName !== '전체') {
       //동아리장이 동아리 게시판을 생성하는 경우
       if (data.category === '공지 게시판') {
-        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT', 'LEADER_CIRCLE'];
+        body.createRoleList = [
+          'ADMIN',
+          'VICE_PRESIDENT',
+          'PRESIDENT',
+          'LEADER_CIRCLE',
+          'PRESIDENT_N_LEADER_CIRCLE',
+          'VICE_PRESIDENT_N_LEADER_CIRCLE',
+          'COUNCIL_N_LEADER_CIRCLE',
+          'LEADER_1_N_LEADER_CIRCLE',
+          'LEADER_2_N_LEADER_CIRCLE',
+          'LEADER_3_N_LEADER_CIRCLE',
+          'LEADER_4_N_LEADER_CIRCLE',
+        ];
         body.circleId =
           me.circleIds![me.circleNames!.findIndex(circleName => circleName === data.circleName)];
       } else if (data.category === '자유 게시판') {
@@ -76,6 +93,13 @@ const BoardCreatePage: React.FC = observer(() => {
           'LEADER_3',
           'LEADER_4',
           'COMMON',
+          'PRESIDENT_N_LEADER_CIRCLE',
+          'VICE_PRESIDENT_N_LEADER_CIRCLE',
+          'COUNCIL_N_LEADER_CIRCLE',
+          'LEADER_1_N_LEADER_CIRCLE',
+          'LEADER_2_N_LEADER_CIRCLE',
+          'LEADER_3_N_LEADER_CIRCLE',
+          'LEADER_4_N_LEADER_CIRCLE',
         ];
         body.circleId =
           me.circleIds![me.circleNames!.findIndex(circleName => circleName === data.circleName)];
@@ -83,7 +107,13 @@ const BoardCreatePage: React.FC = observer(() => {
     } else {
       //학생회장 혹은 관리자가 동아리 게시판을 생성하는 경우
       if (data.category === '공지 게시판') {
-        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT'];
+        body.createRoleList = [
+          'ADMIN',
+          'VICE_PRESIDENT',
+          'PRESIDENT',
+          'PRESIDENT_N_LEADER_CIRCLE',
+          'VICE_PRESIDENT_N_LEADER_CIRCLE',
+        ];
       } else if (data.category === '자유 게시판') {
         body.createRoleList = [
           'ADMIN',
@@ -95,6 +125,13 @@ const BoardCreatePage: React.FC = observer(() => {
           'LEADER_3',
           'LEADER_4',
           'COMMON',
+          'PRESIDENT_N_LEADER_CIRCLE',
+          'VICE_PRESIDENT_N_LEADER_CIRCLE',
+          'COUNCIL_N_LEADER_CIRCLE',
+          'LEADER_1_N_LEADER_CIRCLE',
+          'LEADER_2_N_LEADER_CIRCLE',
+          'LEADER_3_N_LEADER_CIRCLE',
+          'LEADER_4_N_LEADER_CIRCLE',
         ];
       }
     }
@@ -107,12 +144,12 @@ const BoardCreatePage: React.FC = observer(() => {
 
   useEffect(() => {
     fetch();
+    if (me?.isCircleLeader) setValue('circleName', me.circleNames![0]);
   }, []);
 
   return (
     <>
       <Header title="게시판 생성" withBack={PAGE_URL.Board} />
-
       <PageBody>
         <BodyScreen>
           <Input name="name" label="게시판 이름" required control={control} />
