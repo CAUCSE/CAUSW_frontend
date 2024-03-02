@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 
+import { CircleWebSlideCard } from './CircleWebSlideCard';
 import { ListComponent } from '../CircleListFrame';
-import { CircleSlideCard } from '../Slider/CircleSlideCard';
 
 export const CircleWebSlider: ListComponent = observer(({ items }) => {
   return (
     <WebScrollWrapper>
       {items.map(item => (
-        <CircleSlideCard key={item.id} model={item} />
+        <CircleWebSlideCard key={item.id} model={item} />
       ))}
     </WebScrollWrapper>
   );
@@ -16,7 +16,8 @@ export const CircleWebSlider: ListComponent = observer(({ items }) => {
 
 const WebScrollWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 20px;
-  height: 400px;
   overflow-x: auto;
+  padding: 10px 0px;
 `;

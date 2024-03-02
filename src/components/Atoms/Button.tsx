@@ -39,7 +39,7 @@ interface ButtonProps {
   className?: string;
   $loading?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   color?: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
 }

@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { memo, useState } from 'react';
 import { generatePath, useHistory } from 'react-router';
 
-// import { Icons } from '@/assets';
 import { Article } from '@/assets/icons';
 import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
@@ -46,7 +45,8 @@ export const CircleWebSlideCard: React.FC<{ model: Model.Circle }> = memo(
 const Card = styled.article`
   box-sizing: border-box;
   width: 90%;
-  max-width: 360px;
+  min-width: 360px;
+  min-height: 500px;
   background: #fff;
   border: 1px solid #dadada;
   box-shadow: 1px 2px 5px rgb(0 0 0 / 15%);
