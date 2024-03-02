@@ -8,9 +8,13 @@ import { RemoveButton, Row } from './styled';
 import { ClearLink } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores/RootStore';
 
 export const BoardListItem: React.FC<{ model: Model.Board }> = observer(({ model }) => {
   const { deleteBoardModal } = usePageUiStore<PageUiStore.BoardList>();
+  const {
+    auth: { me },
+  } = useRootStore();
 
   const handleOpendeleteBoardModal = useCallback(
     (target: Model.Board) => () => {
@@ -25,7 +29,13 @@ export const BoardListItem: React.FC<{ model: Model.Board }> = observer(({ model
         <StyledLink to={generatePath(PAGE_URL.PostList, { boardId: model.id })}>
           {model.name}
         </StyledLink>
-        <RemoveButton onClick={handleOpendeleteBoardModal(model)} />
+        {me?.isPresident ||
+        me?.isAdmin ||
+        (me?.isCircleLeader &&
+          model.circleId &&
+          me.circleIds?.find(circleId => circleId === model.circleId)) ? (
+          <RemoveButton onClick={handleOpendeleteBoardModal(model)} />
+        ) : null}
       </Row>
     </>
   );
