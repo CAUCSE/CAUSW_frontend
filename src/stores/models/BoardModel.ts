@@ -13,26 +13,23 @@ export class BoardModel {
   category: string;
   name: string;
   description: string;
-  isDeleted: string;
+  isDeleted: boolean;
   writable: boolean;
   createRoleList: User.Role[];
+  //#83 추가
+  circleId: string;
+  circleName: string;
 
-  constructor(
-    id: string,
-    category: string,
-    name: string,
-    description: string,
-    isDeleted: string,
-    writable: boolean,
-    createRoleList: User.Role[],
-  ) {
-    this.id = id;
-    this.name = name;
-    this.category = category;
-    this.description = description;
-    this.isDeleted = isDeleted;
-    this.writable = writable;
-    this.createRoleList = createRoleList;
+  constructor(board: Board.ResponseDto) {
+    this.id = board.id;
+    this.name = board.name;
+    this.category = board.category;
+    this.description = board.description;
+    this.isDeleted = board.isDeleted;
+    this.writable = board.writable;
+    this.createRoleList = board.createRoleList;
+    this.circleId = board.circleId;
+    this.circleName = board.circleName;
   }
 
   get BoardLink(): string {

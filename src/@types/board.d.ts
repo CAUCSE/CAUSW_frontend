@@ -27,6 +27,12 @@ declare namespace Board {
     writable: boolean;
     isDeleted: boolean;
     circleName: string;
+    //#83 추가
+    name: string;
+    category: string;
+    circleId: string;
+    circleName: string;
+    createRoleList: User.Role[];
   }
 
   interface RequestDto extends Dto {}
