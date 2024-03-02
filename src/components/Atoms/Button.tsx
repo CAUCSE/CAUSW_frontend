@@ -40,6 +40,7 @@ interface Props extends ButtonUnstyledProps {
   className?: string;
   $loading?: boolean;
   disabled?: boolean;
+  onClick?: () => void;
 }
 export const Button: React.FC<Props> = ({ children, ...props }) => (
   <ButtonUnstyled component={CustomButtonRoot} {...props}>
