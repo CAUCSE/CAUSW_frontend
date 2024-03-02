@@ -1,4 +1,3 @@
-import { ButtonUnstyled, buttonUnstyledClasses, ButtonUnstyledProps } from '@mui/base';
 import { CircularProgress, styled } from '@mui/material';
 
 const CustomButtonRoot = styled('button')`
@@ -8,7 +7,7 @@ const CustomButtonRoot = styled('button')`
   background-color: #312ed7;
   font-size: 18px;
   line-height: 21px;
-  color: ${(props: Props) => props.color || 'white'};
+  color: ${(props: ButtonProps) => props.color || 'white'};
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
@@ -17,35 +16,37 @@ const CustomButtonRoot = styled('button')`
     opacity: 0.9;
   }
 
-  &.${buttonUnstyledClasses.active} {
+  &:active {
     opacity: 0.8;
   }
 
-  &.${buttonUnstyledClasses.focusVisible} {
+  &:focus-visible {
     box-shadow:
       0 4px 20px 0 rgba(61, 71, 82, 0.1),
       0 0 0 5px rgba(0, 127, 255, 0.5);
     outline: none;
   }
 
-  &.${buttonUnstyledClasses.disabled} {
+  &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     background-color: #dadada;
   }
 `;
 
-interface Props extends ButtonUnstyledProps {
+interface ButtonProps {
   children?: React.ReactNode;
   className?: string;
   $loading?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  color?: string;
 }
-export const Button: React.FC<Props> = ({ children, ...props }) => (
-  <ButtonUnstyled component={CustomButtonRoot} {...props}>
+
+export const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
+  <CustomButtonRoot {...props}>
     {props.$loading ? <CircularProgress size="1.2rem" color="inherit" /> : children}
-  </ButtonUnstyled>
+  </CustomButtonRoot>
 );
 
 export const NavButton = styled(Button)`
@@ -71,7 +72,7 @@ const ClearButtonNative = styled('button')`
   }
 `;
 
-export const ClearButton: React.FC<Props> = ({ children, ...props }) => (
+export const ClearButton: React.FC<ButtonProps> = ({ children, ...props }) => (
   <ClearButtonNative {...props}>
     {props.disabled ? <CircularProgress size="1.2rem" color="inherit" /> : children}
   </ClearButtonNative>
