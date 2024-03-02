@@ -17,8 +17,8 @@ export class BoardModel {
   writable: boolean;
   createRoleList: User.Role[];
   //#83 추가
-  circleId: string;
-  circleName: string;
+  circleId: string | null;
+  circleName: string | null;
 
   constructor(board: Board.ResponseDto) {
     this.id = board.id;

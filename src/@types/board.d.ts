@@ -30,8 +30,8 @@ declare namespace Board {
     //#83 추가
     name: string;
     category: string;
-    circleId: string;
-    circleName: string;
+    circleId: string | null;
+    circleName: string | null;
     createRoleList: User.Role[];
   }
 

@@ -13,15 +13,7 @@ class HomeRepo {
     // const { data } = await axios.get<Home.GetHomePageResponseDto>(this.URI);
 
     return data.map(({ board, posts: { content } }) => ({
-      board: new BoardModel(
-        board.id,
-        board.category,
-        board.name,
-        board.description,
-        board.isDeleted,
-        board.writable,
-        board.createRoleList,
-      ),
+      board: new BoardModel(board),
       posts: content.map((data: Post.Dto) => new PostModel(data)),
     }));
   };

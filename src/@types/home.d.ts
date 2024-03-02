@@ -1,14 +1,6 @@
 declare namespace Home {
   export type GetHomePageResponseDto = {
-    board: {
-      id: string;
-      category: string;
-      name: string;
-      description: string;
-      isDeleted: string;
-      writable: boolean;
-      createRoleList: User.Role[];
-    };
+    board: Board.ResponseDto;
     posts: {
       content: Post.Dto[];
       empty: boolean;
