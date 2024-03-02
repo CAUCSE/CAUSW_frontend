@@ -19,15 +19,15 @@ export const ReplyCommentContainer: React.FC<{ model: Model.Comment }> = observe
     commentInput.target?.id === model.id ? commentInput.state : InputState.WRITE,
   ).get();
 
-  const handeLongPress = useCallback(model => () => open(model), [open]);
-  const bind = useLongPress(handeLongPress(model), {
+  const handleLongPress = useCallback(model => () => open(model), [open]);
+  const bind = useLongPress(handleLongPress(model), {
     cancelOnMovement: true,
     captureEvent: true,
     onFinish: ev => ev?.preventDefault(),
   });
 
   return (
-    <Li ref={ref} {...bind}>
+    <Li ref={ref} {...bind()}>
       <CommentCardView state={state} model={model} />
     </Li>
   );
