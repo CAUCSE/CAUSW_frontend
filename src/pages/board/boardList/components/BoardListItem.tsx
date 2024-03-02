@@ -1,20 +1,37 @@
 import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
+import { useCallback } from 'react';
 import { generatePath } from 'react-router';
+
+import { RemoveButton, Row } from './styled';
 
 import { ClearLink } from '@/components';
 import { PAGE_URL } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 
-export const BoardListItem: React.FC<{ model: Model.Board }> = observer(
-  ({ model: { id: boardId, name } }) => (
-    <StyledLink to={generatePath(PAGE_URL.PostList, { boardId })}>{name}</StyledLink>
-  ),
-);
+export const BoardListItem: React.FC<{ model: Model.Board }> = observer(({ model }) => {
+  const { deleteBoardModal } = usePageUiStore<PageUiStore.BoardList>();
+
+  const handleOpendeleteBoardModal = useCallback(
+    (target: Model.Board) => () => {
+      deleteBoardModal.open(target);
+    },
+    [],
+  );
+
+  return (
+    <>
+      <Row>
+        <StyledLink to={generatePath(PAGE_URL.PostList, { boardId: model.id })}>
+          {model.name}
+        </StyledLink>
+        <RemoveButton onClick={handleOpendeleteBoardModal(model)} />
+      </Row>
+    </>
+  );
+});
 
 const StyledLink = styled(ClearLink)`
   float: left;
-  clear: left;
-  margin-top: 14px;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 14px;
 `;

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { PageUiStoreImpl } from './BoardListPageUiStore';
 import { Boards, BoardCreateButton } from './components';
+import { DeleteBoardModal } from './components/DeleteBoardModal';
 
 import { UniformLogo } from '@/assets';
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
@@ -33,6 +34,8 @@ const BoardListPage: React.FC = () => {
         </BodyScreen>
       </PageBody>
       <GNB />
+
+      <DeleteBoardModal />
     </>
   );
 };
