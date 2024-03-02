@@ -77,6 +77,7 @@ declare global {
     type CircleJoin = CircleJoinPageUiStore;
     type CircleMain = CircleMainPageUiStore;
     type BoardList = BoardListPageUiStore;
+    type BoardCreate = BoardCreate;
     type PostList = PostListPageUiStore;
     type PostDetail = PostDetailPageUiStore;
     type PostEditor = PostEditorPageUiStore;

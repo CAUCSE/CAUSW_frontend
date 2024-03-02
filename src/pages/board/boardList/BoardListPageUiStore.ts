@@ -22,12 +22,12 @@ export class BoardListPageUiStore {
   }
 
   // TODO: 게시판 관리 화면 구현 시 추가 검증 필요
-  *create(body: Board.CreateRequestDto): Generator {
+  /* *create(body: Board.CreateRequestDto): Generator {
     const board = (yield Repo.create(body)) as Model.Board;
     const arr = this.boards.get(board.category);
     if (arr) arr.push(board);
     else this.boards.set(board.category, [board]);
-  }
+  } */
 
   // TODO: 게시판 관리 화면 구현 시 추가 검증 필요
   *edit(boardId: string, data: Board.UpdateRequestDto): Generator {

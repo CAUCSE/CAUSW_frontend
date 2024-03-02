@@ -8,6 +8,8 @@ import {
   inputLabelClasses,
   styled,
 } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { useCallback, useEffect, useState } from 'react';
 import type { Control, FieldValues, Path, UseControllerProps } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
@@ -48,6 +50,7 @@ interface InputProps<TFieldValues extends FieldValues> {
   disabled?: boolean;
   control: Control<TFieldValues>;
   rules?: UseControllerProps['rules'];
+  options?: string[];
 }
 
 export const Input = <TFieldValues extends FieldValues = FieldValues>({
@@ -77,6 +80,29 @@ export const Input = <TFieldValues extends FieldValues = FieldValues>({
           disabled={disabled}
           {...field}
         />
+      </LineFormControl>
+    )}
+  />
+);
+
+export const SelectInput = <TFieldValues extends FieldValues = FieldValues>({
+  name,
+  required,
+  label,
+  control,
+  options,
+}: InputProps<TFieldValues>): JSX.Element => (
+  <Controller
+    name={name}
+    control={control}
+    render={({ field }) => (
+      <LineFormControl variant="standard">
+        <InputLabel>
+          {label} {required ? <RequiredMark /> : null}
+        </InputLabel>
+        <Select {...field}>
+          {options ? options.map(option => <MenuItem value="option">{option}</MenuItem>) : null}
+        </Select>
       </LineFormControl>
     )}
   />

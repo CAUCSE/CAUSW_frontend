@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import CreateIcon from '@mui/icons-material/Create';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { observer } from 'mobx-react-lite';
 import { generatePath, useParams } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import { usePageUiStore } from '@/hooks';
 export const BoardCreateButton: React.FC = observer(() => {
   return (
     <Wrapper to={generatePath(PAGE_URL.BoardCreate)}>
-      <Icon />
+      <Icon fontSize="large" />
     </Wrapper>
   );
 });
@@ -19,8 +19,8 @@ const Wrapper = styled(ClearLink)`
   ${RightButtonWrapper}
 `;
 
-const Icon = styled(CreateIcon)`
+const Icon = styled(AddBoxIcon)`
   position: absolute;
-  top: 14px;
+  top: 11px;
   right: 20px;
 `;

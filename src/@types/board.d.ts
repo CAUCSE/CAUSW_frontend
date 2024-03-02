@@ -4,7 +4,7 @@ declare namespace Board {
     description: string;
     createRoleList: User.Role[];
     category: string;
-    circleId: string;
+    circleId: string | null;
   }
 
   export interface Item {
