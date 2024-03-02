@@ -51,6 +51,7 @@ interface InputProps<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   rules?: UseControllerProps['rules'];
   options?: string[];
+  defaultOption?: string;
 }
 
 export const Input = <TFieldValues extends FieldValues = FieldValues>({
@@ -100,8 +101,14 @@ export const SelectInput = <TFieldValues extends FieldValues = FieldValues>({
         <InputLabel>
           {label} {required ? <RequiredMark /> : null}
         </InputLabel>
-        <Select {...field}>
-          {options ? options.map(option => <MenuItem value="option">{option}</MenuItem>) : null}
+        <Select required={required} {...field} value={options![0]}>
+          {options
+            ? options.map(option => (
+                <MenuItem value={option} key={option}>
+                  {option}
+                </MenuItem>
+              ))
+            : null}
         </Select>
       </LineFormControl>
     )}

@@ -9,7 +9,12 @@ export class BoardCreatePageUiStore {
 
   // TODO: 게시판 관리 화면 구현 시 추가 검증 필요
   *create(body: Board.CreateRequestDto): Generator {
-    (yield Repo.create(body)) as Model.Board;
+    try {
+      (yield Repo.create(body)) as Model.Board;
+      return { success: true };
+    } catch (error) {
+      return error;
+    }
   }
 }
 
