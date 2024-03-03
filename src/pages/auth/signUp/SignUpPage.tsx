@@ -60,17 +60,17 @@ const SignUpPage: React.FC = observer(() => {
           <br />
           <Input
             name="email"
-            label="아이디"
-            placeholder="아이디를 입력하세요"
+            label="이메일"
+            placeholder="이메일를 입력하세요"
             required
             control={control}
             rules={{
-              required: '아이디를 입력해주세요.',
+              required: '이메일를 입력해주세요.',
               validate: value => {
                 // 이메일 유효성 검사는 진행했고,
                 if (isDuplicatedEmail === true) {
                   // 검사했던 이메일과 지금 입력된 이메일이 같은 경우 에러
-                  if (chekedEmail === value) return '중복된 아이디입니다.';
+                  if (chekedEmail === value) return '중복된 이메일입니다.';
                   else return true;
                 }
                 return true;

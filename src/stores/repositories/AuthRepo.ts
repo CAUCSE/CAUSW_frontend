@@ -45,6 +45,10 @@ class AuthRepo {
   updatePassword = async (body: User.PasswordUpdateRequestDto) => {
     return API.put(`${this.URI}/password`, body);
   };
+
+  findPassword = async (body: User.FindPasswordReqestDto) => {
+    return API.put(`${this.URI}/password/find`, body);
+  };
 }
 
 export const AuthRepoImpl = new AuthRepo();

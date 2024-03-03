@@ -187,6 +187,12 @@ declare namespace User {
     refreshToken: string;
   }
 
+  export interface FindPasswordReqestDto {
+    name: string;
+    studentId: string;
+    email: string;
+  }
+
   // ==
 
   export interface FindPostsResponse {
