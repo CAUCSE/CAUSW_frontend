@@ -7,7 +7,6 @@ export class FindPasswordPageUiStore {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  // TODO: 게시판 관리 화면 구현 시 추가 검증 필요
   *findPassword(body: User.FindPasswordReqestDto): Generator {
     try {
       yield Repo.findPassword(body);
