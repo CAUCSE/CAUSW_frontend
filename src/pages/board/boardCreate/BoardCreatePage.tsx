@@ -112,7 +112,8 @@ const BoardCreatePage: React.FC = observer(() => {
 
   useEffect(() => {
     fetch();
-    if (me?.isCircleLeader) setValue('circleName', me.circleNames![0]);
+    if (me?.isCircleLeader && !(me.isAdmin || me.isPresident))
+      setValue('circleName', me.circleNames![0]);
   }, []);
 
   return (
