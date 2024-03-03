@@ -1,5 +1,6 @@
+import styled from '@emotion/styled';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import { Checkbox } from '@mui/material';
+import { Checkbox, FormControlLabel, typographyClasses, checkboxClasses } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -7,16 +8,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import { PasswordInput } from './components';
 import { PageUiStoreImpl } from './SignInPageUiStore';
-import {
-  CheckboxLabel,
-  Form,
-  Input,
-  Link,
-  LoginButton,
-  LogoImage,
-  PageWrapper,
-  SubLink,
-} from './styled';
+import { Form, Input, Link, LoginButton, LogoImage, PageWrapper, SubLink } from './styled';
 
 import { PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
@@ -92,5 +84,20 @@ const SignInPage: React.FC = observer(() => {
     </PageWrapper>
   );
 });
+
+const CheckboxLabel = styled(FormControlLabel)`
+  margin-top: 9px;
+  margin-left: 6px;
+
+  .${typographyClasses.root} {
+    margin-top: 3px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .${checkboxClasses.root} {
+    padding: 7px;
+  }
+`;
 
 export default PageStoreHOC(<SignInPage />, { store: PageUiStoreImpl });
