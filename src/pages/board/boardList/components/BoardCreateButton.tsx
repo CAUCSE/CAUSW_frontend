@@ -1,17 +1,28 @@
 import styled from '@emotion/styled';
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import { observer } from 'mobx-react-lite';
 import { generatePath, useParams } from 'react-router-dom';
 
+import { UniformLogo } from '@/assets';
 import { ClearLink, RightButtonWrapper } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
-import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores/RootStore';
 
 export const BoardCreateButton: React.FC = observer(() => {
+  const {
+    auth: { me },
+  } = useRootStore();
+
   return (
-    <Wrapper to={generatePath(PAGE_URL.BoardCreate)}>
-      <Icon fontSize="large" />
-    </Wrapper>
+    <>
+      {me && (me.isAdmin || me.isCircleLeader || me.isPresident) ? (
+        <Wrapper to={generatePath(PAGE_URL.BoardCreate)}>
+          <Icon fontSize="large" />
+        </Wrapper>
+      ) : (
+        <UniformLogo />
+      )}
+    </>
   );
 });
 
@@ -19,8 +30,8 @@ const Wrapper = styled(ClearLink)`
   ${RightButtonWrapper}
 `;
 
-const Icon = styled(AddBoxIcon)`
+const Icon = styled(PlaylistAddIcon)`
   position: absolute;
-  top: 11px;
-  right: 20px;
+  top: 9px;
+  right: 25px;
 `;
