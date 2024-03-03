@@ -61,7 +61,7 @@ const SignInPage: React.FC = observer(() => {
           render={({ field }) => (
             <Input
               type="email"
-              placeholder="아이디"
+              placeholder="이메일"
               InputProps={{
                 startAdornment: <PermIdentityOutlinedIcon sx={{ fontSize: 16 }} />,
               }}
@@ -88,7 +88,7 @@ const SignInPage: React.FC = observer(() => {
       <SubLink>
         <Link to={PAGE_URL.SignUp}>회원가입</Link>
         {/* TODO: 개발
-        <Link to={PAGE_URL.SignUp}>아이디 찾기</Link> */}
+        <Link to={PAGE_URL.SignUp}>이메일 찾기</Link> */}
         {/* TODO: 개발
         <Link to={PAGE_URL.SignUp}>비밀번호 찾기</Link> */}
       </SubLink>
