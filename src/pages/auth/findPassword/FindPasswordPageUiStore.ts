@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { BoardRepoImpl as Repo } from '@/stores/repositories/BoardRepo';
+import { AuthRepoImpl as Repo } from '@/stores/repositories/AuthRepo';
 
 export class FindPasswordPageUiStore {
   constructor() {
@@ -8,9 +8,9 @@ export class FindPasswordPageUiStore {
   }
 
   // TODO: 게시판 관리 화면 구현 시 추가 검증 필요
-  *create(body: Board.CreateRequestDto): Generator {
+  *findPassword(body: User.FindPasswordReqestDto): Generator {
     try {
-      (yield Repo.create(body)) as Model.Board;
+      yield Repo.findPassword(body);
       return { success: true };
     } catch (error) {
       return error;
@@ -18,4 +18,4 @@ export class FindPasswordPageUiStore {
   }
 }
 
-export const PageUiStoreImpl = new BoardCreatePageUiStore();
+export const PageUiStoreImpl = new FindPasswordPageUiStore();

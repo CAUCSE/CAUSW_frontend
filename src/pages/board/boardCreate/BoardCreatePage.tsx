@@ -40,10 +40,6 @@ const BoardCreatePage: React.FC = observer(() => {
     },
   });
 
-  const handleSelectChange = (name: string, selectedValue: string) => {
-    setValue(name as 'category' | 'circleName', selectedValue);
-  };
-
   if (
     (errors.name && errors.name.type === 'required') ||
     (errors.description && errors.description.type === 'required')

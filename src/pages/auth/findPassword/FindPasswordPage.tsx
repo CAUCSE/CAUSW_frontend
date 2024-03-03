@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
-import { PageUiStoreImpl } from './BoardCreatePageUiStore';
+import { PageUiStoreImpl } from './FindPasswordPageUiStore';
 
 import {
   BodyScreen,
@@ -21,129 +21,65 @@ import { useRootStore } from '@/stores/RootStore';
 
 const FindPasswordPage: React.FC = observer(() => {
   const { replace } = useHistory();
-  const { create } = usePageUiStore<PageUiStore.BoardCreate>();
+  const { findPassword } = usePageUiStore<PageUiStore.FindPassword>();
   const {
     ui: { alert },
-    auth: { fetch, me },
   } = useRootStore();
   const {
     handleSubmit,
     control,
     formState: { errors },
-    setValue,
-  } = useForm({
-    defaultValues: {
-      name: undefined,
-      description: undefined,
-      category: '공지 게시판',
-      circleName: '전체',
-    },
-  });
-
-  const handleSelectChange = (name: string, selectedValue: string) => {
-    setValue(name as 'category' | 'circleName', selectedValue);
-  };
+  } = useForm<User.FindPasswordReqestDto>();
 
   if (
     (errors.name && errors.name.type === 'required') ||
-    (errors.description && errors.description.type === 'required')
+    (errors.studentId && errors.studentId.type === 'required') ||
+    (errors.email && errors.email.type === 'required')
   ) {
     alert({ message: '모든 항목을 다 입력해주세요.' });
   }
 
-  const onSubmit = async (data: {
-    name: string;
-    description: string;
-    category: string;
-    circleName?: string;
-  }) => {
-    const body: Board.CreateRequestDto = {
-      name: data.name,
-      description: data.description,
-      category: data.category,
-      createRoleList: [],
-      circleId: null,
-    };
-    if (me?.isCircleLeader && data.circleName !== '전체') {
-      //동아리장이 동아리 게시판을 생성하는 경우
-      if (data.category === '공지 게시판') {
-        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT', 'LEADER_CIRCLE'];
-        body.circleId =
-          me.circleIds![me.circleNames!.findIndex(circleName => circleName === data.circleName)];
-      } else if (data.category === '자유 게시판') {
-        body.createRoleList = [
-          'ADMIN',
-          'VICE_PRESIDENT',
-          'PRESIDENT',
-          'LEADER_CIRCLE',
-          'LEADER_1',
-          'LEADER_2',
-          'LEADER_3',
-          'LEADER_4',
-          'COMMON',
-        ];
-        body.circleId =
-          me.circleIds![me.circleNames!.findIndex(circleName => circleName === data.circleName)];
-      }
-    } else {
-      //학생회장 혹은 관리자가 동아리 게시판을 생성하는 경우
-      if (data.category === '공지 게시판') {
-        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT'];
-      } else if (data.category === '자유 게시판') {
-        body.createRoleList = [
-          'ADMIN',
-          'VICE_PRESIDENT',
-          'PRESIDENT',
-          'LEADER_CIRCLE',
-          'LEADER_1',
-          'LEADER_2',
-          'LEADER_3',
-          'LEADER_4',
-          'COMMON',
-        ];
-      }
-    }
-    const { success } = (await create(body)) as unknown as StoreAPI;
+  const onSubmit = async (body: User.FindPasswordReqestDto) => {
+    const { success } = (await findPassword(body)) as unknown as StoreAPI;
     if (success) {
-      replace(PAGE_URL.Board);
-      alert({ message: '게시판이 생성되었습니다.' });
+      replace(PAGE_URL.SignIn);
+      alert({ message: '이메일로 임시 비밀번호가 전송되었습니다. 로그인 이후 변경해주세요.' });
+    } else {
+      alert({ message: '잘못된 정보를 입력하였습니다.' });
     }
   };
-
-  useEffect(() => {
-    fetch();
-    if (me?.isCircleLeader && !(me.isAdmin || me.isPresident))
-      setValue('circleName', me.circleNames![0]);
-  }, []);
 
   return (
     <>
       <Header title="게시판 생성" withBack={PAGE_URL.Board} />
       <PageBody>
         <BodyScreen>
-          <Input name="name" label="게시판 이름" required control={control} />
-          <Input name="description" label="게시판 설명" required control={control} />
-          <SelectInput
-            name="category"
-            label="게시판 카테고리"
-            control={control}
+          <Input
+            name="email"
+            label="이메일"
+            placeholder="이메일을 입력하세요"
             required
-            options={['공지 게시판', '자유 게시판']}
+            control={control}
           />
-          {me?.isCircleLeader ? (
-            <SelectInput
-              name="circleName"
-              label="게시판 생성 동아리"
-              control={control}
-              required
-              options={me.isAdmin || me.isPresident ? ['전체', ...me.circleNames!] : me.circleNames}
-            />
-          ) : null}
+          <Input
+            name="name"
+            label="이름"
+            placeholder="이름을 입력하세요"
+            required
+            control={control}
+          />
+          <Input
+            name="studentId"
+            label="학번"
+            placeholder="학번을 입력하세요 (ex. 20201234)"
+            required
+            control={control}
+          />
         </BodyScreen>
       </PageBody>
 
       <PageFooter>
-        <NavButton onClick={handleSubmit(onSubmit)}>게시판 생성</NavButton>
+        <NavButton onClick={handleSubmit(onSubmit)}>임시 비밀번호 생성</NavButton>
       </PageFooter>
     </>
   );
