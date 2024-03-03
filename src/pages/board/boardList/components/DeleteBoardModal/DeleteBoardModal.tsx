@@ -17,7 +17,7 @@ export const DeleteBoardModal: React.FC = observer(() => {
     ui: { alert },
   } = useRootStore();
   const {
-    fetchBoards,
+    fetch,
     deleteBoardModal: { deleteBoard, target, close, visible },
   } = usePageUiStore<PageUiStore.BoardList>();
 
@@ -25,7 +25,7 @@ export const DeleteBoardModal: React.FC = observer(() => {
     if (!target || !target.id || !target.name === undefined) return;
     const { success, message } = (await deleteBoard(target.id)) as unknown as StoreAPI;
     if (success) {
-      fetchBoards();
+      fetch();
       alert({
         message: `${target.name} 동아리가 삭제되었습니다.`,
       });
