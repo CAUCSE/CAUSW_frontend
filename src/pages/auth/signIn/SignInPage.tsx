@@ -24,6 +24,7 @@ const SignInPage: React.FC = observer(() => {
     defaultValues: {
       email: '',
       password: '',
+      auto: true,
     },
   });
   const onSubmit = async (body: User.SignInRequestDto) => {
@@ -59,6 +60,16 @@ const SignInPage: React.FC = observer(() => {
           )}
         />
         <PasswordInput control={control} />
+        <Controller
+          name="auto"
+          control={control}
+          render={({ field }) => (
+            <CheckboxLabel
+              label="로그인 상태 유지"
+              control={<Checkbox {...field} size="small" defaultChecked={true} />}
+            />
+          )}
+        />
         <LoginButton type="submit" $loading={isLoading} disabled={isDisabled}>
           로그인
         </LoginButton>

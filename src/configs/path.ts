@@ -16,6 +16,7 @@ export enum PAGE_URL {
 
   // 게시글
   Board = '/boards',
+  BoardCreate = '/boards/create',
   PostList = '/boards/:boardId/posts',
   PostWrite = '/boards/:boardId/posts/add',
   PostEdit = '/boards/:boardId/posts/:postId/edit',

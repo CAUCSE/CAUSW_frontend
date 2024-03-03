@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { UserModel } from '../models/UserModel';
 
-import { API, setAccess, storeRefresh, removeRefresh } from '@/configs/axios';
+import { API, setAccess, storeRefresh } from '@/configs/axios';
 
 class AuthRepo {
   URI = '/api/v1/users';
@@ -16,7 +16,7 @@ class AuthRepo {
     }>;
 
     setAccess(accessToken);
-    storeRefresh(refreshToken);
+    storeRefresh(body.auto ?? false, refreshToken);
   };
 
   isDuplicatedEmail = async (email: string): Promise<boolean> => {

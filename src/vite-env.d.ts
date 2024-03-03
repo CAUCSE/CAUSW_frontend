@@ -3,6 +3,7 @@
 import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageUiStore';
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
 import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
+import type { BoardCreatePageUiStore } from './pages/board/boardCreate/BoardCreatePageUiStore';
 import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPageUiStore';
 import type { PostDetailPageUiStore } from './pages/board/postDetail/PostDetailPageUiStore';
 import type { PostEditorPageUiStore } from './pages/board/postEditor/PostEditorPageUiStore';
@@ -77,6 +78,8 @@ declare global {
     type CircleJoin = CircleJoinPageUiStore;
     type CircleMain = CircleMainPageUiStore;
     type BoardList = BoardListPageUiStore;
+    type BoardCreate = BoardCreatePageUiStore;
+    type BoardDelete = DeleteBoardModalUi;
     type PostList = PostListPageUiStore;
     type PostDetail = PostDetailPageUiStore;
     type PostEditor = PostEditorPageUiStore;
