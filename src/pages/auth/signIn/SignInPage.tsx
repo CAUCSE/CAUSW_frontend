@@ -1,5 +1,4 @@
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import { Checkbox } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -7,16 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import { PasswordInput } from './components';
 import { PageUiStoreImpl } from './SignInPageUiStore';
-import {
-  CheckboxLabel,
-  Form,
-  Input,
-  Link,
-  LoginButton,
-  LogoImage,
-  PageWrapper,
-  SubLink,
-} from './styled';
+import { Form, Input, Link, LoginButton, LogoImage, PageWrapper, SubLink } from './styled';
 
 import { PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
