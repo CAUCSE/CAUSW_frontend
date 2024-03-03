@@ -47,7 +47,7 @@ class AuthRepo {
   };
 
   findPassword = async (body: User.FindPasswordReqestDto) => {
-    return API.put(`${this.URI}/findPassword`, body);
+    return API.put(`${this.URI}/password/find`, body);
   };
 }
 
