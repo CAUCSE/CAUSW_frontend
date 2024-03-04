@@ -115,7 +115,7 @@ const SignUpPage: React.FC = observer(() => {
           <Input
             name="name"
             label="이름"
-            placeholder="이름을 입력하세요"
+            placeholder="이름을 입력하세요. 실명이 아닌 경우 가입이 거절될 수 있습니다."
             required
             control={control}
             rules={{ required: '이름을 입력해주세요.' }}
