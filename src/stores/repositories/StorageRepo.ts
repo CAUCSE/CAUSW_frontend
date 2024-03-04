@@ -13,13 +13,13 @@ class StorageRepo {
 
   upload = async (type: IMAGE_TYPE, file: File): Promise<string> => {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('file', file);
 
     const {
-      data: { path },
-    } = await API.post(`${this.URI}/image/upload?imageLocation=${type}`, formData);
+      data: { downloadFilePath },
+    } = await API.post(`${this.URI}/?type=${type}`, formData);
 
-    return path;
+    return downloadFilePath;
   };
 }
 

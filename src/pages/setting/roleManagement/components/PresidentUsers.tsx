@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
 
-import { AutorenewLink, Box, Row, Title, UserName } from './styled';
+import { Box, Row, Title, UserName } from './styled';
 
-import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 export const PresidentUsers: React.FC = observer(() => {
@@ -14,7 +13,6 @@ export const PresidentUsers: React.FC = observer(() => {
       {presidentUsers ? (
         <Row>
           <UserName model={presidentUsers} />
-          <AutorenewLink pathname={PAGE_URL.SettingRoleAlumni} state={{ user: presidentUsers }} />
         </Row>
       ) : null}
     </Box>

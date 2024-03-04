@@ -35,7 +35,7 @@ export const SubmitButton: React.FC<{ email?: string }> = observer(({ email }) =
         replace(PAGE_URL.SignIn);
         alert({
           message:
-            '학부 인증이 제출되었습니다. 관리자의 승인 후 서비스 이용이 가능하오니 기다려 주시기 바랍니다.',
+            '학부인증이 제출되었습니다. 관리자의 승인 후 서비스 이용이 가능하오니 기다려 주시기 바랍니다.',
         });
       } else if (message) alert({ message });
     },

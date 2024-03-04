@@ -41,7 +41,6 @@ export const Row = styled.div`
   align-items: center;
   width: 100%;
   height: 36px;
-  border-bottom: 1px solid #f5f5f5;
   font-size: 13px;
   line-height: 16px;
 `;
@@ -70,7 +69,7 @@ export const UserName: React.FC<{ model: Model.User; withCircleName?: string }> 
 );
 
 export const RemoveButton: React.FC<{ onClick: () => void }> = ({ ...props }) => (
-  <ClearButton style={{ padding: '10px' }} {...props}>
+  <ClearButton {...props}>
     <RemoveIcon fontSize="small" />
   </ClearButton>
 );

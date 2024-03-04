@@ -14,6 +14,7 @@ import {
   PageStoreHOC,
   NavButton,
   SelectInput,
+  ErrorMessage,
 } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
@@ -39,13 +40,6 @@ const BoardCreatePage: React.FC = observer(() => {
       circleName: '전체',
     },
   });
-
-  if (
-    (errors.name && errors.name.type === 'required') ||
-    (errors.description && errors.description.type === 'required')
-  ) {
-    alert({ message: '모든 항목을 다 입력해주세요.' });
-  }
 
   const onSubmit = async (data: {
     name: string;
@@ -117,8 +111,26 @@ const BoardCreatePage: React.FC = observer(() => {
       <Header title="게시판 생성" withBack={PAGE_URL.Board} />
       <PageBody>
         <BodyScreen>
-          <Input name="name" label="게시판 이름" required control={control} />
-          <Input name="description" label="게시판 설명" required control={control} />
+          <Input
+            name="name"
+            label="게시판 이름"
+            placeholder="게시판 이름을 입력하세요."
+            required
+            control={control}
+            rules={{ required: '게시판 설명을 입력해주세요.' }}
+          />
+          {errors.name ? <ErrorMessage>{errors.name?.message}</ErrorMessage> : null}
+
+          <Input
+            name="description"
+            label="게시판 설명"
+            placeholder="게시판 설명을 입력하세요."
+            required
+            control={control}
+            rules={{ required: '게시판 설명을 입력해주세요.' }}
+          />
+          {errors.description ? <ErrorMessage>{errors.description?.message}</ErrorMessage> : null}
+
           <SelectInput
             name="category"
             label="게시판 카테고리"
