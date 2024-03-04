@@ -40,7 +40,11 @@ API.interceptors.response.use(
         config,
       } = error;
 
-      if (!localStorage.getItem(storageRefreshKey) || config.url === '/api/v1/users/token/update') {
+      if (
+        (!localStorage.getItem(storageRefreshKey) &&
+          config.url !== '/api/v1/users/password/find') ||
+        config.url === '/api/v1/users/token/update'
+      ) {
         removeRefresh();
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       } else if (data.errorCode === '4105') {

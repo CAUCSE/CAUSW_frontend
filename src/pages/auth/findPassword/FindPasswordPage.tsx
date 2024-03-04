@@ -13,11 +13,12 @@ import {
   PageFooter,
   PageStoreHOC,
   NavButton,
-  SelectInput,
+  ErrorMessage,
 } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
+import { emailReg } from '@/utils';
 
 const FindPasswordPage: React.FC = observer(() => {
   const { replace } = useHistory();
@@ -57,24 +58,46 @@ const FindPasswordPage: React.FC = observer(() => {
           <Input
             name="email"
             label="이메일"
-            placeholder="이메일을 입력하세요"
+            placeholder="이메일 형식에 맞게 입력하세요."
             required
             control={control}
+            rules={{
+              required: '이메일를 입력해주세요.',
+              pattern: {
+                value: emailReg,
+                message: '이메일 형식에 맞게 입력하세요.',
+              },
+            }}
           />
+          {errors.email ? <ErrorMessage>{errors.email?.message}</ErrorMessage> : null}
           <Input
             name="name"
             label="이름"
-            placeholder="이름을 입력하세요"
+            placeholder="이름을 입력하세요."
             required
             control={control}
+            rules={{ required: '이름을 입력해주세요.' }}
           />
+          {errors.name ? <ErrorMessage>{errors.name?.message}</ErrorMessage> : null}
           <Input
             name="studentId"
             label="학번"
-            placeholder="학번을 입력하세요 (ex. 20201234)"
+            placeholder="학번을 입력하세요. (ex. 20201234)"
             required
             control={control}
+            rules={{
+              required: '학번을 입력해주세요.',
+              minLength: {
+                value: 8,
+                message: '8자리 입학년도를 입력해주세요.',
+              },
+              maxLength: {
+                value: 8,
+                message: '8자리 입학년도를 입력해주세요.',
+              },
+            }}
           />
+          {errors.studentId ? <ErrorMessage>{errors.studentId?.message}</ErrorMessage> : null}
         </BodyScreen>
       </PageBody>
 
