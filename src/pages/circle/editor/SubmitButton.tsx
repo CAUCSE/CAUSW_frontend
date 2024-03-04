@@ -28,6 +28,7 @@ export const SubmitButton: React.FC<{ isEdit: boolean }> = observer(({ isEdit })
   const onSubmit = useCallback(
     async (body: FormBody) => {
       let result: StoreAPI, message: string;
+      console.log(body);
 
       if (isEdit) {
         result = (await update(circleId, body)) as unknown as StoreAPI;
