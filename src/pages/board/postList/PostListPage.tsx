@@ -13,7 +13,7 @@ import { usePageUiStore } from '@/hooks';
 
 const PostListPage: React.FC = observer(() => {
   const { boardId } = useParams<PostParams>();
-  const { boardName, posts, hasMore, page, isFetched, fetchAll, reset } =
+  const { boardName, posts, hasMore, page, isFetched, fetchAll, reset, writable } =
     usePageUiStore<PageUiStore.PostList>();
 
   const timer = useRef<NodeJS.Timeout>();
@@ -32,7 +32,7 @@ const PostListPage: React.FC = observer(() => {
 
   return (
     <>
-      <Header title={boardName} withBack RightComponent={<PostCreateButton />} />
+      <Header title={boardName} withBack RightComponent={writable ? <PostCreateButton /> : null} />
       <PageBody>
         {!isFetched ? (
           <PageSkeleton />
