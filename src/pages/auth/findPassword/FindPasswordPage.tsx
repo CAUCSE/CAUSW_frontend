@@ -32,14 +32,6 @@ const FindPasswordPage: React.FC = observer(() => {
     formState: { errors },
   } = useForm<User.FindPasswordReqestDto>();
 
-  if (
-    (errors.name && errors.name.type === 'required') ||
-    (errors.studentId && errors.studentId.type === 'required') ||
-    (errors.email && errors.email.type === 'required')
-  ) {
-    alert({ message: '모든 항목을 다 입력해주세요.' });
-  }
-
   const onSubmit = async (body: User.FindPasswordReqestDto) => {
     const { success } = (await findPassword(body)) as unknown as StoreAPI;
     if (success) {
@@ -70,6 +62,7 @@ const FindPasswordPage: React.FC = observer(() => {
             }}
           />
           {errors.email ? <ErrorMessage>{errors.email?.message}</ErrorMessage> : null}
+
           <Input
             name="name"
             label="이름"
@@ -79,6 +72,7 @@ const FindPasswordPage: React.FC = observer(() => {
             rules={{ required: '이름을 입력해주세요.' }}
           />
           {errors.name ? <ErrorMessage>{errors.name?.message}</ErrorMessage> : null}
+
           <Input
             name="studentId"
             label="학번"
