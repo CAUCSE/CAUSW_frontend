@@ -70,6 +70,7 @@ const BoardCreatePage: React.FC = observer(() => {
           'LEADER_2',
           'LEADER_3',
           'LEADER_4',
+          'COUNCIL',
           'COMMON',
         ];
         body.circleId =
@@ -78,7 +79,7 @@ const BoardCreatePage: React.FC = observer(() => {
     } else {
       //학생회장 혹은 관리자가 동아리 게시판을 생성하는 경우
       if (data.category === '공지 게시판') {
-        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT'];
+        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT', 'COUNCIL'];
       } else if (data.category === '자유 게시판') {
         body.createRoleList = [
           'ADMIN',
@@ -89,6 +90,7 @@ const BoardCreatePage: React.FC = observer(() => {
           'LEADER_2',
           'LEADER_3',
           'LEADER_4',
+          'COUNCIL',
           'COMMON',
         ];
       }
