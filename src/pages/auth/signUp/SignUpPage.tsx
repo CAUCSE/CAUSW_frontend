@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -42,7 +43,7 @@ const SignUpPage: React.FC = observer(() => {
 
     if (success) {
       replace(PAGE_URL.SignIn);
-      alert({ message: '회원가입에 성공하였습니다.' });
+      alert({ message: '회원가입 되었습니다. 로그인 후 학부인증을 진행하세요.' });
     } else if (message) {
       alert({ message });
     }
@@ -174,6 +175,9 @@ const SignUpPage: React.FC = observer(() => {
         </BodyScreen>
       </PageBody>
       <PageFooter>
+        <Message>
+          회원가입 이후 로그인과 학부인증을 하셔야 <br /> 서비스를 이용할 수 있습니다
+        </Message>
         <NavButton onClick={handleSubmit(onSubmit)} disabled={submitDisabled}>
           가입하기
         </NavButton>
@@ -181,5 +185,12 @@ const SignUpPage: React.FC = observer(() => {
     </>
   );
 });
+
+export const Message = styled.div`
+  text-align: right;
+  color: #ff7473;
+  font-size: 12px;
+  line-height: 21px;
+`;
 
 export default PageStoreHOC(<SignUpPage />, { store: PageUiStoreImpl });
