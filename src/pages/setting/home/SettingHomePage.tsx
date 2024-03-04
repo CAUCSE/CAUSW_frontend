@@ -97,7 +97,7 @@ const SettingHomePage: React.FC = observer(() => {
                     </div>
                   ))
                 : null}
-              {me.isCouncil || me.isStudentLeader || me.isAlumniLeader ? (
+              {me.isAlumniLeader ? (
                 <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
               ) : null}
             </Box>

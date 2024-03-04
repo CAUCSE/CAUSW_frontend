@@ -128,6 +128,7 @@ declare namespace User {
 
   // findPrivilegedUsers
   export interface FindPrivilegedUsersResponseDto {
+    presidentUsers: UserDto | null;
     councilUsers: UserDto[];
     leaderGradeUsers: UserDto[];
     leaderCircleUsers: UserDto[];
@@ -135,6 +136,7 @@ declare namespace User {
   }
 
   export interface FindPrivilegedUsersResponse {
+    presidentUsers: Model.User | null;
     councilUsers: Model.User[];
     leaderGradeUsers: Model.User[];
     leaderCircleUsers: Model.User[];
@@ -146,7 +148,7 @@ declare namespace User {
   export interface SignInRequestDto {
     email: string;
     password: string;
-    //auto?: boolean;
+    auto?: boolean;
   }
 
   export interface IsDuplicatedEmailResponseDto {
@@ -183,6 +185,12 @@ declare namespace User {
 
   export interface UpdateAccessTokenRequestDto {
     refreshToken: string;
+  }
+
+  export interface FindPasswordReqestDto {
+    name: string;
+    studentId: string;
+    email: string;
   }
 
   // ==

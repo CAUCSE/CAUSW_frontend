@@ -16,15 +16,19 @@ export const resetAccess = (): unknown => delete API.defaults.headers['Authoriza
 
 //Refresh
 const storageRefreshKey = 'CAUCSE_JWT_REFRESH';
+let isStored: boolean = true;
 
-export const storeRefresh = (token: string): void => {
-  localStorage.setItem(storageRefreshKey, token);
+export const storeRefresh = (auto: boolean, token: string): void => {
+  isStored = auto;
+  if (isStored) localStorage.setItem(storageRefreshKey, token);
+  else sessionStorage.setItem(storageRefreshKey, token);
 };
 export const removeRefresh = (): void => {
   localStorage.removeItem(storageRefreshKey);
+  sessionStorage.removeItem(storageRefreshKey);
 };
 export const getRefresh = (): string | null => {
-  return localStorage.getItem(storageRefreshKey);
+  return localStorage.getItem(storageRefreshKey) ?? sessionStorage.getItem(storageRefreshKey);
 };
 
 API.interceptors.response.use(
@@ -36,7 +40,11 @@ API.interceptors.response.use(
         config,
       } = error;
 
-      if (!localStorage.getItem(storageRefreshKey) || config.url === '/api/v1/users/token/update') {
+      if (
+        (!localStorage.getItem(storageRefreshKey) &&
+          config.url !== '/api/v1/users/password/find') ||
+        config.url === '/api/v1/users/token/update'
+      ) {
         removeRefresh();
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       } else if (data.errorCode === '4105') {
@@ -51,7 +59,7 @@ API.interceptors.response.use(
 
         setAccess(accessToken);
         removeRefresh();
-        storeRefresh(refreshToken);
+        storeRefresh(isStored, refreshToken);
 
         config.headers['Authorization'] = accessToken;
         return API.request(config);

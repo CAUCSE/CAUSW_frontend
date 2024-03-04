@@ -1,5 +1,6 @@
+import styled from '@emotion/styled';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import { Checkbox } from '@mui/material';
+import { Checkbox, FormControlLabel, typographyClasses, checkboxClasses } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -7,16 +8,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import { PasswordInput } from './components';
 import { PageUiStoreImpl } from './SignInPageUiStore';
-import {
-  CheckboxLabel,
-  Form,
-  Input,
-  Link,
-  LoginButton,
-  LogoImage,
-  PageWrapper,
-  SubLink,
-} from './styled';
+import { Form, Input, Link, LoginButton, LogoImage, PageWrapper, SubLink } from './styled';
 
 import { PageStoreHOC } from '@/components';
 import { PAGE_URL } from '@/configs/path';
@@ -34,6 +26,7 @@ const SignInPage: React.FC = observer(() => {
     defaultValues: {
       email: '',
       password: '',
+      auto: true,
     },
   });
   const onSubmit = async (body: User.SignInRequestDto) => {
@@ -60,7 +53,7 @@ const SignInPage: React.FC = observer(() => {
           render={({ field }) => (
             <Input
               type="email"
-              placeholder="아이디"
+              placeholder="이메일"
               InputProps={{
                 startAdornment: <PermIdentityOutlinedIcon sx={{ fontSize: 16 }} />,
               }}
@@ -69,6 +62,16 @@ const SignInPage: React.FC = observer(() => {
           )}
         />
         <PasswordInput control={control} />
+        <Controller
+          name="auto"
+          control={control}
+          render={({ field }) => (
+            <CheckboxLabel
+              label="로그인 상태 유지"
+              control={<Checkbox {...field} size="small" defaultChecked={true} />}
+            />
+          )}
+        />
         <LoginButton type="submit" $loading={isLoading} disabled={isDisabled}>
           로그인
         </LoginButton>
@@ -76,13 +79,25 @@ const SignInPage: React.FC = observer(() => {
 
       <SubLink>
         <Link to={PAGE_URL.SignUp}>회원가입</Link>
-        {/* TODO: 개발
-        <Link to={PAGE_URL.SignUp}>아이디 찾기</Link> */}
-        {/* TODO: 개발
-        <Link to={PAGE_URL.SignUp}>비밀번호 찾기</Link> */}
+        <Link to={PAGE_URL.FindPassword}>비밀번호를 잃어버리셨나요?</Link>
       </SubLink>
     </PageWrapper>
   );
 });
+
+const CheckboxLabel = styled(FormControlLabel)`
+  margin-top: 9px;
+  margin-left: 6px;
+
+  .${typographyClasses.root} {
+    margin-top: 3px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .${checkboxClasses.root} {
+    padding: 7px;
+  }
+`;
 
 export default PageStoreHOC(<SignInPage />, { store: PageUiStoreImpl });

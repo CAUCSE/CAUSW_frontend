@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -19,7 +20,7 @@ import {
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect, usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores';
-import { passwordReg } from '@/utils';
+import { passwordReg, emailReg } from '@/utils';
 
 const SignUpPage: React.FC = observer(() => {
   const { replace } = useHistory();
@@ -42,8 +43,10 @@ const SignUpPage: React.FC = observer(() => {
 
     if (success) {
       replace(PAGE_URL.SignIn);
-      alert({ message: '회원가입에 성공하였습니다.' });
-    } else if (message) alert({ message });
+      alert({ message: '회원가입 되었습니다. 로그인 후 학부인증을 진행하세요.' });
+    } else if (message) {
+      alert({ message });
+    }
   };
 
   useEffect(() => {
@@ -60,20 +63,24 @@ const SignUpPage: React.FC = observer(() => {
           <br />
           <Input
             name="email"
-            label="아이디"
-            placeholder="아이디를 입력하세요"
+            label="이메일"
+            placeholder="이메일 형식에 맞게 입력하세요."
             required
             control={control}
             rules={{
-              required: '아이디를 입력해주세요.',
+              required: '이메일를 입력해주세요.',
               validate: value => {
                 // 이메일 유효성 검사는 진행했고,
                 if (isDuplicatedEmail === true) {
                   // 검사했던 이메일과 지금 입력된 이메일이 같은 경우 에러
-                  if (chekedEmail === value) return '중복된 아이디입니다.';
+                  if (chekedEmail === value) return '중복된 이메일입니다.';
                   else return true;
                 }
                 return true;
+              },
+              pattern: {
+                value: emailReg,
+                message: '이메일 형식에 맞게 입력하세요.',
               },
             }}
           />
@@ -82,7 +89,7 @@ const SignUpPage: React.FC = observer(() => {
           <PasswordInput
             name="password"
             label="비밀번호"
-            placeholder="비밀번호를 입력하세요"
+            placeholder="8자리 이상, 영어/숫자/특수문자 조합"
             required
             control={control}
             rules={{
@@ -100,7 +107,7 @@ const SignUpPage: React.FC = observer(() => {
           <PasswordInput
             name="passwordConfirm"
             label="비밀번호 확인"
-            placeholder="비밀번호를 입력하세요"
+            placeholder="지정한 비밀번호를 다시 입력하세요."
             required
             control={control}
             rules={{
@@ -115,7 +122,7 @@ const SignUpPage: React.FC = observer(() => {
           <Input
             name="name"
             label="이름"
-            placeholder="이름을 입력하세요"
+            placeholder="실명이 아닌 경우 승인이 거절될 수 있습니다."
             required
             control={control}
             rules={{ required: '이름을 입력해주세요.' }}
@@ -126,7 +133,7 @@ const SignUpPage: React.FC = observer(() => {
             name="admissionYear"
             type="number"
             label="입학년도"
-            placeholder="입학년도 4자리 (ex.2020)"
+            placeholder="입학년도 4자리를 입력하세요. (ex.2020)"
             required
             control={control}
             rules={{
@@ -149,12 +156,28 @@ const SignUpPage: React.FC = observer(() => {
             name="studentId"
             type="number"
             label="학번"
-            placeholder="학번을 입력하세요 (ex. 20201234)"
+            placeholder="8자리 학번을 입력하세요. (ex.20201234)"
+            required
             control={control}
+            rules={{
+              required: '학번을 입력해주세요.',
+              minLength: {
+                value: 8,
+                message: '8자리 입학년도를 입력해주세요.',
+              },
+              maxLength: {
+                value: 8,
+                message: '8자리 입학년도를 입력해주세요.',
+              },
+            }}
           />
+          {errors.studentId ? <ErrorMessage>{errors.studentId?.message}</ErrorMessage> : null}
         </BodyScreen>
       </PageBody>
       <PageFooter>
+        <Message>
+          회원가입 이후 로그인과 학부인증을 하셔야 <br /> 서비스를 이용할 수 있습니다
+        </Message>
         <NavButton onClick={handleSubmit(onSubmit)} disabled={submitDisabled}>
           가입하기
         </NavButton>
@@ -162,5 +185,12 @@ const SignUpPage: React.FC = observer(() => {
     </>
   );
 });
+
+export const Message = styled.div`
+  text-align: right;
+  color: #ff7473;
+  font-size: 12px;
+  line-height: 21px;
+`;
 
 export default PageStoreHOC(<SignUpPage />, { store: PageUiStoreImpl });

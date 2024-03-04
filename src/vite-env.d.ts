@@ -1,8 +1,10 @@
 /// <reference types="vite/client" />
 
 import type { AdmissionPageUiStore } from './pages/auth/admission/AdmissionPageUiStore';
+import type { FindPasswordPageUiStore } from './pages/auth/findPassword/FindPasswordPageUiStore';
 import type { SignInPageUiStore } from './pages/auth/signIn/SignInPageUiStore';
 import type { SignUpPageUiStore } from './pages/auth/signUp/SignUpPageUiStore';
+import type { BoardCreatePageUiStore } from './pages/board/boardCreate/BoardCreatePageUiStore';
 import type { BoardListPageUiStore } from './pages/board/boardList/BoardListPageUiStore';
 import type { PostDetailPageUiStore } from './pages/board/postDetail/PostDetailPageUiStore';
 import type { PostEditorPageUiStore } from './pages/board/postEditor/PostEditorPageUiStore';
@@ -72,11 +74,14 @@ declare global {
     type SignIn = SignInPageUiStore;
     type SignUp = SignUpPageUiStore;
     type Admission = AdmissionPageUiStore;
+    type FindPassword = FindPasswordPageUiStore;
     type Home = HomePageUiStore;
     type CircleHome = CircleHomePageUiStore;
     type CircleJoin = CircleJoinPageUiStore;
     type CircleMain = CircleMainPageUiStore;
     type BoardList = BoardListPageUiStore;
+    type BoardCreate = BoardCreatePageUiStore;
+    type BoardDelete = DeleteBoardModalUi;
     type PostList = PostListPageUiStore;
     type PostDetail = PostDetailPageUiStore;
     type PostEditor = PostEditorPageUiStore;

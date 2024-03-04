@@ -17,11 +17,12 @@ export class AdmissionUserTabUi {
     this.hasMore = false;
   }
 
-  *fetch(page = 0): Generator {
+  *fetch(name: string | null = null, page = 0): Generator {
     try {
       if (page === 0) this.users = [];
 
       const { users, last } = (yield Repo.findAllAdmissions(
+        name,
         page,
       )) as User.FindAllAdmissionsResponse;
 

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import AddIcon from '@mui/icons-material/Add';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
-import RemoveIcon from '@mui/icons-material/Remove';
+import ClearIcon from '@mui/icons-material/Clear';
 import { observer } from 'mobx-react-lite';
 import { memo, useCallback } from 'react';
 
@@ -38,11 +38,13 @@ export const AddLink: React.FC<{ to: string }> = memo(({ to }) => (
 
 export const Row = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 36px;
+  height: 30px;
   font-size: 13px;
-  line-height: 16px;
+  margin-top: 8px;
+  margin-bottom: -10px;
 `;
 
 const UserNameButton = styled(ClearButton)`
@@ -69,8 +71,8 @@ export const UserName: React.FC<{ model: Model.User; withCircleName?: string }> 
 );
 
 export const RemoveButton: React.FC<{ onClick: () => void }> = ({ ...props }) => (
-  <ClearButton {...props}>
-    <RemoveIcon fontSize="small" />
+  <ClearButton style={{ padding: '10px' }} {...props}>
+    <ClearIcon fontSize="small" />
   </ClearButton>
 );
 

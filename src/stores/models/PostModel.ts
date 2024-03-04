@@ -13,6 +13,7 @@ export class PostModel {
   commentCount: number;
   updatable: boolean;
   deletable: boolean;
+  isDeleted: boolean;
   attachmentList: Post.IAttachment[];
 
   constructor(props: Post.Dto) {
@@ -34,6 +35,7 @@ export class PostModel {
     this.commentCount = props.numComment;
     this.updatable = props.updatable ?? false;
     this.deletable = props.deletable ?? false;
+    this.isDeleted = props.isDeleted;
     this.attachmentList = props.attachmentList;
   }
 

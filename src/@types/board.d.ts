@@ -4,7 +4,7 @@ declare namespace Board {
     description: string;
     createRoleList: User.Role[];
     category: string;
-    circleId: string;
+    circleId: string | null;
   }
 
   export interface Item {
@@ -27,6 +27,12 @@ declare namespace Board {
     writable: boolean;
     isDeleted: boolean;
     circleName: string;
+    //#83 추가
+    name: string;
+    category: string;
+    circleId: string | null;
+    circleName: string | null;
+    createRoleList: User.Role[];
   }
 
   interface RequestDto extends Dto {}

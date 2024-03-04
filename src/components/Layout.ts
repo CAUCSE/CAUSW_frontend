@@ -17,6 +17,10 @@ export const BodyScreen = styled.div`
   padding: 0 20px;
 `;
 
+export const SearchBody = styled.div`
+  padding: 15px 15px;
+`;
+
 export const PageFooter = styled.footer`
   height: auto;
   padding: 0 20px;

@@ -9,15 +9,15 @@ import { postHandler } from './postHandler';
 import { settingHandler } from './settingHandler';
 
 const handlers = [
-  ...homeHandler,
-  ...postHandler,
-  ...commentHandler,
-  ...circleHandler,
-  ...boardHandler,
-  ...lockerHandler,
-  ...historyHandler,
+  //...homeHandler,
+  //...postHandler,
+  //...commentHandler,
+  //...circleHandler,
+  //...boardHandler,
+  //...lockerHandler,
+  //...historyHandler,
   ...settingHandler,
-  ...authHandler,
+  //...authHandler,
 ];
 
 export default handlers;
