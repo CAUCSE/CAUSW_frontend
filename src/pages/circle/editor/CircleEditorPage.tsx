@@ -39,7 +39,6 @@ const CircleEditorPage: React.FC = observer(() => {
 
   useEffect(() => {
     if (isEdit && circle) {
-      methods.setValue('mainImage', circle.mainImage ?? '');
       methods.setValue('name', circle.name);
       methods.setValue('description', circle.description);
     }
@@ -53,7 +52,7 @@ const CircleEditorPage: React.FC = observer(() => {
     <FormProvider {...methods}>
       <Header
         mini
-        title="동아리 생성"
+        title={isEdit ? '동아리 수정' : '동아리 생성'}
         withBack={isEdit ? PAGE_URL.Setting : PAGE_URL.SettingRoleManagement}
         RightComponent={null}
       />

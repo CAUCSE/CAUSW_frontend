@@ -42,7 +42,8 @@ API.interceptors.response.use(
 
       if (
         (!localStorage.getItem(storageRefreshKey) &&
-          config.url !== '/api/v1/users/password/find') ||
+          config.url !== '/api/v1/users/password/find' &&
+          config.url !== '/api/v1/users/sign-up') ||
         config.url === '/api/v1/users/token/update'
       ) {
         removeRefresh();
