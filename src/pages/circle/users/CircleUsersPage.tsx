@@ -9,6 +9,7 @@ import {
   AdmissionUserTab,
   DropModal,
   UserTab,
+  RestoreModal,
 } from './components';
 import { PageBody, SwipeableWrapper } from './styled';
 
@@ -49,7 +50,7 @@ const CircleUsersPage: React.FC = observer(() => {
         >
           <AdmissionUserTab value={tabIndex} index={0} dir={theme.direction} />
           <UserTab value={tabIndex} index={1} dir={theme.direction} status="MEMBER" />
-          <UserTab value={tabIndex} index={2} dir={theme.direction} status="LEAVE" />
+          <UserTab value={tabIndex} index={2} dir={theme.direction} status="LEAVE_N_DROP" />
         </SwipeableWrapper>
       </PageBody>
       <GNB />
@@ -58,6 +59,7 @@ const CircleUsersPage: React.FC = observer(() => {
       <AdmissionAcceptModal />
       <AdmissionRejectModal />
       <DropModal />
+      <RestoreModal />
     </>
   );
 });

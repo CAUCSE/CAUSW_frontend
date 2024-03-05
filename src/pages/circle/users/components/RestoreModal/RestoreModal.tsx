@@ -31,7 +31,7 @@ export const RestoreModal: React.FC = observer(() => {
   return (
     <Modal open={visible} closeAfterTransition>
       <ModalBox>
-        <ModalAlertTitle>회원 복구</ModalAlertTitle>
+        <ModalAlertTitle>동아리 회원 복구</ModalAlertTitle>
         <ModalAlertMessage center>
           정말로 {target?.nameWithAdmission} 유저를 복구하시겠습니까?
         </ModalAlertMessage>
