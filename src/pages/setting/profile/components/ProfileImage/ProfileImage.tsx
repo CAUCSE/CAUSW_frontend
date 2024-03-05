@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef } from 'react';
 
-import { Button, ProfileIcon, TempImage } from './styled';
+import { Button, TempImage } from './styled';
 
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
@@ -25,7 +25,6 @@ export const ProfileImage: React.FC = observer(() => {
   return (
     <Button type="button" onClick={handleClick}>
       <TempImage src={blobUrl ?? me?.profileImage ?? ''} />
-      <ProfileIcon />
     </Button>
   );
 });
