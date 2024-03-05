@@ -11,6 +11,7 @@ export type listKey = 'councilUsers' | 'leaderGradeUsers' | 'leaderCircleUsers';
 
 export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   presidentUsers: Model.User | null = null;
+  vicePresidentUsers: Model.User | null = null;
   councilUsers: Model.User[] = [];
   leaderGradeUsers: Model.User[] = [];
   leaderCircleUsers: Model.User[] = [];
@@ -34,6 +35,7 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
 
   reset(): void {
     this.presidentUsers = null;
+    this.vicePresidentUsers = null;
     this.councilUsers = [];
     this.leaderGradeUsers = [];
     this.leaderCircleUsers = [];
@@ -41,10 +43,17 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   }
 
   *fetch(): Generator {
-    const { presidentUsers, councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers } =
-      (yield Repo.findPrivilegedUsers()) as unknown as User.FindPrivilegedUsersResponse;
+    const {
+      presidentUsers,
+      vicePresidentUsers,
+      councilUsers,
+      leaderAlumni,
+      leaderCircleUsers,
+      leaderGradeUsers,
+    } = (yield Repo.findPrivilegedUsers()) as unknown as User.FindPrivilegedUsersResponse;
 
     this.presidentUsers = presidentUsers;
+    this.vicePresidentUsers = vicePresidentUsers;
     this.councilUsers = councilUsers;
     this.leaderGradeUsers = leaderGradeUsers;
     this.leaderCircleUsers = leaderCircleUsers;

@@ -9,6 +9,7 @@ import {
   LeaderCircleUsers,
   LeaderGradeUsers,
   PresidentUsers,
+  VicePresidentUsers,
 } from './components';
 import { PageUiStoreImpl } from './SettingRoleManagementPageUiStore';
 
@@ -23,13 +24,13 @@ const PermissionManagementPage: React.FC = observer(() => {
     fetch();
     return () => reset();
   }, []);
-
   return (
     <>
       <Header mini title="권한 관리" withBack={PAGE_URL.Setting} RightComponent={null} />
       <PageBody>
         <BodyScreen>
           <PresidentUsers />
+          <VicePresidentUsers />
           <CouncilUsers />
           <LeaderGradeUsers />
           <LeaderCircleUsers />
