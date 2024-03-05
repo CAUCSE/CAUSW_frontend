@@ -50,17 +50,14 @@ API.interceptors.response.use(
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
       } else if (data.errorCode === '4105') {
         const {
-          data: { accessToken, refreshToken },
+          data: { accessToken },
         } = (await API.put(`/api/v1/users/token/update`, {
           refreshToken: getRefresh(),
         })) as AxiosResponse<{
           accessToken: string;
-          refreshToken: string;
         }>;
 
         setAccess(accessToken);
-        removeRefresh();
-        storeRefresh(isStored, refreshToken);
 
         config.headers['Authorization'] = accessToken;
         return API.request(config);

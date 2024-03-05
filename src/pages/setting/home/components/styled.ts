@@ -29,7 +29,7 @@ export const CouncilProfileImage = styled(ProfileImage)`
 `;
 
 export const StudentLeaderProfileImage = styled(ProfileImage)`
-  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 5%);
+  border: 3px solid #ff9100;
 `;
 
 export const StudentLeaderRoleText = styled.div`
@@ -40,8 +40,8 @@ export const StudentLeaderRoleText = styled.div`
   width: 60px;
   height: 17px;
   border-radius: 3px;
-  background-color: #f5f5f5;
-  border: 1px solid #f5f5f5;
+  background-color: #ff9100;
+  border: 1px solid #ff9100;
   overflow: hidden;
 
   top: 50%;
