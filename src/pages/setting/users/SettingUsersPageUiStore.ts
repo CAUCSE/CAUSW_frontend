@@ -5,6 +5,7 @@ import { AdmissionRejectModalUi } from './components/AdmissionRejectModal/Admiss
 import { AdmissionUserTabUi } from './components/AdmissionUserTab/AdmissionUserTabUi';
 import { DropModalUi } from './components/DropModal/DropModalUi';
 import { InactiveUserTabUi } from './components/InactiveUserTab/InactiveUserTabUi';
+import { RestoreModalUi } from './components/RestoreModal/RestoreModalUi';
 
 import { UserInfoModalUi, WithUserInfoModalUi } from '@/components/UserInfoModal/UserInfoModalUi';
 
@@ -19,6 +20,7 @@ export class SettingUsersPageUiStore implements WithUserInfoModalUi {
   admissionRejectModal = new AdmissionRejectModalUi();
   userInfoModal = new UserInfoModalUi();
   dropModal = new DropModalUi();
+  restoreModel = new RestoreModalUi();
 }
 
 export const PageUiStoreImpl = new SettingUsersPageUiStore();

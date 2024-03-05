@@ -8,7 +8,7 @@ declare namespace User {
     name: string;
     profileImage: string;
     role: Role;
-    state: 'ACTIVE' | 'INACTIVE';
+    state: 'ACTIVE' | 'INACTIVE' | 'DROP' | 'INACTIVE_N_DROP';
     studentId: string;
   }
 

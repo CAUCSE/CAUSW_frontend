@@ -149,6 +149,10 @@ class UserRepo {
     return await API.put(`${this.URI}/${userId}/drop`);
   };
 
+  restore = async (userId: string): Promise<unknown> => {
+    return await API.put(`${this.URI}/restore/${userId}`);
+  };
+
   // ---
   update = async (body: User.UpdateDto): Promise<void> => {
     return await API.put(this.URI, body);

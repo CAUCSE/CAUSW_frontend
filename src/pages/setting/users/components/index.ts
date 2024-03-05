@@ -6,3 +6,5 @@ export * from './AdmissionInfoModal';
 export * from './AdmissionAcceptModal';
 export * from './AdmissionRejectModal';
 export * from './DropModal';
+
+export * from './RestoreModal';
