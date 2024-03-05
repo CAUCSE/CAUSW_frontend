@@ -25,8 +25,6 @@ declare namespace User {
     | 'LEADER_ALUMNI'
     | 'COMMON'
     | 'PROFESSOR'
-    | 'PRESIDENT_N_LEADER_CIRCLE'
-    | 'VICE_PRESIDENT_N_LEADER_CIRCLE'
     | 'COUNCIL_N_LEADER_CIRCLE'
     | 'LEADER_1_N_LEADER_CIRCLE'
     | 'LEADER_2_N_LEADER_CIRCLE'
@@ -56,6 +54,7 @@ declare namespace User {
     //#71 추가
     userState: UserDto['state'];
   }
+
   export interface FindAllAdmissionsResponseDto {
     content: AdmissionUserDto[];
     last: boolean;

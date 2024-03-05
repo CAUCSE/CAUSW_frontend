@@ -15,7 +15,7 @@ export const BoardCreateButton: React.FC = observer(() => {
 
   return (
     <>
-      {me && (me.isAdmin || me.isCircleLeader || me.isPresident) ? (
+      {me && (me.isAdmin || me.isCircleLeader || me.isPresidents) ? (
         <Wrapper to={generatePath(PAGE_URL.BoardCreate)}>
           <Icon fontSize="large" />
         </Wrapper>

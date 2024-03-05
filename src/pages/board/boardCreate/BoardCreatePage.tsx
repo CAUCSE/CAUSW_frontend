@@ -104,7 +104,7 @@ const BoardCreatePage: React.FC = observer(() => {
 
   useEffect(() => {
     fetch();
-    if (me?.isCircleLeader && !(me.isAdmin || me.isPresident))
+    if (me?.isCircleLeader && !(me.isAdmin || me.isPresidents))
       setValue('circleName', me.circleNames![0]);
   }, []);
 
@@ -146,7 +146,9 @@ const BoardCreatePage: React.FC = observer(() => {
               label="게시판 생성 동아리"
               control={control}
               required
-              options={me.isAdmin || me.isPresident ? ['전체', ...me.circleNames!] : me.circleNames}
+              options={
+                me.isAdmin || me.isPresidents ? ['전체', ...me.circleNames!] : me.circleNames
+              }
             />
           ) : null}
         </BodyScreen>
