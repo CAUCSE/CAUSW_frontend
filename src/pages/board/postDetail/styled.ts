@@ -5,4 +5,9 @@ export const PostContent = styled.p`
   height: auto;
   font-size: 14px;
   line-height: 1.5;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
