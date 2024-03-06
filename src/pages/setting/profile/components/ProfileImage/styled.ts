@@ -17,6 +17,11 @@ export const TempImage = styled(ProfileImageBox)`
   border: 1px solid #f5f5f5;
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 5%);
   overflow: hidden;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const ProfileIcon = styled(FaceRetouchingNaturalIcon)`

@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { TabPanel, TabPanelProps } from '../TabPanel';
 import { UserRow } from './UserRow';
+import { TabPanel, TabPanelProps } from '../TabPanel';
 
 import { CircleParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';

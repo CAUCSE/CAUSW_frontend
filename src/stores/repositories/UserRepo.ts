@@ -76,7 +76,14 @@ class UserRepo {
   // 권한 관리 페이지
   findPrivilegedUsers = async (): Promise<User.FindPrivilegedUsersResponse> => {
     const {
-      data: { presidentUsers, councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
+      data: {
+        presidentUsers,
+        vicePresidentUsers,
+        councilUsers,
+        leaderAlumni,
+        leaderCircleUsers,
+        leaderGradeUsers,
+      },
     } = (await API.get(
       `${this.URI}/privileged`,
     )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>;
@@ -88,6 +95,7 @@ class UserRepo {
 
     return {
       presidentUsers: presidentUsers ? new UserModel(presidentUsers) : null,
+      vicePresidentUsers: vicePresidentUsers ? new UserModel(vicePresidentUsers) : null,
       councilUsers: councilUsers.map(user => new UserModel(user)),
       leaderGradeUsers: leaderGradeUsers.map(user => new UserModel(user)),
       leaderCircleUsers: leaderCircleUsers.map(user => new UserModel(user)),
@@ -147,6 +155,10 @@ class UserRepo {
 
   drop = async (userId: string): Promise<unknown> => {
     return await API.put(`${this.URI}/${userId}/drop`);
+  };
+
+  restore = async (userId: string): Promise<unknown> => {
+    return await API.put(`${this.URI}/restore/${userId}`);
   };
 
   // ---

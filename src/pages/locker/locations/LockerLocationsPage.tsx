@@ -41,7 +41,7 @@ const LockerLocationsPage: React.FC = observer(() => {
       </PageBody>
       <SubmitButton />
       <LockerApplicationModal />
-      <LockerReturnModal />
+      {/* <LockerReturnModal /> */}
       <LockerExtendModal />
     </>
   );

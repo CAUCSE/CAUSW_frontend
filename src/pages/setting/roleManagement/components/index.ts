@@ -5,3 +5,4 @@ export * from './LeaderAlumni';
 export * from './LeaderCircleUsers';
 export * from './LeaderGradeUsers';
 export * from './PresidentUsers';
+export * from './VicePresidentUsers';

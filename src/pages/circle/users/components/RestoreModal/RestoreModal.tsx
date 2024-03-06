@@ -12,35 +12,28 @@ import {
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores';
 
-export const DropModal: React.FC = observer(() => {
+export const RestoreModal: React.FC = observer(() => {
   const {
     ui: { alert },
   } = useRootStore();
   const {
-    activeTab: { remove },
-    dropModal: { drop, visible, target, close },
-  } = usePageUiStore<PageUiStore.SettingUsers>();
+    restoreModal: { restore, visible, target, close },
+  } = usePageUiStore<PageUiStore.CircleUsers>();
   const handleOk = useCallback(async () => {
     if (!target) return;
-
-    const { success, message } = (await drop(target)) as unknown as StoreAPI;
-
+    const { success, message } = (await restore(target)) as unknown as StoreAPI;
     if (success) {
-      remove(target);
-      alert({ message: `${target.nameWithAdmission} 유저가 추방되었습니다.` });
+      alert({ message: `${target.nameWithAdmission} 유저가 복구되었습니다.` });
     } else if (message) alert({ message });
     close();
   }, [target]);
 
-  console.log(visible);
-
   return (
     <Modal open={visible} closeAfterTransition>
       <ModalBox>
-        <ModalAlertTitle>회원 추방</ModalAlertTitle>
+        <ModalAlertTitle>동아리 회원 복구</ModalAlertTitle>
         <ModalAlertMessage center>
-          정말로 {target?.nameWithAdmission} 유저를 추방하시겠습니까? <br />
-          추방 시 데이터는 복구되지 않습니다.
+          정말로 {target?.nameWithAdmission} 유저를 복구하시겠습니까?
         </ModalAlertMessage>
         <ModalFooter>
           <ModalFooterButton onClick={close}>취소</ModalFooterButton>

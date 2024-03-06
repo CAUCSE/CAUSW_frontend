@@ -8,7 +8,7 @@ declare namespace User {
     name: string;
     profileImage: string;
     role: Role;
-    state: 'ACTIVE' | 'INACTIVE';
+    state: 'ACTIVE' | 'INACTIVE' | 'DROP' | 'INACTIVE_N_DROP';
     studentId: string;
   }
 
@@ -25,8 +25,6 @@ declare namespace User {
     | 'LEADER_ALUMNI'
     | 'COMMON'
     | 'PROFESSOR'
-    | 'PRESIDENT_N_LEADER_CIRCLE'
-    | 'VICE_PRESIDENT_N_LEADER_CIRCLE'
     | 'COUNCIL_N_LEADER_CIRCLE'
     | 'LEADER_1_N_LEADER_CIRCLE'
     | 'LEADER_2_N_LEADER_CIRCLE'
@@ -56,6 +54,7 @@ declare namespace User {
     //#71 추가
     userState: UserDto['state'];
   }
+
   export interface FindAllAdmissionsResponseDto {
     content: AdmissionUserDto[];
     last: boolean;
@@ -129,6 +128,7 @@ declare namespace User {
   // findPrivilegedUsers
   export interface FindPrivilegedUsersResponseDto {
     presidentUsers: UserDto | null;
+    vicePresidentUsers: UserDto | null;
     councilUsers: UserDto[];
     leaderGradeUsers: UserDto[];
     leaderCircleUsers: UserDto[];
@@ -137,6 +137,7 @@ declare namespace User {
 
   export interface FindPrivilegedUsersResponse {
     presidentUsers: Model.User | null;
+    vicePresidentUsers: Model.User | null;
     councilUsers: Model.User[];
     leaderGradeUsers: Model.User[];
     leaderCircleUsers: Model.User[];
@@ -191,6 +192,11 @@ declare namespace User {
     name: string;
     studentId: string;
     email: string;
+  }
+
+  export interface SignOutRequestDto {
+    accessToken: string;
+    refreshToken: string;
   }
 
   // ==

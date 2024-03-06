@@ -70,6 +70,7 @@ const BoardCreatePage: React.FC = observer(() => {
           'LEADER_2',
           'LEADER_3',
           'LEADER_4',
+          'COUNCIL',
           'COMMON',
         ];
         body.circleId =
@@ -78,7 +79,7 @@ const BoardCreatePage: React.FC = observer(() => {
     } else {
       //학생회장 혹은 관리자가 동아리 게시판을 생성하는 경우
       if (data.category === '공지 게시판') {
-        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT'];
+        body.createRoleList = ['ADMIN', 'VICE_PRESIDENT', 'PRESIDENT', 'COUNCIL'];
       } else if (data.category === '자유 게시판') {
         body.createRoleList = [
           'ADMIN',
@@ -89,6 +90,7 @@ const BoardCreatePage: React.FC = observer(() => {
           'LEADER_2',
           'LEADER_3',
           'LEADER_4',
+          'COUNCIL',
           'COMMON',
         ];
       }
@@ -102,7 +104,7 @@ const BoardCreatePage: React.FC = observer(() => {
 
   useEffect(() => {
     fetch();
-    if (me?.isCircleLeader && !(me.isAdmin || me.isPresident))
+    if (me?.isCircleLeader && !(me.isAdmin || me.isPresidents))
       setValue('circleName', me.circleNames![0]);
   }, []);
 
@@ -144,7 +146,9 @@ const BoardCreatePage: React.FC = observer(() => {
               label="게시판 생성 동아리"
               control={control}
               required
-              options={me.isAdmin || me.isPresident ? ['전체', ...me.circleNames!] : me.circleNames}
+              options={
+                me.isAdmin || me.isPresidents ? ['전체', ...me.circleNames!] : me.circleNames
+              }
             />
           ) : null}
         </BodyScreen>

@@ -47,7 +47,7 @@ const FindPasswordPage: React.FC = observer(() => {
 
   return (
     <>
-      <Header title="비밀번호 재발급" withBack={PAGE_URL.Board} />
+      <Header title="비밀번호 재발급" withBack={PAGE_URL.SignIn} />
       <PageBody>
         {isSubmitting ? (
           <Loading />

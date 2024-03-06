@@ -57,13 +57,13 @@ export const CommentMenuContainer: React.FC = observer(() => {
             답글 달기
           </ModalMenuButton>
         ) : null}
-        {target?.updatable ? (
+        {/* target?.updatable ? (
           <ModalMenuButton
             onClick={handleSetState(isReplyComment, InputState.EDIT, params, target)}
           >
             댓글 수정
           </ModalMenuButton>
-        ) : null}
+        ) : null */}
         {target?.deletable ? (
           <ModalMenuButton onClick={handleOpenDeleteModal(target)}>댓글 삭제</ModalMenuButton>
         ) : null}

@@ -42,7 +42,7 @@ const SignUpPage: React.FC = observer(() => {
     const { success, message } = (await signUp(body)) as unknown as StoreAPI;
 
     if (success) {
-      replace(PAGE_URL.SignIn);
+      replace(PAGE_URL.UseTerms);
       alert({ message: '회원가입 되었습니다. 로그인 후 학부인증을 진행하세요.' });
     } else if (message) {
       alert({ message });

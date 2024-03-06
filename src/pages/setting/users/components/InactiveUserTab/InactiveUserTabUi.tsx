@@ -22,7 +22,7 @@ export class InactiveUserTabUi {
       if (page === 0) this.users = [];
 
       const { users, last } = (yield Repo.findByState(
-        'INACTIVE',
+        'INACTIVE_N_DROP',
         name,
         page,
       )) as User.FindByStateResponse;

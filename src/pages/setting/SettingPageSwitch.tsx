@@ -17,6 +17,9 @@ const SettingRoleLeaderGradePage = lazy(
 );
 const SettingRoleManagementPage = lazy(() => import('./roleManagement/SettingRoleManagementPage'));
 const SettingUsersPage = lazy(() => import('./users/SettingUsersPage'));
+const SettingRoleVicePresident = lazy(
+  () => import('./roleVicePresident/SettingRoleVicePresidentPage'),
+);
 
 export const SettingPageSwitch: React.FC = () => (
   <Switch>
@@ -31,6 +34,7 @@ export const SettingPageSwitch: React.FC = () => (
     <Route path={PAGE_URL.SettingRoleLeaderGrade} component={SettingRoleLeaderGradePage} />
     <Route path={PAGE_URL.SettingRoleLeaderCircle} component={SettingRoleLeaderCirclePage} />
     <Route path={PAGE_URL.SettingRoleAlumni} component={SettingRoleAlumniPage} />
+    <Route path={PAGE_URL.SettingRoleVicePresident} component={SettingRoleVicePresident} />
 
     <Route path={PAGE_URL.SettingRoleDelegation} component={SettingRoleDelegationPage} />
   </Switch>

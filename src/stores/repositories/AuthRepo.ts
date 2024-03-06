@@ -49,6 +49,10 @@ class AuthRepo {
   findPassword = async (body: User.FindPasswordReqestDto) => {
     return API.put(`${this.URI}/password/find`, body);
   };
+
+  signOut = async (body: User.SignOutRequestDto) => {
+    return API.put(`${this.URI}/sign-out`, body);
+  };
 }
 
 export const AuthRepoImpl = new AuthRepo();
