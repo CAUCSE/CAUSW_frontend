@@ -81,3 +81,9 @@ export const AutorenewLink: React.FC<{ pathname: string; state: unknown }> = mem
     </ClearLink>
   ),
 );
+
+export const ChangeLink: React.FC<{ pathname: string }> = memo(({ pathname, state }) => (
+  <ClearLink to={{ pathname }} style={{ padding: '10px' }}>
+    <AutorenewIcon fontSize="small" />
+  </ClearLink>
+));
