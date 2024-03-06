@@ -1,10 +1,12 @@
 import { observer } from 'mobx-react-lite';
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import React from 'react';
 import { useHistory, generatePath } from 'react-router-dom';
+
+import { PageUiStoreImpl } from './UseTermsPageUiStore';
 
 import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC, NavButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
+import { useRootStore } from '@/stores/RootStore';
 
 const UseTermsPage: React.FC = observer(() => {
   const {
@@ -12,12 +14,13 @@ const UseTermsPage: React.FC = observer(() => {
     push,
     location: { pathname },
   } = useHistory();
-  const { handleSubmit, formState } = useForm<User.FindPasswordReqestDto>();
-  const { isSubmitting } = formState;
+  const {
+    auth: { isSignIn },
+  } = useRootStore();
 
-  const onSubmit = async () => {
-    if (pathname === PAGE_URL.SignUp) replace(PAGE_URL.SignIn);
-    else push(generatePath(pathname));
+  const onSubmit = () => {
+    if (!isSignIn) replace(PAGE_URL.SignIn);
+    else push(generatePath(PAGE_URL.Setting));
   };
 
   return (
@@ -28,12 +31,10 @@ const UseTermsPage: React.FC = observer(() => {
       </PageBody>
 
       <PageFooter>
-        <NavButton disabled={isSubmitting} onClick={handleSubmit(onSubmit)}>
-          위 약관을 모두 확인했습니다.
-        </NavButton>
+        <NavButton onClick={onSubmit}>위 약관을 모두 확인했습니다.</NavButton>
       </PageFooter>
     </>
   );
 });
 
-export default PageStoreHOC(<UseTermsPage />);
+export default PageStoreHOC(<UseTermsPage />, { store: PageUiStoreImpl });

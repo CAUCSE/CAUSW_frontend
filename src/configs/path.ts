@@ -4,7 +4,7 @@ export enum PAGE_URL {
   SignUp = '/auth/signup',
   FindPassword = '/auth/findPassword',
   Admission = '/auth/admission',
-  UseTerms = '/useTerms',
+  UseTerms = '/auth/useTerms',
 
   Home = '/home',
 

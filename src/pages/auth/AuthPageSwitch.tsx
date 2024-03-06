@@ -13,7 +13,7 @@ export const AuthPageSwitch: React.FC = () => (
     <Route path={PAGE_URL.SignIn} component={SignIn} />
     <Route path={PAGE_URL.Admission} component={Admission} />
     <Route path={PAGE_URL.SignUp} component={SignUp} />
-    <Route path={PAGE_URL.FindPassword} component={FindPassword} />
     <Route path={PAGE_URL.UseTerms} component={UseTerms} />
+    <Route path={PAGE_URL.FindPassword} component={FindPassword} />
   </Switch>
 );
