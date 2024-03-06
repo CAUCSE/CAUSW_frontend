@@ -42,6 +42,7 @@ const SettingHomePage: React.FC = observer(() => {
             <Link to={PAGE_URL.SettingProfile}>개인정보 관리</Link>
             <Link to={PAGE_URL.SettingPassword}>비밀번호 변경</Link>
             <LinkButton onClick={handleSignOut}>로그아웃</LinkButton>
+            <Link to={PAGE_URL.UseTerms}>이용약관</Link>
           </Box>
 
           <Box>
