@@ -58,7 +58,7 @@ const SettingRoleVicePresidentPage: React.FC = observer(() => {
       <PageBody>
         <BodyScreen>
           <SubTitle>위임할 권한</SubTitle>
-          <Role>{UserRoleCodes['COUNCIL']}</Role>
+          <Role>{UserRoleCodes['VICE_PRESIDENT']}</Role>
           <SubTitle>피위임인 지정</SubTitle>
           <form onSubmit={handleSubmit(onSearch)}>
             <SearchInput<FormBody>

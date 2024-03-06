@@ -40,7 +40,7 @@ export enum PAGE_URL {
   SettingRoleLeaderCircle = '/setting/role/leader-circle',
   SettingRoleAlumni = '/setting/role/alumni',
   SettingRoleDelegation = '/setting/role/delegation',
-  SettingRoleVicePresident = './setting/role/vice-president',
+  SettingRoleVicePresident = '/setting/role/vice-president',
   // SettingCircleBoards = '/setting/circle/boards',
 
   // 내가 쓴 글, 댓글
