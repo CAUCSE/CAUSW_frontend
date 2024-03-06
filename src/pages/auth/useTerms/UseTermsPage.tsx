@@ -9,11 +9,7 @@ import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 
 const UseTermsPage: React.FC = observer(() => {
-  const {
-    replace,
-    push,
-    location: { pathname },
-  } = useHistory();
+  const { replace, push } = useHistory();
   const {
     auth: { isSignIn },
   } = useRootStore();

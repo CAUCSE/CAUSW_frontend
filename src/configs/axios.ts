@@ -62,6 +62,8 @@ API.interceptors.response.use(
 
         config.headers['Authorization'] = accessToken;
         return API.request(config);
+      } else if (data.errorCode === '4107') {
+        location.href = PAGE_URL.NoPermission;
       }
 
       return Promise.reject({

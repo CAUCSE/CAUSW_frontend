@@ -5,6 +5,7 @@ export enum PAGE_URL {
   FindPassword = '/auth/findPassword',
   Admission = '/auth/admission',
   UseTerms = '/auth/useTerms',
+  NoPermission = '/auth/noPermission',
 
   Home = '/home',
 

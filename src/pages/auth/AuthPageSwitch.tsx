@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { Admission } from './admission';
 import { FindPassword } from './findPassword';
+import { NoPermission } from './NoPermission';
 import { SignIn } from './signIn';
 import { SignUp } from './signUp';
 import { UseTerms } from './useTerms';
@@ -15,5 +16,6 @@ export const AuthPageSwitch: React.FC = () => (
     <Route path={PAGE_URL.SignUp} component={SignUp} />
     <Route path={PAGE_URL.UseTerms} component={UseTerms} />
     <Route path={PAGE_URL.FindPassword} component={FindPassword} />
+    <Route path={PAGE_URL.NoPermission} component={NoPermission} />
   </Switch>
 );
