@@ -194,6 +194,11 @@ declare namespace User {
     email: string;
   }
 
+  export interface SignOutRequestDto {
+    accessToken: string;
+    refreshToken: string;
+  }
+
   // ==
 
   export interface FindPostsResponse {

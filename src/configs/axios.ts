@@ -13,6 +13,7 @@ export const API = axios.create({
 export const setAccess = (token: string): unknown =>
   (API.defaults.headers['Authorization'] = token);
 export const resetAccess = (): unknown => delete API.defaults.headers['Authorization'];
+export const getAccess = (): string => `${API.defaults.headers['Authorization']}`;
 
 //Refresh
 const storageRefreshKey = 'CAUCSE_JWT_REFRESH';

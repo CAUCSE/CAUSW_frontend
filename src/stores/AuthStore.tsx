@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 import { AuthRepoImpl as Repo } from './repositories/AuthRepo';
 
-import { getRefresh, removeRefresh, resetAccess } from '@/configs/axios';
+import { getRefresh, removeRefresh, resetAccess, getAccess } from '@/configs/axios';
 
 export class AuthStore {
   rootStore: Store.Root;
@@ -35,6 +35,7 @@ export class AuthStore {
   }
 
   signOut(): void {
+    Repo.signOut({ accessToken: getAccess(), refreshToken: getRefresh() ?? '' });
     resetAccess();
     removeRefresh();
   }
