@@ -1,5 +1,5 @@
 declare namespace Circle {
-  export type Status = 'AWAIT' | 'DROP' | 'LEAVE' | 'MEMBER' | 'REJECT' | 'LEAVE_N_DROP';
+  export type Status = 'AWAIT' | 'DROP' | 'LEAVE' | 'MEMBER' | 'REJECT';
 
   export interface CreateRequestDto {
     mainImage: string;

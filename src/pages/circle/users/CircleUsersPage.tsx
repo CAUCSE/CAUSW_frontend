@@ -50,7 +50,7 @@ const CircleUsersPage: React.FC = observer(() => {
         >
           <AdmissionUserTab value={tabIndex} index={0} dir={theme.direction} />
           <UserTab value={tabIndex} index={1} dir={theme.direction} status="MEMBER" />
-          <UserTab value={tabIndex} index={2} dir={theme.direction} status="LEAVE_N_DROP" />
+          <UserTab value={tabIndex} index={2} dir={theme.direction} status="DROP" />
         </SwipeableWrapper>
       </PageBody>
       <GNB />
