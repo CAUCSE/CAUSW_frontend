@@ -40,7 +40,7 @@ const CircleUsersPage: React.FC = observer(() => {
         >
           <Tab label="가입 대기 유저" {...a11yProps(0)} />
           <Tab label="모든 유저" {...a11yProps(1)} />
-          <Tab label="탈퇴 유저" {...a11yProps(2)} />
+          <Tab label="탈퇴/추방 유저" {...a11yProps(2)} />
         </Tabs>
 
         <SwipeableWrapper

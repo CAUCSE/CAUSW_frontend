@@ -12,9 +12,9 @@ export class RestoreModalUi extends ModalUi<Model.CircleUser> {
     });
   }
 
-  *restore(target: Model.User): Generator {
+  *restore(target: Model.CircleUser): Generator {
     try {
-      yield Repo.restore(target.id);
+      yield Repo.restore(target.user.id);
       return { success: true } as StoreAPI;
     } catch (error) {
       return error;

@@ -17,8 +17,8 @@ export const RestoreModal: React.FC = observer(() => {
     ui: { alert },
   } = useRootStore();
   const {
-    restoreModel: { restore, visible, target, close },
-  } = usePageUiStore<PageUiStore.SettingUsers>();
+    restoreModal: { restore, visible, target, close },
+  } = usePageUiStore<PageUiStore.CircleUsers>();
   const handleOk = useCallback(async () => {
     if (!target) return;
     const { success, message } = (await restore(target)) as unknown as StoreAPI;

@@ -10,10 +10,8 @@ export const VicePresidentUsers: React.FC = observer(() => {
 
   return (
     <Box>
-      <Title>
-        부학생회장
-        <ChangeLink pathname={PAGE_URL.SettingRoleVicePresident} />
-      </Title>
+      <ChangeLink pathname={PAGE_URL.SettingRoleVicePresident} />
+      <Title>부학생회장</Title>
       {vicePresidentUsers ? (
         <Row>
           <UserName model={vicePresidentUsers} />
