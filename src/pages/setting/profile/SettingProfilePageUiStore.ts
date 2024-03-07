@@ -34,6 +34,9 @@ export class SettingProfilePageUiStore {
 
       this.file = file;
       this.blobUrl = URL.createObjectURL(file);
+    } else {
+      this.file = null;
+      this.blobUrl = undefined;
     }
   }
 
@@ -53,6 +56,8 @@ export class SettingProfilePageUiStore {
           IMAGE_TYPE.USER_PROFILE,
           this.file,
         )) as string;
+      } else {
+        body.profileImage = '';
       }
 
       yield Repo.update(body);
