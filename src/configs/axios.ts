@@ -49,7 +49,7 @@ API.interceptors.response.use(
       ) {
         removeRefresh();
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
-      } else if (data.errorCode === '4105') {
+      } else if (data.errorCode === '4105' || data.errorCode === 4105) {
         const {
           data: { accessToken },
         } = (await API.put(`/api/v1/users/token/update`, {
@@ -62,7 +62,7 @@ API.interceptors.response.use(
 
         config.headers['Authorization'] = accessToken;
         return API.request(config);
-      } else if (data.errorCode === '4107') {
+      } else if (data.errorCode === '4107' || data.errorCode === 4107) {
         location.href = PAGE_URL.NoPermission;
       }
 
