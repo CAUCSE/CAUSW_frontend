@@ -32,8 +32,6 @@ export const DropModal: React.FC = observer(() => {
     close();
   }, [target]);
 
-  console.log(visible);
-
   return (
     <Modal open={visible} closeAfterTransition>
       <ModalBox>
