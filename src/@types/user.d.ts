@@ -127,8 +127,8 @@ declare namespace User {
 
   // findPrivilegedUsers
   export interface FindPrivilegedUsersResponseDto {
-    presidentUsers: UserDto[];
-    vicePresidentUsers: UserDto[];
+    presidentUser: UserDto[];
+    vicePresidentUser: UserDto[];
     councilUsers: UserDto[];
     leaderGradeUsers: UserDto[];
     leaderCircleUsers: UserDto[];
@@ -136,8 +136,8 @@ declare namespace User {
   }
 
   export interface FindPrivilegedUsersResponse {
-    presidentUsers: Model.User[];
-    vicePresidentUsers: Model.User[];
+    presidentUser: Model.User[];
+    vicePresidentUser: Model.User[];
     councilUsers: Model.User[];
     leaderGradeUsers: Model.User[];
     leaderCircleUsers: Model.User[];

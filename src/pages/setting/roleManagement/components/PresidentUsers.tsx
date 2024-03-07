@@ -5,14 +5,14 @@ import { Box, Row, Title, UserName } from './styled';
 import { usePageUiStore } from '@/hooks';
 
 export const PresidentUsers: React.FC = observer(() => {
-  const { presidentUsers } = usePageUiStore<PageUiStore.SettingRoleManagement>();
+  const { presidentUser } = usePageUiStore<PageUiStore.SettingRoleManagement>();
 
   return (
     <Box>
       <Title>학생회장</Title>
-      {presidentUsers[0] ? (
+      {presidentUser[0] ? (
         <Row>
-          <UserName model={presidentUsers[0]} />
+          <UserName model={presidentUser[0]} />
         </Row>
       ) : null}
     </Box>

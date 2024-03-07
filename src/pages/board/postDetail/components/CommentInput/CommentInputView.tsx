@@ -29,8 +29,6 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
     setValue('content', content);
   }, [commentInput, setFocus, setValue]);
 
-  console.log(pathname.indexOf('comment'));
-
   return (
     <Form onSubmit={onSubmit} isFocus={isFocus}>
       <InputBox>

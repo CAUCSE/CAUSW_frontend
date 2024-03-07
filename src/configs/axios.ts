@@ -62,7 +62,12 @@ API.interceptors.response.use(
 
         config.headers['Authorization'] = accessToken;
         return API.request(config);
-      } else if (data.errorCode === '4107' || data.errorCode === 4107) {
+      } else if (
+        data.errorCode === '4107' ||
+        data.errorCode === 4107 ||
+        data.errorCode === '4000' ||
+        data.errorCode === 4000
+      ) {
         location.href = PAGE_URL.NoPermission;
       }
 

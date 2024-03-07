@@ -77,8 +77,8 @@ class UserRepo {
   findPrivilegedUsers = async (): Promise<User.FindPrivilegedUsersResponse> => {
     const {
       data: {
-        presidentUsers,
-        vicePresidentUsers,
+        presidentUser,
+        vicePresidentUser,
         councilUsers,
         leaderAlumni,
         leaderCircleUsers,
@@ -94,8 +94,8 @@ class UserRepo {
     } = await axios.get<User.FindPrivilegedUsersResponseDto>(`${this.URI}/privileged`); */
 
     return {
-      presidentUsers: presidentUsers.map(user => new UserModel(user)),
-      vicePresidentUsers: vicePresidentUsers.map(user => new UserModel(user)),
+      presidentUser: presidentUser.map(user => new UserModel(user)),
+      vicePresidentUser: vicePresidentUser.map(user => new UserModel(user)),
       councilUsers: councilUsers.map(user => new UserModel(user)),
       leaderGradeUsers: leaderGradeUsers.map(user => new UserModel(user)),
       leaderCircleUsers: leaderCircleUsers.map(user => new UserModel(user)),
