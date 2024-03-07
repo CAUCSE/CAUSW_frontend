@@ -14,7 +14,9 @@ export const InactiveUserRow: React.FC<{ model: Model.User }> = memo(({ model })
   return (
     <Row>
       <UserName>
-        <ClearButton onClick={handleOpenInfoModal}>{model.nameWithAdmission}</ClearButton>
+        <ClearButton onClick={handleOpenInfoModal}>
+          {model.nameWithAdmission} {model.state === 'DROP' ? '(추방)' : '(탈퇴)'}
+        </ClearButton>
       </UserName>
 
       <RowButton onClick={handleOpenRestoreModel}>

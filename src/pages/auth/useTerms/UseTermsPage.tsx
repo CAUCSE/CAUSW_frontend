@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useHistory, generatePath } from 'react-router-dom';
@@ -15,6 +16,11 @@ import {
 import { PAGE_URL } from '@/configs/path';
 import { useRootStore } from '@/stores/RootStore';
 
+const Title = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+`;
+
 const UseTermsPage: React.FC = observer(() => {
   const { replace, push } = useHistory();
   const {
@@ -31,7 +37,7 @@ const UseTermsPage: React.FC = observer(() => {
       <Header title="이용 약관" />
       <PageBody>
         <BodyScreen>
-          서비스 이용약관
+          <Title>서비스 이용약관</Title>
           <br />
           제1조(목적)
           <br />
@@ -427,8 +433,9 @@ const UseTermsPage: React.FC = observer(() => {
           서비스와 관련하여 분쟁이 발생한 경우 관할법원은 위원회 소재지 관할법원으로 정하며,
           준거법은 대한민국의 법령을 적용합니다.
           <br />
-          <br />부 칙
           <br />
+          <br />
+          <Title>부 칙</Title>
           <br />
           제1조(시행일)
           <br />본 약관은 2024.03.07부터 시행됩니다.  <br />

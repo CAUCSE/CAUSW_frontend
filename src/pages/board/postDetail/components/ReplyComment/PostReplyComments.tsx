@@ -50,7 +50,7 @@ export const PostReplyComments: React.FC = observer(() => {
 
   return parent ? (
     <CommentsBox>
-      <BackLink onClick={handleBack}>전체 댓글</BackLink>
+      <BackLink onClick={handleBack}>전체 댓글로 이동하기</BackLink>
       <CommentCard model={parent} />
       <Virtuoso
         ref={virtuoso}

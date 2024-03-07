@@ -6,7 +6,8 @@ export class AuthorModel {
   constructor(admissionYear: number, name: string, profileImage: string | null) {
     this.admissionYear = admissionYear;
     this.name = name;
-    this.profileImage = profileImage ?? '/images/default_profile.png';
+    this.profileImage =
+      !profileImage || profileImage === '' ? '/images/default_profile.png' : profileImage;
   }
 
   get nameWithAdmission(): string {

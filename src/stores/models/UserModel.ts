@@ -30,6 +30,7 @@ export class UserModel {
   studentId?: string;
   circleIds?: string[];
   circleNames?: string[];
+  state: User.UserDto['state'];
 
   constructor(props: User.UserDto) {
     this.id = props.id;
@@ -37,10 +38,14 @@ export class UserModel {
     this.name = props.name;
     this.admissionYear = props.admissionYear;
     this.role = props.role;
-    this.profileImage = props.profileImage ?? '/images/default_profile.png';
+    this.profileImage =
+      !props.profileImage || props.profileImage === ''
+        ? '/images/default_profile.png'
+        : props.profileImage;
     this.studentId = props.studentId;
     this.circleIds = props.circleIdIfLeader ?? [];
     this.circleNames = props.circleNameIfLeader ?? [];
+    this.state = props.state;
   }
 
   get roleTxt(): string {
@@ -52,7 +57,9 @@ export class UserModel {
   }
 
   get profileImageSrc(): string {
-    return this.profileImage ?? '/images/default_profile.png';
+    return !this.profileImage || this.profileImage === ''
+      ? '/images/default_profile.png'
+      : this.profileImage;
   }
 
   get isStudent(): boolean {

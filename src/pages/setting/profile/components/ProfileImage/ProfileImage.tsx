@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { Button, TempImage } from './styled';
+import { Button, TempImage, BasicProfileButton } from './styled';
 
 import { usePageUiStore } from '@/hooks';
 import { useRootStore } from '@/stores/RootStore';
@@ -12,7 +12,11 @@ export const ProfileImage: React.FC = observer(() => {
   } = useRootStore();
   const { blobUrl, setFile } = usePageUiStore<PageUiStore.SettingProfile>();
   const ref = useRef<HTMLInputElement | null>(null);
-  const handleClick = () => ref.current?.click();
+  const [basicProfile, setBaisicProfile] = useState<boolean>(false);
+  const handleClick = () => {
+    setBaisicProfile(false);
+    ref.current?.click();
+  };
 
   useEffect(() => {
     const input = document.createElement('input');
@@ -23,8 +27,20 @@ export const ProfileImage: React.FC = observer(() => {
   }, []);
 
   return (
-    <Button type="button" onClick={handleClick}>
-      <TempImage src={blobUrl ?? me?.profileImage ?? ''} />
-    </Button>
+    <>
+      <Button type="button" onClick={handleClick}>
+        <TempImage
+          src={basicProfile ? '/images/default_profile.png' : blobUrl ?? me?.profileImage ?? ''}
+        />
+      </Button>
+      <BasicProfileButton
+        onClick={() => {
+          setBaisicProfile(true);
+          setFile(null);
+        }}
+      >
+        기본 이미지 변경
+      </BasicProfileButton>
+    </>
   );
 });
