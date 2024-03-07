@@ -22,7 +22,7 @@ const UseTermsPage: React.FC = observer(() => {
   } = useRootStore();
 
   const onSubmit = () => {
-    if (!isSignIn) replace(PAGE_URL.SignIn);
+    if (!isSignIn) replace(PAGE_URL.SignUp);
     else push(generatePath(PAGE_URL.Setting));
   };
 
