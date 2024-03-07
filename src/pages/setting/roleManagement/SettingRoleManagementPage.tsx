@@ -24,6 +24,7 @@ const PermissionManagementPage: React.FC = observer(() => {
     fetch();
     return () => reset();
   }, []);
+
   return (
     <>
       <Header mini title="권한 관리" withBack={PAGE_URL.Setting} RightComponent={null} />
