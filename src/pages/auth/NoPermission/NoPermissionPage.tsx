@@ -15,7 +15,7 @@ const NoPermissionPage: React.FC = observer(() => {
         <Wrapper>
           <img src="/images/empty.png" alt="Empty list logo" />
           <br />
-          권한이 없습니다.
+          페이지가 존재하지 않거나, 권한이 없습니다.
         </Wrapper>
       </PageBody>
     </>
@@ -23,7 +23,7 @@ const NoPermissionPage: React.FC = observer(() => {
 });
 
 const Wrapper = styled.div`
-  margin: 160px 0 10px;
+  margin: 160px 0 30px;
   font-size: 17px;
   //font-weight: bolder;
   color: gray;
