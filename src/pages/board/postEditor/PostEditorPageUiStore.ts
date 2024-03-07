@@ -41,7 +41,7 @@ export class PostEditorPageUiStore {
     try {
       this.post = (yield Repo.create(body)) as Model.Post;
 
-      return this.post;
+      return { post: this.post };
     } catch (error) {
       return error;
     } finally {

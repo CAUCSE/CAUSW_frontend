@@ -30,8 +30,8 @@ export const PostDetailMenu: React.FC = observer(() => {
         <MoreVertIcon />
       </HeaderIconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleEdit}>게시글 수정</MenuItem>
-        <MenuItem onClick={handleDelete}>게시글 삭제</MenuItem>
+        {post.updatable ? <MenuItem onClick={handleEdit}>게시글 수정</MenuItem> : null}
+        {post.deletable ? <MenuItem onClick={handleDelete}>게시글 삭제</MenuItem> : null}
       </Menu>
     </>
   ) : null;

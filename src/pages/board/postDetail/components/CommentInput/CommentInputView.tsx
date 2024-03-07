@@ -2,6 +2,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
 import { Form, InputBox, SendButton, Textarea } from './styled';
 
@@ -16,6 +17,9 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
   const { register, setFocus, setValue } = useFormContext();
   const { ref, ...rest } = register('content');
   const [isFocus, setIsFocus] = useState(false);
+  const {
+    location: { pathname },
+  } = useHistory();
 
   useEffect(() => {
     const { isEdit, isReply, target } = commentInput;
@@ -35,7 +39,7 @@ export const CommentInputView: React.FC<Props> = observer(({ onSubmit }) => {
           }}
           minRows={1}
           maxRows={3}
-          placeholder="댓글 내용 입력"
+          placeholder={pathname.indexOf('comment') === -1 ? '댓글 내용 입력' : '답글 내용 입력'}
           onFocus={() => setIsFocus(true)}
           {...rest}
         />

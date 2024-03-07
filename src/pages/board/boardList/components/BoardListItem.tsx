@@ -29,7 +29,7 @@ export const BoardListItem: React.FC<{ model: Model.Board }> = observer(({ model
         <StyledLink to={generatePath(PAGE_URL.PostList, { boardId: model.id })}>
           {model.name}
         </StyledLink>
-        {me?.isPresident ||
+        {me?.isPresidents ||
         me?.isAdmin ||
         (me?.isCircleLeader &&
           model.circleId &&

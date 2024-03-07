@@ -7,13 +7,17 @@ import { generatePath, useHistory } from 'react-router';
 import { Article } from '@/assets/icons';
 import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
+import { usePageUiStore } from '@/hooks';
 
 export const CircleSlideCard: React.FC<{ model: Model.Circle }> = memo(
   ({ model: { id: circleId, mainImage, name, newLineDescription } }) => {
     const { push } = useHistory();
     const [isFlipped, setFlip] = useState(false);
+    const { joinedCircles } = usePageUiStore<PageUiStore.CircleHome>();
     const handleClick = () => {
       if (isFlipped) setFlip(c => !c);
+      else if (joinedCircles?.find(joinedCircle => joinedCircle.id === circleId))
+        push(generatePath(PAGE_URL.CircleMain, { circleId }));
       else push(generatePath(PAGE_URL.CircleJoin, { circleId }));
     };
     const handleFlip = (e: React.MouseEvent<HTMLElement>) => {

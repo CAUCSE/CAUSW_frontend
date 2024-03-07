@@ -52,12 +52,7 @@ const SettingRoleLeaderCirclePage: React.FC = observer(() => {
 
   return (
     <>
-      <Header
-        mini
-        title="동아리장 변경"
-        withBack={PAGE_URL.SettingRoleManagement}
-        RightComponent={null}
-      />
+      <Header mini title="동아리장 변경" withBack={PAGE_URL.Setting} RightComponent={null} />
       <PageBody>
         <BodyScreen>
           <H2>위임할 권한</H2>

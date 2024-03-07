@@ -11,7 +11,6 @@ export class DeleteBoardModalUi {
   }
 
   open(target: Model.Board): void {
-    console.log(target);
     this.visible = true;
     this.target = target;
   }

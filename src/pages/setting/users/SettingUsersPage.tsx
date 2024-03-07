@@ -10,6 +10,7 @@ import {
   AdmissionUserTab,
   DropModal,
   InactiveUserTab,
+  RestoreModal,
 } from './components';
 import { PageUiStoreImpl } from './SettingUsersPageUiStore';
 import { PageBody, SwipeableWrapper } from './styled';
@@ -41,7 +42,7 @@ const SettingUsersPage: React.FC = observer(() => {
         >
           <Tab label="가입 대기 유저" {...a11yProps(0)} />
           <Tab label="활성 유저" {...a11yProps(1)} />
-          <Tab label="탈퇴 유저" {...a11yProps(2)} />
+          <Tab label="탈퇴/추방 유저" {...a11yProps(2)} />
         </Tabs>
 
         <SwipeableWrapper
@@ -61,6 +62,7 @@ const SettingUsersPage: React.FC = observer(() => {
       <AdmissionAcceptModal />
       <AdmissionRejectModal />
       <DropModal />
+      <RestoreModal />
     </>
   );
 });

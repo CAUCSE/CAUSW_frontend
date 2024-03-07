@@ -30,7 +30,7 @@ export const SubmitButton = observer(() => {
 
   return (
     <PageFooter>
-      {isSelectedMine ? (
+      {/* {isSelectedMine ? (
         // TODO : 반복 버튼 컴포넌트 만들기
         <NavButton
           disabled={!target}
@@ -44,7 +44,7 @@ export const SubmitButton = observer(() => {
         >
           연장하기
         </NavButton>
-      ) : null}
+      ) : null} */}
       <NavButton disabled={!target} onClick={handleClick(isSelectedMine, target)}>
         {isSelectedMine ? '반환하기' : '신청하기'}
       </NavButton>

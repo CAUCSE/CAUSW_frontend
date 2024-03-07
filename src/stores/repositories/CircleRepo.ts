@@ -80,6 +80,10 @@ class CircleRepo {
   dropUser = async (circleId: string, userId: string) => {
     await API.put(`${this.URI}/${circleId}/users/${userId}/drop`);
   };
+
+  restoreUser = async (circleId: string, userId: string) => {
+    await API.put(`${this.URI}/${circleId}/users/${userId}/restore`);
+  };
 }
 
 export const CircleRepoImpl = new CircleRepo();

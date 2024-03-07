@@ -38,6 +38,14 @@ export const PostProfileImage = styled.div`
   }
 `;
 
+export const PostCouncilProfileImage = styled(PostProfileImage)`
+  border: 2px solid #312ed7;
+`;
+
+export const PostStudentLeaderProfileImage = styled(PostProfileImage)`
+  border: 2px solid #ff9100;
+`;
+
 export const PostAuthorNameCSS = css`
   flex: 1 1 0;
 

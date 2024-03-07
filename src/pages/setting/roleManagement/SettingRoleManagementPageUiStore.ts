@@ -10,11 +10,12 @@ import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 export type listKey = 'councilUsers' | 'leaderGradeUsers' | 'leaderCircleUsers';
 
 export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
-  presidentUsers: Model.User | null = null;
+  presidentUser: Model.User[] = [];
+  vicePresidentUser: Model.User[] = [];
   councilUsers: Model.User[] = [];
   leaderGradeUsers: Model.User[] = [];
   leaderCircleUsers: Model.User[] = [];
-  leaderAlumni: Model.User | null = null;
+  leaderAlumni: Model.User[] = [];
 
   // Modal
   userInfoModal = new UserInfoModalUi();
@@ -33,18 +34,25 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   }
 
   reset(): void {
-    this.presidentUsers = null;
+    this.presidentUser = [];
+    this.vicePresidentUser = [];
     this.councilUsers = [];
     this.leaderGradeUsers = [];
     this.leaderCircleUsers = [];
-    this.leaderAlumni = null;
+    this.leaderAlumni = [];
   }
 
   *fetch(): Generator {
-    const { presidentUsers, councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers } =
-      (yield Repo.findPrivilegedUsers()) as unknown as User.FindPrivilegedUsersResponse;
-
-    this.presidentUsers = presidentUsers;
+    const {
+      presidentUser,
+      vicePresidentUser,
+      councilUsers,
+      leaderAlumni,
+      leaderCircleUsers,
+      leaderGradeUsers,
+    } = (yield Repo.findPrivilegedUsers()) as unknown as User.FindPrivilegedUsersResponse;
+    this.presidentUser = presidentUser;
+    this.vicePresidentUser = vicePresidentUser;
     this.councilUsers = councilUsers;
     this.leaderGradeUsers = leaderGradeUsers;
     this.leaderCircleUsers = leaderCircleUsers;

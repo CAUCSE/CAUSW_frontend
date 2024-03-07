@@ -4,6 +4,8 @@ export enum PAGE_URL {
   SignUp = '/auth/signup',
   FindPassword = '/auth/findPassword',
   Admission = '/auth/admission',
+  UseTerms = '/auth/useTerms',
+  NoPermission = '/auth/noPermission',
 
   Home = '/home',
 
@@ -38,6 +40,7 @@ export enum PAGE_URL {
   SettingRoleLeaderCircle = '/setting/role/leader-circle',
   SettingRoleAlumni = '/setting/role/alumni',
   SettingRoleDelegation = '/setting/role/delegation',
+  SettingRoleVicePresident = '/setting/role/vice-president',
   // SettingCircleBoards = '/setting/circle/boards',
 
   // 내가 쓴 글, 댓글

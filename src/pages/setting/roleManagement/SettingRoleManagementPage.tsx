@@ -9,6 +9,7 @@ import {
   LeaderCircleUsers,
   LeaderGradeUsers,
   PresidentUsers,
+  VicePresidentUsers,
 } from './components';
 import { PageUiStoreImpl } from './SettingRoleManagementPageUiStore';
 
@@ -30,6 +31,7 @@ const PermissionManagementPage: React.FC = observer(() => {
       <PageBody>
         <BodyScreen>
           <PresidentUsers />
+          <VicePresidentUsers />
           <CouncilUsers />
           <LeaderGradeUsers />
           <LeaderCircleUsers />

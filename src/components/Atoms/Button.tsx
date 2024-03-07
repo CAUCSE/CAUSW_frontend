@@ -54,6 +54,11 @@ export const NavButton = styled(Button)`
   margin: 13px 0;
 `;
 
+export const NavSmallButton = styled(Button)`
+  margin: 13px 0;
+  font-size: 15px;
+`;
+
 const ClearButtonNative = styled('button')`
   user-select: none;
   padding: 0;

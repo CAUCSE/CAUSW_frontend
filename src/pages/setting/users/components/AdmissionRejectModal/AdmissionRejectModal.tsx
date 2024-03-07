@@ -27,7 +27,9 @@ export const AdmissionRejectModal: React.FC = observer(() => {
 
     if (success) {
       remove(target);
-      alert({ message: `${target.nameWithAdmission} 유저의 회원가입이 거절되었습니다` });
+      alert({
+        message: `${target.nameWithAdmission} 유저의 회원가입이 거절되었습니다. 학생회장에게 연락 바랍니다.`,
+      });
     } else if (message) alert({ message });
     close();
   }, [target]);

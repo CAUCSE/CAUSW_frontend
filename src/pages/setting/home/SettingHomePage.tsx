@@ -42,6 +42,7 @@ const SettingHomePage: React.FC = observer(() => {
             <Link to={PAGE_URL.SettingProfile}>개인정보 관리</Link>
             <Link to={PAGE_URL.SettingPassword}>비밀번호 변경</Link>
             <LinkButton onClick={handleSignOut}>로그아웃</LinkButton>
+            <Link to={PAGE_URL.UseTerms}>이용약관</Link>
           </Box>
 
           <Box>
@@ -54,7 +55,7 @@ const SettingHomePage: React.FC = observer(() => {
           </Box>
 
           {me.isAdmin ||
-          me.isPresident ||
+          me.isPresidents ||
           me.isCircleLeader ||
           me.isCouncil ||
           me.isStudentLeader ||
@@ -64,12 +65,17 @@ const SettingHomePage: React.FC = observer(() => {
                 <ManageAccountsIcon />
                 <TitleContent>관리</TitleContent>
               </Title>
-              {me.isAdmin || me.isPresident ? (
+              {me.isAdmin || (me.isPresidents && !me.isVicePresidents) ? (
                 <>
                   <Link to={PAGE_URL.SettingRoleManagement}>권한 관리</Link>
                   <Link to={PAGE_URL.SettingUsers}>유저 관리</Link>
                   {/* <Link to={PAGE_URL.SettingBoards}>게시판 관리</Link> */}
                   <Link to={PAGE_URL.SettingRoleDelegation}>권한 위임</Link>
+                </>
+              ) : null}
+              {me.isVicePresidents ? (
+                <>
+                  <Link to={PAGE_URL.SettingUsers}>유저 관리</Link>
                 </>
               ) : null}
               {me.isCircleLeader
