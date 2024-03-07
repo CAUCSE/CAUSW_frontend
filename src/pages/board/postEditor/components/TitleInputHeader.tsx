@@ -8,6 +8,7 @@ import { BackButton, Header, SubmitButton, TitleInput } from '../styled';
 import { Breadcrumb } from '@/components';
 import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
+import { useRootStore } from '@/stores';
 
 export const TitleInputHeader: React.FC = observer(() => {
   const isEdit = !!useRouteMatch(PAGE_URL.PostEdit);
@@ -17,19 +18,31 @@ export const TitleInputHeader: React.FC = observer(() => {
   const { post, boardName, submitDisabled, edit, create } =
     usePageUiStore<PageUiStore.PostEditor>();
   const { register, setValue, handleSubmit } = useFormContext();
+  const {
+    ui: { alert },
+  } = useRootStore();
 
   const onSubmit = useCallback(
     async data => {
       let curPostId = postId;
 
-      if (isEdit) await edit(postId, data);
-      else {
-        const post = (await create({ ...data, boardId })) as unknown as Model.Post;
-        curPostId = post.id;
+      if (isEdit) {
+        await edit(postId, data);
+        if (state?.prevDetail) goBack();
+        else replace(generatePath(PAGE_URL.PostDetail, { boardId, postId: curPostId }));
+      } else {
+        const { post, message } = (await create({ ...data, boardId })) as unknown as {
+          post?: Model.Post;
+          message?: string;
+        };
+        if (post) {
+          curPostId = post.id;
+          if (state?.prevDetail) goBack();
+          else replace(generatePath(PAGE_URL.PostDetail, { boardId, postId: curPostId }));
+        } else if (message) {
+          alert({ message });
+        }
       }
-
-      if (state?.prevDetail) goBack();
-      else replace(generatePath(PAGE_URL.PostDetail, { boardId, postId: curPostId }));
     },
     [postId, replace, state],
   );

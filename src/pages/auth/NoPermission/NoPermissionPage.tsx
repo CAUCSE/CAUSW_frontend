@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 
@@ -9,12 +10,30 @@ import { PAGE_URL } from '@/configs/path';
 const NoPermissionPage: React.FC = observer(() => {
   return (
     <>
-      <Header withBack={PAGE_URL.Home} title="경고" />
+      <Header withBack={PAGE_URL.Home} title="접근 불가" />
       <PageBody>
-        <BodyScreen>접근 권한이 없습니다.</BodyScreen>
+        <Wrapper>
+          <img src="/images/empty.png" alt="Empty list logo" />
+          <br />
+          권한이 없습니다.
+        </Wrapper>
       </PageBody>
     </>
   );
 });
+
+const Wrapper = styled.div`
+  margin: 160px 0 10px;
+  font-size: 17px;
+  //font-weight: bolder;
+  color: gray;
+  line-height: 12px;
+  text-align: center;
+
+  > img {
+    margin-bottom: 10px;
+    width: 100px;
+  }
+`;
 
 export default PageStoreHOC(<NoPermissionPage />, { store: PageUiStoreImpl });
