@@ -15,7 +15,6 @@ const getPrivilegedUsersListHandler: ResponseResolver = () => {
 
 const getadmissionsUsersListHandler: ResponseResolver = ({ request }) => {
   const url = new URL(request.url);
-  console.log(url.searchParams.get('name') === null);
   if (url.searchParams.get('name') === '강민규')
     return HttpResponse.json<User.FindAllAdmissionsResponseDto>(admissionsSearchUsersList);
   return HttpResponse.json<User.FindAllAdmissionsResponseDto>(admissionsUsersList);
