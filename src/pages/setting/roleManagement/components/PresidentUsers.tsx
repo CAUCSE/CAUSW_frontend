@@ -10,9 +10,9 @@ export const PresidentUsers: React.FC = observer(() => {
   return (
     <Box>
       <Title>학생회장</Title>
-      {presidentUsers ? (
+      {presidentUsers[0] ? (
         <Row>
-          <UserName model={presidentUsers} />
+          <UserName model={presidentUsers[0]} />
         </Row>
       ) : null}
     </Box>

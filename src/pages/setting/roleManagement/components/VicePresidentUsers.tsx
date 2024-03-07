@@ -12,9 +12,9 @@ export const VicePresidentUsers: React.FC = observer(() => {
     <Box>
       <ChangeLink pathname={PAGE_URL.SettingRoleVicePresident} />
       <Title>부학생회장</Title>
-      {vicePresidentUsers ? (
+      {vicePresidentUsers[0] ? (
         <Row>
-          <UserName model={vicePresidentUsers} />
+          <UserName model={vicePresidentUsers[0]} />
         </Row>
       ) : null}
     </Box>

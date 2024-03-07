@@ -10,12 +10,12 @@ import { UserRepoImpl as Repo } from '@/stores/repositories/UserRepo';
 export type listKey = 'councilUsers' | 'leaderGradeUsers' | 'leaderCircleUsers';
 
 export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
-  presidentUsers: Model.User | null = null;
-  vicePresidentUsers: Model.User | null = null;
+  presidentUsers: Model.User[] = [];
+  vicePresidentUsers: Model.User[] = [];
   councilUsers: Model.User[] = [];
   leaderGradeUsers: Model.User[] = [];
   leaderCircleUsers: Model.User[] = [];
-  leaderAlumni: Model.User | null = null;
+  leaderAlumni: Model.User[] = [];
 
   // Modal
   userInfoModal = new UserInfoModalUi();
@@ -34,12 +34,12 @@ export class SettingRoleManagementPageUiStore implements WithUserInfoModalUi {
   }
 
   reset(): void {
-    this.presidentUsers = null;
-    this.vicePresidentUsers = null;
+    this.presidentUsers = [];
+    this.vicePresidentUsers = [];
     this.councilUsers = [];
     this.leaderGradeUsers = [];
     this.leaderCircleUsers = [];
-    this.leaderAlumni = null;
+    this.leaderAlumni = [];
   }
 
   *fetch(): Generator {
