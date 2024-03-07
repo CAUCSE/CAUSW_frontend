@@ -82,7 +82,7 @@ class CircleRepo {
   };
 
   restoreUser = async (circleId: string, userId: string) => {
-    await API.put(`${this.URI}/${circleId}/restore/${userId}`);
+    await API.put(`${this.URI}/${circleId}/users/${userId}/restore`);
   };
 }
 
