@@ -30,6 +30,7 @@ export class UserModel {
   studentId?: string;
   circleIds?: string[];
   circleNames?: string[];
+  state: User.UserDto['state'];
 
   constructor(props: User.UserDto) {
     this.id = props.id;
@@ -41,6 +42,7 @@ export class UserModel {
     this.studentId = props.studentId;
     this.circleIds = props.circleIdIfLeader ?? [];
     this.circleNames = props.circleNameIfLeader ?? [];
+    this.state = props.state;
   }
 
   get roleTxt(): string {
