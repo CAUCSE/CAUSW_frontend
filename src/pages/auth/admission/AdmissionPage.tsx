@@ -31,17 +31,17 @@ const AdmissionPage: React.FC = observer(() => {
         <BodyScreen>
           <Guide>
             중앙대학교 전산학과 / 컴퓨터공학과 / 소프트웨어학부임을 인증할 수 있는 자료를
-            첨부해주세요.
+            첨부해주세요. 변경이 불가능하니 주의하여 입력하세요.
             <br />
             <br />
-            예) 학생증, 졸업증명서, 포탈 내 개인정보 화면 캡처 등
+            (학번/이름이 포함되게 하여 학생증, 졸업증명서, 포탈 내 개인정보 화면 캡처 중 하나 기입)
           </Guide>
 
           <Label>사진 첨부</Label>
           <ImageInput name="attachImage" />
           <Label>설명 첨부</Label>
           <Textarea
-            placeholder="설명을 첨부해주세요"
+            placeholder="사진에 대한 설명을 첨부해주세요"
             {...methods.register('description')}
             maxLength={254}
           />

@@ -127,21 +127,21 @@ declare namespace User {
 
   // findPrivilegedUsers
   export interface FindPrivilegedUsersResponseDto {
-    presidentUsers: UserDto | null;
-    vicePresidentUsers: UserDto | null;
+    presidentUsers: Model.User[];
+    vicePresidentUsers: Model.User[];
     councilUsers: UserDto[];
     leaderGradeUsers: UserDto[];
     leaderCircleUsers: UserDto[];
-    leaderAlumni: UserDto | null;
+    leaderAlumni: Model.User[];
   }
 
   export interface FindPrivilegedUsersResponse {
-    presidentUsers: Model.User | null;
-    vicePresidentUsers: Model.User | null;
+    presidentUsers: Model.User[];
+    vicePresidentUsers: Model.User[];
     councilUsers: Model.User[];
     leaderGradeUsers: Model.User[];
     leaderCircleUsers: Model.User[];
-    leaderAlumni: Model.User | null;
+    leaderAlumni: Model.User[];
   }
 
   // ---

@@ -11,9 +11,9 @@ export const LeaderAlumni: React.FC = observer(() => {
   return (
     <Box>
       <Title>동문회장</Title>
-      {leaderAlumni ? (
+      {leaderAlumni[0] ? (
         <Row>
-          <UserName model={leaderAlumni} />
+          <UserName model={leaderAlumni[0]} />
           <AutorenewLink pathname={PAGE_URL.SettingRoleAlumni} state={{ user: leaderAlumni }} />
         </Row>
       ) : null}

@@ -40,7 +40,7 @@ const CircleUsersPage: React.FC = observer(() => {
         >
           <Tab label="가입 대기 유저" {...a11yProps(0)} />
           <Tab label="모든 유저" {...a11yProps(1)} />
-          <Tab label="탈퇴/추방 유저" {...a11yProps(2)} />
+          <Tab label="추방 유저" {...a11yProps(2)} />
         </Tabs>
 
         <SwipeableWrapper
@@ -50,7 +50,7 @@ const CircleUsersPage: React.FC = observer(() => {
         >
           <AdmissionUserTab value={tabIndex} index={0} dir={theme.direction} />
           <UserTab value={tabIndex} index={1} dir={theme.direction} status="MEMBER" />
-          <UserTab value={tabIndex} index={2} dir={theme.direction} status="LEAVE_N_DROP" />
+          <UserTab value={tabIndex} index={2} dir={theme.direction} status="DROP" />
         </SwipeableWrapper>
       </PageBody>
       <GNB />

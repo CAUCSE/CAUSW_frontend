@@ -6,7 +6,7 @@ export const PostContent = styled.p`
   font-size: 14px;
   line-height: 1.5;
 
-  > img {
+  > p {
     width: 100%;
     height: 100%;
   }

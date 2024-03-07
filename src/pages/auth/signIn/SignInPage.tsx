@@ -78,7 +78,7 @@ const SignInPage: React.FC = observer(() => {
       </Form>
 
       <SubLink>
-        <Link to={PAGE_URL.SignUp}>회원가입</Link>
+        <Link to={PAGE_URL.UseTerms}>회원가입</Link>
         <Link to={PAGE_URL.FindPassword}>비밀번호를 잃어버리셨나요?</Link>
       </SubLink>
     </PageWrapper>

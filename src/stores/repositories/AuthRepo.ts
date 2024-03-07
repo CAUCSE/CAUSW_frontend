@@ -51,7 +51,7 @@ class AuthRepo {
   };
 
   signOut = async (body: User.SignOutRequestDto) => {
-    return API.put(`${this.URI}/sign-out`, body);
+    return API.post(`${this.URI}/sign-out`, body);
   };
 }
 
