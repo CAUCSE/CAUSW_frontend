@@ -94,12 +94,12 @@ class UserRepo {
     } = await axios.get<User.FindPrivilegedUsersResponseDto>(`${this.URI}/privileged`); */
 
     return {
-      presidentUsers: presidentUsers ? new UserModel(presidentUsers) : null,
-      vicePresidentUsers: vicePresidentUsers ? new UserModel(vicePresidentUsers) : null,
+      presidentUsers: presidentUsers.map(user => new UserModel(user)),
+      vicePresidentUsers: vicePresidentUsers.map(user => new UserModel(user)),
       councilUsers: councilUsers.map(user => new UserModel(user)),
       leaderGradeUsers: leaderGradeUsers.map(user => new UserModel(user)),
       leaderCircleUsers: leaderCircleUsers.map(user => new UserModel(user)),
-      leaderAlumni: leaderAlumni ? new UserModel(leaderAlumni) : null,
+      leaderAlumni: leaderAlumni.map(user => new UserModel(user)),
     };
   };
 
