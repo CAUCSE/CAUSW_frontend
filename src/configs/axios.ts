@@ -1,13 +1,17 @@
 import axios, { AxiosResponse } from 'axios';
+import rateLimit from 'axios-rate-limit';
 
 import { PAGE_URL } from './path';
 
-export const API = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'production'
-      ? import.meta.env.VITE_PROD_SERVER_URL
-      : import.meta.env.VITE_DEV_SERVER_URL,
-});
+export const API = rateLimit(
+  axios.create({
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? import.meta.env.VITE_PROD_SERVER_URL
+        : import.meta.env.VITE_DEV_SERVER_URL,
+  }),
+  { maxRequests: 3, perMilliseconds: 1000 },
+);
 
 //Auth
 export const setAccess = (token: string): unknown =>
@@ -40,12 +44,23 @@ API.interceptors.response.use(
         response: { data },
         config,
       } = error;
-
       if (
         (!localStorage.getItem(storageRefreshKey) &&
           config.url !== '/api/v1/users/password/find' &&
           config.url !== '/api/v1/users/sign-up') ||
-        config.url === '/api/v1/users/token/update'
+        config.url === '/api/v1/users/token/update' ||
+        data.errorCode === '4101' ||
+        data.errorCode === 4101 ||
+        data.errorCode === '4102' ||
+        data.errorCode === 4102 ||
+        data.errorCode === '4103' ||
+        data.errorCode === 4103 ||
+        data.errorCode === '4104' ||
+        data.errorCode === 4104 ||
+        data.errorCode === '4012' ||
+        data.errorCode === 4012 ||
+        data.errorCode === '4109' ||
+        data.errorCode === 4109
       ) {
         removeRefresh();
         if (location.pathname !== PAGE_URL.SignIn) location.href = PAGE_URL.SignIn;
