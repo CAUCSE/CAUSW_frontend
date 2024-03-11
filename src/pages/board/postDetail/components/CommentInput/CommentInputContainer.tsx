@@ -23,6 +23,7 @@ export const CommentInputContainer: React.FC = observer(() => {
   } = useRootStore();
   const { virtuosoRef, commentInput, replyComments, comments } =
     usePageUiStore<PageUiStore.PostDetail>();
+  const { fetch, reset } = usePageUiStore<PageUiStore.PostDetail>();
 
   const methods = useForm<FormBody>();
   const handleSubmit = useCallback(
@@ -66,6 +67,8 @@ export const CommentInputContainer: React.FC = observer(() => {
         });
         methods.setValue('content', '');
         commentInput.resetState();
+        reset();
+        fetch(postId);
       },
     [postId],
   );
