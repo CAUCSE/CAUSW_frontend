@@ -10,7 +10,7 @@ export const API = rateLimit(
         ? import.meta.env.VITE_PROD_SERVER_URL
         : import.meta.env.VITE_DEV_SERVER_URL,
   }),
-  { maxRequests: 3, perMilliseconds: 1000 },
+  { maxRequests: 5, perMilliseconds: 1000 },
 );
 
 //Auth

@@ -88,11 +88,6 @@ class UserRepo {
       `${this.URI}/privileged`,
     )) as AxiosResponse<User.FindPrivilegedUsersResponseDto>;
 
-    /* mocking
-    const {
-      data: { councilUsers, leaderAlumni, leaderCircleUsers, leaderGradeUsers },
-    } = await axios.get<User.FindPrivilegedUsersResponseDto>(`${this.URI}/privileged`); */
-
     return {
       presidentUser: presidentUser.map(user => new UserModel(user)),
       vicePresidentUser: vicePresidentUser.map(user => new UserModel(user)),
