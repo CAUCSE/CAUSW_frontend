@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { Admission } from './admission';
 import { FindPassword } from './findPassword';
-import { NoPermission } from './NoPermission';
+import { NoPermission } from './noPermission';
 import { SignIn } from './signIn';
 import { SignUp } from './signUp';
 import { UseTerms } from './useTerms';

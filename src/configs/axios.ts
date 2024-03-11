@@ -39,7 +39,6 @@ export const getRefresh = (): string | null => {
 API.interceptors.response.use(
   response => response,
   async error => {
-    console.log(error);
     if (error.response) {
       const {
         response: { data },
@@ -58,8 +57,6 @@ API.interceptors.response.use(
         data.errorCode === 4103 ||
         data.errorCode === '4104' ||
         data.errorCode === 4104 ||
-        data.errorCode === '4105' ||
-        data.errorCode === 4105 ||
         data.errorCode === '4012' ||
         data.errorCode === 4012 ||
         data.errorCode === '4109' ||
