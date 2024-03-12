@@ -45,8 +45,8 @@ export const SubmitButton = observer(() => {
           연장하기
         </NavButton>
       ) : null} */}
-      <NavButton disabled={!target} onClick={handleClick(isSelectedMine, target)}>
-        {isSelectedMine ? '반환하기' : '신청하기'}
+      <NavButton disabled={!target || isSelectedMine} onClick={handleClick(isSelectedMine, target)}>
+        신청하기
       </NavButton>
     </PageFooter>
   );

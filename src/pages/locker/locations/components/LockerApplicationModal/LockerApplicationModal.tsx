@@ -46,8 +46,7 @@ export const LockerApplicationModal: React.FC = observer(() => {
           <strong>{target?.lockerNumber}번</strong> 사물함을 신청하시겠습니까?
           <br />
           <br />
-          신청 후 즉시 반납 가능하지만, 재신청을 위해서는 <strong>24시간</strong>이 경과되어야
-          합니다.
+          신청 후 다른 사물함을 재신청하는 경우 원래 사물함 자동으로 반납 처리됩니다.
         </ModalAlertMessage>
         <ModalFooter>
           <ModalFooterButton onClick={close}>취소</ModalFooterButton>
