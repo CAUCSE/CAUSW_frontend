@@ -8,29 +8,13 @@ import { H2 } from './styled';
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
 import { usePageUiStore, useDeviceState } from '@/hooks';
 
-const WEB_WIDTH_CONDITION = 550;
-const RESIZE_DELAY = 300;
-let timer: string | number | NodeJS.Timeout | undefined;
-
 const CircleHomePage: React.FC = observer(() => {
   const { fetch, circles, joinedCircles } = usePageUiStore<PageUiStore.CircleHome>();
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isMobile] = useDeviceState();
 
   useEffect(() => {
     fetch();
   }, [fetch]);
-
-  useEffect(() => {
-    const handleWindowResize = () => {
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        setScreenWidth(window.innerWidth);
-      }, RESIZE_DELAY);
-    };
-    window.addEventListener('resize', handleWindowResize);
-    return () => window.removeEventListener('resize', handleWindowResize);
-  });
 
   return (
     <>
