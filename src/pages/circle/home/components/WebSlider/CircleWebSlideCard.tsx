@@ -48,7 +48,7 @@ export const CircleWebSlideCard: React.FC<{ model: Model.Circle }> = memo(
 
 const Card = styled.article`
   box-sizing: border-box;
-  width: 90%;
+  width: 360px;
   min-width: 360px;
   min-height: 500px;
   background: #fff;
@@ -74,10 +74,9 @@ const Body = styled.div`
 
 const Cover = styled.div<{ mainImage: string | null }>`
   top: 6px;
-  left: 6px;
-  width: calc(100% - 12px);
+  left: 10px;
+  width: calc(100% - 20px);
   height: calc(100% - 6px);
-  border-radius: 5px;
 
   ${({ mainImage }) =>
     mainImage
@@ -88,7 +87,8 @@ const Cover = styled.div<{ mainImage: string | null }>`
           background: center / contain no-repeat url('/images/empty.png');
           background-size: 65%;
         `}
-  background-color: #efefef;
+  background-color: white;
+  border-bottom: 1px solid #dadada;
 `;
 
 const Name = styled.h3`
@@ -135,6 +135,6 @@ const Footer = styled.div`
 
 const Icon = styled(Article)`
   position: absolute;
-  top: 9px;
-  right: 5px;
+  top: 5px;
+  right: 12px;
 `;
