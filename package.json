@@ -29,6 +29,7 @@
     "react-ga": "^3.3.1",
     "react-hook-form": "^7.12.1",
     "react-quill": "^2.0.0",
+    "react-responsive": "^9.0.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.2.0",
     "react-simple-image-viewer": "^1.2.1",
