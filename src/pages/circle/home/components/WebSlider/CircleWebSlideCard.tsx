@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import { memo, useState } from 'react';
 import { generatePath, useHistory } from 'react-router';
 
-import { Article } from '@/assets/icons';
 import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
@@ -37,7 +37,7 @@ export const CircleWebSlideCard: React.FC<{ model: Model.Circle }> = memo(
           <Footer>
             <Name className="text-ellipsis-line">{name}</Name>
             <ClearButton onClick={handleFlip}>
-              <Icon active={isFlipped} />
+              <Icon />
             </ClearButton>
           </Footer>
         </Inner>
@@ -92,7 +92,7 @@ const Cover = styled.div<{ mainImage: string | null }>`
 `;
 
 const Name = styled.h3`
-  margin: 0 35px 0 13px;
+  margin: 2px 35px 0 13px;
   line-height: 36px;
   font-size: 12px;
   font-weight: bold;
@@ -133,8 +133,8 @@ const Footer = styled.div`
   height: 40px;
 `;
 
-const Icon = styled(Article)`
+const Icon = styled(ChangeCircleIcon)`
   position: absolute;
-  top: 5px;
+  top: 7px;
   right: 12px;
 `;
