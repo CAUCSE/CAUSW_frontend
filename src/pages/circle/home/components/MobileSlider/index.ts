@@ -1,1 +1,1 @@
-export { CircleSlider as Slider } from './CircleSlider';
+export { CircleMobileSlider as MobileSlider } from './CircleMobileSlider';

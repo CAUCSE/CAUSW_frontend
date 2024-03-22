@@ -4,10 +4,10 @@ import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 
-import { CircleSlideCard } from './CircleSlideCard';
+import { CircleMobileSlideCard } from './CircleMobileSlideCard';
 import { ListComponent } from '../CircleListFrame';
 
-export const CircleSlider: ListComponent = observer(({ items }) => {
+export const CircleMobileSlider: ListComponent = observer(({ items }) => {
   const [config] = useState({
     autoPlay: false,
     // XXX: swipe 이후 자동으로 움직이는 버그가 있음
@@ -25,7 +25,7 @@ export const CircleSlider: ListComponent = observer(({ items }) => {
   return (
     <StyledCarousel {...config}>
       {items.map(item => (
-        <CircleSlideCard key={item.id} model={item} />
+        <CircleMobileSlideCard key={item.id} model={item} />
       ))}
     </StyledCarousel>
   );

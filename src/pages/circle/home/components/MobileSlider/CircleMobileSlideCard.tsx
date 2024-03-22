@@ -9,7 +9,7 @@ import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
-export const CircleSlideCard: React.FC<{ model: Model.Circle }> = memo(
+export const CircleMobileSlideCard: React.FC<{ model: Model.Circle }> = memo(
   ({ model: { id: circleId, mainImage, name, newLineDescription } }) => {
     const { push } = useHistory();
     const [isFlipped, setFlip] = useState(false);

@@ -26,7 +26,7 @@ const CircleHomePage: React.FC = observer(() => {
           <Circle.ListFrame
             items={circles}
             emptyText={'아직 등록된 동아리가 없어요!'}
-            ListComponent={!isMobile ? Circle.WebSlider : Circle.Slider}
+            ListComponent={isMobile ? Circle.MobileSlider : Circle.WebSlider}
           />
           <H2>내 동아리</H2>
           <Circle.ListFrame
