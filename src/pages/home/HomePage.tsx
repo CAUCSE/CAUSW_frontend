@@ -1,6 +1,7 @@
 import { memo, useEffect } from 'react';
 
 import { CircleLinks, HomeBoards } from './components';
+import EventBlock from './event/components/EventBlock';
 import { PageUiStoreImpl } from './HomePageUiStore';
 
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
@@ -19,6 +20,7 @@ const HomePage: React.FC = memo(() => {
       <PageBody>
         <BodyScreen>
           <CircleLinks />
+          <EventBlock />
           <HomeBoards />
         </BodyScreen>
       </PageBody>
