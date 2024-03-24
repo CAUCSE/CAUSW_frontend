@@ -8,6 +8,7 @@ export enum PAGE_URL {
   NoPermission = '/auth/noPermission',
 
   Home = '/home',
+  Event = '/event',
 
   // 동아리
   Circle = '/circle',

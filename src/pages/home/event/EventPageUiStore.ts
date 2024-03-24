@@ -29,4 +29,4 @@ export class EventPageUiStore {
   }
 }
 
-export const PageUiStoreImpl = new SignUpPageUiStore();
+export const PageUiStoreImpl = new EventPageUiStore();

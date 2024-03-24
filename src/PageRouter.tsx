@@ -13,6 +13,7 @@ import * as Switch from './pages';
 import { PAGE_URL } from '@/configs/path';
 
 const HomePage = lazy(() => import('./pages/home/HomePage'));
+const EventPage = lazy(() => import('./pages/home/event/EventPage'));
 
 export const PageRouter: React.FC = () => (
   <Suspense fallback={<Loading />}>
@@ -26,6 +27,7 @@ export const PageRouter: React.FC = () => (
 
         <AuthRouter>
           <Route path={PAGE_URL.Home} component={HomePage} />
+          <Route path={PAGE_URL.Event} component={EventPage} />
           <Route path={PAGE_URL.Locker} component={Switch.LockerPage} />
           <Route path={PAGE_URL.Circle} component={Switch.CirclePage} />
           <Route path={PAGE_URL.Board} component={Switch.BoardPage} />
