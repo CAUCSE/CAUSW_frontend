@@ -1,15 +1,15 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import { memo, useState } from 'react';
 import { generatePath, useHistory } from 'react-router';
 
 // import { Icons } from '@/assets';
-import { Article } from '@/assets/icons';
 import { ClearButton } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
-export const CircleSlideCard: React.FC<{ model: Model.Circle }> = memo(
+export const CircleMobileSlideCard: React.FC<{ model: Model.Circle }> = memo(
   ({ model: { id: circleId, mainImage, name, newLineDescription } }) => {
     const { push } = useHistory();
     const [isFlipped, setFlip] = useState(false);
@@ -38,7 +38,7 @@ export const CircleSlideCard: React.FC<{ model: Model.Circle }> = memo(
           <Footer>
             <Name className="text-ellipsis-line">{name}</Name>
             <ClearButton onClick={handleFlip}>
-              <Icon active={isFlipped} />
+              <Icon />
             </ClearButton>
           </Footer>
         </Inner>
@@ -74,10 +74,9 @@ const Body = styled.div`
 
 const Cover = styled.div<{ mainImage: string | null }>`
   top: 6px;
-  left: 6px;
-  width: calc(100% - 12px);
+  left: 10px;
+  width: calc(100% - 20px);
   height: calc(100% - 6px);
-  border-radius: 5px;
 
   ${({ mainImage }) =>
     mainImage
@@ -88,11 +87,12 @@ const Cover = styled.div<{ mainImage: string | null }>`
           background: center / contain no-repeat url('/images/empty.png');
           background-size: 65%;
         `}
-  background-color: #efefef;
+  background-color: white;
+  border-bottom: 1px solid #dadada;
 `;
 
 const Name = styled.h3`
-  margin: 0 35px 0 13px;
+  margin: 2px 35px 0 13px;
   line-height: 36px;
   font-size: 12px;
   font-weight: bold;
@@ -133,8 +133,8 @@ const Footer = styled.div`
   height: 40px;
 `;
 
-const Icon = styled(Article)`
+const Icon = styled(ChangeCircleIcon)`
   position: absolute;
-  top: 9px;
-  right: 5px;
+  top: 7px;
+  right: 12px;
 `;

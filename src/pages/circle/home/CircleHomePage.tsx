@@ -6,30 +6,15 @@ import * as Circle from './components';
 import { H2 } from './styled';
 
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
-import { usePageUiStore } from '@/hooks';
-
-const WEB_WIDTH_CONDITION = 550;
-const RESIZE_DELAY = 300;
-let timer: string | number | NodeJS.Timeout | undefined;
+import { usePageUiStore, useDeviceState } from '@/hooks';
 
 const CircleHomePage: React.FC = observer(() => {
   const { fetch, circles, joinedCircles } = usePageUiStore<PageUiStore.CircleHome>();
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isMobile] = useDeviceState();
 
   useEffect(() => {
     fetch();
   }, [fetch]);
-
-  useEffect(() => {
-    const handleWindowResize = () => {
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        setScreenWidth(window.innerWidth);
-      }, RESIZE_DELAY);
-    };
-    window.addEventListener('resize', handleWindowResize);
-    return () => window.removeEventListener('resize', handleWindowResize);
-  });
 
   return (
     <>
@@ -41,7 +26,7 @@ const CircleHomePage: React.FC = observer(() => {
           <Circle.ListFrame
             items={circles}
             emptyText={'아직 등록된 동아리가 없어요!'}
-            ListComponent={screenWidth > WEB_WIDTH_CONDITION ? Circle.WebSlider : Circle.Slider}
+            ListComponent={isMobile ? Circle.MobileSlider : Circle.WebSlider}
           />
           <H2>내 동아리</H2>
           <Circle.ListFrame
