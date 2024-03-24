@@ -39,6 +39,7 @@ const SignUpPage: React.FC = observer(() => {
   const password = watch('password');
   const onSubmit = async (body: User.CreateDto) => {
     body.profileImage = null;
+    body.admissionYear = +body.studentId.slice(0, 4);
     const { success, message } = (await signUp(body)) as unknown as StoreAPI;
 
     if (success) {
@@ -130,29 +131,6 @@ const SignUpPage: React.FC = observer(() => {
           {errors.name ? <ErrorMessage>{errors.name?.message}</ErrorMessage> : null}
 
           <Input
-            name="admissionYear"
-            type="number"
-            label="입학년도"
-            placeholder="입학년도 4자리를 입력하세요. (ex.2020)"
-            required
-            control={control}
-            rules={{
-              required: '입학년도를 입력해주세요.',
-              minLength: {
-                value: 4,
-                message: '4자리 입학년도를 입력해주세요.',
-              },
-              maxLength: {
-                value: 4,
-                message: '4자리 입학년도를 입력해주세요.',
-              },
-            }}
-          />
-          {errors.admissionYear ? (
-            <ErrorMessage>{errors.admissionYear?.message}</ErrorMessage>
-          ) : null}
-
-          <Input
             name="studentId"
             type="number"
             label="학번"
@@ -163,11 +141,11 @@ const SignUpPage: React.FC = observer(() => {
               required: '학번을 입력해주세요.',
               minLength: {
                 value: 8,
-                message: '8자리 입학년도를 입력해주세요.',
+                message: '8자리 학번을 입력해주세요.',
               },
               maxLength: {
                 value: 8,
-                message: '8자리 입학년도를 입력해주세요.',
+                message: '8자리 학번을 입력해주세요.',
               },
             }}
           />
