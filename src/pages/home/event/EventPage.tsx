@@ -54,14 +54,14 @@ const EventPage: React.FC = observer(() => {
     if (isDuplicatedEmail) trigger('email');
   }, [isDuplicatedEmail]);
 
-  const application = true;
+  const state = 'APPLICATION';
 
   return (
     <>
       <Header withBack title="간식 배부 행사 신청하기" mini RightComponent={null} />
       <PageBody>
         <BodyScreen>
-          {application ? (
+          {state === 'APPLICATION' ? (
             <Container>
               <PreventionImg src="/images/empty.png" alt="Empty list logo" />
               <br />
@@ -73,7 +73,7 @@ const EventPage: React.FC = observer(() => {
         </BodyScreen>
       </PageBody>
       <PageFooter>
-        <NavButton onClick={handleSubmit(onSubmit)} disabled={application}>
+        <NavButton onClick={handleSubmit(onSubmit)} disabled={state === 'APPLICATION'}>
           신청하기
         </NavButton>
       </PageFooter>
