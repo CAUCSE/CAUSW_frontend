@@ -16,6 +16,7 @@ import {
   PageStoreHOC,
   PasswordInput,
   NavButton,
+  Title,
 } from '@/components';
 import { PAGE_URL } from '@/configs/path';
 import { useAuthRedirect, usePageUiStore } from '@/hooks';
@@ -53,32 +54,43 @@ const EventPage: React.FC = observer(() => {
     if (isDuplicatedEmail) trigger('email');
   }, [isDuplicatedEmail]);
 
+  const application = true;
+
   return (
     <>
       <Header withBack title="간식 배부 행사 신청하기" mini RightComponent={null} />
       <PageBody>
         <BodyScreen>
-          <PreventionImg src="/images/empty.png" alt="Empty list logo" />
-          <br />
+          {application ? (
+            <Container>
+              <PreventionImg src="/images/empty.png" alt="Empty list logo" />
+              <br />
+              <BigTitle>신청 완료!</BigTitle>
+              <div>행사 당일에 해당 페이지를</div>
+              <div>보여주시면 됩니다.</div>
+            </Container>
+          ) : null}
         </BodyScreen>
       </PageBody>
       <PageFooter>
-        <Message>
-          회원가입 이후 로그인과 학부인증을 하셔야 <br /> 서비스를 이용할 수 있습니다
-        </Message>
-        <NavButton onClick={handleSubmit(onSubmit)} disabled={submitDisabled}>
-          가입하기
+        <NavButton onClick={handleSubmit(onSubmit)} disabled={application}>
+          신청하기
         </NavButton>
       </PageFooter>
     </>
   );
 });
 
-const Message = styled.div`
-  text-align: right;
-  color: #ff7473;
-  font-size: 12px;
-  line-height: 21px;
+const Container = styled.div`
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const PreventionImg = styled.img`
@@ -90,6 +102,11 @@ const PreventionImg = styled.img`
       transform: rotate(360deg);
     }
   }
+`;
+
+const BigTitle = styled(Title)`
+  font-size: 25px;
+  margin-bottom: 15px;
 `;
 
 export default PageStoreHOC(<EventPage />, { store: PageUiStoreImpl });
