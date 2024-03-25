@@ -1,10 +1,6 @@
 import { lazy, Suspense } from 'react';
-import {
-  BrowserRouter as RootRouter,
-  Redirect,
-  Route,
-  Switch as RootSwitch,
-} from 'react-router-dom';
+import { Redirect, Route, Switch as RootSwitch } from 'react-router-dom';
+import { CompatRouter as RootRouter } from 'react-router-dom-v5-compat';
 
 import { AuthRouter } from './AuthRouter';
 import Loading from './components/Loading';
