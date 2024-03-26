@@ -1,6 +1,7 @@
 import { memo, useEffect } from 'react';
 
-import { CircleLinks, HomeBoards } from './components';
+import { CircleLinks } from './components/CircleLinks';
+import { HomeBoards } from './components/HomeBoards';
 import { PageUiStoreImpl } from './HomePageUiStore';
 
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
