@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
-import { LockerListCard, LockerPosition } from './components';
+import { LockerListCard } from './components/LockerListCard/LockerListCard';
+import { LockerPosition } from './components/LockerPosition/LockerPosition';
 import { PageUiStoreImpl } from './LockerListPageUiStore';
 
 import { StudyLogo } from '@/assets';
