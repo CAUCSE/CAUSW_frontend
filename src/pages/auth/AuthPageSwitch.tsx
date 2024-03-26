@@ -1,8 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
 
-import { Admission } from './admission';
-import { FindPassword } from './findPassword';
-import { NoPermission } from './noPermission';
+import Admission from './admission/AdmissionPage';
+import FindPassword from './findPassword/FindPasswordPage';
+import NoPermission from './noPermission/NoPermissionPage';
 import SignIn from './signIn/SignInPage';
 import SignUp from './signUp/SignUpPage';
 import UseTerms from './useTerms/UseTermsPage';

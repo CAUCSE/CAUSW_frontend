@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import { PasswordInput } from './components';
+import { PasswordInput } from './components/PasswordInput';
 import { PageUiStoreImpl } from './SignInPageUiStore';
 import { Form, Input, Link, LoginButton, LogoImage, PageWrapper, SubLink } from './styled';
 
