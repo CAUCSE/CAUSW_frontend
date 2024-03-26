@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect } from 'react';
 
-import { HistoryPostCard } from './components';
+import { HistoryPostCard } from './components/HistoryPostCard';
 import { PageUiStoreImpl } from './HistoryPostPageUiStore';
 
 import { GNB, Header, InfinityFrame, PageBody, PageStoreHOC } from '@/components';
