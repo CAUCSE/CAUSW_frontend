@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { generatePath, useHistory } from 'react-router-dom';
 
-import { Porfile } from './components';
+import { Porfile } from './components/Profile';
 import { Link, LinkButton } from './styeld';
 
 import { BodyScreen, Box, GNB, PageBody, PageStoreHOC, Title, TitleContent } from '@/components';
