@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import { Admission } from './admission';
 import { FindPassword } from './findPassword';
 import { NoPermission } from './noPermission';
-import { SignIn } from './signIn';
-import { SignUp } from './signUp';
-import { UseTerms } from './useTerms';
+import SignIn from './signIn/SignInPage';
+import SignUp from './signUp/SignUpPage';
+import UseTerms from './useTerms/UseTermsPage';
 
 import { PAGE_URL } from '@/configs/path';
 
