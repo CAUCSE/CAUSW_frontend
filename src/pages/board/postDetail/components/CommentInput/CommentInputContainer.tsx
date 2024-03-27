@@ -16,7 +16,8 @@ import { useRootStore } from '@/stores';
 type FormBody = { content: string };
 
 export const CommentInputContainer: React.FC = observer(() => {
-  const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
+  //const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
+
   const { postId } = useParams<PostParams>();
   const {
     ui: { alert },
@@ -76,11 +77,9 @@ export const CommentInputContainer: React.FC = observer(() => {
   return (
     <FormProvider {...methods}>
       <Nav>
-        <ReplyChip />
-        <EditChip />
-        <CommentInputView
-          onSubmit={methods.handleSubmit(handleSubmit(isReplyComment, virtuosoRef))}
-        />
+        {/* <ReplyChip />
+        <EditChip /> */}
+        <CommentInputView onSubmit={methods.handleSubmit(handleSubmit(false, virtuosoRef))} />
       </Nav>
     </FormProvider>
   );

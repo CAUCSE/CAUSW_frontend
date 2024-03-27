@@ -8,7 +8,7 @@ import {
   PostAuthor,
   PostComments,
   PostDetailMenu,
-  PostReplyComments,
+  // PostReplyComments,
 } from './components';
 import { CommentDeleteModal } from './components/CommentDeleteModal';
 import { PostDeleteModal } from './components/PostDeleteModal';
@@ -61,7 +61,7 @@ const PostDetailPage: React.FC = observer(() => {
               </div>
               <PostCommentNum>{post.commentCount}</PostCommentNum>
               <Switch>
-                <Route path={PAGE_URL.PostReplyComment} component={PostReplyComments} />
+                {/* <Route path={PAGE_URL.PostReplyComment} component={PostReplyComments} /> */}
                 <Route path={PAGE_URL.PostDetail} component={PostComments} />
               </Switch>
             </BodyScreen>
@@ -72,7 +72,7 @@ const PostDetailPage: React.FC = observer(() => {
         <>{/* TODO: 페이지 스켈레톤 */}</>
       )}
       <PostDeleteModal />
-      <CommentMenu />
+      {/* <CommentMenu /> */}
       <CommentDeleteModal />
     </>
   );

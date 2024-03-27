@@ -1,4 +1,4 @@
-export { PostReplyComments } from './ReplyComment';
+// export { PostReplyComments } from './ReplyComment';
 export { PostComments } from './Comment';
 export { CommentInput } from './CommentInput';
 export { CommentMenu } from './CommentMenu';

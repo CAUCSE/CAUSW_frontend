@@ -5,6 +5,7 @@ import { generatePath, useHistory, useParams } from 'react-router-dom';
 import { useLongPress } from 'use-long-press';
 
 import { CommentCardView } from './CommentCardView';
+import { PostReplyComments } from './PostReplyComments';
 import { ReplyLink } from './styled';
 import { InputState } from '../CommentInput';
 
@@ -43,23 +44,19 @@ export const CommentCardContainer: React.FC<Props> = observer(
       onFinish: ev => ev?.preventDefault(),
     });
 
-    const handleGoReply = useCallback(
-      (params: PostParams, target?: Model.Comment | Model.ReplyComment) => () => {
-        if (!target) return;
+    // const handleGoReply = useCallback(
+    //   (params: PostParams, target?: Model.Comment | Model.ReplyComment) => () => {
+    //     if (!target) return;
 
-        replace(generatePath(PAGE_URL.PostReplyComment, { ...params, commentId: target.id }));
-      },
-      [],
-    );
+    //     replace(generatePath(PAGE_URL.PostReplyComment, { ...params, commentId: target.id }));
+    //   },
+    //   [],
+    // );
 
     return (
       <li ref={ref} {...bind()}>
         <CommentCardView state={commentState} model={model} />
-        {withReplyLink && model.numChildComment ? (
-          <ReplyLink onClick={handleGoReply(params, model)}>
-            답글 {model.numChildComment}개 더보기
-          </ReplyLink>
-        ) : null}
+        {model.numChildComment != 0 ? <PostReplyComments model={model} /> : null}
       </li>
     );
   },
