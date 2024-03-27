@@ -41,9 +41,8 @@ export const PostReplyComments: React.FC<{ model: Model.Comment }> = observer(({
 
   useEffect(() => {
     fetch(model.id);
-
     return () => {
-      reset();
+      //reset();
       resetState();
     };
   }, [model.id]);
