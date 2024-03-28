@@ -1,9 +1,11 @@
-import { AdmissionAcceptModalUi } from './components/AdmissionAcceptModal/AdmissionAcceptModalUi';
-import { AdmissionRejectModalUi } from './components/AdmissionRejectModal/AdmissionRejectModalUi';
-import { AdmissionUserTabUi } from './components/AdmissionUserTab/AdmissionUserTabUi';
-import { DropModalUi } from './components/DropModal/DropModalUi';
-import { RestoreModalUi } from './components/RestoreModal/RestoreModalUi';
-import { UserTabUi } from './components/UserTab/UserTabUi';
+import {
+  AdmissionAcceptModalUi,
+  AdmissionRejectModalUi,
+  AdmissionUserTabUi,
+  DropModalUi,
+  RestoreModalUi,
+  UserTabUi,
+} from './components';
 
 import { UserInfoModalUi, WithUserInfoModalUi } from '@/components/UserInfoModal/UserInfoModalUi';
 
