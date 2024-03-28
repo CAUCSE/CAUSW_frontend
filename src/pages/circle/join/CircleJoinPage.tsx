@@ -3,7 +3,8 @@ import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router';
 
 import { PageUiStoreImpl } from './CircleJoinPageUiStore';
-import { CircleJoinModal, PageSkeleton } from './components';
+import { CircleJoinModal } from './components/CircleJoinModal/CircleJoinModal';
+import { PageSkeleton } from './components/PageSkeleton/PageSkeleton';
 import { CircleImage, Desc, Hr, Name, Row } from './styled';
 
 import { BodyScreen, Header, PageBody, PageFooter, PageStoreHOC, NavButton } from '@/components';

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { CircleJoinModalUi } from './components';
+import { CircleJoinModalUi } from './components/CircleJoinModal/CircleJoinModalUi';
 
 import { CircleRepoImpl as Repo } from '@/stores/repositories/CircleRepo';
 
