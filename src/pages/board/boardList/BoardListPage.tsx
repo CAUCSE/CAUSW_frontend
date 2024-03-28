@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
 import { PageUiStoreImpl } from './BoardListPageUiStore';
-import { Boards, BoardCreateButton } from './components';
-import { DeleteBoardModal } from './components/DeleteBoardModal';
+import { BoardCreateButton } from './components/BoardCreateButton';
+import { Boards } from './components/Boards';
+import { DeleteBoardModal } from './components/DeleteBoardModal/DeleteBoardModal';
 
 import { BodyScreen, GNB, Header, PageBody, PageStoreHOC } from '@/components';
 import { usePageUiStore } from '@/hooks';

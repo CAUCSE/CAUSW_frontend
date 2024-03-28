@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-import { Editor, TitleInputHeader } from './components';
+import { Editor } from './components/Editor';
+import { TitleInputHeader } from './components/TitleInputHeader';
 import { PageUiStoreImpl } from './PostEditorPageUiStore';
 
 import { PageStoreHOC } from '@/components';
