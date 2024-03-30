@@ -60,10 +60,11 @@ const PostDetailPage: React.FC = observer(() => {
                 />
               </div>
               <PostCommentNum>{post.commentCount}</PostCommentNum>
-              <Switch>
+              <PostComments />
+              {/* <Switch> */}
                 {/* <Route path={PAGE_URL.PostReplyComment} component={PostReplyComments} /> */}
-                <Route path={PAGE_URL.PostDetail} component={PostComments} />
-              </Switch>
+                {/* <Route path={PAGE_URL.PostDetail} component={PostComments} /> */}
+              {/* </Switch> */}
             </BodyScreen>
           </PageBody>
           <CommentInput />
@@ -72,7 +73,7 @@ const PostDetailPage: React.FC = observer(() => {
         <>{/* TODO: 페이지 스켈레톤 */}</>
       )}
       <PostDeleteModal />
-      {/* <CommentMenu /> */}
+      <CommentMenu />
       <CommentDeleteModal />
     </>
   );

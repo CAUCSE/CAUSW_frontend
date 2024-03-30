@@ -11,7 +11,7 @@ import { PAGE_URL, PostParams } from '@/configs/path';
 import { usePageUiStore } from '@/hooks';
 
 export const CommentMenuContainer: React.FC = observer(() => {
-  const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
+  //const isReplyComment = !!useRouteMatch(PAGE_URL.PostReplyComment);
   const params = useParams<PostParams>();
   const { replace } = useHistory();
   const {
@@ -22,21 +22,23 @@ export const CommentMenuContainer: React.FC = observer(() => {
 
   const handleSetState = useCallback(
     (
-      isReplyComment: boolean,
+      //isReplyComment: boolean,
       state: InputState,
       params: PostParams,
-      target?: Model.Comment | Model.ReplyComment,
+      target?: Model.Comment,
     ) =>
       () => {
+        //console.log(typeof target);
+        // console.log(isReplyComment);
         if (!target) return;
-
+        
+        //if (target.numChildComment != null && state === InputState.REPLY)
         close();
-        if (!isReplyComment && state === InputState.REPLY)
-          replace(generatePath(PAGE_URL.PostReplyComment, { ...params, commentId: target.id }));
-        else setState(state, target);
+        setState(state, target);
       },
     [],
   );
+
   const handleOpenDeleteModal = useCallback(
     (target?: Model.Comment | Model.ReplyComment) => () => {
       if (!target) return;
@@ -50,10 +52,8 @@ export const CommentMenuContainer: React.FC = observer(() => {
   return target ? (
     <Modal open={visible} onClose={close} closeAfterTransition>
       <Box>
-        {!target?.isDeleted ? (
-          <ModalMenuButton
-            onClick={handleSetState(isReplyComment, InputState.REPLY, params, target)}
-          >
+        {!target?.isDeleted && target.numChildComment != null ? (
+          <ModalMenuButton onClick={handleSetState(InputState.REPLY, params, target)}>
             답글 달기
           </ModalMenuButton>
         ) : null}
