@@ -5,6 +5,12 @@
  "short_name": "CAUSW",
  "id": "CAUSW",
  "description": "CAUSW, 동문네트워크는 중앙대학교 소프트웨어학부 동문만 사용할 수 있는 커뮤니티 서비스로, 단순 소셜 네트워크 기능 뿐만 아니라 사물함 신청, 동아리 신청 및 학생회 사업/행사 신청 등 전반적으로 학생 사회를 하나로 묶어주며, 학생들의 편의를 증진 시켜주는 서비스입니다.",
+ "dir": "auto",
+ "display": "standalone",
+ "orientation": "any",
+ "scope": "/",
+ "start_url": "https://causw.co.kr/",
+ "lang": "ko",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
