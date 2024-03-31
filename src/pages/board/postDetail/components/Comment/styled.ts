@@ -72,9 +72,9 @@ export const ReplyLink = styled(ClearButton)`
 `;
 
 export const ReplyCommentsBox = styled(ClearUl)`
-  margin-top: 10px;
-  padding: 5px -0;
-  border-top: 1px solid #f5f5f5;
+  // margin-top: 10px;
+  // padding: 5px -0;
+  // border-top: 1px solid #f5f5f5;
 `;
 
 export const BackLink = styled(ClearButton)`
@@ -84,5 +84,5 @@ export const BackLink = styled(ClearButton)`
 `;
 
 export const Li = styled.li`
-  padding: 0 0 5px 15px;
+  padding-left: 15px;
 `;
