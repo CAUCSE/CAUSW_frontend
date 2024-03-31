@@ -28,9 +28,9 @@ export const CommentInputContainer: React.FC = observer(() => {
 
   const methods = useForm<FormBody>();
   const handleSubmit = useCallback(
-    (isReplyComment: boolean, virtuosoRef?: React.MutableRefObject<VirtuosoHandle | null>) =>
+    (virtuosoRef?: React.MutableRefObject<VirtuosoHandle | null>) =>
       async ({ content }: FormBody) => {
-        const { isEdit, target } = commentInput;
+        const { isReply, isEdit, target } = commentInput;
         let rtn: Model.Comment | Model.ReplyComment | undefined;
         let index;
         let align: 'start' | 'center' | 'end' | undefined;
@@ -40,7 +40,7 @@ export const CommentInputContainer: React.FC = observer(() => {
           return;
         }
 
-        if (isReplyComment) {
+        if (isReply) {
           if (!isEdit)
             rtn = (await replyComments.create(content, target)) as unknown as Model.ReplyComment;
           else if (target)
@@ -79,7 +79,7 @@ export const CommentInputContainer: React.FC = observer(() => {
       <Nav>
         {/* <ReplyChip />
         <EditChip /> */}
-        <CommentInputView onSubmit={methods.handleSubmit(handleSubmit(false, virtuosoRef))} />
+        <CommentInputView onSubmit={methods.handleSubmit(handleSubmit(virtuosoRef))} />
       </Nav>
     </FormProvider>
   );

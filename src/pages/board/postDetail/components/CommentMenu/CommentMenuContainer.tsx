@@ -31,7 +31,6 @@ export const CommentMenuContainer: React.FC = observer(() => {
         //console.log(typeof target);
         // console.log(isReplyComment);
         if (!target) return;
-        
         //if (target.numChildComment != null && state === InputState.REPLY)
         close();
         setState(state, target);

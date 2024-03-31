@@ -43,19 +43,22 @@ export class ReplyCommentsStore {
   *create(content: string, target?: Model.Comment | Model.ReplyComment): Generator {
     const body: Partial<ReplyComment.CreateRequestDto> = { content };
 
-    if (this.parent) body.parentCommentId = this.parent.id;
-    else throw new Error('[ReplyCommentStore]: parent is undefined');
+    // if (this.parent) body.parentCommentId = this.parent.id;
+    // else throw new Error('[ReplyCommentStore]: parent is undefined');
 
-    if (target && this.parent.id !== target.id) {
-      body.refChildComment = target.id;
-      body.tagUserName = target.author.name;
-    }
+    if (target) body.parentCommentId = target?.id;
+    else throw new Error('[ReplyCommentStore]: target is undefined');
+
+    // if (target && this.parent.id !== target.id) {
+    //   body.refChildComment = target.id;
+    //   body.tagUserName = target.author.name;
+    // }
 
     const comment = (yield Repo.create(
       body as ReplyComment.CreateRequestDto,
     )) as Model.ReplyComment;
     this.comments = [...this.comments, comment];
-    this.parent.setNumChildComment(num => num + 1);
+    target.setNumChildComment(num => num + 1);
 
     return comment;
   }
