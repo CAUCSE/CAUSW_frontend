@@ -3,7 +3,7 @@ name: front-deploy
 on:
   push:
     branches:
-      - refactor/#118
+      - main
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: refactor/#118
+          ref: main
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
