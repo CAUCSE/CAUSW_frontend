@@ -26,10 +26,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # 리액트 빌드
-      - name: build react
-        run: npm run build
-
       # aws user 연결
       - name: Configure AWS credentials 
         uses: aws-actions/configure-aws-credentials@v1 
@@ -47,7 +43,7 @@ jobs:
           VITE_DEV_SERVER_URL: ${{ secrets.VITE_DEV_SERVER_URL }}
           VITE_PROD_SERVER_URL: ${{ secrets.VITE_PROD_SERVER_URL }}
 
-      # react 빌드한 /build를 s3로 업로드
+      # react 빌드한 /dist를 s3로 업로드
       - name: Upload /dist to S3
         env:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
@@ -63,6 +59,7 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id $CLOUD_FRONT_ID --paths "/*"
 
+      # 배포
       - name: deploy
         run: |
           npm run deploy:prod
