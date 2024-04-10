@@ -1,0 +1,63 @@
+name: front-dev
+
+on:
+  push:
+    branches:
+      - refactor/#118
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: refactor/#118
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      # aws user 연결
+      - name: Configure AWS credentials 
+        uses: aws-actions/configure-aws-credentials@v1 
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+          aws-region: ap-northeast-2
+
+      # 환경 변수 파일을 생성.
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "VITE_DEV_SERVER_URL=$VITE_DEV_SERVER_URL" >> .env
+        env:
+          VITE_PROD_SERVER_URL: ${{ secrets.VITE_DEV_SERVER_URL }}
+
+      # react 빌드
+      - name: deploy
+        run: |
+          npm run deploy:prod
+
+      # react 빌드한 /dist를 s3로 업로드
+      - name: Upload /dist to S3
+        env:
+          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME_DEV}}
+        run: |
+          aws s3 sync \
+            ./dist s3://$BUCKET_NAME
+
+      # 업로드한 s3 파일을 각 CDN 캐시 무효화하여 리프레시 하기
+      - name: CloudFront Invalidation
+        env:
+          CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID_DEV}}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id $CLOUD_FRONT_ID --paths "/*"
