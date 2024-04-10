@@ -22,9 +22,9 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
       - name: Install Dependencies
-        run: npm install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
 
       # aws user 연결
       - name: Configure AWS credentials 
