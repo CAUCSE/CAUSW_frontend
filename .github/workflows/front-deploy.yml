@@ -23,7 +23,6 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
-		  # 의존성 install
       - name: Install Dependencies
         run: npm install
 
