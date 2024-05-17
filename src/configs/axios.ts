@@ -44,6 +44,7 @@ API.interceptors.response.use(
         response: { data },
         config,
       } = error;
+
       if (
         (!localStorage.getItem(storageRefreshKey) &&
           config.url !== '/api/v1/users/password/find' &&
@@ -91,6 +92,8 @@ API.interceptors.response.use(
         ...data,
       });
     }
+
+    location.href = PAGE_URL.ApiError;
 
     return Promise.reject({
       success: false,

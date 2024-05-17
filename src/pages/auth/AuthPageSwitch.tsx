@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 
 import { Admission } from './admission';
+import ApiError from './apiError/ApiErrorPage';
 import { FindPassword } from './findPassword';
 import { NoPermission } from './noPermission';
 import { SignIn } from './signIn';
@@ -17,5 +18,6 @@ export const AuthPageSwitch: React.FC = () => (
     <Route path={PAGE_URL.UseTerms} component={UseTerms} />
     <Route path={PAGE_URL.FindPassword} component={FindPassword} />
     <Route path={PAGE_URL.NoPermission} component={NoPermission} />
+    <Route path={PAGE_URL.ApiError} component={ApiError} />
   </Switch>
 );

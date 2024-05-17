@@ -7,6 +7,8 @@ export enum PAGE_URL {
   UseTerms = '/auth/useTerms',
   NoPermission = '/auth/noPermission',
 
+  ApiError = '/auth/error',
+
   Home = '/home',
 
   // 동아리
