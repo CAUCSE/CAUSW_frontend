@@ -2,7 +2,7 @@ import { computed } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 
-import { NavButton, PageFooter } from '@/components';
+import { NavButton, PageFooter, AdditionNavButton } from '@/components';
 import { usePageUiStore } from '@/hooks';
 
 export const SubmitButton = observer(() => {
@@ -30,21 +30,12 @@ export const SubmitButton = observer(() => {
 
   return (
     <PageFooter>
-      {/* {isSelectedMine ? (
+      {isSelectedMine ? (
         // TODO : 반복 버튼 컴포넌트 만들기
-        <NavButton
-          disabled={!target}
-          onClick={extendClick(isSelectedMine, target)}
-          style={{
-            backgroundColor: 'white',
-            color: '#312ed7',
-            border: '1px solid #312ed7',
-            margin: '13px 0px 0px 0px',
-          }}
-        >
+        <AdditionNavButton disabled={!target} onClick={extendClick(isSelectedMine, target)}>
           연장하기
-        </NavButton>
-      ) : null} */}
+        </AdditionNavButton>
+      ) : null}
       <NavButton disabled={!target || isSelectedMine} onClick={handleClick(isSelectedMine, target)}>
         신청하기
       </NavButton>
