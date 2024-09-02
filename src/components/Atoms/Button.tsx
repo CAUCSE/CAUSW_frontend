@@ -54,6 +54,14 @@ export const NavButton = styled(Button)`
   margin: 13px 0;
 `;
 
+export const AdditionNavButton = styled(Button)`
+  margin: 13px 0;
+  background-color: white;
+  color: #312ed7;
+  border: 1px solid #312ed7;
+  margin: 13px 0px 0px 0px;
+`;
+
 export const NavSmallButton = styled(Button)`
   margin: 13px 0;
   font-size: 15px;
